@@ -1,0 +1,6 @@
+framework module Pods_Akalat_Shop {
+  umbrella header "Pods-Akalat-Shop-umbrella.h"
+
+  export *
+  module * { export * }
+}
