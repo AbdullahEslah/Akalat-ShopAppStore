@@ -86,6 +86,7 @@ class MenuVC: UITableViewController {
                 
             })
         }
+        
         if GIDSignIn.sharedInstance()?.currentUser?.authentication.accessToken != nil {
         
         //For fetching google Image

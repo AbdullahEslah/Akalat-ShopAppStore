@@ -47,8 +47,8 @@ class MealListVC: UIViewController {
         super.viewWillAppear(animated)
 //        self.navigationController?.navigationBar.barTintColor = UIColor(named: "MainColor")
         
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationController?.navigationItem.largeTitleDisplayMode = .always
+//        navigationController?.navigationBar.prefersLargeTitles = true
+//        navigationController?.navigationItem.largeTitleDisplayMode = .always
        
         collectionView.reloadData()
     }
@@ -133,7 +133,7 @@ extension MealListVC: UICollectionViewDataSource,UICollectionViewDelegate {
             mealDetailsVC.meal       = mealsData
             mealDetailsVC.restaurant = restaurant
             
-         mealDetailsVC.navigationController?.navigationBar.barTintColor = UIColor(named: "MainColor")
+//         mealDetailsVC.navigationController?.navigationBar.barTintColor = UIColor(named: "MainColor")
             
             self.navigationController?.show(mealDetailsVC, sender: self)
             

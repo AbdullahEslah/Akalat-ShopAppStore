@@ -612,7 +612,7 @@ extension LoginVC: ASAuthorizationControllerDelegate {
                     self.animationView.removeFromSuperview()
 
                 } else {
-                    Helper().showAlert(title: "Error!", message: error!.localizedDescription, in: self)
+                    Helper().showAlert(title: "Error Occurred!", message: "Login Again", in: self)
                     self.animationView.stop()
                     self.animationView.removeFromSuperview()
                 }
@@ -630,16 +630,21 @@ extension LoginVC: ASAuthorizationControllerDelegate {
             switch err.code {
             case .canceled:
                 appDelegate.infoView(message: "You Cancelled The Login Process", color: colorSmoothRed)
+                UserDefaults.standard.removeObject(forKey: "CustomerOrDriver")
             return
             case .failed:
                 Helper().showAlert(title: "Error !", message: "Authorization failed.", in: self)
+                UserDefaults.standard.removeObject(forKey: "CustomerOrDriver")
             case .invalidResponse:
                 Helper().showAlert(title: "Error !", message: "Authorization returned invalid response.", in: self)
+                UserDefaults.standard.removeObject(forKey: "CustomerOrDriver")
             case .notHandled:
                 Helper().showAlert(title: "Error !", message:  "Authorization not handled.", in: self)
+                UserDefaults.standard.removeObject(forKey: "CustomerOrDriver")
 
             case .unknown:
                if controller.authorizationRequests.contains(where: { $0 is ASAuthorizationPasswordRequest }) {
+                UserDefaults.standard.removeObject(forKey: "CustomerOrDriver")
                 Helper().showAlert(title: "Error !", message:  "Unknown error with password auth, trying to request for appleID auth..", in: self)
 
                   let requestAppleID = ASAuthorizationAppleIDProvider().createRequest()
@@ -699,7 +704,7 @@ extension LoginVC {
                             self.animationView.removeFromSuperview()
 
                         } else {
-                            Helper().showAlert(title: "Error!", message: error!.localizedDescription, in: self)
+                            Helper().showAlert(title: "Error Occurred!", message: "Please Login Again", in: self)
                             self.animationView.stop()
                             self.animationView.removeFromSuperview()
                         }

@@ -60,6 +60,16 @@ class CheckoutVC: UIViewController {
         map.clipsToBounds = true
     }
     
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let rawString = string
+         let range = rawString.rangeOfCharacter(from: .whitespaces)
+        if ((textField.text?.count)! == 0 && range  != nil)
+        || ((textField.text?.count)! > 0 && textField.text?.last  == " " && range != nil)  {
+            return false
+        }
+    return true
+    }
+    
     func fetchData() {
         if Constants.address != nil {
             addressTextfield.text = Constants.address
@@ -129,13 +139,35 @@ class CheckoutVC: UIViewController {
     
     //Show User Location
     func userLocation() {
+        
         if CLLocationManager.locationServicesEnabled() {
             locationManager = CLLocationManager()
             locationManager.delegate = self
             locationManager.desiredAccuracy = kCLLocationAccuracyBest
             locationManager.requestAlwaysAuthorization()
             locationManager.startUpdatingLocation()
+            
             self.map.showsUserLocation = true
+            
+            let geocoder = CLGeocoder()
+            let location = locationManager.location!
+            geocoder.geocodeAddressString("\(location)") { (placemark, error) in
+                if error != nil {
+                    print("Error", error)
+                }
+                
+                let placemark = placemark!  as [CLPlacemark]
+                if placemark.count > 0 {
+                    let placemark = placemark[0]
+                    print(placemark.locality!)
+                    print(placemark.thoroughfare!)
+                    print(placemark.administrativeArea!)
+                    print(placemark.country!)
+                    
+                    self.addressTextfield.text = "\(placemark.thoroughfare!) \(placemark.administrativeArea!) \(placemark.locality!)"
+                    print(self.addressTextfield.text)
+                }
+            }
         }
     }
     
@@ -151,6 +183,8 @@ class CheckoutVC: UIViewController {
             if error != nil {
                 print("Error", error)
             }
+  
+            
             if let placemark = placemark?.first {
                 let coordinates: CLLocationCoordinate2D = placemark.location!.coordinate
                 let region = MKCoordinateRegion(center: coordinates, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
@@ -168,9 +202,9 @@ class CheckoutVC: UIViewController {
     
     @IBAction func placeOrderButton(_ sender: Any) {
         
-        if addressTextfield.text!.isEmpty  || phoneTextField.text!.isEmpty{
+        if addressTextfield.text!.isEmpty || phoneTextField.text!.isEmpty{
             
-            self.addressTextfield.becomeFirstResponder()
+//            self.addressTextfield.becomeFirstResponder()
             self.view.endEditing(true)
             // red placeholders
             addressTextfield.attributedPlaceholder = NSAttributedString(string: "Type Your Address", attributes: [NSAttributedString.Key.foregroundColor:UIColor.red])
@@ -187,6 +221,7 @@ class CheckoutVC: UIViewController {
             
             alertController.addAction(okAction)
             self.present(alertController, animated: true, completion: nil)
+            
             
         } else {
             
@@ -224,6 +259,11 @@ extension CheckoutVC: CLLocationManagerDelegate {
         let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
         let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
         self.map.setRegion(region, animated: true)
+        
+        
+        
+        
+        
     }
 }
 
