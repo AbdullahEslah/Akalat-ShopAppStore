@@ -13,7 +13,7 @@ import Lottie
 class SandwichesVC: UIViewController {
     
     let hud = JGProgressHUD(style: .dark)
-    let animationView = AnimationView(animation: Animation.named("lf30_editor_reir1nit"))
+    let animationView = AnimationView(animation: Animation.named("lf20_vhkdj1ra"))
     let menuButton = UIButton(type: .custom)
     
     @IBOutlet weak var collectionView: UICollectionView!

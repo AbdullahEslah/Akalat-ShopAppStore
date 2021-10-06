@@ -35,7 +35,7 @@ class RestaurantsVC: UITableViewController, UISearchControllerDelegate {
     
     var timer: Timer?
     var currentCellIndex = 0
-    let animationView = AnimationView(animation: Animation.named("lf30_editor_reir1nit"))
+    let animationView = AnimationView(animation: Animation.named("lf20_vhkdj1ra"))
     
     override func viewDidLoad() {
         super.viewDidLoad()

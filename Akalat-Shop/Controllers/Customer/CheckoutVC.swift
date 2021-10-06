@@ -86,7 +86,7 @@ class CheckoutVC: UIViewController {
             let emptyBasketLabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 40))
             emptyBasketLabel.center = self.view.center
             emptyBasketLabel.textAlignment = NSTextAlignment.center
-            emptyBasketLabel.text = "Your Basket Is Empty.Add Your Meals 👋🏻"
+            emptyBasketLabel.text = "Your Basket Is Empty. Start Adding Your Meals 👋🏻"
             
             self.view.addSubview(emptyBasketLabel)
         } else {
@@ -132,6 +132,29 @@ class CheckoutVC: UIViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         if let addressVC = storyboard.instantiateViewController(withIdentifier: "AddressVC") as? AddressVC {
             addressVC.AddressProtocol = self
+            
+            let geocoder = CLGeocoder()
+            let location = locationManager.location!
+            geocoder.geocodeAddressString("\(location)") { (placemark, error) in
+                if error != nil {
+                    print("Error", error)
+                }
+                
+                let placemark = placemark!  as [CLPlacemark]
+                if placemark.count > 0 {
+                    let placemark = placemark[0]
+                    print(placemark.locality!)
+                    print(placemark.thoroughfare!)
+                    print(placemark.administrativeArea!)
+                    print(placemark.country!)
+                    
+                    addressVC.currentLocationTextField.text! = "\(placemark.thoroughfare!) \(placemark.administrativeArea!) \(placemark.locality!)"
+                        print(addressVC.currentLocationTextField.text!)
+                    
+                }
+            }
+            
+            
             self.present(addressVC, animated: true)
 
         }
@@ -149,25 +172,7 @@ class CheckoutVC: UIViewController {
             
             self.map.showsUserLocation = true
             
-            let geocoder = CLGeocoder()
-            let location = locationManager.location!
-            geocoder.geocodeAddressString("\(location)") { (placemark, error) in
-                if error != nil {
-                    print("Error", error)
-                }
-                
-                let placemark = placemark!  as [CLPlacemark]
-                if placemark.count > 0 {
-                    let placemark = placemark[0]
-                    print(placemark.locality!)
-                    print(placemark.thoroughfare!)
-                    print(placemark.administrativeArea!)
-                    print(placemark.country!)
-                    
-                    self.addressTextfield.text = "\(placemark.thoroughfare!) \(placemark.administrativeArea!) \(placemark.locality!)"
-                    print(self.addressTextfield.text)
-                }
-            }
+            
         }
     }
     
@@ -259,10 +264,6 @@ extension CheckoutVC: CLLocationManagerDelegate {
         let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
         let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
         self.map.setRegion(region, animated: true)
-        
-        
-        
-        
         
     }
 }

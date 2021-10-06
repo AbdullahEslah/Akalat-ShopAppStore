@@ -20,7 +20,7 @@ class MealListVC: UIViewController {
     var restaurant    : RestaurntsResult?
 
     @IBOutlet weak var collectionView: UICollectionView!
-    let animationView = AnimationView(animation: Animation.named("lf30_editor_reir1nit"))
+    let animationView = AnimationView(animation: Animation.named("lf20_vhkdj1ra"))
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -28,10 +28,15 @@ class DriverMenuVC: UITableViewController {
     }
     
     func getUserData() {
+        
         nameLabel.text = User.currentUser.name ?? ""
         
+        if Constants.appleUserId != nil {
         appleIdNameLabel.numberOfLines = 0
         self.appleIdNameLabel.text = "\(Constants.appleIdFirstName ?? "Welcome") \(Constants.appleIdLastName ?? "To Akalat!")"
+        } else {
+            self.appleIdNameLabel.text = ""
+        }
         
         avaImage.layer.cornerRadius = avaImage.frame.width / 2
         avaImage.clipsToBounds = true

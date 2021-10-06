@@ -67,10 +67,14 @@ class MenuVC: UITableViewController {
     func getUserData() {
         nameLabel.text = User.currentUser.name ?? ""
 
+        if Constants.appleUserId != nil {
         appleIdNameLabel.numberOfLines = 0
         self.appleIdNameLabel.text = "\(Constants.appleIdFirstName ?? "Welcome") \(Constants.appleIdLastName ?? "To Akalat!")"
+        } else {
+            self.appleIdNameLabel.text = ""
+        }
    
-//        }
+
         //set placeholder
         let placeholder = UIImage(named: "d2baf949-2f8c-47ad-9985-82e2d2105d04-2")
         let options : KingfisherOptionsInfo = [KingfisherOptionsInfoItem.transition(.fade(0.1))]

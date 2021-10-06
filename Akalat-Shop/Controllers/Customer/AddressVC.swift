@@ -16,6 +16,12 @@ protocol AddressProtocol {
 
 class AddressVC: UIViewController {
     
+    @IBOutlet weak var chooseCurrentLocationButtonAppearance: RoundedButton!
+    
+    @IBOutlet weak var currentLocationTextField: UITextField!
+    
+    @IBOutlet weak var changeLocationLabelAppearance: UILabel!
+    
     @IBOutlet weak var addressCityTextField: UITextField!
     
     @IBOutlet weak var addressStateTextField: UITextField!
@@ -28,8 +34,19 @@ class AddressVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
+            currentLocationTextField.isEnabled = false
+            currentLocationTextField.isUserInteractionEnabled = false
+
     }
+    
+    @IBAction func chooseCurrentLocationButtonTapped(_ sender: Any) {
+        dismiss(animated:true) {
+            
+            self.AddressProtocol?.addressCity(name: "\(self.currentLocationTextField.text!)")
+            
+        }
+    }
+    
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let rawString = string

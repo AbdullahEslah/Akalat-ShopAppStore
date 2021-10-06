@@ -51,24 +51,16 @@ class LoginVC: UIViewController, LoginButtonDelegate, GIDSignInDelegate, GIDSign
     let hud                = JGProgressHUD(style: .dark)
     var userType : String  = NetworkManager.Auth.userTypeCustomer
     
-//    let signInConfig = GIDConfiguration.init(clientID: "970857005723-hgran64vnmn3avdqeanvl3eq4seteau7.apps.googleusercontent.com")
-    
-    let animationView = AnimationView(animation: Animation.named("lf30_editor_reir1nit"))
+    let animationView = AnimationView(animation: Animation.named("lf20_vhkdj1ra"))
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-//        defaultAuthHolderViewHeight = 0
-//        showAuthButton.gradientButton("Continue To Order", startColor:.purple, endColor: colorSmoothRed)
-//        configureAuthButton()
+ 
         
         defaultAuthHolderViewHeight = authHolderViewHeight.constant
    
         // Conforms To Google Protocol
         GIDSignIn.sharedInstance().delegate = self
         GIDSignIn.sharedInstance().uiDelegate = self
-//        kGIDSignInButtonColorSchemeLight
-
         
         GIDSignIn.sharedInstance().clientID = "970857005723-hgran64vnmn3avdqeanvl3eq4seteau7.apps.googleusercontent.com"
         GIDSignIn.sharedInstance().serverClientID = "970857005723-10rkfjuhvj9r2d58o550qfoi4fbk1vpk.apps.googleusercontent.com"
@@ -118,16 +110,15 @@ class LoginVC: UIViewController, LoginButtonDelegate, GIDSignInDelegate, GIDSign
                 Helper().showAlert(title: "Error!", message: error!.localizedDescription, in: self)
                 }
             })
-            self.userType = self.userType.capitalized
+            //self.userType = self.userType.capitalized
                 NetworkManager.fbLogin(userType: self.userType,completion:  { success, error in
 
                     if error == nil {
 
                         self.userType = self.userType.capitalized
-                        if UserDefaults.standard.value(forKey: "CustomerOrDriver") != nil {
-//                        self.performSegue(withIdentifier: "\(self.userType)View", sender: self)
-                        self.performSegue(withIdentifier: "\(UserDefaults.standard.value(forKey: "CustomerOrDriver")!)View", sender: self)
-                        } else {
+                        if Constants.segmentControlValue?.isEmpty == false {
+                            self.performSegue(withIdentifier: "\(Constants.segmentControlValue!)View", sender: self)
+                        }else {
                             self.performSegue(withIdentifier: "\(self.userType)View", sender: self)
                         }
                         self.animationView.stop()
@@ -147,8 +138,6 @@ class LoginVC: UIViewController, LoginButtonDelegate, GIDSignInDelegate, GIDSign
         
         //AppleAutoLogin
         checkAutoLogin()
-//        performExistingAccountSetupFlows()
-//        ImplementSegue()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -160,15 +149,10 @@ class LoginVC: UIViewController, LoginButtonDelegate, GIDSignInDelegate, GIDSign
         if bIsHidden {
             authHolderView.isHidden = false
         }
-        // if picker holder height constant is > 0 (it's open / showing)
-        //      set it to 0
-        // else
-        //      set it to defaultPickerHolderViewHeight
+
         
         self.authHolderViewHeight.constant = self.authHolderViewHeight.constant > 0 ? 0 : defaultAuthHolderViewHeight
-        //        appleButtonHeight.constant = 0
-//        fbButtonHeight.constant    = 0
-        
+ 
         // animate the change
         UIView.animate(withDuration: 2, animations: {
             self.view.layoutIfNeeded()
@@ -200,17 +184,10 @@ class LoginVC: UIViewController, LoginButtonDelegate, GIDSignInDelegate, GIDSign
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-//        signInAppleButton()
-//        self.view.layoutIfNeeded()
-//        appleLoginButton.layer.cornerRadius = appleLoginButton.frame.width / 2
-//        appleLoginButton.clipsToBounds = true
-//
-//        googleLoginButton.layer.cornerRadius = googleLoginButton.frame.width / 2
-//        googleLoginButton.clipsToBounds = true
-//
-//        fbLoginButton.layer.cornerRadius = fbLoginButton.frame.height / 2
-//        fbLoginButton.clipsToBounds = true
-//
+
+        fbLoginButton.layer.cornerRadius = 6
+        fbLoginButton.clipsToBounds = true
+
     }
     
     
@@ -253,10 +230,7 @@ class LoginVC: UIViewController, LoginButtonDelegate, GIDSignInDelegate, GIDSign
                 // Tha magic! Set the button as the views mask
         viewForMyButton.mask = showAuthButton
 
-                //Set corner Radius and border Width of button
-//                showAuthButton.layer.cornerRadius =  showAuthButton.frame.size.height / 2
-//        showAuthButton.layer.borderWidth = 5.0
-            
+ 
     }
     
     func configureAuthViewAppearance() {
@@ -273,9 +247,7 @@ class LoginVC: UIViewController, LoginButtonDelegate, GIDSignInDelegate, GIDSign
         //      set it to defaultauthHolderViewHeight
         self.authHolderViewHeight.constant = self.authHolderViewHeight.constant > 0 ? 0 : defaultAuthHolderViewHeight
         
-    //        appleButtonHeight.constant = 0
-    //        fbButtonHeight.constant    = 0
-       
+   
         //  hide it
         if !bIsHidden {
             self.showAuthButton.setTitle("  Sign Up To Continue", for: .normal)
@@ -306,9 +278,7 @@ class LoginVC: UIViewController, LoginButtonDelegate, GIDSignInDelegate, GIDSign
         //      set it to defaultPickerHolderViewHeight
         
         self.authHolderViewHeight.constant = self.authHolderViewHeight.constant > 0 ? 0 : defaultAuthHolderViewHeight
-        //        appleButtonHeight.constant = 0
-//        fbButtonHeight.constant    = 0
-        
+
         // animate the change
         UIView.animate(withDuration: animDuration, animations: {
             self.view.layoutIfNeeded()
@@ -332,11 +302,10 @@ class LoginVC: UIViewController, LoginButtonDelegate, GIDSignInDelegate, GIDSign
     }
     
     
-    
-    func loginSuccessForGoogle(animated: Bool){
-        self.userType = self.userType.capitalized
-        self.performSegue(withIdentifier: "\(self.userType)View", sender: self)
-    }
+//    func loginSuccessForGoogle(animated: Bool){
+//        self.userType = self.userType.capitalized
+//        self.performSegue(withIdentifier: "\(self.userType)View", sender: self)
+//    }
     
     func loginButton(
         _ loginButton: FBLoginButton,
@@ -352,6 +321,8 @@ class LoginVC: UIViewController, LoginButtonDelegate, GIDSignInDelegate, GIDSign
             print(error)
         }
         
+//        if potentialError == nil {
+        
         guard let result = potentialResult else {
             // Handle missing result
             return
@@ -361,6 +332,7 @@ class LoginVC: UIViewController, LoginButtonDelegate, GIDSignInDelegate, GIDSign
             // Handle cancellation
             UserDefaults.standard.removeObject(forKey: "CustomerOrDriver")
             print(UserDefaults.standard.value(forKey: "CustomerOrDriver"))
+            print("cancel")
             hud.dismiss()
             return
         }
@@ -393,6 +365,7 @@ class LoginVC: UIViewController, LoginButtonDelegate, GIDSignInDelegate, GIDSign
                     self.fbLoginButton.setTitle("Continue With Facebbok", for: .normal)
                     
                 } else {
+                   
                     self.animationView.stop()
                     self.animationView.removeFromSuperview()
                     print(error!.localizedDescription)
@@ -400,7 +373,6 @@ class LoginVC: UIViewController, LoginButtonDelegate, GIDSignInDelegate, GIDSign
                 }
             })
         })
-        
     }
     
     func loginButtonDidLogOut(_ loginButton: FBLoginButton) {
@@ -497,34 +469,7 @@ class LoginVC: UIViewController, LoginButtonDelegate, GIDSignInDelegate, GIDSign
         vc.performRequests()
     }
     
-    @IBAction func appleLoginTapped(_ sender: Any) {
-        let provider = ASAuthorizationAppleIDProvider()
-        let request = provider.createRequest()
-        request.requestedScopes = [.fullName, .email]
-        let vc = ASAuthorizationController(authorizationRequests: [request])
-        vc.delegate = self
-        vc.presentationContextProvider = self
-        vc.performRequests()
-    }
-    
-     //- Tag: perform_appleid_password_request
-    // Prompts the user if an existing iCloud Keychain credential or Apple ID credential is found.
-    func performExistingAccountSetupFlows() {
-        
-        if Constants.appleUserId != nil {
-        
-            // Prepare requests for both Apple ID and password providers.
-            let requests = [ASAuthorizationAppleIDProvider().createRequest()
-                            ]
-//            ASAuthorizationPasswordProvider().createRequest()
-            // Create an authorization controller with the given requests.
-            let authorizationController = ASAuthorizationController(authorizationRequests: requests)
-            authorizationController.delegate = self
-            authorizationController.presentationContextProvider = self
-            authorizationController.performRequests()
-        }
-    }
-    
+   
     
     
     @IBAction func segmentControlTapped(_ sender: Any) {
@@ -537,18 +482,18 @@ class LoginVC: UIViewController, LoginButtonDelegate, GIDSignInDelegate, GIDSign
             userType = NetworkManager.Auth.userTypeCustomer
             
             defaults.setValue(userType.capitalized, forKey: "CustomerOrDriver")
+           
             
         } else {
             userType = NetworkManager.Auth.userTypeDriver
             defaults.setValue(userType.capitalized, forKey: "CustomerOrDriver")
+            
             
         }
         print(UserDefaults.standard.value(forKey: "CustomerOrDriver") ?? "")
     }
     
 }
-
-
 
 //@available(iOS 13.0, *)
 extension LoginVC: ASAuthorizationControllerDelegate {
@@ -559,14 +504,16 @@ extension LoginVC: ASAuthorizationControllerDelegate {
             
             let email = appleIDCredential.email
             UserDefaults.standard.setValue(email, forKey: "appleIdEmail")
-            // Create an account in your system.
-            let userIdentifier = appleIDCredential.user
-            UserDefaults.standard.setValue(userIdentifier, forKey: "appleUserId")
+            
             
             let fullName = appleIDCredential.fullName
 //            appleIDCredential.
             
             DispatchQueue.main.async {
+                
+                // Create an account in your system.
+                let userIdentifier = appleIDCredential.user
+                UserDefaults.standard.setValue(userIdentifier, forKey: "appleUserId")
                 
                 if let authCode = appleIDCredential.authorizationCode {
                     let authCodeString = String(data: authCode, encoding: .utf8)!
@@ -602,11 +549,11 @@ extension LoginVC: ASAuthorizationControllerDelegate {
                     self.userType = self.userType.capitalized
                     
                     if UserDefaults.standard.value(forKey: "CustomerOrDriver") != nil {
-//                        DispatchQueue.main.async {
-                        self.performSegue(withIdentifier: "\(UserDefaults.standard.value(forKey: "CustomerOrDriver")!)View", sender: self)
+                        self.performSegue(withIdentifier: "\(UserDefaults.standard.string(forKey: "CustomerOrDriver")!)View", sender: self)
                     }else {
                         self.performSegue(withIdentifier: "\(self.userType)View", sender: self)
                     }
+                    
  
                     self.animationView.stop()
                     self.animationView.removeFromSuperview()
@@ -620,21 +567,28 @@ extension LoginVC: ASAuthorizationControllerDelegate {
         }
             break
             
+        
+            
         default:
+//            UserDefaults.standard.removeObject(forKey: "CustomerOrDriver")
+//            print(UserDefaults.standard.value(forKey: "CustomerOrDriver"))
             break
         }
     }
     
     func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
          if let err = error as? ASAuthorizationError {
+            UserDefaults.standard.removeObject(forKey: "CustomerOrDriver")
+                       print(UserDefaults.standard.value(forKey: "CustomerOrDriver"))
             switch err.code {
             case .canceled:
                 appDelegate.infoView(message: "You Cancelled The Login Process", color: colorSmoothRed)
                 UserDefaults.standard.removeObject(forKey: "CustomerOrDriver")
+                print(UserDefaults.standard.value(forKey: "CustomerOrDriver"))
             return
             case .failed:
                 Helper().showAlert(title: "Error !", message: "Authorization failed.", in: self)
-                UserDefaults.standard.removeObject(forKey: "CustomerOrDriver")
+               // UserDefaults.standard.removeObject(forKey: "CustomerOrDriver")
             case .invalidResponse:
                 Helper().showAlert(title: "Error !", message: "Authorization returned invalid response.", in: self)
                 UserDefaults.standard.removeObject(forKey: "CustomerOrDriver")
@@ -644,7 +598,7 @@ extension LoginVC: ASAuthorizationControllerDelegate {
 
             case .unknown:
                if controller.authorizationRequests.contains(where: { $0 is ASAuthorizationPasswordRequest }) {
-                UserDefaults.standard.removeObject(forKey: "CustomerOrDriver")
+               // UserDefaults.standard.removeObject(forKey: "CustomerOrDriver")
                 Helper().showAlert(title: "Error !", message:  "Unknown error with password auth, trying to request for appleID auth..", in: self)
 
                   let requestAppleID = ASAuthorizationAppleIDProvider().createRequest()
@@ -658,6 +612,7 @@ extension LoginVC: ASAuthorizationControllerDelegate {
     } else {
         Helper().showAlert(title: "Error !", message:  "Unknown error for appleID auth.", in: self)
 
+        
     }
        default:
         Helper().showAlert(title: "Error !", message:  "Unsupported error code.", in: self)
@@ -694,7 +649,7 @@ extension LoginVC {
 
                             self.userType = self.userType.capitalized
                             
-                            if UserDefaults.standard.value(forKey: "CustomerOrDriver") != nil {
+                            if Constants.segmentControlValue != nil {
                                 self.performSegue(withIdentifier: "\(UserDefaults.standard.value(forKey: "CustomerOrDriver")!)View", sender: self)
                             }else {
                                 self.performSegue(withIdentifier: "\(self.userType)View", sender: self)
@@ -713,6 +668,8 @@ extension LoginVC {
                     
                     break
                 case .revoked, .notFound:
+                   // UserDefaults.standard.removeObject(forKey: "CustomerOrDriver")
+                    print(UserDefaults.standard.value(forKey: "CustomerOrDriver"))
                     print("Auto login not successful")
                     //show login screen or you also invoke handleAuthorizationAppleIDAction
                     break
@@ -722,7 +679,6 @@ extension LoginVC {
             }
         }
     }
-  
 }
     
 

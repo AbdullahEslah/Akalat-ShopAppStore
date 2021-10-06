@@ -159,6 +159,8 @@ class RoundedImageView : UIImageView {
         }
     }
 
+
+
 extension UIView {
     enum ViewSide {
         case Top, Bottom, Left, Right

@@ -10,6 +10,8 @@
 		38DEAFDE23A199F6F434AD82 /* Pods_Akalat_Shop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 785D0B5FEA7611E1D99EB3BD /* Pods_Akalat_Shop.framework */; };
 		FA3589192706B6AF00B317AC /* AppleIDLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3589182706B6AF00B317AC /* AppleIDLogin.swift */; };
 		FA35891C2706B78900B317AC /* AppleIDLoginResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA35891B2706B78900B317AC /* AppleIDLoginResponse.swift */; };
+		FAC551CC270D0E43009F83CB /* 23211-receive-order.json in Resources */ = {isa = PBXBuildFile; fileRef = FAC551CB270D0E43009F83CB /* 23211-receive-order.json */; };
+		FAC551D8270D0EE6009F83CB /* lf20_vhkdj1ra.json in Resources */ = {isa = PBXBuildFile; fileRef = FAC551D7270D0EE6009F83CB /* lf20_vhkdj1ra.json */; };
 		FAEFC57126F8883300095DB5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAEFC56F26F8883300095DB5 /* LaunchScreen.storyboard */; };
 		FAEFC59026F88B6C00095DB5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAEFC58E26F88B6800095DB5 /* Assets.xcassets */; };
 		FAEFC59126F88B6C00095DB5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC58F26F88B6800095DB5 /* AppDelegate.swift */; };
@@ -45,15 +47,12 @@
 		FAEFC63D26F88C0600095DB5 /* CustomRestaurantLayoutCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC61026F88BD600095DB5 /* CustomRestaurantLayoutCollectionViewCell.swift */; };
 		FAEFC63F26F88C1300095DB5 /* GFButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC61F26F88BD600095DB5 /* GFButton.swift */; };
 		FAEFC64026F88C1300095DB5 /* CustomizedObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC61A26F88BD600095DB5 /* CustomizedObjects.swift */; };
-		FAEFC64126F88C1300095DB5 /* 74683-delivery.json in Resources */ = {isa = PBXBuildFile; fileRef = FAEFC61B26F88BD600095DB5 /* 74683-delivery.json */; };
 		FAEFC64226F88C1300095DB5 /* GFBodyLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC62526F88BD600095DB5 /* GFBodyLabel.swift */; };
 		FAEFC64326F88C1300095DB5 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC62226F88BD600095DB5 /* Helper.swift */; };
 		FAEFC64426F88C1300095DB5 /* GFEmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC62126F88BD600095DB5 /* GFEmptyStateView.swift */; };
 		FAEFC64526F88C1300095DB5 /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC62426F88BD600095DB5 /* UIViewController+Ext.swift */; };
-		FAEFC64626F88C1300095DB5 /* 39587-delivery-man.json in Resources */ = {isa = PBXBuildFile; fileRef = FAEFC61E26F88BD600095DB5 /* 39587-delivery-man.json */; };
 		FAEFC64726F88C1300095DB5 /* GFTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC62326F88BD600095DB5 /* GFTitleLabel.swift */; };
 		FAEFC64826F88C1300095DB5 /* GFAlertVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC62026F88BD600095DB5 /* GFAlertVC.swift */; };
-		FAEFC64926F88C1300095DB5 /* lf30_editor_reir1nit.json in Resources */ = {isa = PBXBuildFile; fileRef = FAEFC61C26F88BD600095DB5 /* lf30_editor_reir1nit.json */; };
 		FAEFC66C26F88C3400095DB5 /* DeliveryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC65126F88C2D00095DB5 /* DeliveryVC.swift */; };
 		FAEFC66D26F88C3400095DB5 /* OrdersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC64E26F88C2D00095DB5 /* OrdersVC.swift */; };
 		FAEFC66E26F88C3400095DB5 /* PerformOrderAlertVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC64D26F88C2D00095DB5 /* PerformOrderAlertVC.swift */; };
@@ -134,6 +133,8 @@
 		DF8899F83F8CC310A8F1A893 /* Pods-Akalat-Shop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Akalat-Shop.release.xcconfig"; path = "Target Support Files/Pods-Akalat-Shop/Pods-Akalat-Shop.release.xcconfig"; sourceTree = "<group>"; };
 		FA3589182706B6AF00B317AC /* AppleIDLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleIDLogin.swift; sourceTree = "<group>"; };
 		FA35891B2706B78900B317AC /* AppleIDLoginResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleIDLoginResponse.swift; sourceTree = "<group>"; };
+		FAC551CB270D0E43009F83CB /* 23211-receive-order.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "23211-receive-order.json"; sourceTree = "<group>"; };
+		FAC551D7270D0EE6009F83CB /* lf20_vhkdj1ra.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = lf20_vhkdj1ra.json; sourceTree = "<group>"; };
 		FAEFC56126F8882D00095DB5 /* Akalat-Shop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Akalat-Shop.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAEFC57026F8883300095DB5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FAEFC57226F8883300095DB5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -203,9 +204,6 @@
 		FAEFC61826F88BD600095DB5 /* RestaurantsHeaderCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantsHeaderCollectionReusableView.swift; sourceTree = "<group>"; };
 		FAEFC61926F88BD600095DB5 /* RestaurantsHeaderCollectionReusableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RestaurantsHeaderCollectionReusableView.xib; sourceTree = "<group>"; };
 		FAEFC61A26F88BD600095DB5 /* CustomizedObjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomizedObjects.swift; sourceTree = "<group>"; };
-		FAEFC61B26F88BD600095DB5 /* 74683-delivery.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "74683-delivery.json"; sourceTree = "<group>"; };
-		FAEFC61C26F88BD600095DB5 /* lf30_editor_reir1nit.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = lf30_editor_reir1nit.json; sourceTree = "<group>"; };
-		FAEFC61E26F88BD600095DB5 /* 39587-delivery-man.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "39587-delivery-man.json"; sourceTree = "<group>"; };
 		FAEFC61F26F88BD600095DB5 /* GFButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFButton.swift; sourceTree = "<group>"; };
 		FAEFC62026F88BD600095DB5 /* GFAlertVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFAlertVC.swift; sourceTree = "<group>"; };
 		FAEFC62126F88BD600095DB5 /* GFEmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFEmptyStateView.swift; sourceTree = "<group>"; };
@@ -611,8 +609,6 @@
 			children = (
 				FAEFC5FC26F88BD600095DB5 /* Cells */,
 				FAEFC61A26F88BD600095DB5 /* CustomizedObjects.swift */,
-				FAEFC61B26F88BD600095DB5 /* 74683-delivery.json */,
-				FAEFC61C26F88BD600095DB5 /* lf30_editor_reir1nit.json */,
 				FAEFC61D26F88BD600095DB5 /* Animation */,
 				FAEFC61F26F88BD600095DB5 /* GFButton.swift */,
 				FAEFC62026F88BD600095DB5 /* GFAlertVC.swift */,
@@ -727,7 +723,8 @@
 		FAEFC61D26F88BD600095DB5 /* Animation */ = {
 			isa = PBXGroup;
 			children = (
-				FAEFC61E26F88BD600095DB5 /* 39587-delivery-man.json */,
+				FAC551D7270D0EE6009F83CB /* lf20_vhkdj1ra.json */,
+				FAC551CB270D0E43009F83CB /* 23211-receive-order.json */,
 			);
 			path = Animation;
 			sourceTree = "<group>";
@@ -793,11 +790,11 @@
 			children = (
 				FAEFC66426F88C2D00095DB5 /* RestaurantsCategories */,
 				FAEFC66326F88C2D00095DB5 /* MenuVC.swift */,
+				FAEFC65A26F88C2D00095DB5 /* TabBarVC.swift */,
 				FAEFC66B26F88C2E00095DB5 /* RestaurantsVC.swift */,
 				FAEFC66126F88C2D00095DB5 /* MealListVC.swift */,
 				FAEFC65D26F88C2D00095DB5 /* MealDetailsVC.swift */,
 				FAEFC65E26F88C2D00095DB5 /* CheckoutVC.swift */,
-				FAEFC65A26F88C2D00095DB5 /* TabBarVC.swift */,
 				FAEFC65B26F88C2D00095DB5 /* AddressVC.swift */,
 				FAEFC66226F88C2D00095DB5 /* TrackerVC.swift */,
 				FAEFC65C26F88C2D00095DB5 /* RootMenuVC.swift */,
@@ -810,11 +807,11 @@
 		FAEFC66426F88C2D00095DB5 /* RestaurantsCategories */ = {
 			isa = PBXGroup;
 			children = (
+				FAEFC66926F88C2D00095DB5 /* SandwichesVC.swift */,
 				FAEFC66526F88C2D00095DB5 /* GrillsVC.swift */,
 				FAEFC66626F88C2D00095DB5 /* FriedChickenVC.swift */,
 				FAEFC66726F88C2D00095DB5 /* DessertsVC.swift */,
 				FAEFC66826F88C2D00095DB5 /* FishVC.swift */,
-				FAEFC66926F88C2D00095DB5 /* SandwichesVC.swift */,
 				FAEFC66A26F88C2D00095DB5 /* PizzaVC.swift */,
 			);
 			path = RestaurantsCategories;
@@ -933,17 +930,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FAEFC64126F88C1300095DB5 /* 74683-delivery.json in Resources */,
 				FAEFC63A26F88C0100095DB5 /* AnotherRestaurantsTableViewCell.xib in Resources */,
 				FAEFC72626F8BC8B00095DB5 /* Region.storyboard in Resources */,
 				FAEFC59026F88B6C00095DB5 /* Assets.xcassets in Resources */,
-				FAEFC64926F88C1300095DB5 /* lf30_editor_reir1nit.json in Resources */,
 				FAEFC57126F8883300095DB5 /* LaunchScreen.storyboard in Resources */,
 				FAEFC62926F88BE300095DB5 /* OnBoardingCollectionViewCell.xib in Resources */,
 				FAEFC63C26F88C0600095DB5 /* CustomRestaurantLayoutCollectionViewCell.xib in Resources */,
 				FAEFC62626F88BDD00095DB5 /* OrdersTableViewCell.xib in Resources */,
+				FAC551CC270D0E43009F83CB /* 23211-receive-order.json in Resources */,
 				FAEFC72926F8BC8B00095DB5 /* Categories.storyboard in Resources */,
-				FAEFC64626F88C1300095DB5 /* 39587-delivery-man.json in Resources */,
 				FAEFC63626F88C0100095DB5 /* RestaurantsTableViewCell.xib in Resources */,
 				FAEFC6D726F88F6000095DB5 /* RestaurantsHeaderCollectionReusableView.xib in Resources */,
 				FAEFC63726F88C0100095DB5 /* HomeSliderCollectionViewCell.xib in Resources */,
@@ -951,6 +946,7 @@
 				FAEFC71A26F8B76000095DB5 /* GoogleService-Info.plist in Resources */,
 				FAEFC72726F8BC8B00095DB5 /* Main.storyboard in Resources */,
 				FAEFC63226F88BF700095DB5 /* MealsCollectionViewCell.xib in Resources */,
+				FAC551D8270D0EE6009F83CB /* lf20_vhkdj1ra.json in Resources */,
 				FAEFC62C26F88BE900095DB5 /* TrackerTableViewCell.xib in Resources */,
 				FAEFC72E26F8C09C00095DB5 /* OnBoarding.storyboard in Resources */,
 			);
