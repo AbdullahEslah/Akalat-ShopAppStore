@@ -1,0 +1,12 @@
+${PODS_ROOT}/Target Support Files/Pods-AkalatShop-Driver/Pods-AkalatShop-Driver-frameworks.sh
+${BUILT_PRODUCTS_DIR}/Alamofire-iOS14.4/Alamofire.framework
+${BUILT_PRODUCTS_DIR}/FBSDKCoreKit-iOS14.4/FBSDKCoreKit.framework
+${BUILT_PRODUCTS_DIR}/FBSDKLoginKit-iOS14.4/FBSDKLoginKit.framework
+${BUILT_PRODUCTS_DIR}/FBSDKShareKit-iOS14.4/FBSDKShareKit.framework
+${BUILT_PRODUCTS_DIR}/GTMSessionFetcher-iOS14.4/GTMSessionFetcher.framework
+${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac-iOS14.4/GoogleToolboxForMac.framework
+${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift-iOS14.4/IQKeyboardManagerSwift.framework
+${BUILT_PRODUCTS_DIR}/JGProgressHUD-iOS14.4/JGProgressHUD.framework
+${BUILT_PRODUCTS_DIR}/Kingfisher-iOS14.4/Kingfisher.framework
+${BUILT_PRODUCTS_DIR}/SwiftyGif-iOS14.4/SwiftyGif.framework
+${BUILT_PRODUCTS_DIR}/lottie-ios-iOS14.4/Lottie.framework

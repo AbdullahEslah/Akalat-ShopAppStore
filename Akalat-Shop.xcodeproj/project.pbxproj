@@ -8,27 +8,121 @@
 
 /* Begin PBXBuildFile section */
 		38DEAFDE23A199F6F434AD82 /* Pods_Akalat_Shop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 785D0B5FEA7611E1D99EB3BD /* Pods_Akalat_Shop.framework */; };
+		C74BF64A6BFFB47373C11BBD /* Pods_AkalatShop_Driver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22921DD385EA60D9F281421D /* Pods_AkalatShop_Driver.framework */; };
+		FA2A8916270E8989005DB8BA /* GFTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC62326F88BD600095DB5 /* GFTitleLabel.swift */; };
+		FA2A891B270E8A51005DB8BA /* TheDriverOrderDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC5CA26F88BB100095DB5 /* TheDriverOrderDetails.swift */; };
+		FA2A891E270E8A5A005DB8BA /* DriverDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC5C926F88BB100095DB5 /* DriverDetails.swift */; };
+		FA2A891F270E8A5A005DB8BA /* RestaurantDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC5CC26F88BB100095DB5 /* RestaurantDetails.swift */; };
+		FA2A8920270E8A5A005DB8BA /* DriverMealDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC5C826F88BB100095DB5 /* DriverMealDetails.swift */; };
+		FA2A8921270E8A5A005DB8BA /* CustomerDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC5CB26F88BB100095DB5 /* CustomerDetails.swift */; };
+		FA2A8922270E8A5A005DB8BA /* DriverOrderDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC5C726F88BB100095DB5 /* DriverOrderDetails.swift */; };
+		FA2A8923270E8A5A005DB8BA /* DriverReadyOrders.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC5C626F88BB100095DB5 /* DriverReadyOrders.swift */; };
+		FA2A8926270E8A7F005DB8BA /* LatestDriverOrderDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC6E326F8909B00095DB5 /* LatestDriverOrderDetails.swift */; };
+		FA2A8927270E8A7F005DB8BA /* LatestCustomerDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC6E226F8909B00095DB5 /* LatestCustomerDetails.swift */; };
+		FA2A8928270E8A7F005DB8BA /* DriverLatestOrders.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC6E426F8909B00095DB5 /* DriverLatestOrders.swift */; };
+		FA2A8929270E8A7F005DB8BA /* LatestRestaurantDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC6DF26F8909B00095DB5 /* LatestRestaurantDetails.swift */; };
+		FA2A892A270E8A7F005DB8BA /* LatestDriverDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC6E026F8909B00095DB5 /* LatestDriverDetails.swift */; };
+		FA2A892B270E8A7F005DB8BA /* TheDriverLatestOrderDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC6E126F8909B00095DB5 /* TheDriverLatestOrderDetails.swift */; };
+		FA2A892C270E8A7F005DB8BA /* LatestDriverMealDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC6DE26F8909B00095DB5 /* LatestDriverMealDetails.swift */; };
 		FA3589192706B6AF00B317AC /* AppleIDLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3589182706B6AF00B317AC /* AppleIDLogin.swift */; };
 		FA35891C2706B78900B317AC /* AppleIDLoginResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA35891B2706B78900B317AC /* AppleIDLoginResponse.swift */; };
+		FA439B12270E5E5A00F2F83D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA439B11270E5E5A00F2F83D /* AppDelegate.swift */; };
+		FA439B19270E5E5A00F2F83D /* DriverMain.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA439B17270E5E5A00F2F83D /* DriverMain.storyboard */; };
+		FA439B1E270E5E5D00F2F83D /* DriverLaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA439B1C270E5E5D00F2F83D /* DriverLaunchScreen.storyboard */; };
+		FA439B43270E610000F2F83D /* OrdersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC64E26F88C2D00095DB5 /* OrdersVC.swift */; };
+		FA439B44270E610000F2F83D /* DeliveryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC65126F88C2D00095DB5 /* DeliveryVC.swift */; };
+		FA439B45270E610000F2F83D /* StatisticsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC65026F88C2D00095DB5 /* StatisticsVC.swift */; };
+		FA439B46270E610000F2F83D /* PerformOrderAlertVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC64D26F88C2D00095DB5 /* PerformOrderAlertVC.swift */; };
+		FA439B47270E610000F2F83D /* DriverMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC64F26F88C2D00095DB5 /* DriverMenuVC.swift */; };
+		FA439B5D270E61AE00F2F83D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA439B59270E618200F2F83D /* Constants.swift */; };
+		FA439B5E270E61AE00F2F83D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA439B59270E618200F2F83D /* Constants.swift */; };
+		FA439B61270E61B100F2F83D /* ArraysModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA439B5C270E618300F2F83D /* ArraysModels.swift */; };
+		FA439B62270E61B200F2F83D /* ArraysModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA439B5C270E618300F2F83D /* ArraysModels.swift */; };
+		FA439B65270E61BF00F2F83D /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA439B56270E618200F2F83D /* NetworkManager.swift */; };
+		FA439B66270E61BF00F2F83D /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA439B56270E618200F2F83D /* NetworkManager.swift */; };
+		FA439B69270E61C300F2F83D /* GoogleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA439B58270E618200F2F83D /* GoogleManager.swift */; };
+		FA439B6A270E61C300F2F83D /* GoogleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA439B58270E618200F2F83D /* GoogleManager.swift */; };
+		FA439B6D270E61C600F2F83D /* FBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA439B55270E618200F2F83D /* FBManager.swift */; };
+		FA439B70270E61C600F2F83D /* FBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA439B55270E618200F2F83D /* FBManager.swift */; };
+		FA439B73270E61C800F2F83D /* PostRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA439B5A270E618300F2F83D /* PostRequestManager.swift */; };
+		FA439B74270E61C900F2F83D /* PostRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA439B5A270E618300F2F83D /* PostRequestManager.swift */; };
+		FA439B77270E622D00F2F83D /* OnBoarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC5B926F88BB100095DB5 /* OnBoarding.swift */; };
+		FA439B7A270E623300F2F83D /* Tray.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC5AB26F88BB100095DB5 /* Tray.swift */; };
+		FA439B7D270E623A00F2F83D /* RefreshToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC5B126F88BB100095DB5 /* RefreshToken.swift */; };
+		FA439B80270E623E00F2F83D /* AppleIDLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3589182706B6AF00B317AC /* AppleIDLogin.swift */; };
+		FA439B83270E624300F2F83D /* GoogleLoginConvertToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC5B326F88BB100095DB5 /* GoogleLoginConvertToken.swift */; };
+		FA439B86270E624700F2F83D /* LoginConvertToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC5B526F88BB100095DB5 /* LoginConvertToken.swift */; };
+		FA439B89270E624D00F2F83D /* LogoutRevokeToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC5B726F88BB100095DB5 /* LogoutRevokeToken.swift */; };
+		FA439BA4270E637400F2F83D /* RefreshTokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC5D226F88BB100095DB5 /* RefreshTokenResponse.swift */; };
+		FA439BA5270E637600F2F83D /* GoogleLoginConvertTokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC5D426F88BB100095DB5 /* GoogleLoginConvertTokenResponse.swift */; };
+		FA439BA6270E637900F2F83D /* Picture.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC5D626F88BB100095DB5 /* Picture.swift */; };
+		FA439BA7270E637C00F2F83D /* FBData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC5D726F88BB100095DB5 /* FBData.swift */; };
+		FA439BA8270E638300F2F83D /* LoginConvertTokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC5D826F88BB100095DB5 /* LoginConvertTokenResponse.swift */; };
+		FA439BA9270E638500F2F83D /* PictureData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC5D926F88BB100095DB5 /* PictureData.swift */; };
+		FA439BAA270E639300F2F83D /* AppleIDLoginResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA35891B2706B78900B317AC /* AppleIDLoginResponse.swift */; };
+		FA439BAB270E639800F2F83D /* AppleUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC71626F8A7AB00095DB5 /* AppleUser.swift */; };
+		FA439BAC270E639A00F2F83D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC5DB26F88BB100095DB5 /* User.swift */; };
+		FA439BB1270E649300F2F83D /* RestaurantDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC5CC26F88BB100095DB5 /* RestaurantDetails.swift */; };
+		FA439BB2270E649300F2F83D /* DriverLatestOrders.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC6E426F8909B00095DB5 /* DriverLatestOrders.swift */; };
+		FA439BB3270E649300F2F83D /* LatestCustomerDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC6E226F8909B00095DB5 /* LatestCustomerDetails.swift */; };
+		FA439BB4270E649300F2F83D /* TheDriverLatestOrderDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC6E126F8909B00095DB5 /* TheDriverLatestOrderDetails.swift */; };
+		FA439BB5270E649300F2F83D /* DriverDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC5C926F88BB100095DB5 /* DriverDetails.swift */; };
+		FA439BB6270E649300F2F83D /* LatestDriverMealDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC6DE26F8909B00095DB5 /* LatestDriverMealDetails.swift */; };
+		FA439BB7270E649300F2F83D /* CustomerDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC5CB26F88BB100095DB5 /* CustomerDetails.swift */; };
+		FA439BB8270E649300F2F83D /* TheDriverOrderDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC5CA26F88BB100095DB5 /* TheDriverOrderDetails.swift */; };
+		FA439BB9270E649300F2F83D /* DriverReadyOrders.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC5C626F88BB100095DB5 /* DriverReadyOrders.swift */; };
+		FA439BBA270E649300F2F83D /* DriverMealDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC5C826F88BB100095DB5 /* DriverMealDetails.swift */; };
+		FA439BBB270E649300F2F83D /* DriverOrderDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC5C726F88BB100095DB5 /* DriverOrderDetails.swift */; };
+		FA439BBC270E649300F2F83D /* LatestRestaurantDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC6DF26F8909B00095DB5 /* LatestRestaurantDetails.swift */; };
+		FA439BBD270E649300F2F83D /* LatestDriverOrderDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC6E326F8909B00095DB5 /* LatestDriverOrderDetails.swift */; };
+		FA439BBE270E649300F2F83D /* PickOrderSuccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC5CE26F88BB100095DB5 /* PickOrderSuccess.swift */; };
+		FA439BBF270E649300F2F83D /* LatestDriverDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC6E026F8909B00095DB5 /* LatestDriverDetails.swift */; };
+		FA439C34270E652200F2F83D /* OrdersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA439C18270E64E800F2F83D /* OrdersTableViewCell.swift */; };
+		FA439C37270E652600F2F83D /* OrdersTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA439C19270E64E900F2F83D /* OrdersTableViewCell.xib */; };
+		FA439C3A270E654600F2F83D /* CustomizedObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC61A26F88BD600095DB5 /* CustomizedObjects.swift */; };
+		FA439C3D270E656100F2F83D /* OnBoardingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC60126F88BD600095DB5 /* OnBoardingCollectionViewCell.swift */; };
+		FA439C40270E656400F2F83D /* OnBoardingCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAEFC60226F88BD600095DB5 /* OnBoardingCollectionViewCell.xib */; };
+		FA439C43270E659200F2F83D /* lf20_vhkdj1ra.json in Resources */ = {isa = PBXBuildFile; fileRef = FAC551D7270D0EE6009F83CB /* lf20_vhkdj1ra.json */; };
+		FA439C44270E659200F2F83D /* 23211-receive-order.json in Resources */ = {isa = PBXBuildFile; fileRef = FAC551CB270D0E43009F83CB /* 23211-receive-order.json */; };
+		FA439C47270E65CE00F2F83D /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC62226F88BD600095DB5 /* Helper.swift */; };
+		FA439C49270E65CE00F2F83D /* GFAlertVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC62026F88BD600095DB5 /* GFAlertVC.swift */; };
+		FA439C4A270E65CE00F2F83D /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC62426F88BD600095DB5 /* UIViewController+Ext.swift */; };
+		FA439C4B270E65CE00F2F83D /* GFButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC61F26F88BD600095DB5 /* GFButton.swift */; };
+		FA439C4C270E65CE00F2F83D /* GFEmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC62126F88BD600095DB5 /* GFEmptyStateView.swift */; };
+		FA439C4D270E65CE00F2F83D /* GFBodyLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC62526F88BD600095DB5 /* GFBodyLabel.swift */; };
+		FA439C57270E66F200F2F83D /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA439C55270E66F200F2F83D /* SWRevealViewController.m */; };
+		FA439C5C270E6B2200F2F83D /* RestaurntsCategoryResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC5E926F88BB100095DB5 /* RestaurntsCategoryResults.swift */; };
+		FA439C5D270E6B2200F2F83D /* RestaurantsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC5EA26F88BB100095DB5 /* RestaurantsList.swift */; };
+		FA439C5E270E6B2200F2F83D /* RestaurntsResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC5EB26F88BB100095DB5 /* RestaurntsResult.swift */; };
+		FA439C5F270E6B2200F2F83D /* RestaurantsCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC5E826F88BB100095DB5 /* RestaurantsCategory.swift */; };
+		FA439C62270E6B2900F2F83D /* MealsResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC5EE26F88BB100095DB5 /* MealsResult.swift */; };
+		FA439C63270E6B2900F2F83D /* MealsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC5ED26F88BB100095DB5 /* MealsList.swift */; };
+		FA439C69270E6BC500F2F83D /* DriverLoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA439C68270E6BC500F2F83D /* DriverLoginVC.swift */; };
+		FA439C6F270E720600F2F83D /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC5E026F88BB100095DB5 /* Order.swift */; };
+		FA439C72270E720900F2F83D /* OrderDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC5E226F88BB100095DB5 /* OrderDetails.swift */; };
+		FA439C75270E723800F2F83D /* LatestOrders.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC5DE26F88BB100095DB5 /* LatestOrders.swift */; };
+		FA439C76270E723800F2F83D /* MealDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC5DF26F88BB100095DB5 /* MealDetails.swift */; };
+		FA439C77270E723800F2F83D /* Driver.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC5E326F88BB100095DB5 /* Driver.swift */; };
+		FA439C78270E723800F2F83D /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC5E426F88BB100095DB5 /* Restaurant.swift */; };
+		FA439C79270E723800F2F83D /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC5E126F88BB100095DB5 /* Customer.swift */; };
+		FA439C7F270E732E00F2F83D /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAEFC6EE26F8918E00095DB5 /* MapKit.framework */; };
+		FA439C8C270E77EA00F2F83D /* DriverOnBoarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA439C87270E77D500F2F83D /* DriverOnBoarding.storyboard */; };
+		FA439C8F270E77ED00F2F83D /* DriverRegion.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA439C86270E77D400F2F83D /* DriverRegion.storyboard */; };
+		FA439C96270E781900F2F83D /* DriverOnBoardingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA439C93270E781900F2F83D /* DriverOnBoardingVC.swift */; };
+		FA439C97270E781900F2F83D /* DriverRegionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA439C95270E781900F2F83D /* DriverRegionVC.swift */; };
+		FA439CC9270E7E6B00F2F83D /* client_753178663409-02tf19lokpeo2an3v376t0t3soho7m4i.apps.googleusercontent.com.plist in Resources */ = {isa = PBXBuildFile; fileRef = FA439CC8270E7E6B00F2F83D /* client_753178663409-02tf19lokpeo2an3v376t0t3soho7m4i.apps.googleusercontent.com.plist */; };
+		FA439CCE270E808200F2F83D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA439B51270E616100F2F83D /* Assets.xcassets */; };
+		FA439CCF270E808200F2F83D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA439B51270E616100F2F83D /* Assets.xcassets */; };
 		FAC551CC270D0E43009F83CB /* 23211-receive-order.json in Resources */ = {isa = PBXBuildFile; fileRef = FAC551CB270D0E43009F83CB /* 23211-receive-order.json */; };
 		FAC551D8270D0EE6009F83CB /* lf20_vhkdj1ra.json in Resources */ = {isa = PBXBuildFile; fileRef = FAC551D7270D0EE6009F83CB /* lf20_vhkdj1ra.json */; };
 		FAEFC57126F8883300095DB5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAEFC56F26F8883300095DB5 /* LaunchScreen.storyboard */; };
-		FAEFC59026F88B6C00095DB5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAEFC58E26F88B6800095DB5 /* Assets.xcassets */; };
 		FAEFC59126F88B6C00095DB5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC58F26F88B6800095DB5 /* AppDelegate.swift */; };
-		FAEFC59D26F88B8400095DB5 /* ArraysModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC59626F88B7200095DB5 /* ArraysModels.swift */; };
-		FAEFC59F26F88B8700095DB5 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC59426F88B7200095DB5 /* Constants.swift */; };
-		FAEFC5A126F88B9800095DB5 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC59826F88B7200095DB5 /* NetworkManager.swift */; };
-		FAEFC5A326F88B9A00095DB5 /* GoogleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC59926F88B7200095DB5 /* GoogleManager.swift */; };
-		FAEFC5A526F88B9D00095DB5 /* FBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC59A26F88B7200095DB5 /* FBManager.swift */; };
-		FAEFC5A726F88BA600095DB5 /* PostRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC59C26F88B7200095DB5 /* PostRequestManager.swift */; };
 		FAEFC5EF26F88BB500095DB5 /* Tray.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC5AB26F88BB100095DB5 /* Tray.swift */; };
 		FAEFC5F126F88BBB00095DB5 /* PickOrderRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC5AE26F88BB100095DB5 /* PickOrderRequest.swift */; };
 		FAEFC5F326F88BC000095DB5 /* RefreshToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC5B126F88BB100095DB5 /* RefreshToken.swift */; };
 		FAEFC5F526F88BC400095DB5 /* GoogleLoginConvertToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC5B326F88BB100095DB5 /* GoogleLoginConvertToken.swift */; };
 		FAEFC5F726F88BC700095DB5 /* LoginConvertToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC5B526F88BB100095DB5 /* LoginConvertToken.swift */; };
 		FAEFC5F926F88BCB00095DB5 /* LogoutRevokeToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC5B726F88BB100095DB5 /* LogoutRevokeToken.swift */; };
-		FAEFC62626F88BDD00095DB5 /* OrdersTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAEFC5FF26F88BD600095DB5 /* OrdersTableViewCell.xib */; };
-		FAEFC62726F88BDD00095DB5 /* OrdersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC5FE26F88BD600095DB5 /* OrdersTableViewCell.swift */; };
 		FAEFC62926F88BE300095DB5 /* OnBoardingCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAEFC60226F88BD600095DB5 /* OnBoardingCollectionViewCell.xib */; };
 		FAEFC62A26F88BE300095DB5 /* OnBoardingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC60126F88BD600095DB5 /* OnBoardingCollectionViewCell.swift */; };
 		FAEFC62C26F88BE900095DB5 /* TrackerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAEFC60626F88BD600095DB5 /* TrackerTableViewCell.xib */; };
@@ -53,11 +147,6 @@
 		FAEFC64526F88C1300095DB5 /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC62426F88BD600095DB5 /* UIViewController+Ext.swift */; };
 		FAEFC64726F88C1300095DB5 /* GFTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC62326F88BD600095DB5 /* GFTitleLabel.swift */; };
 		FAEFC64826F88C1300095DB5 /* GFAlertVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC62026F88BD600095DB5 /* GFAlertVC.swift */; };
-		FAEFC66C26F88C3400095DB5 /* DeliveryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC65126F88C2D00095DB5 /* DeliveryVC.swift */; };
-		FAEFC66D26F88C3400095DB5 /* OrdersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC64E26F88C2D00095DB5 /* OrdersVC.swift */; };
-		FAEFC66E26F88C3400095DB5 /* PerformOrderAlertVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC64D26F88C2D00095DB5 /* PerformOrderAlertVC.swift */; };
-		FAEFC66F26F88C3400095DB5 /* StatisticsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC65026F88C2D00095DB5 /* StatisticsVC.swift */; };
-		FAEFC67026F88C3400095DB5 /* DriverMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC64F26F88C2D00095DB5 /* DriverMenuVC.swift */; };
 		FAEFC67226F88C3900095DB5 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC65426F88C2D00095DB5 /* LoginVC.swift */; };
 		FAEFC67426F88C3D00095DB5 /* RegionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC65626F88C2D00095DB5 /* RegionVC.swift */; };
 		FAEFC67626F88C4100095DB5 /* OnBoardingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC65826F88C2D00095DB5 /* OnBoardingVC.swift */; };
@@ -100,24 +189,9 @@
 		FAEFC6C926F88E9200095DB5 /* RestaurntsResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC5EB26F88BB100095DB5 /* RestaurntsResult.swift */; };
 		FAEFC6CA26F88E9200095DB5 /* MealsResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC5EE26F88BB100095DB5 /* MealsResult.swift */; };
 		FAEFC6CB26F88E9200095DB5 /* MealsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC5ED26F88BB100095DB5 /* MealsList.swift */; };
-		FAEFC6CD26F88EC800095DB5 /* DriverDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC5C926F88BB100095DB5 /* DriverDetails.swift */; };
-		FAEFC6CE26F88EC800095DB5 /* DriverReadyOrders.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC5C626F88BB100095DB5 /* DriverReadyOrders.swift */; };
-		FAEFC6CF26F88EC800095DB5 /* DriverMealDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC5C826F88BB100095DB5 /* DriverMealDetails.swift */; };
-		FAEFC6D026F88EC800095DB5 /* TheDriverOrderDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC5CA26F88BB100095DB5 /* TheDriverOrderDetails.swift */; };
-		FAEFC6D126F88EC800095DB5 /* CustomerDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC5CB26F88BB100095DB5 /* CustomerDetails.swift */; };
-		FAEFC6D226F88EC800095DB5 /* RestaurantDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC5CC26F88BB100095DB5 /* RestaurantDetails.swift */; };
-		FAEFC6D326F88EC800095DB5 /* DriverOrderDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC5C726F88BB100095DB5 /* DriverOrderDetails.swift */; };
-		FAEFC6D526F88ECD00095DB5 /* PickOrderSuccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC5CE26F88BB100095DB5 /* PickOrderSuccess.swift */; };
 		FAEFC6D726F88F6000095DB5 /* RestaurantsHeaderCollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAEFC61926F88BD600095DB5 /* RestaurantsHeaderCollectionReusableView.xib */; };
 		FAEFC6D826F88F6000095DB5 /* RestaurantsHeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC61826F88BD600095DB5 /* RestaurantsHeaderCollectionReusableView.swift */; };
 		FAEFC6DA26F88FB400095DB5 /* OnBoarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC5B926F88BB100095DB5 /* OnBoarding.swift */; };
-		FAEFC6E526F890A100095DB5 /* LatestDriverOrderDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC6E326F8909B00095DB5 /* LatestDriverOrderDetails.swift */; };
-		FAEFC6E626F890A100095DB5 /* LatestRestaurantDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC6DF26F8909B00095DB5 /* LatestRestaurantDetails.swift */; };
-		FAEFC6E726F890A100095DB5 /* LatestDriverMealDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC6DE26F8909B00095DB5 /* LatestDriverMealDetails.swift */; };
-		FAEFC6E826F890A100095DB5 /* TheDriverLatestOrderDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC6E126F8909B00095DB5 /* TheDriverLatestOrderDetails.swift */; };
-		FAEFC6E926F890A100095DB5 /* LatestCustomerDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC6E226F8909B00095DB5 /* LatestCustomerDetails.swift */; };
-		FAEFC6EA26F890A100095DB5 /* LatestDriverDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC6E026F8909B00095DB5 /* LatestDriverDetails.swift */; };
-		FAEFC6EB26F890A100095DB5 /* DriverLatestOrders.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC6E426F8909B00095DB5 /* DriverLatestOrders.swift */; };
 		FAEFC6EF26F8918E00095DB5 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAEFC6EE26F8918E00095DB5 /* MapKit.framework */; };
 		FAEFC71726F8A7B000095DB5 /* AppleUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC71626F8A7AB00095DB5 /* AppleUser.swift */; };
 		FAEFC71A26F8B76000095DB5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FAEFC71926F8B75D00095DB5 /* GoogleService-Info.plist */; };
@@ -128,25 +202,45 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		11F5E42EB62ADDF7B053E87A /* Pods-AkalatShop-Driver.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AkalatShop-Driver.debug.xcconfig"; path = "Target Support Files/Pods-AkalatShop-Driver/Pods-AkalatShop-Driver.debug.xcconfig"; sourceTree = "<group>"; };
+		22921DD385EA60D9F281421D /* Pods_AkalatShop_Driver.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AkalatShop_Driver.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		553D05C862B37D90291D5D03 /* Pods-Akalat-Shop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Akalat-Shop.debug.xcconfig"; path = "Target Support Files/Pods-Akalat-Shop/Pods-Akalat-Shop.debug.xcconfig"; sourceTree = "<group>"; };
+		6E4CD5684516C7985155A967 /* Pods-AkalatShop-Driver.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AkalatShop-Driver.release.xcconfig"; path = "Target Support Files/Pods-AkalatShop-Driver/Pods-AkalatShop-Driver.release.xcconfig"; sourceTree = "<group>"; };
 		785D0B5FEA7611E1D99EB3BD /* Pods_Akalat_Shop.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Akalat_Shop.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF8899F83F8CC310A8F1A893 /* Pods-Akalat-Shop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Akalat-Shop.release.xcconfig"; path = "Target Support Files/Pods-Akalat-Shop/Pods-Akalat-Shop.release.xcconfig"; sourceTree = "<group>"; };
 		FA3589182706B6AF00B317AC /* AppleIDLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleIDLogin.swift; sourceTree = "<group>"; };
 		FA35891B2706B78900B317AC /* AppleIDLoginResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleIDLoginResponse.swift; sourceTree = "<group>"; };
+		FA439B0F270E5E5A00F2F83D /* AkalatShop-Driver.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "AkalatShop-Driver.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA439B11270E5E5A00F2F83D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		FA439B18270E5E5A00F2F83D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/DriverMain.storyboard; sourceTree = "<group>"; };
+		FA439B1D270E5E5D00F2F83D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/DriverLaunchScreen.storyboard; sourceTree = "<group>"; };
+		FA439B1F270E5E5D00F2F83D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FA439B51270E616100F2F83D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		FA439B55270E618200F2F83D /* FBManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBManager.swift; sourceTree = "<group>"; };
+		FA439B56270E618200F2F83D /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		FA439B57270E618200F2F83D /* GSignIn-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GSignIn-Bridging-Header.h"; sourceTree = "<group>"; };
+		FA439B58270E618200F2F83D /* GoogleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleManager.swift; sourceTree = "<group>"; };
+		FA439B59270E618200F2F83D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		FA439B5A270E618300F2F83D /* PostRequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRequestManager.swift; sourceTree = "<group>"; };
+		FA439B5C270E618300F2F83D /* ArraysModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArraysModels.swift; sourceTree = "<group>"; };
+		FA439C18270E64E800F2F83D /* OrdersTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersTableViewCell.swift; sourceTree = "<group>"; };
+		FA439C19270E64E900F2F83D /* OrdersTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrdersTableViewCell.xib; sourceTree = "<group>"; };
+		FA439C54270E66F100F2F83D /* AkalatShop-Driver-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AkalatShop-Driver-Bridging-Header.h"; sourceTree = "<group>"; };
+		FA439C55270E66F200F2F83D /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
+		FA439C56270E66F200F2F83D /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
+		FA439C68270E6BC500F2F83D /* DriverLoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverLoginVC.swift; sourceTree = "<group>"; };
+		FA439C7C270E732600F2F83D /* AkalatShop-Driver.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "AkalatShop-Driver.entitlements"; sourceTree = "<group>"; };
+		FA439C86270E77D400F2F83D /* DriverRegion.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DriverRegion.storyboard; sourceTree = "<group>"; };
+		FA439C87270E77D500F2F83D /* DriverOnBoarding.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DriverOnBoarding.storyboard; sourceTree = "<group>"; };
+		FA439C93270E781900F2F83D /* DriverOnBoardingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverOnBoardingVC.swift; sourceTree = "<group>"; };
+		FA439C95270E781900F2F83D /* DriverRegionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverRegionVC.swift; sourceTree = "<group>"; };
+		FA439CC8270E7E6B00F2F83D /* client_753178663409-02tf19lokpeo2an3v376t0t3soho7m4i.apps.googleusercontent.com.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "client_753178663409-02tf19lokpeo2an3v376t0t3soho7m4i.apps.googleusercontent.com.plist"; sourceTree = "<group>"; };
 		FAC551CB270D0E43009F83CB /* 23211-receive-order.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "23211-receive-order.json"; sourceTree = "<group>"; };
 		FAC551D7270D0EE6009F83CB /* lf20_vhkdj1ra.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = lf20_vhkdj1ra.json; sourceTree = "<group>"; };
 		FAEFC56126F8882D00095DB5 /* Akalat-Shop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Akalat-Shop.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAEFC57026F8883300095DB5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FAEFC57226F8883300095DB5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FAEFC58E26F88B6800095DB5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FAEFC58F26F88B6800095DB5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		FAEFC59426F88B7200095DB5 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		FAEFC59626F88B7200095DB5 /* ArraysModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArraysModels.swift; sourceTree = "<group>"; };
-		FAEFC59726F88B7200095DB5 /* GSignIn-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GSignIn-Bridging-Header.h"; sourceTree = "<group>"; };
-		FAEFC59826F88B7200095DB5 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
-		FAEFC59926F88B7200095DB5 /* GoogleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleManager.swift; sourceTree = "<group>"; };
-		FAEFC59A26F88B7200095DB5 /* FBManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBManager.swift; sourceTree = "<group>"; };
-		FAEFC59C26F88B7200095DB5 /* PostRequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRequestManager.swift; sourceTree = "<group>"; };
 		FAEFC5AB26F88BB100095DB5 /* Tray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tray.swift; sourceTree = "<group>"; };
 		FAEFC5AE26F88BB100095DB5 /* PickOrderRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickOrderRequest.swift; sourceTree = "<group>"; };
 		FAEFC5B126F88BB100095DB5 /* RefreshToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshToken.swift; sourceTree = "<group>"; };
@@ -183,8 +277,6 @@
 		FAEFC5EB26F88BB100095DB5 /* RestaurntsResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurntsResult.swift; sourceTree = "<group>"; };
 		FAEFC5ED26F88BB100095DB5 /* MealsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealsList.swift; sourceTree = "<group>"; };
 		FAEFC5EE26F88BB100095DB5 /* MealsResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealsResult.swift; sourceTree = "<group>"; };
-		FAEFC5FE26F88BD600095DB5 /* OrdersTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersTableViewCell.swift; sourceTree = "<group>"; };
-		FAEFC5FF26F88BD600095DB5 /* OrdersTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrdersTableViewCell.xib; sourceTree = "<group>"; };
 		FAEFC60126F88BD600095DB5 /* OnBoardingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingCollectionViewCell.swift; sourceTree = "<group>"; };
 		FAEFC60226F88BD600095DB5 /* OnBoardingCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OnBoardingCollectionViewCell.xib; sourceTree = "<group>"; };
 		FAEFC60526F88BD600095DB5 /* TrackerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerTableViewCell.swift; sourceTree = "<group>"; };
@@ -258,6 +350,15 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		FA439B0C270E5E5A00F2F83D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FA439C7F270E732E00F2F83D /* MapKit.framework in Frameworks */,
+				C74BF64A6BFFB47373C11BBD /* Pods_AkalatShop_Driver.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FAEFC55E26F8882D00095DB5 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -275,6 +376,7 @@
 			children = (
 				FAEFC6EE26F8918E00095DB5 /* MapKit.framework */,
 				785D0B5FEA7611E1D99EB3BD /* Pods_Akalat_Shop.framework */,
+				22921DD385EA60D9F281421D /* Pods_AkalatShop_Driver.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -295,10 +397,161 @@
 			path = AppleID;
 			sourceTree = "<group>";
 		};
+		FA439B10270E5E5A00F2F83D /* AkalatShop-Driver */ = {
+			isa = PBXGroup;
+			children = (
+				FA439C7C270E732600F2F83D /* AkalatShop-Driver.entitlements */,
+				FA439C53270E666E00F2F83D /* MenuSetup */,
+				FA439B91270E628100F2F83D /* Support */,
+				FA439B9E270E62FF00F2F83D /* Models */,
+				FAEFC64C26F88C2D00095DB5 /* Controllers */,
+				FA439C04270E64E400F2F83D /* CustomizeViews */,
+				FA439B9D270E62EF00F2F83D /* Storyboards */,
+				FA439C50270E660700F2F83D /* LaunchScreen */,
+				FA439B1F270E5E5D00F2F83D /* Info.plist */,
+				FA439CC8270E7E6B00F2F83D /* client_753178663409-02tf19lokpeo2an3v376t0t3soho7m4i.apps.googleusercontent.com.plist */,
+			);
+			path = "AkalatShop-Driver";
+			sourceTree = "<group>";
+		};
+		FA439B4E270E613600F2F83D /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				FA439B51270E616100F2F83D /* Assets.xcassets */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		FA439B54270E618200F2F83D /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				FA439B59270E618200F2F83D /* Constants.swift */,
+				FA439B5B270E618300F2F83D /* ArraysManager */,
+				FA439B57270E618200F2F83D /* GSignIn-Bridging-Header.h */,
+				FA439B56270E618200F2F83D /* NetworkManager.swift */,
+				FA439B58270E618200F2F83D /* GoogleManager.swift */,
+				FA439B55270E618200F2F83D /* FBManager.swift */,
+				FA439B5A270E618300F2F83D /* PostRequestManager.swift */,
+			);
+			name = Managers;
+			path = Shared/Managers;
+			sourceTree = "<group>";
+		};
+		FA439B5B270E618300F2F83D /* ArraysManager */ = {
+			isa = PBXGroup;
+			children = (
+				FA439B5C270E618300F2F83D /* ArraysModels.swift */,
+			);
+			path = ArraysManager;
+			sourceTree = "<group>";
+		};
+		FA439B91270E628100F2F83D /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				FA439B11270E5E5A00F2F83D /* AppDelegate.swift */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
+		FA439B9D270E62EF00F2F83D /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				FA439C87270E77D500F2F83D /* DriverOnBoarding.storyboard */,
+				FA439C86270E77D400F2F83D /* DriverRegion.storyboard */,
+				FA439B17270E5E5A00F2F83D /* DriverMain.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		FA439B9E270E62FF00F2F83D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				FA439BA1270E633C00F2F83D /* Responses */,
+				FAEFC5AD26F88BB100095DB5 /* Requests */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		FA439BA1270E633C00F2F83D /* Responses */ = {
+			isa = PBXGroup;
+			children = (
+				FAEFC5BB26F88BB100095DB5 /* Driver */,
+			);
+			path = Responses;
+			sourceTree = "<group>";
+		};
+		FA439C04270E64E400F2F83D /* CustomizeViews */ = {
+			isa = PBXGroup;
+			children = (
+				FA439C12270E64E700F2F83D /* Cells */,
+			);
+			path = CustomizeViews;
+			sourceTree = "<group>";
+		};
+		FA439C12270E64E700F2F83D /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				FA439C17270E64E800F2F83D /* Driver */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		FA439C17270E64E800F2F83D /* Driver */ = {
+			isa = PBXGroup;
+			children = (
+				FA439C18270E64E800F2F83D /* OrdersTableViewCell.swift */,
+				FA439C19270E64E900F2F83D /* OrdersTableViewCell.xib */,
+			);
+			path = Driver;
+			sourceTree = "<group>";
+		};
+		FA439C50270E660700F2F83D /* LaunchScreen */ = {
+			isa = PBXGroup;
+			children = (
+				FA439B1C270E5E5D00F2F83D /* DriverLaunchScreen.storyboard */,
+			);
+			path = LaunchScreen;
+			sourceTree = "<group>";
+		};
+		FA439C53270E666E00F2F83D /* MenuSetup */ = {
+			isa = PBXGroup;
+			children = (
+				FA439C56270E66F200F2F83D /* SWRevealViewController.h */,
+				FA439C55270E66F200F2F83D /* SWRevealViewController.m */,
+				FA439C54270E66F100F2F83D /* AkalatShop-Driver-Bridging-Header.h */,
+			);
+			path = MenuSetup;
+			sourceTree = "<group>";
+		};
+		FA439C6C270E6CA300F2F83D /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				FA439C68270E6BC500F2F83D /* DriverLoginVC.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		FA439C92270E781800F2F83D /* OnBoarding */ = {
+			isa = PBXGroup;
+			children = (
+				FA439C93270E781900F2F83D /* DriverOnBoardingVC.swift */,
+			);
+			path = OnBoarding;
+			sourceTree = "<group>";
+		};
+		FA439C94270E781900F2F83D /* Region */ = {
+			isa = PBXGroup;
+			children = (
+				FA439C95270E781900F2F83D /* DriverRegionVC.swift */,
+			);
+			path = Region;
+			sourceTree = "<group>";
+		};
 		FAEFC55826F8882D00095DB5 = {
 			isa = PBXGroup;
 			children = (
 				FAEFC56326F8882D00095DB5 /* Akalat-Shop */,
+				FA439B10270E5E5A00F2F83D /* AkalatShop-Driver */,
 				FAEFC56226F8882D00095DB5 /* Products */,
 				FF8084D334E2EE99371A1C73 /* Pods */,
 				886E7FE7AE2232F93B93AE92 /* Frameworks */,
@@ -309,6 +562,7 @@
 			isa = PBXGroup;
 			children = (
 				FAEFC56126F8882D00095DB5 /* Akalat-Shop.app */,
+				FA439B0F270E5E5A00F2F83D /* AkalatShop-Driver.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -316,11 +570,12 @@
 		FAEFC56326F8882D00095DB5 /* Akalat-Shop */ = {
 			isa = PBXGroup;
 			children = (
+				FA439B4E270E613600F2F83D /* Shared */,
+				FA439B54270E618200F2F83D /* Managers */,
 				FAEFC70426F894C900095DB5 /* Akalat-Shop.entitlements */,
 				FAEFC6ED26F8916E00095DB5 /* Akalat-ShopRelease.entitlements */,
 				FAEFC68A26F88CB200095DB5 /* MenuSetup */,
 				FAEFC58D26F88B6800095DB5 /* Support */,
-				FAEFC59326F88B7200095DB5 /* Managers */,
 				FAEFC5A926F88BB100095DB5 /* Model */,
 				FAEFC5FB26F88BD600095DB5 /* CustomizeViews */,
 				FAEFC64B26F88C2D00095DB5 /* Controllers */,
@@ -335,34 +590,10 @@
 		FAEFC58D26F88B6800095DB5 /* Support */ = {
 			isa = PBXGroup;
 			children = (
-				FAEFC58E26F88B6800095DB5 /* Assets.xcassets */,
 				FAEFC58F26F88B6800095DB5 /* AppDelegate.swift */,
 			);
 			name = Support;
 			path = "../../../Downloads/AkalatShop-main-2/Akalat Shop/Support";
-			sourceTree = "<group>";
-		};
-		FAEFC59326F88B7200095DB5 /* Managers */ = {
-			isa = PBXGroup;
-			children = (
-				FAEFC59426F88B7200095DB5 /* Constants.swift */,
-				FAEFC59526F88B7200095DB5 /* ArraysManager */,
-				FAEFC59726F88B7200095DB5 /* GSignIn-Bridging-Header.h */,
-				FAEFC59826F88B7200095DB5 /* NetworkManager.swift */,
-				FAEFC59926F88B7200095DB5 /* GoogleManager.swift */,
-				FAEFC59A26F88B7200095DB5 /* FBManager.swift */,
-				FAEFC59C26F88B7200095DB5 /* PostRequestManager.swift */,
-			);
-			name = Managers;
-			path = "../../../Downloads/AkalatShop-main-2/Akalat Shop/Managers";
-			sourceTree = "<group>";
-		};
-		FAEFC59526F88B7200095DB5 /* ArraysManager */ = {
-			isa = PBXGroup;
-			children = (
-				FAEFC59626F88B7200095DB5 /* ArraysModels.swift */,
-			);
-			path = ArraysManager;
 			sourceTree = "<group>";
 		};
 		FAEFC5A926F88BB100095DB5 /* Model */ = {
@@ -388,17 +619,16 @@
 			isa = PBXGroup;
 			children = (
 				FAEFC5AF26F88BB100095DB5 /* Auth-Requests */,
-				FAEFC5AD26F88BB100095DB5 /* Driver */,
 			);
 			path = Requests;
 			sourceTree = "<group>";
 		};
-		FAEFC5AD26F88BB100095DB5 /* Driver */ = {
+		FAEFC5AD26F88BB100095DB5 /* Requests */ = {
 			isa = PBXGroup;
 			children = (
 				FAEFC5AE26F88BB100095DB5 /* PickOrderRequest.swift */,
 			);
-			path = Driver;
+			path = Requests;
 			sourceTree = "<group>";
 		};
 		FAEFC5AF26F88BB100095DB5 /* Auth-Requests */ = {
@@ -458,8 +688,6 @@
 			children = (
 				FAEFC5CF26F88BB100095DB5 /* Shared */,
 				FAEFC5DC26F88BB100095DB5 /* Customer */,
-				FAEFC5BB26F88BB100095DB5 /* Driver */,
-				FAEFC6DD26F8909B00095DB5 /* LatestOrders */,
 			);
 			path = Responces;
 			sourceTree = "<group>";
@@ -469,6 +697,7 @@
 			children = (
 				FAEFC5C526F88BB100095DB5 /* ReadyOrders */,
 				FAEFC5CD26F88BB100095DB5 /* PickOrder */,
+				FAEFC6DD26F8909B00095DB5 /* LatestOrders */,
 			);
 			path = Driver;
 			sourceTree = "<group>";
@@ -554,10 +783,10 @@
 		FAEFC5DC26F88BB100095DB5 /* Customer */ = {
 			isa = PBXGroup;
 			children = (
-				FAEFC5DD26F88BB100095DB5 /* Latest Orders */,
-				FAEFC5E526F88BB100095DB5 /* Make Order Response */,
 				FAEFC5E726F88BB100095DB5 /* ListRestaurants */,
 				FAEFC5EC26F88BB100095DB5 /* MealsList */,
+				FAEFC5DD26F88BB100095DB5 /* Latest Orders */,
+				FAEFC5E526F88BB100095DB5 /* Make Order Response */,
 			);
 			path = Customer;
 			sourceTree = "<group>";
@@ -624,20 +853,10 @@
 		FAEFC5FC26F88BD600095DB5 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				FAEFC5FD26F88BD600095DB5 /* Driver */,
 				FAEFC60026F88BD600095DB5 /* OnBoarding */,
 				FAEFC60326F88BD600095DB5 /* Customer */,
 			);
 			path = Cells;
-			sourceTree = "<group>";
-		};
-		FAEFC5FD26F88BD600095DB5 /* Driver */ = {
-			isa = PBXGroup;
-			children = (
-				FAEFC5FE26F88BD600095DB5 /* OrdersTableViewCell.swift */,
-				FAEFC5FF26F88BD600095DB5 /* OrdersTableViewCell.xib */,
-			);
-			path = Driver;
 			sourceTree = "<group>";
 		};
 		FAEFC60026F88BD600095DB5 /* OnBoarding */ = {
@@ -734,21 +953,23 @@
 			children = (
 				FAEFC65226F88C2D00095DB5 /* Shared */,
 				FAEFC65926F88C2D00095DB5 /* Customer */,
-				FAEFC64C26F88C2D00095DB5 /* Driver */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
 		};
-		FAEFC64C26F88C2D00095DB5 /* Driver */ = {
+		FAEFC64C26F88C2D00095DB5 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				FA439C6C270E6CA300F2F83D /* Auth */,
+				FA439C92270E781800F2F83D /* OnBoarding */,
+				FA439C94270E781900F2F83D /* Region */,
 				FAEFC64F26F88C2D00095DB5 /* DriverMenuVC.swift */,
-				FAEFC64D26F88C2D00095DB5 /* PerformOrderAlertVC.swift */,
 				FAEFC64E26F88C2D00095DB5 /* OrdersVC.swift */,
+				FAEFC64D26F88C2D00095DB5 /* PerformOrderAlertVC.swift */,
 				FAEFC65026F88C2D00095DB5 /* StatisticsVC.swift */,
 				FAEFC65126F88C2D00095DB5 /* DeliveryVC.swift */,
 			);
-			path = Driver;
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		FAEFC65226F88C2D00095DB5 /* Shared */ = {
@@ -865,6 +1086,8 @@
 			children = (
 				553D05C862B37D90291D5D03 /* Pods-Akalat-Shop.debug.xcconfig */,
 				DF8899F83F8CC310A8F1A893 /* Pods-Akalat-Shop.release.xcconfig */,
+				11F5E42EB62ADDF7B053E87A /* Pods-AkalatShop-Driver.debug.xcconfig */,
+				6E4CD5684516C7985155A967 /* Pods-AkalatShop-Driver.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -872,6 +1095,26 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		FA439B0E270E5E5A00F2F83D /* AkalatShop-Driver */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FA439B22270E5E5D00F2F83D /* Build configuration list for PBXNativeTarget "AkalatShop-Driver" */;
+			buildPhases = (
+				A1A411191E566F5E5948BF17 /* [CP] Check Pods Manifest.lock */,
+				FA439B0B270E5E5A00F2F83D /* Sources */,
+				FA439B0C270E5E5A00F2F83D /* Frameworks */,
+				FA439B0D270E5E5A00F2F83D /* Resources */,
+				9A45FAC9630BABD0A2E07BA5 /* [CP] Embed Pods Frameworks */,
+				BB8B768849BB75D8F2CFFA5F /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "AkalatShop-Driver";
+			productName = "AkalatShop-Driver";
+			productReference = FA439B0F270E5E5A00F2F83D /* AkalatShop-Driver.app */;
+			productType = "com.apple.product-type.application";
+		};
 		FAEFC56026F8882D00095DB5 /* Akalat-Shop */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = FAEFC57526F8883300095DB5 /* Build configuration list for PBXNativeTarget "Akalat-Shop" */;
@@ -901,6 +1144,10 @@
 				LastSwiftUpdateCheck = 1240;
 				LastUpgradeCheck = 1240;
 				TargetAttributes = {
+					FA439B0E270E5E5A00F2F83D = {
+						CreatedOnToolsVersion = 12.4;
+						LastSwiftMigration = 1240;
+					};
 					FAEFC56026F8882D00095DB5 = {
 						CreatedOnToolsVersion = 12.4;
 						LastSwiftMigration = 1240;
@@ -921,22 +1168,38 @@
 			projectRoot = "";
 			targets = (
 				FAEFC56026F8882D00095DB5 /* Akalat-Shop */,
+				FA439B0E270E5E5A00F2F83D /* AkalatShop-Driver */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		FA439B0D270E5E5A00F2F83D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FA439C43270E659200F2F83D /* lf20_vhkdj1ra.json in Resources */,
+				FA439C44270E659200F2F83D /* 23211-receive-order.json in Resources */,
+				FA439C40270E656400F2F83D /* OnBoardingCollectionViewCell.xib in Resources */,
+				FA439B1E270E5E5D00F2F83D /* DriverLaunchScreen.storyboard in Resources */,
+				FA439CCF270E808200F2F83D /* Assets.xcassets in Resources */,
+				FA439C37270E652600F2F83D /* OrdersTableViewCell.xib in Resources */,
+				FA439C8F270E77ED00F2F83D /* DriverRegion.storyboard in Resources */,
+				FA439B19270E5E5A00F2F83D /* DriverMain.storyboard in Resources */,
+				FA439CC9270E7E6B00F2F83D /* client_753178663409-02tf19lokpeo2an3v376t0t3soho7m4i.apps.googleusercontent.com.plist in Resources */,
+				FA439C8C270E77EA00F2F83D /* DriverOnBoarding.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FAEFC55F26F8882D00095DB5 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				FAEFC63A26F88C0100095DB5 /* AnotherRestaurantsTableViewCell.xib in Resources */,
 				FAEFC72626F8BC8B00095DB5 /* Region.storyboard in Resources */,
-				FAEFC59026F88B6C00095DB5 /* Assets.xcassets in Resources */,
 				FAEFC57126F8883300095DB5 /* LaunchScreen.storyboard in Resources */,
 				FAEFC62926F88BE300095DB5 /* OnBoardingCollectionViewCell.xib in Resources */,
 				FAEFC63C26F88C0600095DB5 /* CustomRestaurantLayoutCollectionViewCell.xib in Resources */,
-				FAEFC62626F88BDD00095DB5 /* OrdersTableViewCell.xib in Resources */,
 				FAC551CC270D0E43009F83CB /* 23211-receive-order.json in Resources */,
 				FAEFC72926F8BC8B00095DB5 /* Categories.storyboard in Resources */,
 				FAEFC63626F88C0100095DB5 /* RestaurantsTableViewCell.xib in Resources */,
@@ -948,6 +1211,7 @@
 				FAEFC63226F88BF700095DB5 /* MealsCollectionViewCell.xib in Resources */,
 				FAC551D8270D0EE6009F83CB /* lf20_vhkdj1ra.json in Resources */,
 				FAEFC62C26F88BE900095DB5 /* TrackerTableViewCell.xib in Resources */,
+				FA439CCE270E808200F2F83D /* Assets.xcassets in Resources */,
 				FAEFC72E26F8C09C00095DB5 /* OnBoarding.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -955,6 +1219,62 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		9A45FAC9630BABD0A2E07BA5 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AkalatShop-Driver/Pods-AkalatShop-Driver-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AkalatShop-Driver/Pods-AkalatShop-Driver-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AkalatShop-Driver/Pods-AkalatShop-Driver-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A1A411191E566F5E5948BF17 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AkalatShop-Driver-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BB8B768849BB75D8F2CFFA5F /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AkalatShop-Driver/Pods-AkalatShop-Driver-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AkalatShop-Driver/Pods-AkalatShop-Driver-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AkalatShop-Driver/Pods-AkalatShop-Driver-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		BCCA4F7CE486987CD14B14C4 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1014,15 +1334,93 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		FA439B0B270E5E5A00F2F83D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FA439B6A270E61C300F2F83D /* GoogleManager.swift in Sources */,
+				FA439B74270E61C900F2F83D /* PostRequestManager.swift in Sources */,
+				FA439B70270E61C600F2F83D /* FBManager.swift in Sources */,
+				FA439B86270E624700F2F83D /* LoginConvertToken.swift in Sources */,
+				FA439BA8270E638300F2F83D /* LoginConvertTokenResponse.swift in Sources */,
+				FA439C5E270E6B2200F2F83D /* RestaurntsResult.swift in Sources */,
+				FA439C57270E66F200F2F83D /* SWRevealViewController.m in Sources */,
+				FA439C4D270E65CE00F2F83D /* GFBodyLabel.swift in Sources */,
+				FA439C5C270E6B2200F2F83D /* RestaurntsCategoryResults.swift in Sources */,
+				FA439C75270E723800F2F83D /* LatestOrders.swift in Sources */,
+				FA439C4C270E65CE00F2F83D /* GFEmptyStateView.swift in Sources */,
+				FA439C79270E723800F2F83D /* Customer.swift in Sources */,
+				FA439B83270E624300F2F83D /* GoogleLoginConvertToken.swift in Sources */,
+				FA439C69270E6BC500F2F83D /* DriverLoginVC.swift in Sources */,
+				FA439C78270E723800F2F83D /* Restaurant.swift in Sources */,
+				FA439BA5270E637600F2F83D /* GoogleLoginConvertTokenResponse.swift in Sources */,
+				FA439BB7270E649300F2F83D /* CustomerDetails.swift in Sources */,
+				FA439C4B270E65CE00F2F83D /* GFButton.swift in Sources */,
+				FA439B66270E61BF00F2F83D /* NetworkManager.swift in Sources */,
+				FA439BB4270E649300F2F83D /* TheDriverLatestOrderDetails.swift in Sources */,
+				FA439C97270E781900F2F83D /* DriverRegionVC.swift in Sources */,
+				FA439BAA270E639300F2F83D /* AppleIDLoginResponse.swift in Sources */,
+				FA439B44270E610000F2F83D /* DeliveryVC.swift in Sources */,
+				FA439C76270E723800F2F83D /* MealDetails.swift in Sources */,
+				FA439B80270E623E00F2F83D /* AppleIDLogin.swift in Sources */,
+				FA439BA4270E637400F2F83D /* RefreshTokenResponse.swift in Sources */,
+				FA439BA9270E638500F2F83D /* PictureData.swift in Sources */,
+				FA439B45270E610000F2F83D /* StatisticsVC.swift in Sources */,
+				FA2A8916270E8989005DB8BA /* GFTitleLabel.swift in Sources */,
+				FA439C3A270E654600F2F83D /* CustomizedObjects.swift in Sources */,
+				FA439C47270E65CE00F2F83D /* Helper.swift in Sources */,
+				FA439C3D270E656100F2F83D /* OnBoardingCollectionViewCell.swift in Sources */,
+				FA439B77270E622D00F2F83D /* OnBoarding.swift in Sources */,
+				FA439C96270E781900F2F83D /* DriverOnBoardingVC.swift in Sources */,
+				FA439BB8270E649300F2F83D /* TheDriverOrderDetails.swift in Sources */,
+				FA439C4A270E65CE00F2F83D /* UIViewController+Ext.swift in Sources */,
+				FA439C34270E652200F2F83D /* OrdersTableViewCell.swift in Sources */,
+				FA439C77270E723800F2F83D /* Driver.swift in Sources */,
+				FA439B7A270E623300F2F83D /* Tray.swift in Sources */,
+				FA439BBA270E649300F2F83D /* DriverMealDetails.swift in Sources */,
+				FA439C5F270E6B2200F2F83D /* RestaurantsCategory.swift in Sources */,
+				FA439BAB270E639800F2F83D /* AppleUser.swift in Sources */,
+				FA439BB6270E649300F2F83D /* LatestDriverMealDetails.swift in Sources */,
+				FA439BB5270E649300F2F83D /* DriverDetails.swift in Sources */,
+				FA439BBE270E649300F2F83D /* PickOrderSuccess.swift in Sources */,
+				FA439B43270E610000F2F83D /* OrdersVC.swift in Sources */,
+				FA439BA6270E637900F2F83D /* Picture.swift in Sources */,
+				FA439C6F270E720600F2F83D /* Order.swift in Sources */,
+				FA439BBF270E649300F2F83D /* LatestDriverDetails.swift in Sources */,
+				FA439BB2270E649300F2F83D /* DriverLatestOrders.swift in Sources */,
+				FA439BBD270E649300F2F83D /* LatestDriverOrderDetails.swift in Sources */,
+				FA439C5D270E6B2200F2F83D /* RestaurantsList.swift in Sources */,
+				FA439B89270E624D00F2F83D /* LogoutRevokeToken.swift in Sources */,
+				FA439BAC270E639A00F2F83D /* User.swift in Sources */,
+				FA439BBC270E649300F2F83D /* LatestRestaurantDetails.swift in Sources */,
+				FA439B62270E61B200F2F83D /* ArraysModels.swift in Sources */,
+				FA439BBB270E649300F2F83D /* DriverOrderDetails.swift in Sources */,
+				FA439B46270E610000F2F83D /* PerformOrderAlertVC.swift in Sources */,
+				FA439C62270E6B2900F2F83D /* MealsResult.swift in Sources */,
+				FA439C72270E720900F2F83D /* OrderDetails.swift in Sources */,
+				FA439B7D270E623A00F2F83D /* RefreshToken.swift in Sources */,
+				FA439B5D270E61AE00F2F83D /* Constants.swift in Sources */,
+				FA439B12270E5E5A00F2F83D /* AppDelegate.swift in Sources */,
+				FA439C49270E65CE00F2F83D /* GFAlertVC.swift in Sources */,
+				FA439BB3270E649300F2F83D /* LatestCustomerDetails.swift in Sources */,
+				FA439BB1270E649300F2F83D /* RestaurantDetails.swift in Sources */,
+				FA439C63270E6B2900F2F83D /* MealsList.swift in Sources */,
+				FA439B47270E610000F2F83D /* DriverMenuVC.swift in Sources */,
+				FA439BB9270E649300F2F83D /* DriverReadyOrders.swift in Sources */,
+				FA439BA7270E637C00F2F83D /* FBData.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FAEFC55D26F8882D00095DB5 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FAEFC5A326F88B9A00095DB5 /* GoogleManager.swift in Sources */,
-				FAEFC66F26F88C3400095DB5 /* StatisticsVC.swift in Sources */,
+				FA2A891B270E8A51005DB8BA /* TheDriverOrderDetails.swift in Sources */,
 				FAEFC63926F88C0100095DB5 /* RestaurantsTableViewCell.swift in Sources */,
 				FA35891C2706B78900B317AC /* AppleIDLoginResponse.swift in Sources */,
 				FAEFC67626F88C4100095DB5 /* OnBoardingVC.swift in Sources */,
+				FA439B65270E61BF00F2F83D /* NetworkManager.swift in Sources */,
+				FA2A8922270E8A5A005DB8BA /* DriverOrderDetails.swift in Sources */,
 				FAEFC67A26F88C5300095DB5 /* CheckoutVC.swift in Sources */,
 				FAEFC64526F88C1300095DB5 /* UIViewController+Ext.swift in Sources */,
 				FAEFC67F26F88C5300095DB5 /* FishVC.swift in Sources */,
@@ -1030,36 +1428,31 @@
 				FAEFC68626F88C5300095DB5 /* MenuVC.swift in Sources */,
 				FAEFC6AB26F88E5300095DB5 /* Customer.swift in Sources */,
 				FAEFC5F326F88BC000095DB5 /* RefreshToken.swift in Sources */,
-				FAEFC6D126F88EC800095DB5 /* CustomerDetails.swift in Sources */,
-				FAEFC6E526F890A100095DB5 /* LatestDriverOrderDetails.swift in Sources */,
+				FA439B6D270E61C600F2F83D /* FBManager.swift in Sources */,
 				FAEFC64826F88C1300095DB5 /* GFAlertVC.swift in Sources */,
 				FAEFC68326F88C5300095DB5 /* GrillsVC.swift in Sources */,
+				FA439B73270E61C800F2F83D /* PostRequestManager.swift in Sources */,
 				FAEFC67826F88C5300095DB5 /* AddressVC.swift in Sources */,
-				FAEFC62726F88BDD00095DB5 /* OrdersTableViewCell.swift in Sources */,
+				FA2A8923270E8A5A005DB8BA /* DriverReadyOrders.swift in Sources */,
 				FAEFC6C926F88E9200095DB5 /* RestaurntsResult.swift in Sources */,
 				FAEFC62A26F88BE300095DB5 /* OnBoardingCollectionViewCell.swift in Sources */,
-				FAEFC6E926F890A100095DB5 /* LatestCustomerDetails.swift in Sources */,
 				FAEFC62D26F88BE900095DB5 /* TrackerTableViewCell.swift in Sources */,
 				FAEFC67426F88C3D00095DB5 /* RegionVC.swift in Sources */,
 				FAEFC68726F88C5300095DB5 /* SandwichesVC.swift in Sources */,
-				FAEFC5A526F88B9D00095DB5 /* FBManager.swift in Sources */,
 				FAEFC6AF26F88E5C00095DB5 /* RefreshTokenResponse.swift in Sources */,
 				FAEFC6A926F88E5300095DB5 /* Order.swift in Sources */,
 				FAEFC63526F88C0100095DB5 /* AnotherRestaurantsTableViewCell.swift in Sources */,
 				FAEFC6C226F88E8000095DB5 /* User.swift in Sources */,
-				FAEFC6CD26F88EC800095DB5 /* DriverDetails.swift in Sources */,
-				FAEFC5A726F88BA600095DB5 /* PostRequestManager.swift in Sources */,
 				FAEFC68226F88C5300095DB5 /* RootMenuVC.swift in Sources */,
 				FAEFC68126F88C5300095DB5 /* DessertsVC.swift in Sources */,
 				FAEFC64226F88C1300095DB5 /* GFBodyLabel.swift in Sources */,
 				FAEFC6AA26F88E5300095DB5 /* MealDetails.swift in Sources */,
-				FAEFC67026F88C3400095DB5 /* DriverMenuVC.swift in Sources */,
 				FAEFC67226F88C3900095DB5 /* LoginVC.swift in Sources */,
-				FAEFC5A126F88B9800095DB5 /* NetworkManager.swift in Sources */,
 				FAEFC6AC26F88E5300095DB5 /* Restaurant.swift in Sources */,
+				FA2A891F270E8A5A005DB8BA /* RestaurantDetails.swift in Sources */,
 				FAEFC6C626F88E9200095DB5 /* RestaurntsCategoryResults.swift in Sources */,
-				FAEFC6EA26F890A100095DB5 /* LatestDriverDetails.swift in Sources */,
 				FAEFC68026F88C5300095DB5 /* FriedChickenVC.swift in Sources */,
+				FA2A8920270E8A5A005DB8BA /* DriverMealDetails.swift in Sources */,
 				FAEFC59126F88B6C00095DB5 /* AppDelegate.swift in Sources */,
 				FAEFC5F926F88BCB00095DB5 /* LogoutRevokeToken.swift in Sources */,
 				FAEFC6B426F88E6600095DB5 /* Picture.swift in Sources */,
@@ -1067,18 +1460,14 @@
 				FAEFC63026F88BEE00095DB5 /* CheckoutDetailsTableViewCell.swift in Sources */,
 				FAEFC67926F88C5300095DB5 /* TabBarVC.swift in Sources */,
 				FAEFC5F126F88BBB00095DB5 /* PickOrderRequest.swift in Sources */,
-				FAEFC6E726F890A100095DB5 /* LatestDriverMealDetails.swift in Sources */,
-				FAEFC6E626F890A100095DB5 /* LatestRestaurantDetails.swift in Sources */,
 				FAEFC71726F8A7B000095DB5 /* AppleUser.swift in Sources */,
-				FAEFC66D26F88C3400095DB5 /* OrdersVC.swift in Sources */,
-				FAEFC6EB26F890A100095DB5 /* DriverLatestOrders.swift in Sources */,
-				FAEFC66C26F88C3400095DB5 /* DeliveryVC.swift in Sources */,
+				FA2A892C270E8A7F005DB8BA /* LatestDriverMealDetails.swift in Sources */,
+				FA2A891E270E8A5A005DB8BA /* DriverDetails.swift in Sources */,
+				FA439B69270E61C300F2F83D /* GoogleManager.swift in Sources */,
 				FAEFC68E26F88CC800095DB5 /* SWRevealViewController.m in Sources */,
 				FAEFC6CB26F88E9200095DB5 /* MealsList.swift in Sources */,
-				FAEFC6CE26F88EC800095DB5 /* DriverReadyOrders.swift in Sources */,
 				FAEFC5EF26F88BB500095DB5 /* Tray.swift in Sources */,
 				FAEFC6A826F88E5300095DB5 /* LatestOrders.swift in Sources */,
-				FAEFC6D026F88EC800095DB5 /* TheDriverOrderDetails.swift in Sources */,
 				FAEFC68426F88C5300095DB5 /* MealDetailsVC.swift in Sources */,
 				FAEFC64726F88C1300095DB5 /* GFTitleLabel.swift in Sources */,
 				FAEFC63F26F88C1300095DB5 /* GFButton.swift in Sources */,
@@ -1086,34 +1475,35 @@
 				FAEFC6CA26F88E9200095DB5 /* MealsResult.swift in Sources */,
 				FAEFC68826F88C5300095DB5 /* TrackerVC.swift in Sources */,
 				FAEFC6DA26F88FB400095DB5 /* OnBoarding.swift in Sources */,
+				FA2A892A270E8A7F005DB8BA /* LatestDriverDetails.swift in Sources */,
+				FA2A8921270E8A5A005DB8BA /* CustomerDetails.swift in Sources */,
 				FAEFC67E26F88C5300095DB5 /* MealListVC.swift in Sources */,
 				FAEFC63326F88BF700095DB5 /* MealsCollectionViewCell.swift in Sources */,
 				FAEFC64426F88C1300095DB5 /* GFEmptyStateView.swift in Sources */,
-				FAEFC6D226F88EC800095DB5 /* RestaurantDetails.swift in Sources */,
 				FA3589192706B6AF00B317AC /* AppleIDLogin.swift in Sources */,
 				FAEFC5F526F88BC400095DB5 /* GoogleLoginConvertToken.swift in Sources */,
 				FAEFC6D826F88F6000095DB5 /* RestaurantsHeaderCollectionReusableView.swift in Sources */,
 				FAEFC6A726F88E5300095DB5 /* Driver.swift in Sources */,
-				FAEFC6CF26F88EC800095DB5 /* DriverMealDetails.swift in Sources */,
 				FAEFC6C726F88E9200095DB5 /* RestaurantsCategory.swift in Sources */,
 				FAEFC63826F88C0100095DB5 /* HomeSliderCollectionViewCell.swift in Sources */,
+				FA439B5E270E61AE00F2F83D /* Constants.swift in Sources */,
 				FAEFC6AD26F88E5300095DB5 /* OrderDetails.swift in Sources */,
 				FAEFC64026F88C1300095DB5 /* CustomizedObjects.swift in Sources */,
 				FAEFC67C26F88C5300095DB5 /* LogoVC.swift in Sources */,
-				FAEFC6D326F88EC800095DB5 /* DriverOrderDetails.swift in Sources */,
 				FAEFC63D26F88C0600095DB5 /* CustomRestaurantLayoutCollectionViewCell.swift in Sources */,
-				FAEFC6D526F88ECD00095DB5 /* PickOrderSuccess.swift in Sources */,
-				FAEFC66E26F88C3400095DB5 /* PerformOrderAlertVC.swift in Sources */,
 				FAEFC5F726F88BC700095DB5 /* LoginConvertToken.swift in Sources */,
+				FA2A8927270E8A7F005DB8BA /* LatestCustomerDetails.swift in Sources */,
+				FA2A8929270E8A7F005DB8BA /* LatestRestaurantDetails.swift in Sources */,
 				FAEFC67D26F88C5300095DB5 /* RestaurantsVC.swift in Sources */,
 				FAEFC67B26F88C5300095DB5 /* LogoAnimationView.swift in Sources */,
-				FAEFC6E826F890A100095DB5 /* TheDriverLatestOrderDetails.swift in Sources */,
 				FAEFC6C826F88E9200095DB5 /* RestaurantsList.swift in Sources */,
 				FAEFC64326F88C1300095DB5 /* Helper.swift in Sources */,
 				FAEFC6B126F88E6000095DB5 /* GoogleLoginConvertTokenResponse.swift in Sources */,
-				FAEFC59D26F88B8400095DB5 /* ArraysModels.swift in Sources */,
+				FA2A8926270E8A7F005DB8BA /* LatestDriverOrderDetails.swift in Sources */,
+				FA439B61270E61B100F2F83D /* ArraysModels.swift in Sources */,
+				FA2A8928270E8A7F005DB8BA /* DriverLatestOrders.swift in Sources */,
+				FA2A892B270E8A7F005DB8BA /* TheDriverLatestOrderDetails.swift in Sources */,
 				FAEFC6B526F88E6600095DB5 /* PictureData.swift in Sources */,
-				FAEFC59F26F88B8700095DB5 /* Constants.swift in Sources */,
 				FAEFC6B626F88E6600095DB5 /* FBData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1121,6 +1511,22 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		FA439B17270E5E5A00F2F83D /* DriverMain.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FA439B18270E5E5A00F2F83D /* Base */,
+			);
+			name = DriverMain.storyboard;
+			sourceTree = "<group>";
+		};
+		FA439B1C270E5E5D00F2F83D /* DriverLaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FA439B1D270E5E5D00F2F83D /* Base */,
+			);
+			name = DriverLaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
 		FAEFC56F26F8883300095DB5 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1132,6 +1538,55 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		FA439B20270E5E5D00F2F83D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 11F5E42EB62ADDF7B053E87A /* Pods-AkalatShop-Driver.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = "AkalatShop-Driver/AkalatShop-Driver.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = WL75LZVNWR;
+				INFOPLIST_FILE = "AkalatShop-Driver/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Abdallah.AkalatShop-Driver";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "AkalatShop-Driver/MenuSetup/AkalatShop-Driver-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		FA439B21270E5E5D00F2F83D /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6E4CD5684516C7985155A967 /* Pods-AkalatShop-Driver.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = "AkalatShop-Driver/AkalatShop-Driver.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = WL75LZVNWR;
+				INFOPLIST_FILE = "AkalatShop-Driver/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Abdallah.AkalatShop-Driver";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "AkalatShop-Driver/MenuSetup/AkalatShop-Driver-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		FAEFC57326F8883300095DB5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1300,6 +1755,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		FA439B22270E5E5D00F2F83D /* Build configuration list for PBXNativeTarget "AkalatShop-Driver" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FA439B20270E5E5D00F2F83D /* Debug */,
+				FA439B21270E5E5D00F2F83D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		FAEFC55C26F8882D00095DB5 /* Build configuration list for PBXProject "Akalat-Shop" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

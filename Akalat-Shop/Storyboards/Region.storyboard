@@ -13,12 +13,12 @@
         <!--RegionVC-->
         <scene sceneID="vig-n8-DuD">
             <objects>
-                <viewController storyboardIdentifier="RegionVC" id="gCI-Nj-OWx" customClass="RegionVC" customModule="Akalat_Shop" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RegionVC" id="gCI-Nj-OWx" customClass="RegionVC" customModule="AkalatShop_Driver" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="mVV-5l-wrl">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cIq-jw-8Eg" customClass="RoundedShadowView" customModule="Akalat_Shop" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cIq-jw-8Eg" customClass="RoundedShadowView" customModule="AkalatShop_Driver" customModuleProvider="target">
                                 <rect key="frame" x="44.5" y="168.5" width="231" height="231"/>
                                 <color key="backgroundColor" name="WhiteColor"/>
                                 <constraints>
@@ -31,14 +31,14 @@
                                 <color key="textColor" name="DarkColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Select Your Region" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pV2-ae-GsP" customClass="StopPasteAction" customModule="Akalat_Shop" customModuleProvider="target">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Select Your Region" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pV2-ae-GsP" customClass="StopPasteAction" customModule="AkalatShop_Driver" customModuleProvider="target">
                                 <rect key="frame" x="60.5" y="238.5" width="199" height="34"/>
                                 <color key="backgroundColor" systemColor="systemGray4Color"/>
                                 <color key="textColor" name="DarkColor"/>
                                 <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aVg-F2-rqe" customClass="RoundedButton" customModule="Akalat_Shop" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aVg-F2-rqe" customClass="RoundedButton" customModule="AkalatShop_Driver" customModuleProvider="target">
                                 <rect key="frame" x="60.5" y="345.5" width="199" height="38"/>
                                 <color key="backgroundColor" name="SmoothRed"/>
                                 <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="20"/>
@@ -100,7 +100,7 @@
             <color red="0.2627450980392157" green="0.2627450980392157" blue="0.2627450980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="MainColor">
-            <color red="0.18000000715255737" green="0.18400000035762787" blue="0.27500000596046448" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.63137254901960782" green="0.78431372549019607" blue="0.082352941176470587" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <namedColor name="SmoothRed">
             <color red="0.76099997758865356" green="0.33700001239776611" blue="0.29800000786781311" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
