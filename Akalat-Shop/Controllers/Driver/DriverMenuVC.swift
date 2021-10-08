@@ -1,19 +1,17 @@
 //
-//  LeftVC.swift
-//  EgyStore
+//  DriverMenuVC.swift
+//  Akalat Driver
 //
-//  Created by Macbook on 11/15/20.
-//  Copyright © 2020 Abdallah Eslah. All rights reserved.
+//  Created by Macbook on 09/07/2021.
 //
 
 import UIKit
-import JGProgressHUD
 import Kingfisher
+import JGProgressHUD
 import GoogleSignIn
 import FBSDKLoginKit
-import AuthenticationServices
 
-class MenuVC: UITableViewController {
+class DriverMenuVC: UITableViewController {
 
     @IBOutlet weak var avaImage: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
@@ -21,7 +19,6 @@ class MenuVC: UITableViewController {
     
     
     let hud = JGProgressHUD(style: .dark)
-    let applenameLabelPlaceholder = "Welcome Back"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,22 +26,23 @@ class MenuVC: UITableViewController {
         view.backgroundColor = UIColor(named: "DarkColor")
         getUserData()
     }
- 
     
     func getUserData() {
+        
         nameLabel.text = User.currentUser.name ?? ""
-
+        
         if Constants.appleUserId != nil {
         appleIdNameLabel.numberOfLines = 0
         self.appleIdNameLabel.text = "\(Constants.appleIdFirstName ?? "Welcome") \(Constants.appleIdLastName ?? "To Akalat!")"
-            avaImage.image = UIImage(named: "LogoWithoutName")
         } else {
             self.appleIdNameLabel.text = ""
-            avaImage.image = UIImage(named: "LogoWithoutName")
-//            self.appleIdNameLabel.text = "Welcome To Akalat Shop!"
         }
-   
-
+        
+        avaImage.layer.cornerRadius = avaImage.frame.width / 2
+        avaImage.clipsToBounds = true
+        avaImage.layer.borderWidth = 1.0
+        avaImage.layer.borderColor = UIColor(named: "MainColor")?.cgColor
+        
         //set placeholder
         let placeholder = UIImage(named: "d2baf949-2f8c-47ad-9985-82e2d2105d04-2")
         let options : KingfisherOptionsInfo = [KingfisherOptionsInfoItem.transition(.fade(0.1))]
@@ -53,14 +51,11 @@ class MenuVC: UITableViewController {
             
             FBManager.getFBUserData(completion: {
                 
-                //Get User Data
-                //for fetching Facebook image
-                let facebookImage = URL(string: User.currentUser.pictureURL ?? "" )
-                self.avaImage.kf.setImage(with: facebookImage,placeholder: placeholder,options: options)
-                
+                let pictureUrl = URL(string: User.currentUser.pictureURL ?? "" )
+                self.avaImage.kf.setImage(with: pictureUrl,placeholder: placeholder,options: options)
             })
         }
-        
+            
         if GIDSignIn.sharedInstance()?.currentUser?.authentication.accessToken != nil {
         
         //For fetching google Image
@@ -69,32 +64,36 @@ class MenuVC: UITableViewController {
         }
         
         
-        self.avaImage.layer.cornerRadius = self.avaImage.frame.width / 2
-        self.avaImage.clipsToBounds = true
-        self.avaImage.layer.borderWidth = 1.0
-        self.avaImage.layer.borderColor = UIColor(named: "MainColor")?.cgColor
-
+        
+        if Constants.appleUserId != nil {
+//            LogoWithoutName
+            avaImage.image = UIImage(named: "LogoWithoutName")
+            
+        }
         
     }
 
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-        if identifier == "CustomerLogout" {
+        if identifier == "DriverLogout" {
             
             hud.textLabel.text = "Loading..."
             hud.show(in: self.view)
             
-            // For the purpose of this demo app, delete the user identifier that was previously stored in the keychain.
-            
-//            nameLabel.text = KeychainItem.currentUserIdentifier
             NetworkManager.logout(completion: { error in
                 
                 if error == nil {
                     
                     self.hud.dismiss()
+                    
                     //logourt From Facebook
                     FBManager.shared.logOut()
                     
+                    //logoutFrom Google
                     GIDSignIn.sharedInstance()?.signOut()
+                    
+                    //clear our UserData
+                    User.currentUser.resetInfo()
+                    
                     
                     self.appleIdNameLabel.text = ""
                     
@@ -105,23 +104,16 @@ class MenuVC: UITableViewController {
                     UserDefaults.standard.removeObject(forKey: "appleIdentityToken")
                     print(UserDefaults.standard.value(forKey: "appleIdentityToken"))
                     
-//                    UserDefaults.standard.removeObject(forKey: "appleIdFirstName")
-//                    print(UserDefaults.standard.value(forKey: "appleIdFirstName"))
-//
-//                    UserDefaults.standard.removeObject(forKey: "appleIdLastName")
-//                    print( UserDefaults.standard.value(forKey: "appleIdLastName"))
-//
-//                    UserDefaults.standard.removeObject(forKey: "appleIdEmail")
-//                    print(UserDefaults.standard.value(forKey: "appleIdEmail"))
+                    UserDefaults.standard.removeObject(forKey: "appleIdFirstName")
+                    print(UserDefaults.standard.value(forKey: "appleIdFirstName"))
                     
-                    UserDefaults.standard.removeObject(forKey: "CustomerOrDriver")
-                    print(UserDefaults.standard.value(forKey: "CustomerOrDriver") )
-
-                    //clear our UserData
-                    User.currentUser.resetInfo()
-//                    AppleUser.currentUser.resetInfo()
+                    UserDefaults.standard.removeObject(forKey: "appleIdLastName")
+                    print( UserDefaults.standard.value(forKey: "appleIdLastName"))
                     
-                    self.appleIdNameLabel.text = ""
+                    UserDefaults.standard.removeObject(forKey: "appleIdEmail")
+                    print(UserDefaults.standard.value(forKey: "appleIdEmail"))
+                    
+                    UserDefaults.standard.removeObject(forKey: "CheckDriverView")
                     
                     
                     //refresh the view to remove continue with your email from LoginVC to force go back to it

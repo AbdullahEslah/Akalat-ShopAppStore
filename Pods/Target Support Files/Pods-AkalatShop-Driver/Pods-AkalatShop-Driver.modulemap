@@ -1,6 +1,0 @@
-framework module Pods_AkalatShop_Driver {
-  umbrella header "Pods-AkalatShop-Driver-umbrella.h"
-
-  export *
-  module * { export * }
-}
