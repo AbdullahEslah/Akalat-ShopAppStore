@@ -97,8 +97,9 @@ class OnBoardingVC: UIViewController ,UIScrollViewDelegate{
         
         let storyboard = UIStoryboard(name: "Region", bundle: nil)
         let regionVC = storyboard.instantiateViewController(withIdentifier: "RegionVC") as! RegionVC
-
-        navigationController?.show(regionVC, sender: self)
+        regionVC.modalPresentationStyle = .fullScreen
+        self.present(regionVC, animated: true, completion: nil)
+//        navigationController?.show(regionVC, sender: self)
         
     }
     

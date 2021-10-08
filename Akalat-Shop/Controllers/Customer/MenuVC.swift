@@ -61,7 +61,7 @@ class MenuVC: UITableViewController {
             })
         }
         
-        if GIDSignIn.sharedInstance()?.currentUser?.authentication.accessToken != nil {
+        if GIDSignIn.sharedInstance.currentUser?.authentication.accessToken != nil {
         
         //For fetching google Image
 //        let googleImage = URL(string: User.currentUser.pictureURL ?? "" )
@@ -94,7 +94,7 @@ class MenuVC: UITableViewController {
                     //logourt From Facebook
                     FBManager.shared.logOut()
                     
-                    GIDSignIn.sharedInstance()?.signOut()
+                    GIDSignIn.sharedInstance.signOut()
                     
                     self.appleIdNameLabel.text = ""
                     

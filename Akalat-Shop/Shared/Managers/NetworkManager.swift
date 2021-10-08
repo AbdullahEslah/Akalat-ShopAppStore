@@ -260,7 +260,7 @@ class NetworkManager {
     
     class func googleLogin(userType: String, completion: @escaping (Bool, Error?)  -> Void) {
 
-        guard let token = GIDSignIn.sharedInstance().currentUser?.authentication.accessToken else {
+        guard let token = GIDSignIn.sharedInstance.currentUser?.authentication.accessToken else {
             return
         }
         

@@ -31,43 +31,37 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eOy-fb-TZY">
                                 <rect key="frame" x="16" y="384" width="288" height="142"/>
                                 <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6UO-is-Iv5">
+                                        <rect key="frame" x="8" y="96" width="272" height="40"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
+                                        <state key="normal" title=" Sign In With Google" image="GoogleIcon">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="googleSignInTapped:" destination="OfU-Im-OVa" eventType="touchUpInside" id="sVS-N9-to8"/>
+                                        </connections>
+                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ngp-zU-QHV" customClass="FBSDKLoginButton">
-                                        <rect key="frame" x="8" y="50.5" width="272" height="45"/>
+                                        <rect key="frame" x="8" y="51" width="272" height="40"/>
                                         <color key="backgroundColor" systemColor="linkColor"/>
                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="15"/>
                                         <state key="normal" title="Login With Facebook">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                     </button>
-                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yZm-eP-Fhy" customClass="ASAuthorizationAppleIDButton">
-                                        <rect key="frame" x="8" y="2" width="272" height="44.5"/>
-                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="15"/>
-                                        <state key="normal">
-                                            <color key="titleColor" name="WhiteColor"/>
-                                        </state>
-                                    </button>
-                                    <view contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="QhW-7s-kN8" customClass="GIDSignInButton">
-                                        <rect key="frame" x="4" y="95.5" width="280" height="46.5"/>
-                                        <accessibility key="accessibilityConfiguration">
-                                            <accessibilityTraits key="traits" button="YES"/>
-                                        </accessibility>
-                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="QhW-7s-kN8" secondAttribute="trailing" constant="4" id="1k3-JO-1LB"/>
-                                    <constraint firstItem="ngp-zU-QHV" firstAttribute="leading" secondItem="QhW-7s-kN8" secondAttribute="leading" constant="4" id="DqO-Sx-hZ2"/>
-                                    <constraint firstItem="yZm-eP-Fhy" firstAttribute="leading" secondItem="QhW-7s-kN8" secondAttribute="leading" constant="4" id="MoW-GJ-7ej"/>
-                                    <constraint firstItem="ngp-zU-QHV" firstAttribute="height" secondItem="yZm-eP-Fhy" secondAttribute="height" id="Qqy-QD-Feg"/>
-                                    <constraint firstItem="yZm-eP-Fhy" firstAttribute="top" secondItem="eOy-fb-TZY" secondAttribute="top" constant="2" id="Ywh-MI-2Xy"/>
-                                    <constraint firstItem="ngp-zU-QHV" firstAttribute="trailing" secondItem="QhW-7s-kN8" secondAttribute="trailing" constant="-4" id="dU8-RK-WQa"/>
-                                    <constraint firstItem="QhW-7s-kN8" firstAttribute="leading" secondItem="eOy-fb-TZY" secondAttribute="leading" constant="4" id="dpT-CB-rhD"/>
-                                    <constraint firstItem="ngp-zU-QHV" firstAttribute="top" secondItem="yZm-eP-Fhy" secondAttribute="bottom" constant="4" id="e9N-Do-5xB"/>
-                                    <constraint firstItem="QhW-7s-kN8" firstAttribute="top" secondItem="ngp-zU-QHV" secondAttribute="bottom" id="fl9-II-zgz"/>
+                                    <constraint firstAttribute="trailing" secondItem="6UO-is-Iv5" secondAttribute="trailing" constant="8" id="4PW-aI-Ar1"/>
+                                    <constraint firstItem="ngp-zU-QHV" firstAttribute="leading" secondItem="6UO-is-Iv5" secondAttribute="leading" id="Jx8-7B-Vrj"/>
+                                    <constraint firstItem="6UO-is-Iv5" firstAttribute="top" secondItem="ngp-zU-QHV" secondAttribute="bottom" constant="5" id="Oqc-90-Tef"/>
+                                    <constraint firstItem="ngp-zU-QHV" firstAttribute="height" secondItem="6UO-is-Iv5" secondAttribute="height" id="RgN-xt-R7v"/>
+                                    <constraint firstItem="6UO-is-Iv5" firstAttribute="height" secondItem="eOy-fb-TZY" secondAttribute="height" multiplier="0.28169" id="fZ2-1v-jaE"/>
+                                    <constraint firstItem="ngp-zU-QHV" firstAttribute="trailing" secondItem="6UO-is-Iv5" secondAttribute="trailing" id="gHE-fn-EbN"/>
                                     <constraint firstAttribute="height" constant="142" id="giR-GN-3cQ"/>
-                                    <constraint firstItem="yZm-eP-Fhy" firstAttribute="trailing" secondItem="QhW-7s-kN8" secondAttribute="trailing" constant="-4" id="hfI-N2-ylb"/>
-                                    <constraint firstItem="QhW-7s-kN8" firstAttribute="height" secondItem="eOy-fb-TZY" secondAttribute="height" multiplier="0.328169" id="kYS-nP-X3b"/>
-                                    <constraint firstAttribute="bottom" secondItem="QhW-7s-kN8" secondAttribute="bottom" id="xUB-oL-4O3"/>
+                                    <constraint firstItem="ngp-zU-QHV" firstAttribute="centerY" secondItem="eOy-fb-TZY" secondAttribute="centerY" id="pEO-xs-Du1"/>
+                                    <constraint firstItem="6UO-is-Iv5" firstAttribute="leading" secondItem="eOy-fb-TZY" secondAttribute="leading" constant="8" id="yTf-tY-4Av"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cOs-5S-Nox" customClass="RoundedButton" customModule="Akalat_Shop" customModuleProvider="target">
@@ -87,8 +81,8 @@
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="CYv-d2-gGb" secondAttribute="height" multiplier="1:1" id="vUv-Cy-G6M"/>
                                 </constraints>
-                                <color key="tintColor" name="SmoothRed"/>
-                                <state key="normal" image="arrow.backward.circle.fill" catalog="system"/>
+                                <color key="tintColor" name="MainColor"/>
+                                <state key="normal" image="arrowshape.turn.up.backward.2.fill" catalog="system"/>
                                 <connections>
                                     <action selector="dismissView:" destination="OfU-Im-OVa" eventType="touchUpInside" id="wjc-zx-zrM"/>
                                 </connections>
@@ -116,18 +110,17 @@
                     </view>
                     <navigationItem key="navigationItem" id="SNP-KH-9bh"/>
                     <connections>
-                        <outlet property="appleLoginButton" destination="yZm-eP-Fhy" id="LxI-0m-TR7"/>
                         <outlet property="authHolderView" destination="eOy-fb-TZY" id="uCl-cw-5Zs"/>
                         <outlet property="authHolderViewHeight" destination="giR-GN-3cQ" id="Mkg-3U-SWi"/>
                         <outlet property="fbLoginButton" destination="ngp-zU-QHV" id="1Qe-8R-62m"/>
-                        <outlet property="googleLoginButton" destination="QhW-7s-kN8" id="GEs-BE-l8u"/>
+                        <outlet property="googleLoginButton" destination="6UO-is-Iv5" id="WLs-pz-GxW"/>
                         <outlet property="showAuthButton" destination="cOs-5S-Nox" id="sO5-9G-75r"/>
                         <segue destination="YCX-mX-CSx" kind="showDetail" identifier="DriverView" id="xVT-HD-fGQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4UG-qV-CbA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3673" y="-863"/>
+            <point key="canvasLocation" x="3498.75" y="-1287.6760563380283"/>
         </scene>
         <!--Reveal View Controller-->
         <scene sceneID="Gz9-sY-f8t">
@@ -679,9 +672,10 @@
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Basket" width="28.5" height="25"/>
+        <image name="GoogleIcon" width="12" height="12"/>
         <image name="LOGO" width="1080" height="1920"/>
-        <image name="arrow.backward.circle.fill" catalog="system" width="128" height="121"/>
         <image name="arrow.right.circle.fill" catalog="system" width="128" height="121"/>
+        <image name="arrowshape.turn.up.backward.2.fill" catalog="system" width="128" height="86"/>
         <image name="icon_logout" width="32" height="32"/>
         <image name="icon_menu_24dp" width="24" height="24"/>
         <image name="icon_order" width="27.5" height="27.5"/>

@@ -15,7 +15,7 @@ import Kingfisher
 import Lottie
 import ObjectiveC
 
-class LoginVC: UIViewController, LoginButtonDelegate, GIDSignInDelegate, GIDSignInUIDelegate {
+class LoginVC: UIViewController, LoginButtonDelegate {
     
     @IBOutlet weak var viewForMyButton: UIView!
     @IBOutlet weak var showAuthButton: UIButton!
@@ -26,7 +26,7 @@ class LoginVC: UIViewController, LoginButtonDelegate, GIDSignInDelegate, GIDSign
     
     @IBOutlet weak var appleLoginButton: ASAuthorizationAppleIDButton!
     
-    @IBOutlet weak var googleLoginButton: GIDSignInButton!
+    @IBOutlet weak var googleLoginButton: UIButton!
    
     @IBOutlet weak var authHolderViewHeight: NSLayoutConstraint!
     
@@ -50,42 +50,6 @@ class LoginVC: UIViewController, LoginButtonDelegate, GIDSignInDelegate, GIDSign
  
         
         defaultAuthHolderViewHeight = authHolderViewHeight.constant
-   
-        // Conforms To Google Protocol
-        GIDSignIn.sharedInstance().delegate = self
-        GIDSignIn.sharedInstance().uiDelegate = self
-        
-        GIDSignIn.sharedInstance().clientID = "970857005723-hgran64vnmn3avdqeanvl3eq4seteau7.apps.googleusercontent.com"
-        GIDSignIn.sharedInstance().serverClientID = "970857005723-10rkfjuhvj9r2d58o550qfoi4fbk1vpk.apps.googleusercontent.com"
-
-        GIDSignIn.sharedInstance().scopes.append("https://www.googleapis.com/auth/plus.login")
-        GIDSignIn.sharedInstance().scopes.append("https://www.googleapis.com/auth/plus.me")
-        GIDSignIn.sharedInstance().scopes.append("https://www.googleapis.com/auth/userinfo.email")
-        GIDSignIn.sharedInstance().scopes.append("https://www.googleapis.com/auth/userinfo.profile")
-        GIDSignIn.sharedInstance()?.signInSilently()
-        
-//        if GIDSignIn.sharedInstance().currentUser?.authentication.accessToken != nil {
-        if UserDefaults.standard.value(forKey: "CheckDriverView") != nil {
-            NetworkManager.googleLogin(userType: self.userType,completion:  { success, error in
-
-                if error == nil {
-                    if UserDefaults.standard.value(forKey: "CheckDriverView") != nil {
-                        let storyboard = UIStoryboard(name: "DriverMain", bundle: nil)
-                        let ordersVC = storyboard.instantiateViewController(withIdentifier: "SWRevealViewController") as! SWRevealViewController
-                        self.showDetailViewController(ordersVC, sender: self)
-                        
-                    }
-                    self.animationView.stop()
-                    self.animationView.removeFromSuperview()
-
-                } else {
-                   // Helper().showAlert(title: "Error!", message: error!.localizedDescription, in: self)
-                    self.animationView.stop()
-                    self.animationView.removeFromSuperview()
-                }
-            })
-        }
-            
         
         fbLoginButton.delegate = self
         
@@ -106,6 +70,8 @@ class LoginVC: UIViewController, LoginButtonDelegate, GIDSignInDelegate, GIDSign
             animationView.animationSpeed = 1
   
             self.fbLoginButton.setTitle("Continue With Facebbok", for: .normal)
+            
+//            if UserDefaults.standard.value(forKey: "CheckDriverView") != nil {
             GraphRequest(graphPath: "me", parameters: ["fields": "name, email, picture.type(normal)"]).start(completionHandler: { (connection, result, error) in
                   
                 if error == nil {
@@ -148,12 +114,31 @@ class LoginVC: UIViewController, LoginButtonDelegate, GIDSignInDelegate, GIDSign
                         Helper().showAlert(title: "Error !", message: error!.localizedDescription, in: self)
                     }
                 })
+           
+    }
+        if GIDSignIn.sharedInstance.currentUser?.authentication.accessToken != nil {
+            NetworkManager.googleLogin(userType: self.userType,completion:  { success, error in
+
+                if error == nil {
+//                    UserDefaults.standard.setValue("DriverView", forKey: "CheckDriverView")
+                    self.userType = self.userType.capitalized
+                    self.performSegue(withIdentifier: "\(self.userType)View", sender: self)
+                    self.animationView.stop()
+                    self.animationView.removeFromSuperview()
+
+                } else {
+                    Helper().showAlert(title: "Error!", message: error!.localizedDescription, in: self)
+                    self.animationView.stop()
+                    self.animationView.removeFromSuperview()
+                }
+            })
         }
+        
+        
         configureAuthViewAppearance()
         signInAppleButton()
-        
-        //AppleAutoLogin
         checkAutoLogin()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -203,6 +188,9 @@ class LoginVC: UIViewController, LoginButtonDelegate, GIDSignInDelegate, GIDSign
 
         fbLoginButton.layer.cornerRadius = 6
         fbLoginButton.clipsToBounds = true
+        
+        googleLoginButton.layer.cornerRadius = 6
+        googleLoginButton.clipsToBounds = true
 
     }
     
@@ -297,6 +285,60 @@ class LoginVC: UIViewController, LoginButtonDelegate, GIDSignInDelegate, GIDSign
             }
         }
     }
+    
+    @IBAction func googleLoginTapped(_ sender: Any) {
+        
+        GIDSignIn.sharedInstance.signIn(with: GoogleManager.signInConfig, presenting: self) { user, error in
+            
+            guard error == nil else { return }
+            self.animationView.frame = self.view.bounds
+
+            // Add animationView as subview
+            self.view.addSubview(self.animationView)
+
+            // Play the animation
+            self.animationView.play()
+            self.animationView.loopMode = .repeat(3.0)
+            self.animationView.animationSpeed = 1
+            
+            guard let user = user else {
+                
+                print("user cancelled the request")
+                UserDefaults.standard.removeObject(forKey: "CheckDriverView")
+                self.animationView.stop()
+                self.animationView.removeFromSuperview()
+                return
+            }
+            // If sign in succeeded, display the app's main content View.
+            //Updating Data
+            User.currentUser.name = user.profile?.name
+            User.currentUser.email = user.profile?.email
+
+            if user.profile?.hasImage != nil {
+                if let googleImage = user.profile?.imageURL(withDimension: 100) {
+                    User.currentUser.imageURL = googleImage
+                }
+            }
+
+            NetworkManager.googleLogin(userType: self.userType,completion:  { success, error in
+
+                if error == nil {
+//                    UserDefaults.standard.setValue("DriverView", forKey: "CheckDriverView")
+                    self.userType = self.userType.capitalized
+                    self.performSegue(withIdentifier: "\(self.userType)View", sender: self)
+                    self.animationView.stop()
+                    self.animationView.removeFromSuperview()
+
+                } else {
+                    Helper().showAlert(title: "Error!", message: error!.localizedDescription, in: self)
+                    self.animationView.stop()
+                    self.animationView.removeFromSuperview()
+                }
+            })
+            
+          }
+    }
+    
 
     func loginButton(
         _ loginButton: FBLoginButton,
@@ -367,69 +409,6 @@ class LoginVC: UIViewController, LoginButtonDelegate, GIDSignInDelegate, GIDSign
     func loginButtonDidLogOut(_ loginButton: FBLoginButton) {
         print("logout")
     }
-
-    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
-
-        self.animationView.frame = self.view.bounds
-
-        // Add animationView as subview
-        self.view.addSubview(self.animationView)
-
-        // Play the animation
-        self.animationView.play()
-        self.animationView.loopMode = .repeat(3.0)
-        self.animationView.animationSpeed = 1
-
-        if error == nil {
-
-            guard let user = user else {
-                print("user cancelled the request")
-                self.animationView.stop()
-                self.animationView.removeFromSuperview()
-                return
-            }
-
-            //Updating Data
-            User.currentUser.name = user.profile?.name
-            User.currentUser.email = user.profile?.email
-
-            if user.profile?.hasImage != nil {
-                if let googleImage = user.profile?.imageURL(withDimension: 100) {
-                    User.currentUser.imageURL = googleImage
-                }
-            }
-
-            NetworkManager.googleLogin(userType: self.userType,completion:  { success, error in
-
-                if error == nil {
-                    if UserDefaults.standard.value(forKey: "CheckDriverView") != nil {
-                        let storyboard = UIStoryboard(name: "DriverMain", bundle: nil)
-                        let ordersVC = storyboard.instantiateViewController(withIdentifier: "SWRevealViewController") as! SWRevealViewController
-                        self.showDetailViewController(ordersVC, sender: self)
-                        
-                    } else {
-                        self.userType = self.userType.capitalized
-                        self.performSegue(withIdentifier: "\(self.userType)View", sender: self)
-                    }
-                    self.animationView.stop()
-                    self.animationView.removeFromSuperview()
-
-                } else {
-                    Helper().showAlert(title: "Error!", message: error!.localizedDescription, in: self)
-                    self.animationView.stop()
-                    self.animationView.removeFromSuperview()
-                }
-            })
-        } else {
-
-            self.animationView.stop()
-            self.animationView.removeFromSuperview()
-        }
-    }
-
-    private func signIn(signIn: GIDSignIn!, didDisconnectWithUser user: GIDGoogleUser!, withError error: NSError!) {
-
-    }
     
     func signInAppleButton() {
         let button = ASAuthorizationAppleIDButton()
@@ -437,8 +416,9 @@ class LoginVC: UIViewController, LoginButtonDelegate, GIDSignInDelegate, GIDSign
         button.addTarget(self, action: #selector(handleAppleIdRequest), for: .touchUpInside)
         self.authHolderView.addSubview(button)
         NSLayoutConstraint.activate([
-                                     button.leadingAnchor.constraint(equalTo: googleLoginButton.leadingAnchor,constant: 4),
-                                     button.trailingAnchor.constraint(equalTo: googleLoginButton.trailingAnchor,constant: -4),
+                                     button.leadingAnchor.constraint(equalTo: googleLoginButton.leadingAnchor,constant: 0),
+                                     button.trailingAnchor.constraint(equalTo: googleLoginButton.trailingAnchor,constant: 0),
+            button.topAnchor.constraint(equalTo: fbLoginButton.topAnchor,constant: -46),
             button.heightAnchor.constraint(equalTo: googleLoginButton.heightAnchor)
         ])
         

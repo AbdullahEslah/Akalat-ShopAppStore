@@ -15,7 +15,7 @@ target 'Akalat-Shop' do
   pod 'FBSDKCoreKit', '~> 9.0.1'
   pod 'FBSDKLoginKit', '~> 9.0.1'
   pod 'FBSDKShareKit', '~> 9.0.1'
-  pod 'GoogleSignIn', '< 5.0.0'
+  pod 'GoogleSignIn'
   pod 'IQKeyboardManagerSwift', '6.3.0'
 
 end

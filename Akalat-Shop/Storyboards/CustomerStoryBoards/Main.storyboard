@@ -32,42 +32,36 @@
                                 <rect key="frame" x="16" y="355" width="288" height="142"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8bM-F1-bK5" customClass="FBSDKLoginButton">
-                                        <rect key="frame" x="8" y="50.5" width="272" height="45"/>
+                                        <rect key="frame" x="8" y="51" width="272" height="40"/>
                                         <color key="backgroundColor" systemColor="linkColor"/>
                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="15"/>
                                         <state key="normal" title="Login With Facebook">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                     </button>
-                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RH5-fh-dPj" customClass="ASAuthorizationAppleIDButton">
-                                        <rect key="frame" x="8" y="2" width="272" height="44.5"/>
-                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="15"/>
-                                        <state key="normal">
-                                            <color key="titleColor" name="WhiteColor"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TN4-B0-vEx">
+                                        <rect key="frame" x="8" y="97" width="272" height="40"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
+                                        <state key="normal" title=" Sign In With Google" image="GoogleIcon">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="googleLoginTapped:" destination="bmx-PY-cfV" eventType="touchUpInside" id="6yz-IN-X2o"/>
+                                        </connections>
                                     </button>
-                                    <view contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="gSS-bM-lUP" customClass="GIDSignInButton">
-                                        <rect key="frame" x="4" y="95.5" width="280" height="46.5"/>
-                                        <accessibility key="accessibilityConfiguration">
-                                            <accessibilityTraits key="traits" button="YES"/>
-                                        </accessibility>
-                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="gSS-bM-lUP" secondAttribute="bottom" id="2jc-BB-vix"/>
-                                    <constraint firstAttribute="trailing" secondItem="gSS-bM-lUP" secondAttribute="trailing" constant="4" id="518-SK-FHY"/>
-                                    <constraint firstItem="8bM-F1-bK5" firstAttribute="leading" secondItem="gSS-bM-lUP" secondAttribute="leading" constant="4" id="AK7-NR-NEe"/>
-                                    <constraint firstItem="8bM-F1-bK5" firstAttribute="height" secondItem="RH5-fh-dPj" secondAttribute="height" id="C4k-nh-vCe"/>
-                                    <constraint firstItem="RH5-fh-dPj" firstAttribute="trailing" secondItem="gSS-bM-lUP" secondAttribute="trailing" constant="-4" id="HVx-xu-y7q"/>
-                                    <constraint firstItem="RH5-fh-dPj" firstAttribute="leading" secondItem="gSS-bM-lUP" secondAttribute="leading" constant="4" id="PLV-px-mvS"/>
-                                    <constraint firstItem="8bM-F1-bK5" firstAttribute="top" secondItem="RH5-fh-dPj" secondAttribute="bottom" constant="4" id="TtU-vn-BIx"/>
-                                    <constraint firstItem="gSS-bM-lUP" firstAttribute="leading" secondItem="keM-Tc-V1e" secondAttribute="leading" constant="4" id="ZHx-4n-Gw4"/>
-                                    <constraint firstItem="8bM-F1-bK5" firstAttribute="trailing" secondItem="gSS-bM-lUP" secondAttribute="trailing" constant="-4" id="dCz-dI-LNd"/>
-                                    <constraint firstItem="gSS-bM-lUP" firstAttribute="top" secondItem="8bM-F1-bK5" secondAttribute="bottom" id="lKw-RU-n4a"/>
-                                    <constraint firstItem="RH5-fh-dPj" firstAttribute="top" secondItem="keM-Tc-V1e" secondAttribute="top" constant="2" id="nKu-ZM-NAI"/>
-                                    <constraint firstAttribute="height" constant="142" id="phe-Uy-jfs"/>
-                                    <constraint firstItem="gSS-bM-lUP" firstAttribute="height" secondItem="keM-Tc-V1e" secondAttribute="height" multiplier="0.328169" id="uZ8-70-9MI"/>
+                                    <constraint firstItem="8bM-F1-bK5" firstAttribute="leading" secondItem="TN4-B0-vEx" secondAttribute="leading" id="2zN-Bg-Ybb"/>
+                                    <constraint firstAttribute="trailing" secondItem="TN4-B0-vEx" secondAttribute="trailing" constant="8" id="J2p-uz-ASG"/>
+                                    <constraint firstItem="8bM-F1-bK5" firstAttribute="trailing" secondItem="TN4-B0-vEx" secondAttribute="trailing" id="Kby-pc-zdZ"/>
+                                    <constraint firstItem="8bM-F1-bK5" firstAttribute="centerY" secondItem="keM-Tc-V1e" secondAttribute="centerY" id="MkM-Qt-YHs"/>
+                                    <constraint firstItem="8bM-F1-bK5" firstAttribute="height" secondItem="TN4-B0-vEx" secondAttribute="height" id="R7F-uS-hAb"/>
+                                    <constraint firstAttribute="height" constant="142" id="gHU-rH-3U3"/>
+                                    <constraint firstItem="TN4-B0-vEx" firstAttribute="top" secondItem="8bM-F1-bK5" secondAttribute="bottom" constant="6" id="qBk-VD-c4w"/>
+                                    <constraint firstItem="TN4-B0-vEx" firstAttribute="leading" secondItem="keM-Tc-V1e" secondAttribute="leading" constant="8" id="zaJ-8Z-clF"/>
+                                    <constraint firstItem="TN4-B0-vEx" firstAttribute="height" secondItem="keM-Tc-V1e" secondAttribute="height" multiplier="0.28169" id="zat-r5-h8h"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Edu-9z-XzK" customClass="RoundedButton" customModule="Akalat_Shop" customModuleProvider="target">
@@ -113,11 +107,10 @@
                     </view>
                     <navigationItem key="navigationItem" id="j6x-Sp-LLB"/>
                     <connections>
-                        <outlet property="appleLoginButton" destination="RH5-fh-dPj" id="mnx-SK-T75"/>
                         <outlet property="authHolderView" destination="keM-Tc-V1e" id="tbS-8l-S4l"/>
-                        <outlet property="authHolderViewHeight" destination="phe-Uy-jfs" id="7SC-U7-hXq"/>
+                        <outlet property="authHolderViewHeight" destination="gHU-rH-3U3" id="bmE-cC-wIW"/>
                         <outlet property="fbLoginButton" destination="8bM-F1-bK5" id="Pji-8o-yL8"/>
-                        <outlet property="googleLoginButton" destination="gSS-bM-lUP" id="etk-wx-EY3"/>
+                        <outlet property="googleLoginButton" destination="TN4-B0-vEx" id="KKh-cG-4Gb"/>
                         <outlet property="showAuthButton" destination="Edu-9z-XzK" id="akn-Xr-jaN"/>
                         <segue destination="ZQu-5M-lPk" kind="showDetail" identifier="CustomerView" id="ZAq-a7-81Z"/>
                     </connections>
@@ -1312,6 +1305,7 @@
         <image name="Background" width="3000" height="1688"/>
         <image name="Basket" width="28.5" height="25"/>
         <image name="DESSERT" width="150" height="150"/>
+        <image name="GoogleIcon" width="12" height="12"/>
         <image name="LOGO" width="1080" height="1920"/>
         <image name="PIZZA" width="150" height="150"/>
         <image name="arrow.right.circle.fill" catalog="system" width="128" height="121"/>

@@ -966,7 +966,6 @@
 				FAEFC55E26F8882D00095DB5 /* Frameworks */,
 				FAEFC55F26F8882D00095DB5 /* Resources */,
 				EACE7CE97716A938D40CA8BD /* [CP] Embed Pods Frameworks */,
-				BCCA4F7CE486987CD14B14C4 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1041,23 +1040,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		BCCA4F7CE486987CD14B14C4 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Akalat-Shop/Pods-Akalat-Shop-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Akalat-Shop/Pods-Akalat-Shop-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Akalat-Shop/Pods-Akalat-Shop-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		E1A3C1734F1142637F0304C7 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;

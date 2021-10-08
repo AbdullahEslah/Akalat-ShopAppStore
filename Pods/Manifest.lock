@@ -1,5 +1,10 @@
 PODS:
   - Alamofire (4.9.1)
+  - AppAuth (1.4.0):
+    - AppAuth/Core (= 1.4.0)
+    - AppAuth/ExternalUserAgent (= 1.4.0)
+  - AppAuth/Core (1.4.0)
+  - AppAuth/ExternalUserAgent (1.4.0)
   - FBSDKCoreKit (9.0.1):
     - FBSDKCoreKit/Basics (= 9.0.1)
     - FBSDKCoreKit/Core (= 9.0.1)
@@ -14,22 +19,17 @@ PODS:
     - FBSDKShareKit/Share (= 9.0.1)
   - FBSDKShareKit/Share (9.0.1):
     - FBSDKCoreKit (~> 9.0.1)
-  - GoogleSignIn (4.4.0):
-    - "GoogleToolboxForMac/NSDictionary+URLArguments (~> 2.1)"
-    - "GoogleToolboxForMac/NSString+URLArguments (~> 2.1)"
+  - GoogleSignIn (6.0.2):
+    - AppAuth (~> 1.4)
+    - GTMAppAuth (~> 1.0)
     - GTMSessionFetcher/Core (~> 1.1)
-  - GoogleToolboxForMac/DebugUtils (2.3.2):
-    - GoogleToolboxForMac/Defines (= 2.3.2)
-  - GoogleToolboxForMac/Defines (2.3.2)
-  - "GoogleToolboxForMac/NSDictionary+URLArguments (2.3.2)":
-    - GoogleToolboxForMac/DebugUtils (= 2.3.2)
-    - GoogleToolboxForMac/Defines (= 2.3.2)
-    - "GoogleToolboxForMac/NSString+URLArguments (= 2.3.2)"
-  - "GoogleToolboxForMac/NSString+URLArguments (2.3.2)"
+  - GTMAppAuth (1.2.2):
+    - AppAuth/Core (~> 1.4)
+    - GTMSessionFetcher/Core (~> 1.5)
   - GTMSessionFetcher/Core (1.7.0)
   - IQKeyboardManagerSwift (6.3.0)
   - JGProgressHUD (2.2)
-  - Kingfisher (6.3.1)
+  - Kingfisher (7.0.0)
   - lottie-ios (3.2.3)
   - SwiftyGif (5.4.0)
 
@@ -38,7 +38,7 @@ DEPENDENCIES:
   - FBSDKCoreKit (~> 9.0.1)
   - FBSDKLoginKit (~> 9.0.1)
   - FBSDKShareKit (~> 9.0.1)
-  - GoogleSignIn (< 5.0.0)
+  - GoogleSignIn
   - IQKeyboardManagerSwift (= 6.3.0)
   - JGProgressHUD
   - Kingfisher
@@ -48,11 +48,12 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - Alamofire
+    - AppAuth
     - FBSDKCoreKit
     - FBSDKLoginKit
     - FBSDKShareKit
     - GoogleSignIn
-    - GoogleToolboxForMac
+    - GTMAppAuth
     - GTMSessionFetcher
     - IQKeyboardManagerSwift
     - JGProgressHUD
@@ -62,18 +63,19 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
+  AppAuth: 31bcec809a638d7bd2f86ea8a52bd45f6e81e7c7
   FBSDKCoreKit: fada1a6a0076724678993ff05a633848765ff18c
   FBSDKLoginKit: d5ffe6d808897019ccf16feb6f0a7ab260bc5cd6
   FBSDKShareKit: 6a85acb92eaf43a0b6dfa2ba6106eb74c7f10d30
-  GoogleSignIn: 7ff245e1a7b26d379099d3243a562f5747e23d39
-  GoogleToolboxForMac: 8bef7c7c5cf7291c687cf5354f39f9db6399ad34
+  GoogleSignIn: fd381840dbe7c1137aa6dc30849a5c3e070c034a
+  GTMAppAuth: ad5c2b70b9a8689e1a04033c9369c4915bfcbe89
   GTMSessionFetcher: 43748f93435c2aa068b1cbe39655aaf600652e91
   IQKeyboardManagerSwift: a8228c257614af98743b4cd8584637025f36358f
   JGProgressHUD: d83d7a981b85d11205e19ff8ad5bb9c40571c847
-  Kingfisher: 016c8b653a35add51dd34a3aba36b580041acc74
+  Kingfisher: 5efc54fec3980f92354898532e562cc17f31efb4
   lottie-ios: c058aeafa76daa4cf64d773554bccc8385d0150e
   SwiftyGif: 5d4af95df24caf1c570dbbcb32a3b8a0763bc6d7
 
-PODFILE CHECKSUM: d3283cb030f760cfb1b2f55e684f9e5252dd29d4
+PODFILE CHECKSUM: 46bf3056e534ebc1816532ff924e77c7a8b99026
 
 COCOAPODS: 1.10.1

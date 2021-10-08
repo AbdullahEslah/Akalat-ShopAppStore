@@ -26,7 +26,7 @@
                                 </connections>
                             </pageControl>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ncA-cb-Goe" customClass="RoundedButton" customModule="Akalat_Shop" customModuleProvider="target">
-                                <rect key="frame" x="16" y="519" width="288" height="33"/>
+                                <rect key="frame" x="16" y="516" width="288" height="33"/>
                                 <color key="backgroundColor" name="SmoothRed"/>
                                 <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="19"/>
                                 <state key="normal" title="Order Now">
@@ -43,8 +43,8 @@
                         <viewLayoutGuide key="safeArea" id="SIW-FI-tMX"/>
                         <color key="backgroundColor" name="WhiteColor"/>
                         <constraints>
-                            <constraint firstItem="ncA-cb-Goe" firstAttribute="top" secondItem="Qt8-QV-EOM" secondAttribute="bottom" constant="8" id="3Z5-cs-CjF"/>
-                            <constraint firstAttribute="bottom" secondItem="ncA-cb-Goe" secondAttribute="bottom" constant="16" id="HCO-fB-Lb0"/>
+                            <constraint firstItem="ncA-cb-Goe" firstAttribute="top" secondItem="Qt8-QV-EOM" secondAttribute="bottom" constant="5" id="3Z5-cs-CjF"/>
+                            <constraint firstAttribute="bottom" secondItem="ncA-cb-Goe" secondAttribute="bottom" constant="19" id="HCO-fB-Lb0"/>
                             <constraint firstItem="bwv-3R-INY" firstAttribute="leading" secondItem="SIW-FI-tMX" secondAttribute="leading" id="Jw9-s8-iId"/>
                             <constraint firstItem="Qt8-QV-EOM" firstAttribute="top" secondItem="bwv-3R-INY" secondAttribute="bottom" constant="7" id="L28-m0-CHf"/>
                             <constraint firstItem="bwv-3R-INY" firstAttribute="top" secondItem="ec2-OR-k0N" secondAttribute="top" id="Mtk-0W-mJR"/>

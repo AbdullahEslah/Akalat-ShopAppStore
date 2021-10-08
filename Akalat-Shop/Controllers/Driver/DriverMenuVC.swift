@@ -56,7 +56,7 @@ class DriverMenuVC: UITableViewController {
             })
         }
             
-        if GIDSignIn.sharedInstance()?.currentUser?.authentication.accessToken != nil {
+        if GIDSignIn.sharedInstance.currentUser?.authentication.accessToken != nil {
         
         //For fetching google Image
 //        let googleImage = URL(string: User.currentUser.pictureURL ?? "" )
@@ -89,7 +89,7 @@ class DriverMenuVC: UITableViewController {
                     FBManager.shared.logOut()
                     
                     //logoutFrom Google
-                    GIDSignIn.sharedInstance()?.signOut()
+                    GIDSignIn.sharedInstance.signOut()
                     
                     //clear our UserData
                     User.currentUser.resetInfo()

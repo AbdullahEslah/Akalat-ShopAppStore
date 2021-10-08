@@ -198,8 +198,6 @@ class RestaurantsVC: UITableViewController, UISearchControllerDelegate {
         self.searchBar.resignFirstResponder()
     }
     
-    
-        
     func fetchRestaurants(){
         
         NetworkManager.getRestaurantsList(restaurantAddress: Constants.region ?? "") { restaurants, error in
@@ -217,7 +215,7 @@ class RestaurantsVC: UITableViewController, UISearchControllerDelegate {
                 self.mySecCollectionView.reloadData()
                 self.tableView.reloadData()
             } else {
-                Helper().showAlert(title: "Error !", message: error!.localizedDescription, in: self)
+                //Helper().showAlert(title: "Error !", message: error!.localizedDescription, in: self)
                 self.animationView.stop()
                 self.animationView.removeFromSuperview()
             }

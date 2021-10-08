@@ -63,8 +63,10 @@ class RegionVC: UIViewController {
         //go to MealsListVC
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let loginVC = storyboard.instantiateViewController(withIdentifier: "LoginVC") as! LoginVC
+            loginVC.modalPresentationStyle = .fullScreen
+            self.present(loginVC, animated: true, completion: nil)
 
-        navigationController?.show(loginVC, sender: self)
+//        navigationController?.show(loginVC, sender: self)
         }
         
     }
