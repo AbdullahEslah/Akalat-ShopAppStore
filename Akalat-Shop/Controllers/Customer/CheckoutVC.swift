@@ -154,9 +154,7 @@ class CheckoutVC: UIViewController {
                 }
             }
             
-            
             self.present(addressVC, animated: true)
-
         }
     }
     
@@ -169,7 +167,6 @@ class CheckoutVC: UIViewController {
             locationManager.desiredAccuracy = kCLLocationAccuracyBest
             locationManager.requestAlwaysAuthorization()
             locationManager.startUpdatingLocation()
-            
             self.map.showsUserLocation = true
             
             
@@ -236,20 +233,23 @@ class CheckoutVC: UIViewController {
             NetworkManager.createOrder { (error) in
                 
                 if error == nil {
-                    
-                    //Save Data To Defaults
-                    UserDefaults.standard.setValue(Tray.currentTray.address, forKey: "address")
-                    UserDefaults.standard.setValue(Tray.currentTray.Phone, forKey: "phone")
-                    
-                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                    if let trackerVC = storyboard.instantiateViewController(withIdentifier: "TrackerVC") as? TrackerVC {
-                        Tray.currentTray.reset()
-                        appDelegate.infoView(message: "Congrates! 😃 Your Order Is Being processed 🎉", color: colorLightGreen)
-                        self.navigationController?.show(trackerVC, sender: self)
+                    DispatchQueue.main.async {
+                        
+                        //Save Data To Defaults
+                        UserDefaults.standard.setValue(Tray.currentTray.address, forKey: "address")
+                        UserDefaults.standard.setValue(Tray.currentTray.Phone, forKey: "phone")
+                        
+                        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                        if let trackerVC = storyboard.instantiateViewController(withIdentifier: "TrackerVC") as? TrackerVC {
+                            Tray.currentTray.reset()
+                            appDelegate.infoView(message: "Congrates! 😃 Your Order Is Being processed 🎉", color: colorLightGreen)
+                            self.navigationController?.show(trackerVC, sender: self)
+                        }
                     }
                 }else {
-                    print(error!.localizedDescription)
-                    Helper().showAlert(title: "Error", message: error!.localizedDescription, in: self)
+                    DispatchQueue.main.async {
+                        self.presentGFAlertOnMainThread(title: "Error !", message: error!.localizedDescription, buttonTitle: "Ok")
+                    }
                 }
             }
         }

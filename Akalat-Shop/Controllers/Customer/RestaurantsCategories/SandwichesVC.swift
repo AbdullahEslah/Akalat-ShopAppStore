@@ -43,32 +43,27 @@ class SandwichesVC: UIViewController {
     }
     
     func fetchFirstRestaurants(){
-//        hud.textLabel.text = "Loading..."
-//        hud.show(in: self.view)
-        
         
         NetworkManager.getRestaurantsCategories(restaurantCategory: Constants.Sandwiches) { restaurants, error in
+            
             if error == nil {
-//            self.hud.dismiss()
-            print(ArraysModels.restCategories)
-            ArraysModels.restCategories.removeAll()
-
-            ArraysModels.restCategories.append(contentsOf: restaurants)
-//            ArraysModels.restCategories = ArraysModels.restaurants
-            self.collectionView.reloadData()
-//            self.hud.dismiss()
-            self.animationView.stop()
-            self.animationView.removeFromSuperview()
-            }else {
+                DispatchQueue.main.async {
+                print(ArraysModels.restCategories)
+                ArraysModels.restCategories.removeAll()
                 
-                Helper().showAlert(title: "Error!", message: error!.localizedDescription, in: self)
-                
+                ArraysModels.restCategories.append(contentsOf: restaurants)
+                self.collectionView.reloadData()
                 self.animationView.stop()
                 self.animationView.removeFromSuperview()
             }
+            }else {
+                DispatchQueue.main.async {
+                    self.presentGFAlertOnMainThread(title: "Error !", message: error!.rawValue, buttonTitle: "Ok")
+                self.animationView.stop()
+                self.animationView.removeFromSuperview()
+                }
+            }
         }
-//        self.hud.dismiss()
-        
     }
     
     func createCompositionalLayout() -> UICollectionViewCompositionalLayout {

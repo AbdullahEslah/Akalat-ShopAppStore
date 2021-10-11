@@ -12,14 +12,18 @@ import Lottie
 
 class MealListVC: UIViewController {
     
-    let hud = JGProgressHUD(style: .dark)
+    
+    
+   
+    @IBOutlet weak var collectionView: UICollectionView!
     
     //Passed data
     var restaurantId  : Int?
     var restaurantName: String?
     var restaurant    : RestaurntsResult?
+    
 
-    @IBOutlet weak var collectionView: UICollectionView!
+    let hud           = JGProgressHUD(style: .dark)
     let animationView = AnimationView(animation: Animation.named("lf20_vhkdj1ra"))
     
     override func viewDidLoad() {
@@ -45,11 +49,6 @@ class MealListVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-//        self.navigationController?.navigationBar.barTintColor = UIColor(named: "MainColor")
-        
-//        navigationController?.navigationBar.prefersLargeTitles = true
-//        navigationController?.navigationItem.largeTitleDisplayMode = .always
-       
         collectionView.reloadData()
     }
     override func viewDidAppear(_ animated: Bool) {
@@ -64,30 +63,27 @@ class MealListVC: UIViewController {
     	
     //Get All Meals
     func mealsList() {
-        //        hud.textLabel.text = "Loading..."
-        //        hud.show(in: self.view)
-        
         
         NetworkManager.getMealsList(restaurantId: restaurantId ?? 0) { meals, error in
             
             if error == nil {
-                print(meals)
-                
-                ArraysModels.listMeals.removeAll()
-                ArraysModels.listMeals.append(contentsOf: meals)
-                
-                self.animationView.stop()
-                self.animationView.removeFromSuperview()
-                
-                self.collectionView.reloadData()
+                DispatchQueue.main.async {
+                    ArraysModels.listMeals.removeAll()
+                    ArraysModels.listMeals.append(contentsOf: meals)
+                    self.animationView.stop()
+                    self.animationView.removeFromSuperview()
+                    self.collectionView.reloadData()
+                }
             }else {
-                self.animationView.stop()
-                self.animationView.removeFromSuperview()
-                Helper().showAlert(title: "Error!", message: error!.localizedDescription, in: self)
+                DispatchQueue.main.async {
+                    self.animationView.stop()
+                    self.animationView.removeFromSuperview()
+                    self.presentGFAlertOnMainThread(title: "Error !", message: error!.rawValue, buttonTitle: "Ok")
+                }
             }
         }
-        
-    }
+    
+}
 
     
     func setGradientBackground() {

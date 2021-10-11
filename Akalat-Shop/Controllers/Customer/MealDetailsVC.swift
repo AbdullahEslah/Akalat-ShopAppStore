@@ -8,6 +8,7 @@
 
 import UIKit
 import Kingfisher
+import Lottie
 
 class MealDetailsVC: UIViewController {
     
@@ -31,9 +32,21 @@ class MealDetailsVC: UIViewController {
     //For handling add items from different restaurants
     var restaurant: RestaurntsResult?
     var meal      : MealsResult?
+    
+    let animationView = AnimationView(animation: Animation.named("lf20_vhkdj1ra"))
    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        animationView.frame = view.bounds
+
+        // Add animationView as subview
+        view.addSubview(animationView)
+
+        // Play the animation
+        animationView.play()
+        animationView.loopMode = .repeat(3.0)
+        animationView.animationSpeed = 1
         
         mealData()
         
@@ -93,7 +106,7 @@ class MealDetailsVC: UIViewController {
                         guard let mealItem = self.meal else {
                             return
                         }
-
+                        
                         let trayItem = TrayItem(meal: mealItem, qty: self.items, delivery: self.restaurant!)
                         
                         guard let trayRestaurant = Tray.currentTray.restaurant, let currentRestaurant = self.restaurant else {

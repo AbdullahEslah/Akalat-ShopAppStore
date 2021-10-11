@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LOGO" translatesAutoresizingMaskIntoConstraints="NO" id="kUS-ar-Rdo">
-                                <rect key="frame" x="0.0" y="20" width="320" height="353"/>
+                                <rect key="frame" x="0.0" y="40" width="320" height="308"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gbz-qH-P6L" customClass="RoundedShadowView" customModule="Akalat_Shop" customModuleProvider="target">
                                 <rect key="frame" x="126" y="349" width="68" height="2"/>
@@ -84,20 +84,30 @@
                                     <action selector="DriverLogin:" destination="bmx-PY-cfV" eventType="touchUpInside" id="Mdy-ih-nms"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cVC-Nd-brf">
+                                <rect key="frame" x="26" y="10" width="268" height="24"/>
+                                <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="18"/>
+                                <color key="textColor" name="SmoothRed"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="I9g-ts-umG"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="kUS-ar-Rdo" firstAttribute="height" secondItem="eHQ-kT-hLd" secondAttribute="height" multiplier="0.621915" id="14f-ng-O0s"/>
+                            <constraint firstItem="kUS-ar-Rdo" firstAttribute="height" secondItem="eHQ-kT-hLd" secondAttribute="height" multiplier="0.541915" id="14f-ng-O0s"/>
+                            <constraint firstItem="cVC-Nd-brf" firstAttribute="top" secondItem="I9g-ts-umG" secondAttribute="top" constant="10" id="2M7-0A-U2A"/>
                             <constraint firstItem="kUS-ar-Rdo" firstAttribute="leading" secondItem="I9g-ts-umG" secondAttribute="leading" id="6s4-ck-tmM"/>
                             <constraint firstItem="Edu-9z-XzK" firstAttribute="top" secondItem="keM-Tc-V1e" secondAttribute="bottom" constant="8" id="7u2-0j-sMg"/>
+                            <constraint firstItem="I9g-ts-umG" firstAttribute="trailing" secondItem="cVC-Nd-brf" secondAttribute="trailing" constant="26" id="Bex-1A-bjH"/>
+                            <constraint firstItem="kUS-ar-Rdo" firstAttribute="top" secondItem="cVC-Nd-brf" secondAttribute="bottom" constant="6" id="DQc-Vi-wTK"/>
                             <constraint firstItem="keM-Tc-V1e" firstAttribute="centerX" secondItem="I9g-ts-umG" secondAttribute="centerX" id="FnF-S4-Q7u"/>
                             <constraint firstItem="xuU-ht-fcS" firstAttribute="top" secondItem="Edu-9z-XzK" secondAttribute="bottom" constant="2" id="GAF-Xj-1Rk"/>
                             <constraint firstItem="xuU-ht-fcS" firstAttribute="leading" secondItem="Edu-9z-XzK" secondAttribute="leading" id="LIx-C4-qa5"/>
                             <constraint firstItem="kUS-ar-Rdo" firstAttribute="trailing" secondItem="I9g-ts-umG" secondAttribute="trailing" id="QFc-dY-9vX"/>
+                            <constraint firstItem="cVC-Nd-brf" firstAttribute="leading" secondItem="I9g-ts-umG" secondAttribute="leading" constant="26" id="U7w-uo-AgV"/>
                             <constraint firstItem="Edu-9z-XzK" firstAttribute="centerX" secondItem="I9g-ts-umG" secondAttribute="centerX" id="UYn-MM-NjM"/>
                             <constraint firstItem="keM-Tc-V1e" firstAttribute="top" secondItem="Gbz-qH-P6L" secondAttribute="bottom" constant="4" id="bAt-Hb-12k"/>
-                            <constraint firstItem="kUS-ar-Rdo" firstAttribute="top" secondItem="I9g-ts-umG" secondAttribute="top" constant="20" id="bU2-SP-fLx"/>
+                            <constraint firstItem="kUS-ar-Rdo" firstAttribute="top" secondItem="I9g-ts-umG" secondAttribute="top" constant="40" id="bU2-SP-fLx"/>
                             <constraint firstItem="xuU-ht-fcS" firstAttribute="trailing" secondItem="Edu-9z-XzK" secondAttribute="trailing" id="emh-Wv-14s"/>
                             <constraint firstItem="keM-Tc-V1e" firstAttribute="leading" secondItem="I9g-ts-umG" secondAttribute="leading" constant="16" id="erE-V9-Ec9"/>
                             <constraint firstItem="Gbz-qH-P6L" firstAttribute="trailing" secondItem="keM-Tc-V1e" secondAttribute="trailing" constant="-110" id="lAf-bQ-FI3"/>
@@ -107,11 +117,15 @@
                     </view>
                     <navigationItem key="navigationItem" id="j6x-Sp-LLB"/>
                     <connections>
+                        <outlet property="appLogo" destination="kUS-ar-Rdo" id="cRX-hY-3k5"/>
                         <outlet property="authHolderView" destination="keM-Tc-V1e" id="tbS-8l-S4l"/>
                         <outlet property="authHolderViewHeight" destination="gHU-rH-3U3" id="bmE-cC-wIW"/>
+                        <outlet property="deliverOrdersButton" destination="xuU-ht-fcS" id="F1a-jU-J8b"/>
                         <outlet property="fbLoginButton" destination="8bM-F1-bK5" id="Pji-8o-yL8"/>
                         <outlet property="googleLoginButton" destination="TN4-B0-vEx" id="KKh-cG-4Gb"/>
+                        <outlet property="internetConnectionLabel" destination="cVC-Nd-brf" id="Tlv-n3-Pso"/>
                         <outlet property="showAuthButton" destination="Edu-9z-XzK" id="akn-Xr-jaN"/>
+                        <outlet property="topLineOfAuthHolderView" destination="Gbz-qH-P6L" id="418-qC-POX"/>
                         <segue destination="ZQu-5M-lPk" kind="showDetail" identifier="CustomerView" id="ZAq-a7-81Z"/>
                     </connections>
                 </viewController>

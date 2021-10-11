@@ -59,16 +59,10 @@ class DriverMenuVC: UITableViewController {
         if GIDSignIn.sharedInstance.currentUser?.authentication.accessToken != nil {
         
         //For fetching google Image
-//        let googleImage = URL(string: User.currentUser.pictureURL ?? "" )
             avaImage.kf.setImage(with: User.currentUser.imageURL,placeholder: placeholder,options: options)
         }
-        
-        
-        
         if Constants.appleUserId != nil {
-//            LogoWithoutName
             avaImage.image = UIImage(named: "LogoWithoutName")
-            
         }
         
     }

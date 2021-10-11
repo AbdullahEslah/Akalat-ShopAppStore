@@ -87,34 +87,47 @@
                                     <action selector="dismissView:" destination="OfU-Im-OVa" eventType="touchUpInside" id="wjc-zx-zrM"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iea-pJ-7Kc">
+                                <rect key="frame" x="60" y="8" width="234" height="24"/>
+                                <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="18"/>
+                                <color key="textColor" name="SmoothRed"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="adq-Lq-Yfb"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="R1C-m3-wn2" firstAttribute="trailing" secondItem="adq-Lq-Yfb" secondAttribute="trailing" id="0xB-sZ-SYl"/>
+                            <constraint firstItem="iea-pJ-7Kc" firstAttribute="top" secondItem="adq-Lq-Yfb" secondAttribute="top" constant="8" id="8sY-dH-qv9"/>
                             <constraint firstItem="eOy-fb-TZY" firstAttribute="top" secondItem="YG8-Px-Shj" secondAttribute="bottom" constant="4" id="E8M-cW-bpa"/>
                             <constraint firstItem="eOy-fb-TZY" firstAttribute="centerX" secondItem="adq-Lq-Yfb" secondAttribute="centerX" id="IxC-Yy-9vy"/>
                             <constraint firstItem="R1C-m3-wn2" firstAttribute="leading" secondItem="adq-Lq-Yfb" secondAttribute="leading" id="Jin-Nh-rNA"/>
                             <constraint firstItem="YG8-Px-Shj" firstAttribute="trailing" secondItem="eOy-fb-TZY" secondAttribute="trailing" constant="-110" id="KfH-Pg-iQH"/>
                             <constraint firstItem="R1C-m3-wn2" firstAttribute="top" secondItem="adq-Lq-Yfb" secondAttribute="top" constant="40" id="QpY-1C-RBF"/>
+                            <constraint firstItem="adq-Lq-Yfb" firstAttribute="trailing" secondItem="iea-pJ-7Kc" secondAttribute="trailing" constant="26" id="USD-QN-CaF"/>
                             <constraint firstItem="CYv-d2-gGb" firstAttribute="top" secondItem="adq-Lq-Yfb" secondAttribute="top" constant="8" id="VpB-qi-8hY"/>
                             <constraint firstItem="eOy-fb-TZY" firstAttribute="leading" secondItem="adq-Lq-Yfb" secondAttribute="leading" constant="16" id="Wgv-VR-BS3"/>
                             <constraint firstItem="YG8-Px-Shj" firstAttribute="leading" secondItem="eOy-fb-TZY" secondAttribute="leading" constant="110" id="eRX-4M-BY7"/>
+                            <constraint firstItem="R1C-m3-wn2" firstAttribute="top" secondItem="iea-pJ-7Kc" secondAttribute="bottom" constant="8" symbolic="YES" id="fqC-W1-x3k"/>
                             <constraint firstItem="R1C-m3-wn2" firstAttribute="height" secondItem="irm-sC-X9a" secondAttribute="height" multiplier="0.591915" id="lDN-v5-6NK"/>
                             <constraint firstItem="CYv-d2-gGb" firstAttribute="leading" secondItem="adq-Lq-Yfb" secondAttribute="leading" constant="22" id="nr8-Ey-LtY"/>
                             <constraint firstItem="CYv-d2-gGb" firstAttribute="height" secondItem="irm-sC-X9a" secondAttribute="height" multiplier="0.0528169" id="nyC-QS-dgf"/>
                             <constraint firstItem="cOs-5S-Nox" firstAttribute="top" secondItem="eOy-fb-TZY" secondAttribute="bottom" constant="8" id="t8q-tO-EHb"/>
                             <constraint firstItem="adq-Lq-Yfb" firstAttribute="bottom" secondItem="cOs-5S-Nox" secondAttribute="bottom" constant="8" id="taU-eb-4DO"/>
+                            <constraint firstItem="iea-pJ-7Kc" firstAttribute="leading" secondItem="CYv-d2-gGb" secondAttribute="trailing" constant="8" id="tsQ-ah-JDt"/>
                             <constraint firstItem="cOs-5S-Nox" firstAttribute="centerX" secondItem="adq-Lq-Yfb" secondAttribute="centerX" id="xh4-ir-lA7"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="SNP-KH-9bh"/>
                     <connections>
+                        <outlet property="appLogo" destination="R1C-m3-wn2" id="bOj-2S-ydH"/>
                         <outlet property="authHolderView" destination="eOy-fb-TZY" id="uCl-cw-5Zs"/>
                         <outlet property="authHolderViewHeight" destination="giR-GN-3cQ" id="Mkg-3U-SWi"/>
                         <outlet property="fbLoginButton" destination="ngp-zU-QHV" id="1Qe-8R-62m"/>
                         <outlet property="googleLoginButton" destination="6UO-is-Iv5" id="WLs-pz-GxW"/>
+                        <outlet property="internetConnectionLabel" destination="iea-pJ-7Kc" id="VMN-Ne-2Qb"/>
                         <outlet property="showAuthButton" destination="cOs-5S-Nox" id="sO5-9G-75r"/>
+                        <outlet property="topLineOfAuthHolderView" destination="YG8-Px-Shj" id="dBg-2P-8Fc"/>
                         <segue destination="YCX-mX-CSx" kind="showDetail" identifier="DriverView" id="xVT-HD-fGQ"/>
                     </connections>
                 </viewController>

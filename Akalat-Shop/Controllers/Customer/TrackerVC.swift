@@ -48,28 +48,45 @@ class TrackerVC: UIViewController {
     
     func fetchLatestOrders() {
         NetworkManager.getLatestOrders { (orderDetails, error) in
-            ArraysModels.listOrders.removeAll()
-            ArraysModels.listOrders.append(contentsOf: orderDetails)
-            self.tableView.reloadData()
+            if error == nil {
+                DispatchQueue.main.async {
+                  
+                    ArraysModels.listOrders.removeAll()
+                    ArraysModels.listOrders.append(contentsOf: orderDetails)
+                    self.tableView.reloadData()
+                }
+            }else {
+                DispatchQueue.main.async {
+                    self.presentGFAlertOnMainThread(title: "Error !", message: error!.rawValue, buttonTitle: "Ok")
+                }
+            }
         }
     }
     
     func orderLocationStatus() {
         NetworkManager.getOrderStatus { order, error in
-            if order.status == nil {
-                self.deliveryStatusLabel.text = "Your Order Status Will Be Shown Here"
+            if error == nil {
+                DispatchQueue.main.async{
+                    if order?.status == nil {
+                        self.deliveryStatusLabel.text = "You Have No Orders Yet !"
+                    } else {
+                        self.deliveryStatusLabel.text = order?.status?.uppercased()
+                    }
+                    let fromRestaurantAddress = order?.restaurant.address.uppercased()
+                    let toCustomerAddress     = order?.address
+                    self.getLocationAddress(fromRestaurantAddress ?? "", "Restaurant", { restaurantAddress in
+                        self.source = restaurantAddress
+                        self.getLocationAddress(toCustomerAddress ?? "", "You", { customerDestination in
+                            self.destination = customerDestination
+                            self.getDirections()
+                        })
+                    })
+                }
             } else {
-                self.deliveryStatusLabel.text = order.status?.uppercased()
+                DispatchQueue.main.async{
+                    self.presentGFAlertOnMainThread(title: "Error !", message: error!.rawValue, buttonTitle: "Ok")
+                }
             }
-            let fromRestaurantAddress = order.restaurant.address.uppercased()
-            let toCustomerAddress     = order.address
-            self.getLocationAddress(fromRestaurantAddress, "Restaurant", { restaurantAddress in
-            self.source = restaurantAddress
-                self.getLocationAddress(toCustomerAddress, "You", { customerDestination in
-                    self.destination = customerDestination
-                    self.getDirections()
-                })
-            })
         }
     }
     

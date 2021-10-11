@@ -12,11 +12,16 @@ import AuthenticationServices
 import JGProgressHUD
 import Kingfisher
 import Lottie
-import ObjectiveC
+import Network
 
 class DriverLoginVC: UIViewController, LoginButtonDelegate {
     
+    @IBOutlet weak var appLogo: UIImageView!
+    
+    @IBOutlet weak var internetConnectionLabel: UILabel!
+    
     @IBOutlet weak var viewForMyButton: UIView!
+    @IBOutlet weak var topLineOfAuthHolderView: RoundedShadowView!
     @IBOutlet weak var showAuthButton: UIButton!
     //Objects
     @IBOutlet weak var authHolderView: UIView!
@@ -40,57 +45,42 @@ class DriverLoginVC: UIViewController, LoginButtonDelegate {
     
     let hud                = JGProgressHUD(style: .dark)
     var userType : String  = NetworkManager.Auth.userTypeDriver
+    let monitor            = NWPathMonitor()
+    
     
     let animationView = AnimationView(animation: Animation.named("lf20_vhkdj1ra"))
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        googleLoginButton.colorScheme = .light
-//        googleLoginButton.style = .iconOnly
+        connection()
         defaultAuthHolderViewHeight = authHolderViewHeight.constant
-        
-        // Conforms To Google Protocol
-//        GIDSignIn.sharedInstance().delegate = self
-//        GIDSignIn.sharedInstance().uiDelegate = self
-        
-      
-        
-//        GIDSignIn.sharedInstansce().clientID = "970857005723-hgran64vnmn3avdqeanvl3eq4seteau7.apps.googleusercontent.com"
-//        GIDSignIn.sharedInstance().serverClientID = "970857005723-10rkfjuhvj9r2d58o550qfoi4fbk1vpk.apps.googleusercontent.com"
-        
-//        GIDSignIn.sharedInstance().scopes.append("https://www.googleapis.com/auth/plus.login")
-//        GIDSignIn.sharedInstance().scopes.append("https://www.googleapis.com/auth/plus.me")
-//        GIDSignIn.sharedInstance().scopes.append("https://www.googleapis.com/auth/userinfo.email")
-//        GIDSignIn.sharedInstance().scopes.append("https://www.googleapis.com/auth/userinfo.profile")
-//        GIDSignIn.sharedInstance()?.signInSilently()
-        
         
         
         fbLoginButton.delegate = self
         
-       fbLoginButton.permissions = ["public_profile", "email"]
-            
+        fbLoginButton.permissions = ["public_profile", "email"]
+        
         //Facebook Chenck Token
         if let token = AccessToken.current,
            !token.isExpired {
             
             animationView.frame = view.bounds
-
+            
             // Add animationView as subview
             view.addSubview(animationView)
-
+            
             // Play the animation
             animationView.play()
             animationView.loopMode = .repeat(3.0)
             animationView.animationSpeed = 1
-  
+            
             self.fbLoginButton.setTitle("Continue With Facebbok", for: .normal)
             GraphRequest(graphPath: "me", parameters: ["fields": "name, email, picture.type(normal)"]).start(completionHandler: { (connection, result, error) in
-                  
+                
                 if error == nil {
                     // converting data to JSON
                     guard let json = result as? [String:Any] else {
-                    return
+                        return
                     }
                     print(json)
                     //to save our user data in userModel
@@ -101,45 +91,52 @@ class DriverLoginVC: UIViewController, LoginButtonDelegate {
                 } else {
                     self.animationView.stop()
                     self.animationView.removeFromSuperview()
-                Helper().showAlert(title: "Error!", message: error!.localizedDescription, in: self)
+                    Helper().showAlert(title: "Error!", message: error!.localizedDescription, in: self)
                 }
             })
             //self.userType = self.userType.capitalized
-                NetworkManager.fbLogin(userType: self.userType,completion:  { success, error in
-
-                    if error == nil {
+            NetworkManager.fbLogin(userType: self.userType,completion:  { success, error in
+                
+                if error == nil {
+                    DispatchQueue.main.async {
                         
-//                        if UserDefaults.standard.value(forKey: "CheckDriverView") != nil {
-                      
-                            self.userType = self.userType.capitalized
-                            self.performSegue(withIdentifier: "\(self.userType)View", sender: self)
-//                        }
+                        //                        if UserDefaults.standard.value(forKey: "CheckDriverView") != nil {
+                        
+                        self.userType = self.userType.capitalized
+                        self.performSegue(withIdentifier: "\(self.userType)View", sender: self)
+                        //                        }
                         self.animationView.stop()
                         self.animationView.removeFromSuperview()
-
-                    } else {
-                    print(error?.localizedDescription)
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        print(error?.localizedDescription)
                         self.animationView.stop()
                         self.animationView.removeFromSuperview()
                         Helper().showAlert(title: "Error !", message: error!.localizedDescription, in: self)
                     }
-                })
+                }
+            })
         }
         
         if GIDSignIn.sharedInstance.currentUser?.authentication.accessToken != nil {
             NetworkManager.googleLogin(userType: self.userType,completion:  { success, error in
-
+                
                 if error == nil {
-                    UserDefaults.standard.setValue("DriverView", forKey: "CheckDriverView")
-                    self.userType = self.userType.capitalized
-                    self.performSegue(withIdentifier: "\(self.userType)View", sender: self)
-                    self.animationView.stop()
-                    self.animationView.removeFromSuperview()
-
+                    DispatchQueue.main.async {
+                        UserDefaults.standard.setValue("DriverView", forKey: "CheckDriverView")
+                        self.userType = self.userType.capitalized
+                        self.performSegue(withIdentifier: "\(self.userType)View", sender: self)
+                        self.animationView.stop()
+                        self.animationView.removeFromSuperview()
+                    }
+                    
                 } else {
-                    Helper().showAlert(title: "Error!", message: error!.localizedDescription, in: self)
-                    self.animationView.stop()
-                    self.animationView.removeFromSuperview()
+                    DispatchQueue.main.async {
+                        Helper().showAlert(title: "Error!", message: error!.localizedDescription, in: self)
+                        self.animationView.stop()
+                        self.animationView.removeFromSuperview()
+                    }
                 }
             })
         }
@@ -153,6 +150,7 @@ class DriverLoginVC: UIViewController, LoginButtonDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         
         // local bool
         let bIsHidden = authHolderView.isHidden
@@ -205,6 +203,38 @@ class DriverLoginVC: UIViewController, LoginButtonDelegate {
 
     }
     
+    func connection() {
+        
+        monitor.pathUpdateHandler = { path in
+            if path.status == .satisfied {
+                print("We're connected!")
+                
+                
+            } else {
+                print("No connection.")
+                DispatchQueue.main.async {
+                    self.internetConnectionLabel.text = "No Internet Connection"
+                    let image = UIImage(named: "NoInternetStatus")!
+
+                    self.view.backgroundColor = UIColor(named: "NoInternetBackground")
+                    self.appLogo.backgroundColor = .clear
+                    self.showAuthButton.isHidden = true
+                    self.authHolderView.isHidden = true
+                    self.topLineOfAuthHolderView.isHidden = true
+                    self.appLogo.image = image
+                    
+                }
+                
+            }
+            
+            //To Check Whether This Class uses cellular data or Hotspot
+            print(path.isExpensive)
+        }
+        
+        //Start Implementation of Checking The Internet Connection
+        let queue = DispatchQueue(label: "Monitor")
+        monitor.start(queue: queue)
+    }
     
     func configureAuthButton() {
         // Create a gradient layer
@@ -334,16 +364,20 @@ class DriverLoginVC: UIViewController, LoginButtonDelegate {
             NetworkManager.googleLogin(userType: self.userType,completion:  { success, error in
 
                 if error == nil {
+                    DispatchQueue.main.async {
                     UserDefaults.standard.setValue("DriverView", forKey: "CheckDriverView")
                     self.userType = self.userType.capitalized
                     self.performSegue(withIdentifier: "\(self.userType)View", sender: self)
                     self.animationView.stop()
                     self.animationView.removeFromSuperview()
+                    }
 
                 } else {
-                    Helper().showAlert(title: "Error!", message: error!.localizedDescription, in: self)
+                    DispatchQueue.main.async {
+                    Helper().showAlert(title: "Error!", message: error!.rawValue, in: self)
                     self.animationView.stop()
                     self.animationView.removeFromSuperview()
+                    }
                 }
             })
           }
@@ -391,7 +425,7 @@ class DriverLoginVC: UIViewController, LoginButtonDelegate {
             NetworkManager.fbLogin(userType: self.userType,completion:  { success, error in
                 
                 if error == nil {
-                    
+                    DispatchQueue.main.async {
                     UserDefaults.standard.setValue("DriverView", forKey: "CheckDriverView")
                     self.userType = self.userType.capitalized
                     self.performSegue(withIdentifier: "\(self.userType)View", sender: self)
@@ -399,12 +433,15 @@ class DriverLoginVC: UIViewController, LoginButtonDelegate {
                     self.animationView.stop()
                     self.animationView.removeFromSuperview()
                     self.fbLoginButton.setTitle("Continue With Facebbok", for: .normal)
+                    }
                     
                 } else {
-                    
+                    DispatchQueue.main.async {
+                        Helper().showAlert(title: "Error~", message: error!.rawValue, in: self)
                     self.animationView.stop()
                     self.animationView.removeFromSuperview()
                     print(error!.localizedDescription)
+                    }
                     
                 }
             })
@@ -490,16 +527,20 @@ extension DriverLoginVC: ASAuthorizationControllerDelegate {
             NetworkManager.appleIDLogin(userType: self.userType,completion:  { success, error in
 
                 if error == nil {
+                    DispatchQueue.main.async {
                     UserDefaults.standard.setValue("DriverView", forKey: "CheckDriverView")
                     self.userType = self.userType.capitalized
                     self.performSegue(withIdentifier: "\(self.userType)View", sender: self)
                     self.animationView.stop()
                     self.animationView.removeFromSuperview()
+                    }
 
                 } else {
+                    DispatchQueue.main.async {
                     Helper().showAlert(title: "Error Occurred!", message: "Login Again", in: self)
                     self.animationView.stop()
                     self.animationView.removeFromSuperview()
+                    }
                 }
             })
         }
@@ -574,19 +615,28 @@ extension DriverLoginVC {
                     print("Auto login successful")
                         //resume normal app flow
                     NetworkManager.appleIDLogin(userType: self.userType,completion:  { success, error in
+                        
+                       
 
                         if error == nil {
+                            
+                            DispatchQueue.main.async {
                         
                             self.userType = self.userType.capitalized
                             self.performSegue(withIdentifier: "\(self.userType)View", sender: self)
             
                             self.animationView.stop()
                             self.animationView.removeFromSuperview()
+                            
+                        }
+                        
 
                         } else {
+                            DispatchQueue.main.async {
                             Helper().showAlert(title: "Error Occurred!", message: "Please Login Again", in: self)
                             self.animationView.stop()
                             self.animationView.removeFromSuperview()
+                            }
                         }
                     })
                 

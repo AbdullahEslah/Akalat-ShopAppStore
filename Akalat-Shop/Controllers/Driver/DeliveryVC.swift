@@ -42,7 +42,6 @@ class DeliveryVC: UIViewController,UIActionSheetDelegate {
         animationView.loopMode = .repeat(3.0)
         animationView.animationSpeed = 1
         
-//        customerInfo()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -68,36 +67,43 @@ class DeliveryVC: UIViewController,UIActionSheetDelegate {
         NetworkManager.DriverGetLatestOrders { orderDetails, error  in
             
             if error == nil {
-                self.animationView.stop()
-                self.animationView.removeFromSuperview()
-                
-                if let id = orderDetails?.id ,orderDetails?.status == "On the way" {
+                DispatchQueue.main.async {
+                    self.animationView.stop()
+                    self.animationView.removeFromSuperview()
                     
-                    self.orderId = id
-                    let from = orderDetails?.address
-                    let to = orderDetails?.restaurant.address
-                    
-                    self.customerAddress.text = from
-                    let customerName          = orderDetails?.customer.name
-                    self.nameLabel.text       = customerName
-                    let customerPhone         = orderDetails?.phone_number
-                    self.customerPhoneNumber.setTitle(customerPhone, for: .normal)
-                    
-                    if let url = URL(string: orderDetails?.customer.avatar ?? "") {
-                        let placeholder = UIImage(named: "contact-bg")
-                        let options : KingfisherOptionsInfo = [KingfisherOptionsInfoItem.transition(.fade(0.1))]
-                        self.customerAva.kf.indicatorType = .activity
-                        self.customerAva.kf.setImage(with: url,placeholder: placeholder,options: options)
+                    if let id = orderDetails?.id ,orderDetails?.status == "On the way" {
                         
-                        self.getLocationAddress(from ?? "", "Customer", { restaurantAddress in
-                        self.source = restaurantAddress
-                            self.getLocationAddress(to ?? "", "Restaurant", { customerDestination in
-                                self.destination = customerDestination
-                                self.getDirections()
+                        self.orderId = id
+                        let from = orderDetails?.address
+                        let to = orderDetails?.restaurant.address
+                        
+                        self.customerAddress.text = from
+                        let customerName          = orderDetails?.customer.name
+                        self.nameLabel.text       = customerName
+                        let customerPhone         = orderDetails?.phone_number
+                        self.customerPhoneNumber.setTitle(customerPhone, for: .normal)
+                        
+                        if let url = URL(string: orderDetails?.customer.avatar ?? "") {
+                            let placeholder = UIImage(named: "contact-bg")
+                            let options : KingfisherOptionsInfo = [KingfisherOptionsInfoItem.transition(.fade(0.1))]
+                            self.customerAva.kf.indicatorType = .activity
+                            self.customerAva.kf.setImage(with: url,placeholder: placeholder,options: options)
+                            
+                            self.getLocationAddress(from ?? "", "Customer", { restaurantAddress in
+                                self.source = restaurantAddress
+                                self.getLocationAddress(to ?? "", "Restaurant", { customerDestination in
+                                    self.destination = customerDestination
+                                    self.getDirections()
+                                })
                             })
-                        })
+                        }
                     }
-                } else {
+                }
+                
+            } else {
+                DispatchQueue.main.async {
+                    self.animationView.stop()
+                    self.animationView.removeFromSuperview()
                     self.map.isHidden = true
                     self.customerInfoView.isHidden = true
                     self.completeOrderButton.isHidden = true
@@ -109,13 +115,8 @@ class DeliveryVC: UIViewController,UIActionSheetDelegate {
                     emptyState.numberOfLines = 0
                     emptyState.textColor = colorSmoothRed
                     self.view.addSubview(emptyState)
+                    self.presentGFAlertOnMainThread(title: "Error !", message: error!.rawValue, buttonTitle: "Ok")
                 }
-                
-            } else {
-                print(error!.localizedDescription)
-                //Helper().showAlert(title: "Error !", message: error!.localizedDescription, in: self)
-                self.animationView.stop()
-                self.animationView.removeFromSuperview()
             }
         }
     }
@@ -143,8 +144,6 @@ class DeliveryVC: UIViewController,UIActionSheetDelegate {
         present(alert, animated: true, completion:nil) // 6
         
     }
-    
-   
     
 }
 

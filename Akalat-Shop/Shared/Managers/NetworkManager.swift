@@ -15,25 +15,25 @@ class NetworkManager {
     static var shared = NetworkManager()
     
     static var authorization: ASAuthorization?
-        
+    
     
     struct Auth {
         
         static var accessToken       = ""
         static var appleAcccessToken = ""
         static var refreshToken      = ""
-//        static var googleUser       : GIDAuthentication?
-//        static var googleToken      = googleUser?.accessToken
+        //        static var googleUser       : GIDAuthentication?
+        //        static var googleToken      = googleUser?.accessToken
         static var expired           = Date()
         static let clientID          = "v4nB5Ne1YmKYl0LRZ1uj8Z6XEKsaCNrvFpkTRyLN"
         //var googleSignIn = GIDSignIn.sharedInstance.currentUser?.authentication.accessToken
-//        static let signInConfig     = GIDConfiguration.init(clientID: "970857005723-dnkkonoefpeh9cl2jod5crg1ckfmg1h3.apps.googleusercontent.com")
+        //        static let signInConfig     = GIDConfiguration.init(clientID: "970857005723-dnkkonoefpeh9cl2jod5crg1ckfmg1h3.apps.googleusercontent.com")
         static let clientSecret      = "4nrs24A27XejXcuH5jrBKFwg1d9PhcaGkPnWj4Uy7YpWVZ5EnIGrqh6OJOYG28svx93D9wS29QdxmGW3HS1N5MdSbHOuMuS6Q8qWI3VpQWvUUrCI8x8ECytr2FP4jG2G"
         
         static let userTypeCustomer  = "customer"
         static let userTypeDriver    = "driver"
     }
-
+    
     
     enum EndPoints {
         
@@ -98,7 +98,7 @@ class NetworkManager {
                 
             case .driverLatestOrders:
                 return EndPoints.base + "/api/driver/order/latest?"
-               
+                
             }
         }
         
@@ -111,12 +111,23 @@ class NetworkManager {
     
    
     //Generic Get Request We Usually don't pass parameters like post we put it in the url
-    class func taskForGETRequest<ResponseType:Decodable>(url:URL, responseType: ResponseType.Type,completion: @escaping (ResponseType?, Error?) -> Void ){
+    class func taskForGETRequest<ResponseType:Decodable>(url:URL, responseType: ResponseType.Type,completion: @escaping (ResponseType?, GFError?) -> Void ){
         let task = URLSession.shared.dataTask(with: url) { data, response, error in
+            
+            if let _ = error {
+                completion(nil,.UnAbleToComplete)
+                return
+            }
+            
+            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+                completion(nil,.UnAbleToComplete)
+                return
+            }
+            
             
             guard let data = data else {
                 DispatchQueue.main.async {
-                    completion(nil, error)
+                    completion(nil, .invalidData)
                 }
                 return
             }
@@ -128,16 +139,16 @@ class NetworkManager {
                 }
             } catch {
                 DispatchQueue.main.async {
-                    completion(nil, error)
+                    completion(nil, .invalidData)
                 }
             }
         }
         task.resume()
-    
+        
     }
     
     //Generic POST Request We Usually pass parameters so we used body
-    class func taskForPOSTRequest<RequestType: Encodable, ResponseType: Decodable>(url: URL, responseType: ResponseType.Type, body: RequestType, completion: @escaping (ResponseType?, Error?) -> Void){
+    class func taskForPOSTRequest<RequestType: Encodable, ResponseType: Decodable>(url: URL, responseType: ResponseType.Type, body: RequestType, completion: @escaping (ResponseType?, GFError?) -> Void){
         
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
@@ -145,9 +156,20 @@ class NetworkManager {
         request.httpBody = try! JSONEncoder().encode(body)
         
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            if let _ = error {
+                completion(nil,.UnAbleToComplete)
+                return
+            }
+            
+            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+                completion(nil,.UnAbleToComplete)
+                return
+            }
+            
+            
             guard let data = data else {
                 DispatchQueue.main.async {
-                    completion(nil, error)
+                    completion(nil, .invalidData)
                 }
                 return
             }
@@ -159,7 +181,7 @@ class NetworkManager {
                 }
             } catch {
                 DispatchQueue.main.async {
-                    completion(nil, error)
+                    completion(nil, .invalidData)
                 }
             }
         }
@@ -168,8 +190,8 @@ class NetworkManager {
     
     
     /* --------------------------------- Auth ---------------------------------  */
-    class func fbLogin(userType: String, completion: @escaping (Bool, Error?)  -> Void) {
-     
+    class func fbLogin(userType: String, completion: @escaping (Bool, GFError?)  -> Void) {
+        
         let body = LoginConvertToken(grant_type: "convert_token", backend: "facebook", user_type: userType, client_id: Auth.clientID, client_secret: Auth.clientSecret,token: AccessToken.current!.tokenString)
         taskForPOSTRequest(url: EndPoints.socialAuthLogin.url, responseType: LoginConvertTokenResponse.self, body: body) { (response, error) in
             if let response = response {
@@ -179,87 +201,38 @@ class NetworkManager {
                 completion(true, nil)
                 print(response)
             } else {
-                completion(false, error)
-                print(error!.localizedDescription)
+                completion(false, .invalidResponse)
             }
         }
     }
     
     
-    // If First Launched Before
-    class func appleIDFirstLogin(userType: String, completion: @escaping (Bool, Error?)  -> Void) {
-
-//        guard let token = Auth.appleAcccessToken else {
-//            return
-//        }
-                
-        let body = AppleIDLogin(grant_type: "convert_token", backend: "apple-id", user_type: userType, client_id: Auth.clientID, client_secret: Auth.clientSecret,token: Auth.appleAcccessToken)
-                    taskForPOSTRequest(url: EndPoints.socialAuthLogin.url, responseType: AppleIDLoginResponse.self, body: body) { (response, error) in
-                        if let response = response {
-                            Auth.accessToken = response.access_token
-//                            UserDefaults.standard.setValue(<#T##value: Any?##Any?#>, forKey: <#T##String#>)
-                            Auth.refreshToken = response.refresh_token
-                            Auth.expired = Date().addingTimeInterval(TimeInterval(response.expires_in))
-                            completion(true, nil)
-                            print(response)
-                        } else {
-                            completion(false, error)
-                            print(error)
-                        }
-                    }
-//            }
-        }
-    
     
     
     // If App Launched Before
-    class func appleIDLogin(userType: String, completion: @escaping (Bool, Error?)  -> Void) {
-
+    class func appleIDLogin(userType: String, completion: @escaping (Bool, GFError?)  -> Void) {
+        
         guard let token = UserDefaults.standard.value(forKey: "appleIdentityToken") as? String else {
             return
         }
-                
+        
         let body = AppleIDLogin(grant_type: "convert_token", backend: "apple-id", user_type: userType, client_id: Auth.clientID, client_secret: Auth.clientSecret,token: token)
-                    taskForPOSTRequest(url: EndPoints.socialAuthLogin.url, responseType: AppleIDLoginResponse.self, body: body) { (response, error) in
-                        if let response = response {
-                            Auth.accessToken = response.access_token
-                            Auth.refreshToken = response.refresh_token
-                            Auth.expired = Date().addingTimeInterval(TimeInterval(response.expires_in))
-                            completion(true, nil)
-                            print(response)
-                        } else {
-                            completion(false, error)
-                            print(error)
-                        }
-                    }
-//            }
+        taskForPOSTRequest(url: EndPoints.socialAuthLogin.url, responseType: AppleIDLoginResponse.self, body: body) { (response, error) in
+            if let response = response {
+                Auth.accessToken = response.access_token
+                Auth.refreshToken = response.refresh_token
+                Auth.expired = Date().addingTimeInterval(TimeInterval(response.expires_in))
+                completion(true, nil)
+                print(response)
+            } else {
+                completion(false, .invalidResponse)
+            }
         }
+    }
     
     
-    
-            
-            
-//            break
-//            
-//        default:
-//            break
-//        }
-
-//         let token = self.credentials?.identityToken
-//            return
-//        }
-//        let tokenString = String(data: token!, encoding: .utf8)!
+    class func googleLogin(userType: String, completion: @escaping (Bool, GFError?)  -> Void) {
         
-//        }
-            
-            
-//        }
-//        var token = credentials?.identityToken
-                
-        
-    
-    class func googleLogin(userType: String, completion: @escaping (Bool, Error?)  -> Void) {
-
         guard let token = GIDSignIn.sharedInstance.currentUser?.authentication.accessToken else {
             return
         }
@@ -273,7 +246,7 @@ class NetworkManager {
                 completion(true, nil)
                 print(response)
             } else {
-                completion(false, error)
+                completion(false, .invalidResponse)
                 print(error!.localizedDescription)
             }
         }
@@ -324,237 +297,196 @@ class NetworkManager {
     }
     
     //Use generic request to get AppLists from ArrayList Model (GET)
-    class func getRestaurantsList(restaurantAddress:String,completion: @escaping ([RestaurntsResult], Error?) -> Void) {
+    class func getRestaurantsList(restaurantAddress:String,completion: @escaping ([RestaurntsResult], GFError?) -> Void) {
         let endPoints = EndPoints.restaurantsList.stringValue + "\(restaurantAddress)"
         
         guard let newUrl = URL(string: endPoints) else {
             return
         }
         
-//        refreshToken { success, error in
-            
-//            if error == nil {
-                //responseType -> the main model
-                taskForGETRequest(url:newUrl , responseType: RestaurantsList.self) { (response, error) in
-                    if let response = response  {
-                        //result -> is the [restaurants]
-                        completion(response.restaurants,nil)
-                    } else {
-                        completion([],error)
-                        print(error!.localizedDescription)
-                        
-                        
-                    }
-                }
-//            }else {
-//                print(error?.localizedDescription)
-//            }
-//        }
+        //responseType -> the main model
+        taskForGETRequest(url:newUrl , responseType: RestaurantsList.self) { (response, error) in
+            if let response = response  {
+                //result -> is the [restaurants]
+                completion(response.restaurants,nil)
+            } else {
+                completion([],.UnAbleToComplete)
+                print(error!.localizedDescription)
+                
+                
+            }
+        }
+        
     }
     
     
-    class func getRestaurantsCategories(restaurantCategory:String,completion: @escaping ([RestaurntsResult], Error?) -> Void) {
+    class func getRestaurantsCategories(restaurantCategory:String,completion: @escaping ([RestaurntsResult], GFError?) -> Void) {
         let endPoints = EndPoints.restaurantsCategory.stringValue + "\(restaurantCategory)"
         
         guard let newUrl = URL(string: endPoints) else {
             return
         }
-        
-//        refreshToken { success, error in
-//            if error == nil {
-                //responseType -> the main model
-                taskForGETRequest(url:newUrl , responseType: RestaurantsList.self) { (response, error) in
-                    if let response = response  {
-                        //result -> is the [restaurants]
-                        completion(response.restaurants,nil)
-                    } else {
-                        completion([],error)
-                        print(error!.localizedDescription)
-                    }
-                }
-//            }else {
-//                print(error?.localizedDescription)
-//            }
-//        }
+        //responseType -> the main model
+        taskForGETRequest(url:newUrl , responseType: RestaurantsList.self) { (response, error) in
+            if let response = response  {
+                //result -> is the [restaurants]
+                completion(response.restaurants,nil)
+            } else {
+                completion([],.UnAbleToComplete)
+                print(error!.localizedDescription)
+            }
+        }
     }
     
     
     //use generic request to get AppLists from ArrayList Model (GET)
-    class func getMealsList(restaurantId:Int ,completion: @escaping ([MealsResult], Error?) -> Void) {
+    class func getMealsList(restaurantId:Int ,completion: @escaping ([MealsResult], GFError?) -> Void) {
         
         let endPoints = EndPoints.restaurantsMeals.stringValue + "\(restaurantId)"
         
         guard let newUrl = URL(string: endPoints) else {
             return
         }
-        
-//        refreshToken { success, error in
-//            if error == nil {
-                //responseType -> the main model
-                taskForGETRequest(url:newUrl , responseType: MealsList.self) { (response, error) in
-                    if let response = response  {
-                        //result -> is the [meals]
-                        completion(response.meals,nil)
-                    } else {
-                        completion([],error)
-                        print(error)
-                    }
-                }
-//            }else {
-//                print(error?.localizedDescription)
-//            }
-//        }
+        //responseType -> the main model
+        taskForGETRequest(url:newUrl , responseType: MealsList.self) { (response, error) in
+            if let response = response  {
+                //result -> is the [meals]
+                completion(response.meals,nil)
+            } else {
+                completion([],.UnAbleToComplete)
+                print(error)
+            }
+        }
     }
     
     
-    class func getAllMealsList(completion: @escaping ([MealsResult], Error?) -> Void) {
+    class func getAllMealsList(completion: @escaping ([MealsResult], GFError?) -> Void) {
         
         let endPoints = EndPoints.allMeals.url
         
-//        refreshToken { success, error in
-//            if error == nil {
-                //responseType -> the main model
-                taskForGETRequest(url:endPoints , responseType: MealsList.self) { (response, error) in
-                    if let response = response  {
-                        //result -> is the [meals]
-                        completion(response.meals,nil)
-                    } else {
-                        completion([],error)
-                        print(error)
-                    }
-                }
-//            }else {
-//                print(error?.localizedDescription)
-//            }
-//        }
+        //responseType -> the main model
+        taskForGETRequest(url:endPoints , responseType: MealsList.self) { (response, error) in
+            if let response = response  {
+                //result -> is the [meals]
+                completion(response.meals,nil)
+            } else {
+                completion([],.UnAbleToComplete)
+                print(error)
+            }
+        }
+        
     }
  
     
     // API - Creating new order
     class func createOrder(completion:@escaping (NSError?) -> Void) {
         
-//        refreshToken { success, error in
-//            if error == nil {
-                
-                let simpleArray = Tray.currentTray.items
-                let jsonArray = simpleArray.map { item in
-                    return [
-                        "meal_id": item.meal.id,
-                        "quantity": item.qty,
-                        "rest_id" : item.delivery.delivery
-                    ]
-                }
-                
-                if JSONSerialization.isValidJSONObject(jsonArray) {
-                    
-                    do {
-                        
-                        let data = try JSONSerialization.data(withJSONObject: jsonArray, options: [])
-                        let dataString = NSString(data: data, encoding: String.Encoding.utf8.rawValue)!
-                        
-                        let params: [String: Any] = [
-                            "access_token": "\(Auth.accessToken)",
-                            "restaurant_id": "\(Tray.currentTray.restaurant!.id)",
-                            "order_details": dataString,
-                            "address": Tray.currentTray.address!,
-                            "phone_number"  : Tray.currentTray.Phone!
-                        ]
-                        
-                        
-                        
-                        Alamofire.request(EndPoints.makeAnOrder.url, method: .post, parameters: params, encoding: URLEncoding(), headers: nil).responseJSON { (response) in
-                            switch response.result {
-                            
-                            case .success(let success):
-                                completion( nil)
-                                print(success)
-                                break
-                            case .failure(let error):
-                                completion(error as NSError?)
-                                print(error)
-                                break
-                            }
-                        }
-                        
-                    }
-                    catch {
-                        print("JSON serialization failed: \(error)")
-                    }
-                }
-//            } else {
-//                print(error?.localizedDescription)
-//            }
-//        }
-    }
-    
-    
-    
-    
-    //use generic request to get AppLists from ArrayList Model (GET)
-    class func getLatestOrders(completion: @escaping ([OrderDetails], Error?) -> Void) {
-        
-        let endPoints = EndPoints.latestOrders.stringValue + "access_token=\(Auth.accessToken)"
-        
-        guard let newUrl = URL(string: endPoints) else {
-            return
+        let simpleArray = Tray.currentTray.items
+        let jsonArray = simpleArray.map { item in
+            return [
+                "meal_id": item.meal.id,
+                "quantity": item.qty,
+                "rest_id" : item.delivery.delivery
+            ]
         }
         
-//        refreshToken { success, error in
-//            if error == nil {
-                //responseType -> the main model
-                taskForGETRequest(url:newUrl , responseType: LatestOrders.self) { (response, error) in
-                    if let response = response  {
-                        //result -> is the [Order_details]
-                        completion(response.order.order_details,nil)
-                    } else {
-                        completion([],error)
+        if JSONSerialization.isValidJSONObject(jsonArray) {
+            
+            do {
+                
+                let data = try JSONSerialization.data(withJSONObject: jsonArray, options: [])
+                let dataString = NSString(data: data, encoding: String.Encoding.utf8.rawValue)!
+                
+                let params: [String: Any] = [
+                    "access_token": "\(Auth.accessToken)",
+                    "restaurant_id": "\(Tray.currentTray.restaurant!.id)",
+                    "order_details": dataString,
+                    "address": Tray.currentTray.address!,
+                    "phone_number"  : Tray.currentTray.Phone!
+                ]
+                
+                
+                
+                Alamofire.request(EndPoints.makeAnOrder.url, method: .post, parameters: params, encoding: URLEncoding(), headers: nil).responseJSON { (response) in
+                    switch response.result {
+                    
+                    case .success(let success):
+                        completion( nil)
+                        print(success)
+                        break
+                    case .failure(let error):
+                        completion(error as NSError?)
                         print(error)
+                        break
                     }
                 }
-//            }else {
-//                print(error?.localizedDescription)
-//            }
-//        }
+                
+            }
+            catch {
+                print("JSON serialization failed: \(error)")
+            }
+        }
+    }
+    
+    
+    
+    
+    //use generic request to get AppLists from ArrayList Model (GET)
+    class func getLatestOrders(completion: @escaping ([OrderDetails], GFError?) -> Void) {
+        
+        let endPoints = EndPoints.latestOrders.stringValue + "access_token=\(Auth.accessToken)"
+        
+        guard let newUrl = URL(string: endPoints) else {
+            return
+        }
+        //responseType -> the main model
+        taskForGETRequest(url:newUrl , responseType: LatestOrders.self) { (response, error) in
+            if let response = response  {
+                //result -> is the [Order_details]
+                completion(response.order.order_details,nil)
+            } else {
+                completion([],.UnAbleToComplete)
+                print(error)
+            }
+        }
     }
     
     
     //use generic request to get AppLists from ArrayList Model (GET)
-    class func getOrderStatus(completion: @escaping (Order, Error?) -> Void) {
-
+    class func getOrderStatus(completion: @escaping (Order?, GFError?) -> Void) {
+        
         let endPoints = EndPoints.latestOrders.stringValue + "access_token=\(Auth.accessToken)"
-
+        
         guard let newUrl = URL(string: endPoints) else {
             return
         }
-
-
-            //responseType -> the main model
-            taskForGETRequest(url:newUrl , responseType: LatestOrders.self) { (response, error) in
-                if let response = response  {
-                    //result -> is the [Order_details]
-                    completion(response.order,nil)
-                } else {
-                    
-                    print(error?.localizedDescription)
-                }
+        //responseType -> the main model
+        taskForGETRequest(url:newUrl , responseType: LatestOrders.self) { (response, error) in
+            if let response = response  {
+                //result -> is the [Order_details]
+                completion(response.order,nil)
+            } else {
+                completion(nil,.UnAbleToComplete)
+                print(error?.localizedDescription)
             }
+        }
     }
     
     
-    /**************  Driver ***************/
+                            /**************  Driver ***************/
     
-    class func DriverGetReadyOrders(completion: @escaping ([TheDriverOrderDetails], Error?) -> Void) {
+    class func DriverGetReadyOrders(completion: @escaping ([TheDriverOrderDetails], GFError?) -> Void) {
         
-            //responseType -> the main model
-            taskForGETRequest(url:EndPoints.driverReadyOrders.url , responseType: DriverReadyOrders.self) { (response, error) in
-                if let response = response  {
-                    //result -> is the [meals]
-                    completion(response.orders,nil)
-                } else {
-                    completion([],error)
-                    print(error)
-                }
+        //responseType -> the main model
+        taskForGETRequest(url:EndPoints.driverReadyOrders.url , responseType: DriverReadyOrders.self) { (response, error) in
+            if let response = response  {
+                //result -> is the [meals]
+                completion(response.orders,nil)
+            } else {
+                completion([],.UnAbleToComplete)
+                print(error)
             }
+        }
     }
     
     class func pickOrder(orderId: Int, completionHandler: @escaping ([String: Any]?) -> Void) {
@@ -566,7 +498,7 @@ class NetworkManager {
         PostRequestManager.shared.requestServer(.post, path, params, URLEncoding(), completionHandler)
     }
     
-    class func DriverGetLatestOrders(completion: @escaping (TheDriverLatestOrderDetails?, Error?) -> Void) {
+    class func DriverGetLatestOrders(completion: @escaping (TheDriverLatestOrderDetails?, GFError?) -> Void) {
         
         let endPoints = EndPoints.driverLatestOrders.stringValue + "access_token=\(Auth.accessToken)"
         
@@ -579,7 +511,7 @@ class NetworkManager {
                 //result -> is the [meals]
                 completion(response.order,nil)
             } else {
-                completion(nil,error)
+                completion(nil,.UnAbleToComplete)
                 print(error!.localizedDescription)
             }
         }

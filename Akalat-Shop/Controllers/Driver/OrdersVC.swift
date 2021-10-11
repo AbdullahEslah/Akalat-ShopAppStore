@@ -34,33 +34,36 @@ class OrdersVC: UITableViewController {
     }
     
     func getDriverLatestOrders() {
-        hud.textLabel.text = "Loading..."
-        hud.show(in: self.view)
         
         NetworkManager.DriverGetReadyOrders { (orders, error) in
             
-            if orders.count == 0 {
-                let emptyState = UILabel(frame: self.view.frame.inset(by: .init(top: 60, left: 30, bottom: 100, right: 30)))
-                emptyState.text = "Please Wait For Upcoming Orders 🥡. And Refresh Your Feed..!"
-                emptyState.font = .boldSystemFont(ofSize: 22)
-                emptyState.textAlignment = .center
-                emptyState.numberOfLines = 0
-                emptyState.textColor = colorSmoothRed
-                self.view.addSubview(emptyState)
+            if error == nil {
+                DispatchQueue.main.async {
+                    
+                    if orders.count == 0 {
+                        let emptyState = UILabel(frame: self.view.frame.inset(by: .init(top: 60, left: 30, bottom: 100, right: 30)))
+                        emptyState.text = "Please Wait For Upcoming Orders 🥡. And Refresh Your Feed..!"
+                        emptyState.font = .boldSystemFont(ofSize: 22)
+                        emptyState.textAlignment = .center
+                        emptyState.numberOfLines = 0
+                        emptyState.textColor = colorSmoothRed
+                        self.view.addSubview(emptyState)
+                    }
+                    
+                    self.hud.dismiss()
+                    
+                    ArraysModels.driverReadyOrders.removeAll()
+                    
+                    ArraysModels.driverReadyOrders.append(contentsOf: orders)
+                    
+                    self.tableView.reloadData()
+                }
+            }else {
+                self.presentGFAlertOnMainThread(title: "Error !", message: error!.rawValue, buttonTitle: "Ok")
+                self.hud.dismiss()
             }
-
-            self.hud.dismiss()
-        
-            ArraysModels.driverReadyOrders.removeAll()
-
-            ArraysModels.driverReadyOrders.append(contentsOf: orders)
-            
-            self.hud.dismiss()
-            self.tableView.reloadData()
         }
-        self.hud.dismiss()
     }
-
 }
         
        

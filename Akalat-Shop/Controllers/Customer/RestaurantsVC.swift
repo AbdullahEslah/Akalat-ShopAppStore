@@ -201,6 +201,8 @@ class RestaurantsVC: UITableViewController, UISearchControllerDelegate {
     func fetchRestaurants(){
         
         NetworkManager.getRestaurantsList(restaurantAddress: Constants.region ?? "") { restaurants, error in
+            
+            
             if error == nil {
                 
                 self.animationView.stop()
@@ -211,13 +213,17 @@ class RestaurantsVC: UITableViewController, UISearchControllerDelegate {
                 ArraysModels.restaurants.append(contentsOf: restaurants)
                 
                 self.filterdRestaurants = ArraysModels.restaurants
-                
+                DispatchQueue.main.async {
                 self.mySecCollectionView.reloadData()
                 self.tableView.reloadData()
+                }
             } else {
-                //Helper().showAlert(title: "Error !", message: error!.localizedDescription, in: self)
+                self.presentGFAlertOnMainThread(title: "Error!", message: error!.rawValue , buttonTitle: "Ok")
+                DispatchQueue.main.async {
+//                Helper().showAlert(title: "Error !", message: error!.rawValue, in: self)
                 self.animationView.stop()
                 self.animationView.removeFromSuperview()
+                }
             }
             
         }

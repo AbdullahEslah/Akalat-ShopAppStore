@@ -13,15 +13,21 @@ import AuthenticationServices
 import JGProgressHUD
 import Kingfisher
 import Lottie
-import ObjectiveC
+import Network
 
 class LoginVC: UIViewController, LoginButtonDelegate {
     
+    @IBOutlet weak var internetConnectionLabel: UILabel!
+    
+    @IBOutlet weak var appLogo: UIImageView!
     @IBOutlet weak var viewForMyButton: UIView!
     @IBOutlet weak var showAuthButton: UIButton!
+    @IBOutlet weak var topLineOfAuthHolderView: RoundedShadowView!
     //Objects
     @IBOutlet weak var authHolderView: UIView!
    
+    @IBOutlet weak var deliverOrdersButton: UIButton!
+    
     @IBOutlet weak var fbLoginButton: FBLoginButton!
     
     @IBOutlet weak var appleLoginButton: ASAuthorizationAppleIDButton!
@@ -42,12 +48,14 @@ class LoginVC: UIViewController, LoginButtonDelegate {
     let hud            = JGProgressHUD(style: .dark)
     var userType       : String  = NetworkManager.Auth.userTypeCustomer
     var driverUserType : String  = NetworkManager.Auth.userTypeDriver
+    let monitor        = NWPathMonitor()
     
     let animationView = AnimationView(animation: Animation.named("lf20_vhkdj1ra"))
     
     override func viewDidLoad() {
         super.viewDidLoad()
  
+        connection()
         
         defaultAuthHolderViewHeight = authHolderViewHeight.constant
         
@@ -89,12 +97,16 @@ class LoginVC: UIViewController, LoginButtonDelegate {
                     self.animationView.stop()
                     self.animationView.removeFromSuperview()
                 Helper().showAlert(title: "Error!", message: error!.localizedDescription, in: self)
+                    print(error?.localizedDescription)
                 }
             })
             //self.userType = self.userType.capitalized
                 NetworkManager.fbLogin(userType: self.userType,completion:  { success, error in
 
                     if error == nil {
+                        DispatchQueue.main.async {
+                            
+                        
                         
                         if UserDefaults.standard.value(forKey: "CheckDriverView") != nil {
                             let storyboard = UIStoryboard(name: "DriverMain", bundle: nil)
@@ -107,38 +119,42 @@ class LoginVC: UIViewController, LoginButtonDelegate {
                         self.animationView.stop()
                         self.animationView.removeFromSuperview()
 
+                        }
                     } else {
+                        DispatchQueue.main.async {
                     print(error?.localizedDescription)
                         self.animationView.stop()
                         self.animationView.removeFromSuperview()
-                        Helper().showAlert(title: "Error !", message: error!.localizedDescription, in: self)
+                            Helper().showAlert(title: "Error !", message: error!.rawValue, in: self)
+                        }
                     }
                 })
            
     }
         if GIDSignIn.sharedInstance.currentUser?.authentication.accessToken != nil {
             NetworkManager.googleLogin(userType: self.userType,completion:  { success, error in
-
+                
                 if error == nil {
-//                    UserDefaults.standard.setValue("DriverView", forKey: "CheckDriverView")
-                    self.userType = self.userType.capitalized
-                    self.performSegue(withIdentifier: "\(self.userType)View", sender: self)
-                    self.animationView.stop()
-                    self.animationView.removeFromSuperview()
-
+                    DispatchQueue.main.async {
+                        
+                        self.userType = self.userType.capitalized
+                        self.performSegue(withIdentifier: "\(self.userType)View", sender: self)
+                        self.animationView.stop()
+                        self.animationView.removeFromSuperview()
+                    }
                 } else {
-                    Helper().showAlert(title: "Error!", message: error!.localizedDescription, in: self)
-                    self.animationView.stop()
-                    self.animationView.removeFromSuperview()
+                    DispatchQueue.main.async {
+                        Helper().showAlert(title: "Error!", message: error!.rawValue, in: self)
+                        self.animationView.stop()
+                        self.animationView.removeFromSuperview()
+                    }
                 }
             })
         }
         
-        
         configureAuthViewAppearance()
         signInAppleButton()
         checkAutoLogin()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -192,6 +208,40 @@ class LoginVC: UIViewController, LoginButtonDelegate {
         googleLoginButton.layer.cornerRadius = 6
         googleLoginButton.clipsToBounds = true
 
+    }
+    
+    func connection() {
+        
+        monitor.pathUpdateHandler = { path in
+            if path.status == .satisfied {
+                print("We're connected!")
+                
+                
+            } else {
+                print("No connection.")
+                DispatchQueue.main.async {
+                    self.internetConnectionLabel.text = "No Internet Connection"
+                    let image = UIImage(named: "NoInternetStatus")!
+
+                    self.view.backgroundColor = UIColor(named: "NoInternetBackground")
+                    self.appLogo.backgroundColor = .clear
+                    self.showAuthButton.isHidden = true
+                    self.authHolderView.isHidden = true
+                    self.deliverOrdersButton.isHidden = true
+                    self.topLineOfAuthHolderView.isHidden = true
+                    self.appLogo.image = image
+                    
+                }
+                
+            }
+            
+            //To Check Whether This Class uses cellular data or Hotspot
+            print(path.isExpensive)
+        }
+        
+        //Start Implementation of Checking The Internet Connection
+        let queue = DispatchQueue(label: "Monitor")
+        monitor.start(queue: queue)
     }
     
     
@@ -323,16 +373,22 @@ class LoginVC: UIViewController, LoginButtonDelegate {
             NetworkManager.googleLogin(userType: self.userType,completion:  { success, error in
 
                 if error == nil {
+                    DispatchQueue.main.async {
+                        
+                    
 //                    UserDefaults.standard.setValue("DriverView", forKey: "CheckDriverView")
                     self.userType = self.userType.capitalized
                     self.performSegue(withIdentifier: "\(self.userType)View", sender: self)
                     self.animationView.stop()
                     self.animationView.removeFromSuperview()
+                    }
 
                 } else {
-                    Helper().showAlert(title: "Error!", message: error!.localizedDescription, in: self)
+                    DispatchQueue.main.async {
+                    Helper().showAlert(title: "Error!", message: error!.rawValue, in: self)
                     self.animationView.stop()
                     self.animationView.removeFromSuperview()
+                    }
                 }
             })
             
@@ -380,12 +436,13 @@ class LoginVC: UIViewController, LoginButtonDelegate {
             NetworkManager.fbLogin(userType: self.userType,completion:  { success, error in
                 
                 if error == nil {
+                    DispatchQueue.main.async {
                     
                     if UserDefaults.standard.value(forKey: "CheckDriverView") != nil {
                         let storyboard = UIStoryboard(name: "DriverMain", bundle: nil)
                         let ordersVC = storyboard.instantiateViewController(withIdentifier: "SWRevealViewController") as! SWRevealViewController
                         self.showDetailViewController(ordersVC, sender: self)
-                        
+                    
                     } else {
                         self.userType = self.userType.capitalized
                         self.performSegue(withIdentifier: "\(self.userType)View", sender: self)
@@ -394,12 +451,14 @@ class LoginVC: UIViewController, LoginButtonDelegate {
                     self.animationView.stop()
                     self.animationView.removeFromSuperview()
                     self.fbLoginButton.setTitle("Continue With Facebbok", for: .normal)
-                    
+                    }
                 } else {
-                   
+                    DispatchQueue.main.async {
+                        Helper().showAlert(title: "Error!", message: error!.rawValue, in: self)
                     self.animationView.stop()
                     self.animationView.removeFromSuperview()
                     print(error!.localizedDescription)
+                    }
                     
                 }
             })
@@ -577,11 +636,16 @@ extension LoginVC {
                     NetworkManager.appleIDLogin(userType: self.userType,completion:  { success, error in
 
                         if error == nil {
+                            DispatchQueue.main.async {
+                                
+                            
                             if UserDefaults.standard.value(forKey: "CheckDriverView") != nil {
                                 let storyboard = UIStoryboard(name: "DriverMain", bundle: nil)
                                 let ordersVC = storyboard.instantiateViewController(withIdentifier: "SWRevealViewController") as! SWRevealViewController
 //                                ordersVC.modalPresentationStyle = .fullScreen
                                 self.showDetailViewController(ordersVC, sender: self )
+                            
+                            
                                 
                             } else {
                                 self.userType = self.userType.capitalized
@@ -589,11 +653,13 @@ extension LoginVC {
                             }
                             self.animationView.stop()
                             self.animationView.removeFromSuperview()
-
+                        }
                         } else {
+                            DispatchQueue.main.async {
                             Helper().showAlert(title: "Error Occurred!", message: "Please Login Again", in: self)
                             self.animationView.stop()
                             self.animationView.removeFromSuperview()
+                            }
                         }
                     })
                 

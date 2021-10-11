@@ -30,6 +30,7 @@
 		FA439B69270E61C300F2F83D /* GoogleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA439B58270E618200F2F83D /* GoogleManager.swift */; };
 		FA439B6D270E61C600F2F83D /* FBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA439B55270E618200F2F83D /* FBManager.swift */; };
 		FA439B73270E61C800F2F83D /* PostRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA439B5A270E618300F2F83D /* PostRequestManager.swift */; };
+		FA552BD52713BF7900EC9FF7 /* GFError.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA552BD42713BF7900EC9FF7 /* GFError.swift */; };
 		FA6B55DA270FBEEB002640A1 /* PerformOrderAlertVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC64D26F88C2D00095DB5 /* PerformOrderAlertVC.swift */; };
 		FA6B55DB270FBEEB002640A1 /* DeliveryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC65126F88C2D00095DB5 /* DeliveryVC.swift */; };
 		FA6B55DD270FBEEB002640A1 /* OrdersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC64E26F88C2D00095DB5 /* OrdersVC.swift */; };
@@ -145,6 +146,7 @@
 		FA439C18270E64E800F2F83D /* OrdersTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersTableViewCell.swift; sourceTree = "<group>"; };
 		FA439C19270E64E900F2F83D /* OrdersTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrdersTableViewCell.xib; sourceTree = "<group>"; };
 		FA439C68270E6BC500F2F83D /* DriverLoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverLoginVC.swift; sourceTree = "<group>"; };
+		FA552BD42713BF7900EC9FF7 /* GFError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFError.swift; sourceTree = "<group>"; };
 		FA6B5652270FC973002640A1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FAC551CB270D0E43009F83CB /* 23211-receive-order.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "23211-receive-order.json"; sourceTree = "<group>"; };
 		FAC551D7270D0EE6009F83CB /* lf20_vhkdj1ra.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = lf20_vhkdj1ra.json; sourceTree = "<group>"; };
@@ -418,6 +420,7 @@
 				FAEFC62426F88BD600095DB5 /* UIViewController+Ext.swift */,
 				FAEFC62526F88BD600095DB5 /* GFBodyLabel.swift */,
 				FAEFC61D26F88BD600095DB5 /* Animation */,
+				FA552BD42713BF7900EC9FF7 /* GFError.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -1171,6 +1174,7 @@
 				FA2A8927270E8A7F005DB8BA /* LatestCustomerDetails.swift in Sources */,
 				FA2A8929270E8A7F005DB8BA /* LatestRestaurantDetails.swift in Sources */,
 				FA6B55DB270FBEEB002640A1 /* DeliveryVC.swift in Sources */,
+				FA552BD52713BF7900EC9FF7 /* GFError.swift in Sources */,
 				FAEFC67D26F88C5300095DB5 /* RestaurantsVC.swift in Sources */,
 				FAEFC67B26F88C5300095DB5 /* LogoAnimationView.swift in Sources */,
 				FAEFC6C826F88E9200095DB5 /* RestaurantsList.swift in Sources */,
