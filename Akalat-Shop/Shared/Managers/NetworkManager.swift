@@ -10,6 +10,7 @@ import FBSDKLoginKit
 import Alamofire
 import GoogleSignIn
 import AuthenticationServices
+import CoreLocation
 class NetworkManager {
     
     static var shared = NetworkManager()
@@ -57,6 +58,7 @@ class NetworkManager {
         case driverReadyOrders
         case driverPickingOrder
         case driverLatestOrders
+        case driverUpdateLocation
         
         var stringValue: String {
             
@@ -98,6 +100,9 @@ class NetworkManager {
                 
             case .driverLatestOrders:
                 return EndPoints.base + "/api/driver/order/latest?"
+                
+            case .driverUpdateLocation:
+                return EndPoints.base + "/api/driver/location/update/"
                 
             }
         }
@@ -515,6 +520,32 @@ class NetworkManager {
                 print(error!.localizedDescription)
             }
         }
+    }
+    
+    //Update Driver Location
+    class func updateLocation(location:CLLocationCoordinate2D,completion: @escaping (Bool, GFError?) -> Void ) {
+        
+        let body = UpdateDriverLocation(access_token: Auth.accessToken, location: "\(location.latitude),\(location.longitude)")
+        taskForPOSTRequest(url: EndPoints.driverUpdateLocation.url, responseType: UpdateDriverLocationResponse.self, body: body) { (response, error) in
+            if let response = response {
+                completion(true, nil)
+                print(response)
+            } else {
+                completion(false, error)
+                print(error!)
+            }
+        }
+        
+    }
+    
+    //Update Driver Location
+    class func updateDriverLocation(location: CLLocationCoordinate2D , completionHandler: @escaping ([String: Any]?) -> Void) {
+        let path = "api/driver/location/update/"
+        let params: [String: Any] = [
+            "access_token": Auth.accessToken,
+            "location": "\(location.latitude),\(location.longitude)"
+        ]
+        PostRequestManager.shared.requestServer(.post, path, params, URLEncoding(), completionHandler)
     }
     
 }

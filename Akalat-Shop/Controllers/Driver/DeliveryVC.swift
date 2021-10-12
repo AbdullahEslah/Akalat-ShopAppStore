@@ -23,14 +23,22 @@ class DeliveryVC: UIViewController,UIActionSheetDelegate {
     
     let animationView = AnimationView(animation: Animation.named("39587-delivery-man"))
     
-    var orderId: Int?
+    var orderId    : Int?
     
     var destination: MKPlacemark?
-    var source : MKPlacemark?
+    var source     : MKPlacemark?
+    
+    var locationManager: CLLocationManager!
+    var driverPin      : MKPointAnnotation!
+    var lastLocation   : CLLocationCoordinate2D!
+    
+    var timer          = Timer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureMenu()
+        userLocation()
+        updateLocationEveryOneSecond()
         
         animationView.frame = view.bounds
 
@@ -54,11 +62,37 @@ class DeliveryVC: UIViewController,UIActionSheetDelegate {
         customerAva.clipsToBounds = true
         customerAva.layer.cornerRadius = customerAva.frame.width / 2
     }
+    
     func configureMenu() {
         if self.revealViewController() != nil {
             menuBarButton.target = self.revealViewController()
             menuBarButton.action = #selector(SWRevealViewController.revealToggle(_:))
             self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+        }
+    }
+    
+    //Show Driver Location
+    func userLocation() {
+        
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager = CLLocationManager()
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            locationManager.requestAlwaysAuthorization()
+            locationManager.startUpdatingLocation()
+            self.map.showsUserLocation = true
+            
+            
+        }
+    }
+    
+    func updateLocationEveryOneSecond() {
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateLocation(_:)), userInfo: nil, repeats: true)
+    }
+    
+    @objc func updateLocation(_ sender: AnyObject) {
+        NetworkManager.updateDriverLocation(location: self.lastLocation) { (data) in
+            
         }
     }
     
@@ -93,7 +127,6 @@ class DeliveryVC: UIViewController,UIActionSheetDelegate {
                                 self.source = restaurantAddress
                                 self.getLocationAddress(to ?? "", "Restaurant", { customerDestination in
                                     self.destination = customerDestination
-                                    self.getDirections()
                                 })
                             })
                         }
@@ -127,7 +160,6 @@ class DeliveryVC: UIViewController,UIActionSheetDelegate {
         let firstAction = UIAlertAction(title: "Call", style: .default) { (alert: UIAlertAction!) -> Void in
             
             if let phoneCallURL:URL = URL(string: "tel:\(self.customerPhoneNumber.title(for: .normal) ?? "")" ) {
-                //                    let application:UIApplication = UIApplication.shared
                 if (UIApplication.shared.canOpenURL(phoneCallURL)) {
                     UIApplication.shared.open(phoneCallURL)
                 }
@@ -179,35 +211,27 @@ extension DeliveryVC: MKMapViewDelegate {
             }
         }
     }
+
     
-    // #3 - Get direction and zoom to address
-    func getDirections() {
+}
+
+//This Delegate Code is showing and focusing in showing all view of driver,customer and restaurant locations
+extension DeliveryVC: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
-        let request = MKDirections.Request()
-        request.source = MKMapItem.init(placemark: source!)
-        request.destination = MKMapItem.init(placemark: destination!)
-        request.requestsAlternateRoutes = false
+        let location = locations.last! as CLLocation
+        self.lastLocation = location.coordinate
         
-        let directions = MKDirections(request: request)
-        directions.calculate { (response, error) in
-            
-            if error != nil {
-                print("Error: ", error)
-            } else {
-                // Show route
-                self.showRoute(response: response!)
-            }
+        // Create pin annotation for Driver
+        if driverPin != nil {
+            driverPin.coordinate = self.lastLocation
+        } else {
+            driverPin = MKPointAnnotation()
+            driverPin.coordinate = self.lastLocation
+            self.map.addAnnotation(driverPin)
         }
         
-    }
-    
-    // #4 - Show route between locations and make a visible zoom
-    func showRoute(response: MKDirections.Response) {
-        
-        for route in response.routes {
-            self.map.addOverlay(route.polyline, level: MKOverlayLevel.aboveRoads)
-        }
-        
+        // Reset zoom rect to cover 3 locations
         var zoomRect = MKMapRect.null
         for annotation in self.map.annotations {
             let annotationPoint = MKMapPoint(annotation.coordinate)

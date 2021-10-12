@@ -258,6 +258,7 @@ class CheckoutVC: UIViewController {
     
 }
 
+//This Delegate Code is showing and focusing in current location 
 extension CheckoutVC: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let location = locations.last! as CLLocation

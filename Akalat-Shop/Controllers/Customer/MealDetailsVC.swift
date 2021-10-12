@@ -33,21 +33,11 @@ class MealDetailsVC: UIViewController {
     var restaurant: RestaurntsResult?
     var meal      : MealsResult?
     
-    let animationView = AnimationView(animation: Animation.named("lf20_vhkdj1ra"))
+   
    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        animationView.frame = view.bounds
-
-        // Add animationView as subview
-        view.addSubview(animationView)
-
-        // Play the animation
-        animationView.play()
-        animationView.loopMode = .repeat(3.0)
-        animationView.animationSpeed = 1
-        
+    
         mealData()
         
     }
@@ -184,5 +174,6 @@ class MealDetailsVC: UIViewController {
             mealImageView.kf.indicatorType = .activity
             mealImageView.kf.setImage(with: url,placeholder: placeholder,options: options)
         }
+        
     }
 }
