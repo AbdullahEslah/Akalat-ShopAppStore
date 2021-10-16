@@ -130,11 +130,17 @@ class CheckoutVC: UIViewController {
     @objc func showAddressPopUP() {
 
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        if let addressVC = storyboard.instantiateViewController(withIdentifier: "AddressVC") as? AddressVC {
+        guard let addressVC = storyboard.instantiateViewController(withIdentifier: "AddressVC") as? AddressVC else {
+        return
+        }
             addressVC.AddressProtocol = self
-            
+        
+        self.present(addressVC, animated: true)
             let geocoder = CLGeocoder()
-            let location = locationManager.location!
+            
+            guard let location = locationManager.location else {
+                return
+            }
             geocoder.geocodeAddressString("\(location)") { (placemark, error) in
                 if error != nil {
                     print("Error", error)
@@ -148,13 +154,13 @@ class CheckoutVC: UIViewController {
                     print(placemark.administrativeArea!)
                     print(placemark.country!)
                     
-                    addressVC.currentLocationTextField.text! = "\(placemark.thoroughfare!) \(placemark.administrativeArea!) \(placemark.locality!)"
+                    addressVC.currentLocationTextField.text = "\(placemark.thoroughfare!) \(placemark.administrativeArea!) \(placemark.locality!)"
                         print(addressVC.currentLocationTextField.text!)
                     
                 }
-            }
+               
             
-            self.present(addressVC, animated: true)
+            
         }
     }
     

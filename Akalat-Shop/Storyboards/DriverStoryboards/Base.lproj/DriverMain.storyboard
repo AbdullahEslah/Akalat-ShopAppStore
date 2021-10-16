@@ -415,43 +415,46 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="FTz-fM-gVe">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="402"/>
                                 <connections>
                                     <outlet property="delegate" destination="vSt-hd-iqL" id="FbP-EX-1JZ"/>
                                 </connections>
                             </mapView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tb1-QC-Kvn" customClass="RoundedButton" customModule="Akalat_Shop" customModuleProvider="target">
-                                <rect key="frame" x="16" y="488" width="288" height="50"/>
-                                <color key="backgroundColor" name="SmoothRed"/>
+                                <rect key="frame" x="16" y="515" width="288" height="37"/>
+                                <color key="backgroundColor" name="MainColor"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="19"/>
                                 <state key="normal" title="Complete Order">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="completeOrder:" destination="vSt-hd-iqL" eventType="touchUpInside" id="xge-Gv-XW1"/>
+                                </connections>
                             </button>
                             <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O63-kj-gQM" customClass="RoundedVisualEffectView" customModule="Akalat_Shop" customModuleProvider="target">
-                                <rect key="frame" x="16" y="339" width="288" height="141"/>
+                                <rect key="frame" x="16" y="409.5" width="288" height="97.5"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="5r6-Pe-adH">
-                                    <rect key="frame" x="0.0" y="0.0" width="288" height="141"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="288" height="98"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="marketplace" translatesAutoresizingMaskIntoConstraints="NO" id="iDb-WG-a51">
-                                            <rect key="frame" x="8" y="39.5" width="62" height="62"/>
+                                            <rect key="frame" x="8" y="18" width="62" height="62"/>
                                             <color key="tintColor" name="DarkColor"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="iDb-WG-a51" secondAttribute="height" multiplier="1:1" id="nPx-Qg-fle"/>
                                             </constraints>
                                         </imageView>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="11" translatesAutoresizingMaskIntoConstraints="NO" id="KEx-Iu-c1Z">
-                                            <rect key="frame" x="78" y="39.5" width="194" height="62"/>
+                                            <rect key="frame" x="78" y="18" width="194" height="62"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Customer Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="S2N-yI-ITZ">
-                                                    <rect key="frame" x="0.0" y="0.0" width="194" height="13.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="194" height="13"/>
                                                     <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="18"/>
                                                     <color key="textColor" name="SmoothRed"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Customer Address" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="M53-8B-xdm">
-                                                    <rect key="frame" x="0.0" y="24.5" width="194" height="13"/>
+                                                    <rect key="frame" x="0.0" y="24" width="194" height="13.5"/>
                                                     <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
                                                     <color key="textColor" name="DarkColor"/>
                                                     <nil key="highlightedColor"/>
@@ -476,23 +479,23 @@
                                         <constraint firstItem="iDb-WG-a51" firstAttribute="leading" secondItem="5r6-Pe-adH" secondAttribute="leading" constant="8" id="tWe-23-Yv2"/>
                                     </constraints>
                                 </view>
-                                <blurEffect style="regular"/>
+                                <blurEffect style="systemMaterial"/>
                             </visualEffectView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="SOy-o7-bqX"/>
                         <color key="backgroundColor" name="WhiteColor"/>
                         <constraints>
                             <constraint firstItem="SOy-o7-bqX" firstAttribute="trailing" secondItem="FTz-fM-gVe" secondAttribute="trailing" id="1QU-HR-4IW"/>
-                            <constraint firstItem="Tb1-QC-Kvn" firstAttribute="height" secondItem="FTz-fM-gVe" secondAttribute="height" multiplier="0.0877863" id="As7-Eb-sI8"/>
-                            <constraint firstItem="SOy-o7-bqX" firstAttribute="bottom" secondItem="Tb1-QC-Kvn" secondAttribute="bottom" constant="30" id="Fdj-SC-0T0"/>
-                            <constraint firstAttribute="bottom" secondItem="FTz-fM-gVe" secondAttribute="bottom" id="Hc1-nf-53i"/>
+                            <constraint firstItem="O63-kj-gQM" firstAttribute="top" secondItem="FTz-fM-gVe" secondAttribute="bottom" constant="7.5" id="299-PU-r1b"/>
+                            <constraint firstItem="Tb1-QC-Kvn" firstAttribute="height" secondItem="P8c-ed-KF0" secondAttribute="height" multiplier="0.0651408" id="ENg-xS-Q6f"/>
+                            <constraint firstItem="SOy-o7-bqX" firstAttribute="bottom" secondItem="Tb1-QC-Kvn" secondAttribute="bottom" constant="16" id="Fdj-SC-0T0"/>
                             <constraint firstItem="Tb1-QC-Kvn" firstAttribute="leading" secondItem="SOy-o7-bqX" secondAttribute="leading" constant="16" id="ILx-Py-VXT"/>
                             <constraint firstItem="O63-kj-gQM" firstAttribute="leading" secondItem="Tb1-QC-Kvn" secondAttribute="leading" id="IU9-To-z1D"/>
                             <constraint firstItem="SOy-o7-bqX" firstAttribute="trailing" secondItem="Tb1-QC-Kvn" secondAttribute="trailing" constant="16" id="KYK-O3-xYA"/>
+                            <constraint firstItem="O63-kj-gQM" firstAttribute="height" secondItem="P8c-ed-KF0" secondAttribute="height" multiplier="0.171655" id="PZl-9U-cv7"/>
                             <constraint firstItem="FTz-fM-gVe" firstAttribute="top" secondItem="SOy-o7-bqX" secondAttribute="top" id="XRb-1P-YlY"/>
                             <constraint firstItem="O63-kj-gQM" firstAttribute="trailing" secondItem="Tb1-QC-Kvn" secondAttribute="trailing" id="ebw-Up-w2G"/>
                             <constraint firstItem="FTz-fM-gVe" firstAttribute="leading" secondItem="SOy-o7-bqX" secondAttribute="leading" id="fk3-mV-jpT"/>
-                            <constraint firstItem="O63-kj-gQM" firstAttribute="height" secondItem="FTz-fM-gVe" secondAttribute="height" multiplier="0.248855" id="usO-cs-r6p"/>
                             <constraint firstItem="Tb1-QC-Kvn" firstAttribute="top" secondItem="O63-kj-gQM" secondAttribute="bottom" constant="8" symbolic="YES" id="yjS-KQ-5dL"/>
                         </constraints>
                     </view>
@@ -508,11 +511,12 @@
                         <outlet property="map" destination="FTz-fM-gVe" id="xlg-db-WDG"/>
                         <outlet property="menuBarButton" destination="O8N-as-BZI" id="K1q-X4-LYJ"/>
                         <outlet property="nameLabel" destination="S2N-yI-ITZ" id="n1P-OG-Tnu"/>
+                        <segue destination="oqN-3u-qWJ" kind="show" identifier="ReadyOrders" id="NWq-fD-5t5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nZj-UB-ki8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="8100" y="-1972"/>
+            <point key="canvasLocation" x="8100" y="-1972.1830985915494"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Dv9-6M-CDJ">
@@ -682,6 +686,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="TtP-hS-5Wa"/>
         <segue reference="mPg-YF-DTp"/>
+        <segue reference="NWq-fD-5t5"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Basket" width="28.5" height="25"/>

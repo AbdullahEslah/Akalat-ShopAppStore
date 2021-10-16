@@ -30,13 +30,10 @@ class LoginVC: UIViewController, LoginButtonDelegate {
     
     @IBOutlet weak var fbLoginButton: FBLoginButton!
     
-    @IBOutlet weak var appleLoginButton: ASAuthorizationAppleIDButton!
-    
     @IBOutlet weak var googleLoginButton: UIButton!
    
     @IBOutlet weak var authHolderViewHeight: NSLayoutConstraint!
-    
-    
+   
     
     var userID :String?
     //Handle Appearnace Of AuthView
@@ -132,6 +129,15 @@ class LoginVC: UIViewController, LoginButtonDelegate {
            
     }
         if GIDSignIn.sharedInstance.currentUser?.authentication.accessToken != nil {
+            
+            GIDSignIn.sharedInstance.signIn(with: GoogleManager.signInConfig, presenting: self) { user, error in
+                User.currentUser.name = user?.profile?.name
+                User.currentUser.email = user?.profile?.email
+                if user?.profile?.hasImage  == true{
+                User.currentUser.imageURL = user?.profile?.imageURL(withDimension: 100)
+                }
+            }
+            
             NetworkManager.googleLogin(userType: self.userType,completion:  { success, error in
                 
                 if error == nil {

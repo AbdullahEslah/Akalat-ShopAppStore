@@ -21,12 +21,12 @@ class DeliveryVC: UIViewController,UIActionSheetDelegate {
     @IBOutlet weak var customerInfoView: UIView!
     @IBOutlet weak var map: MKMapView!
     
-    let animationView = AnimationView(animation: Animation.named("39587-delivery-man"))
+    let animationView  = AnimationView(animation: Animation.named("39587-delivery-man"))
     
-    var orderId    : Int?
+    var orderId        : Int?
     
-    var destination: MKPlacemark?
-    var source     : MKPlacemark?
+    var destination    : MKPlacemark?
+    var source         : MKPlacemark?
     
     var locationManager: CLLocationManager!
     var driverPin      : MKPointAnnotation!
@@ -38,7 +38,7 @@ class DeliveryVC: UIViewController,UIActionSheetDelegate {
         super.viewDidLoad()
         configureMenu()
         userLocation()
-        updateLocationEveryOneSecond()
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateLocation), userInfo: nil, repeats: true)
         
         animationView.frame = view.bounds
 
@@ -49,12 +49,13 @@ class DeliveryVC: UIViewController,UIActionSheetDelegate {
         animationView.play()
         animationView.loopMode = .repeat(3.0)
         animationView.animationSpeed = 1
-        
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         customerInfo()
     }
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         customerAva.layer.borderColor = UIColor(named: "DarkColor")?.cgColor
@@ -75,23 +76,14 @@ class DeliveryVC: UIViewController,UIActionSheetDelegate {
     func userLocation() {
         
         if CLLocationManager.locationServicesEnabled() {
+            
             locationManager = CLLocationManager()
-            locationManager.delegate = self
+            locationManager.delegate   = self
             locationManager.desiredAccuracy = kCLLocationAccuracyBest
             locationManager.requestAlwaysAuthorization()
             locationManager.startUpdatingLocation()
-            self.map.showsUserLocation = true
             
-            
-        }
-    }
-    
-    func updateLocationEveryOneSecond() {
-        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateLocation(_:)), userInfo: nil, repeats: true)
-    }
-    
-    @objc func updateLocation(_ sender: AnyObject) {
-        NetworkManager.updateDriverLocation(location: self.lastLocation) { (data) in
+            self.map.showsUserLocation = false
             
         }
     }
@@ -105,9 +97,12 @@ class DeliveryVC: UIViewController,UIActionSheetDelegate {
                     self.animationView.stop()
                     self.animationView.removeFromSuperview()
                     
-                    if let id = orderDetails?.id ,orderDetails?.status == "On the way" {
+                    if orderDetails?.status == "On the way" {
                         
-                        self.orderId = id
+                        //If Driver Picked Any Orders So Get His Location Every One Second To Prevent Load On Server
+//                        self.updateLocationEveryOneSecond()
+                        
+                        self.orderId = orderDetails?.id
                         let from = orderDetails?.address
                         let to = orderDetails?.restaurant.address
                         
@@ -118,7 +113,7 @@ class DeliveryVC: UIViewController,UIActionSheetDelegate {
                         self.customerPhoneNumber.setTitle(customerPhone, for: .normal)
                         
                         if let url = URL(string: orderDetails?.customer.avatar ?? "") {
-                            let placeholder = UIImage(named: "contact-bg")
+                            let placeholder = UIImage(named: "LogoWithoutName")
                             let options : KingfisherOptionsInfo = [KingfisherOptionsInfoItem.transition(.fade(0.1))]
                             self.customerAva.kf.indicatorType = .activity
                             self.customerAva.kf.setImage(with: url,placeholder: placeholder,options: options)
@@ -130,27 +125,45 @@ class DeliveryVC: UIViewController,UIActionSheetDelegate {
                                 })
                             })
                         }
+                    } else {
+                        DispatchQueue.main.async {
+                            self.animationView.stop()
+                            self.animationView.removeFromSuperview()
+                            self.map.isHidden = true
+                            self.customerInfoView.isHidden = true
+                            self.completeOrderButton.isHidden = true
+                            self.customerPhoneNumber.isEnabled = false
+                            
+                            let emptyState = UILabel(frame: self.view.frame.inset(by: .init(top: 60, left: 30, bottom: 100, right: 30)))
+                            emptyState.text = "You Don't Have Any Orders To Be Delivered !"
+                            emptyState.font = .boldSystemFont(ofSize: 22)
+                            emptyState.textAlignment = .center
+                            emptyState.numberOfLines = 0
+                            emptyState.textColor = colorSmoothRed
+                            self.view.addSubview(emptyState)
+                        }
                     }
                 }
-                
             } else {
-                DispatchQueue.main.async {
-                    self.animationView.stop()
-                    self.animationView.removeFromSuperview()
-                    self.map.isHidden = true
-                    self.customerInfoView.isHidden = true
-                    self.completeOrderButton.isHidden = true
-                    
-                    let emptyState = UILabel(frame: self.view.frame.inset(by: .init(top: 60, left: 30, bottom: 100, right: 30)))
-                    emptyState.text = "You Don't Have Any Orders To Be Delivered !"
-                    emptyState.font = .boldSystemFont(ofSize: 22)
-                    emptyState.textAlignment = .center
-                    emptyState.numberOfLines = 0
-                    emptyState.textColor = colorSmoothRed
-                    self.view.addSubview(emptyState)
-                    self.presentGFAlertOnMainThread(title: "Error !", message: error!.rawValue, buttonTitle: "Ok")
-                }
+
             }
+        }
+    }
+    
+//    func updateLocationEveryOneSecond() {
+        
+//    }
+    
+    @objc func updateLocation() {
+        
+        //To Prevent Running The Server Evry Second
+        guard let location = self.lastLocation else {
+            return
+        }
+        
+        NetworkManager.updateDriverLocation(location: self.lastLocation) { (data) in
+            //To Check The Request Every One Second
+            print(data)
         }
     }
     
@@ -176,6 +189,44 @@ class DeliveryVC: UIViewController,UIActionSheetDelegate {
         present(alert, animated: true, completion:nil) // 6
         
     }
+    @IBAction func completeOrder(_ sender: Any) {
+        
+        let alertView = UIAlertController(title: "Comlete Order!", message: "Are You Want To Complete Order Now ? ", preferredStyle: .alert)
+        
+        let cancelButton = UIAlertAction(title: "Cancel", style: .cancel)
+        
+        let actionButton = UIAlertAction(title: "Ok 🎉", style: .default,handler: { (ok) in
+            
+            NetworkManager.DriverCompleteTheOrder(orderId: self.orderId!) { (data) in
+//                if error == nil {
+                    
+                    DispatchQueue.main.async {
+                        print(data)
+                        //Stop Updating Driver Location
+                        self.locationManager.stopUpdatingLocation()
+                        self.timer.invalidate()
+                        
+                        self.performSegue(withIdentifier: "ReadyOrders", sender: self)
+                       
+                        appDelegate.infoView(message: "Order Has Been Completed Successfully 👌🏻", color: colorLightGreen)
+                    }
+                    
+//                } else {
+                    
+//                    DispatchQueue.main.async {
+//                        appDelegate.infoView(message: error!.localizedDescription, color: colorSmoothRed)
+//                        print(error)
+//                    }
+                
+            }
+        })
+        alertView.addAction(cancelButton)
+        alertView.addAction(actionButton)
+        self.present(alertView, animated: true, completion: nil)
+        
+    }
+    
+    
     
 }
 
@@ -200,12 +251,14 @@ extension DeliveryVC: MKMapViewDelegate {
                 print("Error", error)
             }
             if let placemark = placemark?.first {
+                
                 let coordinates: CLLocationCoordinate2D = placemark.location!.coordinate
                
                 //create A Pin In Map
                 let dropPin = MKPointAnnotation()
                 dropPin.coordinate = coordinates
                 dropPin.title = title
+                
                 self.map.addAnnotation(dropPin)
                 completion(MKPlacemark.init(placemark: placemark))
             }
@@ -222,10 +275,12 @@ extension DeliveryVC: CLLocationManagerDelegate {
         let location = locations.last! as CLLocation
         self.lastLocation = location.coordinate
         
-        // Create pin annotation for Driver
+        
+        //If driverAnnotation is not nil assign it's coordinate (lat,long) to the last location of the driver to get it's points in map
         if driverPin != nil {
             driverPin.coordinate = self.lastLocation
         } else {
+            // Create pin annotation for Driver
             driverPin = MKPointAnnotation()
             driverPin.coordinate = self.lastLocation
             self.map.addAnnotation(driverPin)
@@ -238,11 +293,11 @@ extension DeliveryVC: CLLocationManagerDelegate {
             let pointRect = MKMapRect(x: annotationPoint.x, y: annotationPoint.y, width: 0.1, height: 0.1)
             zoomRect = zoomRect.union(pointRect)
         }
-        
+
         let insetWidth = -zoomRect.size.width * 0.2
         let insetHeight = -zoomRect.size.height * 0.2
         let insetRect = zoomRect.insetBy(dx: insetWidth, dy: insetHeight)
-        
+
         self.map.setVisibleMapRect(insetRect, animated: true)
     }
 }

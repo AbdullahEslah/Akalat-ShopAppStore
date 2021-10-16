@@ -24,9 +24,10 @@ class OrdersTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
     func configureCell(order: TheDriverOrderDetails) {
         
-        customerName.text    = order.customer.name
+        customerName.text    = (order.customer.name ?? "Customer")
         restaurantName.text  = order.restaurant.name
         customerAddress.text = order.address
             

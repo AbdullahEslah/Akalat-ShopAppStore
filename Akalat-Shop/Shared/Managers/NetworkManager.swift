@@ -53,12 +53,14 @@ class NetworkManager {
         case allMeals
         case makeAnOrder
         case latestOrders
+        case getDriverLocation
         
         //Driver App
         case driverReadyOrders
         case driverPickingOrder
         case driverLatestOrders
         case driverUpdateLocation
+        case driverCompleteOrder
         
         var stringValue: String {
             
@@ -91,6 +93,9 @@ class NetworkManager {
             case .latestOrders:
                 return EndPoints.base + "/api/customer/order/latest?"
                 
+            case .getDriverLocation:
+                return EndPoints.base + "/api/customer/driver/location/?"
+                
             //Driver
             case .driverReadyOrders:
                 return EndPoints.base + "/api/driver/orders/ready/"
@@ -104,9 +109,11 @@ class NetworkManager {
             case .driverUpdateLocation:
                 return EndPoints.base + "/api/driver/location/update/"
                 
+            case .driverCompleteOrder:
+                return EndPoints.base + "/api/driver/order/complete/"
+                
             }
         }
-        
         
         
         var url: URL {
@@ -187,6 +194,47 @@ class NetworkManager {
             } catch {
                 DispatchQueue.main.async {
                     completion(nil, .invalidData)
+                }
+            }
+        }
+        task.resume()
+    }
+    
+    
+    class func secondTaskForPOSTRequest<RequestType: Encodable, ResponseType: Decodable>(url: URL, responseType: ResponseType.Type, body: RequestType, completion: @escaping (ResponseType?, Error?) -> Void){
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = try! JSONEncoder().encode(body)
+        
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            if let _ = error {
+                completion(nil,error)
+                return
+            }
+            
+            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+                completion(nil,error)
+                return
+            }
+            
+            
+            guard let data = data else {
+                DispatchQueue.main.async {
+                    completion(nil, error)
+                }
+                return
+            }
+            let decoder = JSONDecoder()
+            do {
+                let responseObject = try decoder.decode(ResponseType.self, from: data)
+                DispatchQueue.main.async {
+                    completion(responseObject, nil)
+                }
+            } catch {
+                DispatchQueue.main.async {
+                    completion(nil, error)
                 }
             }
         }
@@ -477,6 +525,26 @@ class NetworkManager {
         }
     }
     
+    //Getting Driver Location
+    class func GetDriverLocation(completion: @escaping (ShowDriverLocation?, GFError?) -> Void) {
+        
+        let endPoints = EndPoints.getDriverLocation.stringValue + "access_token=\(Auth.accessToken)"
+        
+        guard let newUrl = URL(string: endPoints) else {
+            return
+        }
+        
+        taskForGETRequest(url:newUrl , responseType: ShowDriverLocation.self) { (response, error) in
+            if let response = response  {
+                //response -> is the {location}
+                completion(response,nil)
+            } else {
+                completion(nil,error)
+                print(error!.localizedDescription)
+            }
+        }
+    }
+    
     
                             /**************  Driver ***************/
     
@@ -538,6 +606,7 @@ class NetworkManager {
         
     }
     
+    
     //Update Driver Location
     class func updateDriverLocation(location: CLLocationCoordinate2D , completionHandler: @escaping ([String: Any]?) -> Void) {
         let path = "api/driver/location/update/"
@@ -546,6 +615,34 @@ class NetworkManager {
             "location": "\(location.latitude),\(location.longitude)"
         ]
         PostRequestManager.shared.requestServer(.post, path, params, URLEncoding(), completionHandler)
+    }
+    
+    class func DriverCompleteOrder(orderId: Int, completion: @escaping (Bool, Error?)  -> Void) {
+    
+        let body = CompleteOrder(access_token: Auth.accessToken, order_id: orderId)
+        secondTaskForPOSTRequest(url: EndPoints.driverCompleteOrder.url, responseType: CompleteOrderResponse.self, body: body) { (response, error) in
+            if let response = response {
+                print(response.status)
+                completion(true, nil)
+                print(response)
+            } else {
+                completion(false, error)
+                print(error)
+//                print(error!.localizedDescription)
+            }
+        }
+    }
+    
+    class func DriverCompleteTheOrder(orderId: Int, completion: @escaping ([String:Any]?)-> Void) {
+        let path   = "api/driver/order/complete/"
+        let params : [String: Any] = [
+        
+            "order_id"    : orderId,
+            "access_token": Auth.accessToken
+        
+        ]
+        
+        PostRequestManager.shared.requestServer(.post, path, params, URLEncoding(), completion)
     }
     
 }

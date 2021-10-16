@@ -32,7 +32,7 @@ class MenuVC: UITableViewController {
  
     
     func getUserData() {
-        nameLabel.text = User.currentUser.name ?? ""
+        nameLabel.text = User.currentUser.name?.capitalized ?? ""
 
         if Constants.appleUserId != nil {
         appleIdNameLabel.numberOfLines = 0

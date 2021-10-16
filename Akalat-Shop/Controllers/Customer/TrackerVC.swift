@@ -17,11 +17,17 @@ class TrackerVC: UIViewController {
     @IBOutlet weak var map: MKMapView!
     @IBOutlet weak var deliveryStatusLabel: UILabel!
     
-    //For Showing Customer Address
+    //For Showing Customer Location
     var destination: MKPlacemark?
     
-    //For Showing Restaurant Address
+    //For Showing Restaurant Location
     var source     : MKPlacemark?
+    
+    //For Showing Driver Location
+    var driverPin: MKPointAnnotation!
+    
+    //For Getting Driver Location Every Second
+    var timer   = Timer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +37,7 @@ class TrackerVC: UIViewController {
         tableView.register(UINib(nibName: "TrackerTableViewCell", bundle: nil), forCellReuseIdentifier: "TrackerTableViewCell")
         configureMenu()
         fetchLatestOrders()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -64,6 +71,7 @@ class TrackerVC: UIViewController {
     }
     
     func orderLocationStatus() {
+        
         NetworkManager.getOrderStatus { order, error in
             if error == nil {
                 DispatchQueue.main.async{
@@ -71,16 +79,25 @@ class TrackerVC: UIViewController {
                         self.deliveryStatusLabel.text = "You Have No Orders Yet !"
                     } else {
                         self.deliveryStatusLabel.text = order?.status?.uppercased()
-                    }
-                    let fromRestaurantAddress = order?.restaurant.address.uppercased()
-                    let toCustomerAddress     = order?.address
-                    self.getLocationAddress(fromRestaurantAddress ?? "", "Restaurant", { restaurantAddress in
-                        self.source = restaurantAddress
-                        self.getLocationAddress(toCustomerAddress ?? "", "You", { customerDestination in
-                            self.destination = customerDestination
-                            self.getDirections()
+                        self.tableView.reloadData()
+                        
+                        let fromRestaurantAddress = order?.restaurant.address.uppercased()
+                        let toCustomerAddress     = order?.address
+                        self.getLocationAddress(fromRestaurantAddress ?? "", "RESTAURANT", { restaurantAddress in
+                            self.source = restaurantAddress
+                            self.getLocationAddress(toCustomerAddress ?? "", "YOU", { customerDestination in
+                                self.destination = customerDestination
+                                self.getDirections()
+                            })
                         })
-                    })
+                        
+                        //see the driver location if the driver picked the order and not delivered yet
+                        if order?.status != "Deliverd" {
+                            self.getDriverLocationEveryOneSecond()
+                        } else {
+                            self.autoZoomDriverLocation()
+                        }
+                    }
                 }
             } else {
                 DispatchQueue.main.async{
@@ -89,7 +106,65 @@ class TrackerVC: UIViewController {
             }
         }
     }
+    func getDriverLocationEveryOneSecond() {
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(getDriverLocation), userInfo: nil, repeats: true)
+    }
     
+    @objc func getDriverLocation() {
+        
+        NetworkManager.GetDriverLocation { (latAndLong, error) in
+            if error == nil {
+                DispatchQueue.main.async{
+                     
+                    //To prevent run the server every second if we havn't any orders
+                    if let location = latAndLong?.location  {
+                        
+                        self.deliveryStatusLabel.text = "ON THE WAY"
+                        
+                        //Getting Lat And Long From Response before and after the comma
+                        let split   = location.components(separatedBy: ",")
+                        let lat     = split[0]
+                        let long    = split[1]
+                        
+                        //Putting the lat and long degrees in coordinate variable
+                        let coordinate = CLLocationCoordinate2D(latitude: CLLocationDegrees(lat)!, longitude: CLLocationDegrees(long)!)
+                        
+                        // Create pin annotation for Driver
+                        if self.driverPin != nil {
+                            self.driverPin.coordinate = coordinate
+                        } else {
+                            self.driverPin = MKPointAnnotation()
+                            self.driverPin.coordinate = coordinate
+                            self.map.addAnnotation(self.driverPin)
+                            self.driverPin.title = "DRIVER"
+                        }
+                        // Reset zoom rect to cover 3 locations
+                        self.autoZoomDriverLocation()
+                    } else { 
+                        //To Stop Running The Timer
+                        self.timer.invalidate()
+                    }
+                }
+            }
+        }
+    }
+    
+    // Reset zoom rect to cover 3 locations
+     func autoZoomDriverLocation() {
+        
+        var zoomRect = MKMapRect.null
+        for annotation in self.map.annotations {
+            let annotationPoint = MKMapPoint(annotation.coordinate)
+            let pointRect = MKMapRect(x: annotationPoint.x, y: annotationPoint.y, width: 0.1, height: 0.1)
+            zoomRect = zoomRect.union(pointRect)
+        }
+        
+        let insetWidth = -zoomRect.size.width * 0.2
+        let insetHeight = -zoomRect.size.height * 0.2
+        let insetRect = zoomRect.insetBy(dx: insetWidth, dy: insetHeight)
+        
+        self.map.setVisibleMapRect(insetRect, animated: true)
+    }
    
 }
 extension TrackerVC : UITableViewDelegate, UITableViewDataSource {
@@ -123,8 +198,9 @@ extension TrackerVC: MKMapViewDelegate {
     
     //Delegate Func Of MKMapViewDelegate (Create A Line Betwween Two Locations)
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        
         let render = MKPolylineRenderer(overlay: overlay)
-        render.strokeColor = UIColor.blue
+        render.strokeColor = UIColor(named:"MainColor")
         render.lineWidth = 5.0
         
         return render
@@ -179,7 +255,6 @@ extension TrackerVC: MKMapViewDelegate {
         for route in response.routes {
             self.map.addOverlay(route.polyline, level: MKOverlayLevel.aboveRoads)
         }
-        
         var zoomRect = MKMapRect.null
         for annotation in self.map.annotations {
             let annotationPoint = MKMapPoint(annotation.coordinate)
@@ -192,5 +267,51 @@ extension TrackerVC: MKMapViewDelegate {
         let insetRect = zoomRect.insetBy(dx: insetWidth, dy: insetHeight)
         
         self.map.setVisibleMapRect(insetRect, animated: true)
+        
+        
+    }
+    
+    // Customize Annotation (Pin) With Image
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        
+        
+        //Steps For Creating Annotaion 1
+        let  annotationId  = "MyPin"
+        var  annotationView: MKAnnotationView?
+        
+        // Step 2 (End)
+        if let dequeueAnnotationView = mapView.dequeueReusableAnnotationView(withIdentifier: annotationId)  {
+            
+            annotationView = dequeueAnnotationView
+            annotationView?.annotation = annotation
+        } else {
+            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: annotationId)
+        }
+        
+        // And Here If We Have Annotation And It's title called Driver put annotation With Image Driver... and so on
+        if let annotationView = annotationView, let name = annotation.title!{
+            
+            switch name {
+            case "DRIVER":
+                annotationView.canShowCallout = true
+                annotationView.image = UIImage(named: "pin_car")
+                
+                
+            case "YOU":
+                annotationView.canShowCallout = true
+                annotationView.image = UIImage(named: "pin_customer")
+                
+                
+            case "RESTAURANT":
+                annotationView.canShowCallout = true
+                annotationView.image = UIImage(named: "restaurant")
+                
+            
+            default:
+                annotationView.canShowCallout = true
+                annotationView.image = UIImage(named: "pin_car")
+            }
+        }
+        return annotationView
     }
 }
