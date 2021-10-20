@@ -415,13 +415,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="FTz-fM-gVe">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="402"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="240.5"/>
                                 <connections>
                                     <outlet property="delegate" destination="vSt-hd-iqL" id="FbP-EX-1JZ"/>
                                 </connections>
                             </mapView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tb1-QC-Kvn" customClass="RoundedButton" customModule="Akalat_Shop" customModuleProvider="target">
-                                <rect key="frame" x="16" y="515" width="288" height="37"/>
+                                <rect key="frame" x="16" y="525" width="288" height="37"/>
                                 <color key="backgroundColor" name="MainColor"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="19"/>
                                 <state key="normal" title="Complete Order">
@@ -432,35 +432,35 @@
                                 </connections>
                             </button>
                             <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O63-kj-gQM" customClass="RoundedVisualEffectView" customModule="Akalat_Shop" customModuleProvider="target">
-                                <rect key="frame" x="16" y="409.5" width="288" height="97.5"/>
+                                <rect key="frame" x="16" y="442" width="288" height="75"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="5r6-Pe-adH">
-                                    <rect key="frame" x="0.0" y="0.0" width="288" height="98"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="288" height="75"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="marketplace" translatesAutoresizingMaskIntoConstraints="NO" id="iDb-WG-a51">
-                                            <rect key="frame" x="8" y="18" width="62" height="62"/>
+                                            <rect key="frame" x="8" y="6.5" width="62" height="62"/>
                                             <color key="tintColor" name="DarkColor"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="iDb-WG-a51" secondAttribute="height" multiplier="1:1" id="nPx-Qg-fle"/>
                                             </constraints>
                                         </imageView>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="11" translatesAutoresizingMaskIntoConstraints="NO" id="KEx-Iu-c1Z">
-                                            <rect key="frame" x="78" y="18" width="194" height="62"/>
+                                            <rect key="frame" x="78" y="6.5" width="194" height="62"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Customer Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="S2N-yI-ITZ">
-                                                    <rect key="frame" x="0.0" y="0.0" width="194" height="13"/>
-                                                    <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="18"/>
-                                                    <color key="textColor" name="SmoothRed"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Customer Address" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="M53-8B-xdm">
-                                                    <rect key="frame" x="0.0" y="24" width="194" height="13.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="194" height="13.5"/>
                                                     <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
                                                     <color key="textColor" name="DarkColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Customer Address" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="M53-8B-xdm">
+                                                    <rect key="frame" x="0.0" y="24.5" width="194" height="13.5"/>
+                                                    <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
+                                                    <color key="textColor" name="SmoothRed"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oQQ-Ji-bwP">
-                                                    <rect key="frame" x="0.0" y="48.5" width="194" height="13.5"/>
+                                                    <rect key="frame" x="0.0" y="49" width="194" height="13"/>
                                                     <state key="normal" title="phoneNumber"/>
                                                     <connections>
                                                         <action selector="callCustomerButton:" destination="vSt-hd-iqL" eventType="touchUpInside" id="6B2-VE-soA"/>
@@ -481,21 +481,55 @@
                                 </view>
                                 <blurEffect style="systemMaterial"/>
                             </visualEffectView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="MIm-Wm-xqI">
+                                <rect key="frame" x="16" y="242.5" width="288" height="104"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="qyg-Qh-yOR">
+                                <rect key="frame" x="16" y="354.5" width="288" height="83.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Restaurant Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E70-uS-LP4">
+                                        <rect key="frame" x="0.0" y="0.0" width="288" height="22.5"/>
+                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
+                                        <color key="textColor" name="MainColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Order Delivery " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gnN-dR-fif">
+                                        <rect key="frame" x="0.0" y="30.5" width="288" height="22.5"/>
+                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
+                                        <color key="textColor" name="SmoothRed"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Order Total" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nag-FT-hR6">
+                                        <rect key="frame" x="0.0" y="61" width="288" height="22.5"/>
+                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
+                                        <color key="textColor" name="SmoothRed"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="SOy-o7-bqX"/>
                         <color key="backgroundColor" name="WhiteColor"/>
                         <constraints>
+                            <constraint firstItem="qyg-Qh-yOR" firstAttribute="leading" secondItem="O63-kj-gQM" secondAttribute="leading" id="1Dm-RG-ub9"/>
                             <constraint firstItem="SOy-o7-bqX" firstAttribute="trailing" secondItem="FTz-fM-gVe" secondAttribute="trailing" id="1QU-HR-4IW"/>
-                            <constraint firstItem="O63-kj-gQM" firstAttribute="top" secondItem="FTz-fM-gVe" secondAttribute="bottom" constant="7.5" id="299-PU-r1b"/>
+                            <constraint firstItem="O63-kj-gQM" firstAttribute="top" secondItem="qyg-Qh-yOR" secondAttribute="bottom" constant="4" id="1qX-ce-x6d"/>
+                            <constraint firstItem="qyg-Qh-yOR" firstAttribute="top" secondItem="MIm-Wm-xqI" secondAttribute="bottom" constant="8" id="5lY-Du-AmN"/>
+                            <constraint firstItem="MIm-Wm-xqI" firstAttribute="height" secondItem="P8c-ed-KF0" secondAttribute="height" multiplier="0.183099" id="AR6-fR-bZ5"/>
                             <constraint firstItem="Tb1-QC-Kvn" firstAttribute="height" secondItem="P8c-ed-KF0" secondAttribute="height" multiplier="0.0651408" id="ENg-xS-Q6f"/>
-                            <constraint firstItem="SOy-o7-bqX" firstAttribute="bottom" secondItem="Tb1-QC-Kvn" secondAttribute="bottom" constant="16" id="Fdj-SC-0T0"/>
+                            <constraint firstItem="SOy-o7-bqX" firstAttribute="bottom" secondItem="Tb1-QC-Kvn" secondAttribute="bottom" constant="6" id="Fdj-SC-0T0"/>
                             <constraint firstItem="Tb1-QC-Kvn" firstAttribute="leading" secondItem="SOy-o7-bqX" secondAttribute="leading" constant="16" id="ILx-Py-VXT"/>
                             <constraint firstItem="O63-kj-gQM" firstAttribute="leading" secondItem="Tb1-QC-Kvn" secondAttribute="leading" id="IU9-To-z1D"/>
                             <constraint firstItem="SOy-o7-bqX" firstAttribute="trailing" secondItem="Tb1-QC-Kvn" secondAttribute="trailing" constant="16" id="KYK-O3-xYA"/>
-                            <constraint firstItem="O63-kj-gQM" firstAttribute="height" secondItem="P8c-ed-KF0" secondAttribute="height" multiplier="0.171655" id="PZl-9U-cv7"/>
+                            <constraint firstItem="MIm-Wm-xqI" firstAttribute="leading" secondItem="O63-kj-gQM" secondAttribute="leading" id="O5y-Yf-vqn"/>
+                            <constraint firstItem="O63-kj-gQM" firstAttribute="height" secondItem="P8c-ed-KF0" secondAttribute="height" multiplier="0.131655" id="PZl-9U-cv7"/>
                             <constraint firstItem="FTz-fM-gVe" firstAttribute="top" secondItem="SOy-o7-bqX" secondAttribute="top" id="XRb-1P-YlY"/>
+                            <constraint firstItem="MIm-Wm-xqI" firstAttribute="trailing" secondItem="O63-kj-gQM" secondAttribute="trailing" id="d2l-f9-Prs"/>
                             <constraint firstItem="O63-kj-gQM" firstAttribute="trailing" secondItem="Tb1-QC-Kvn" secondAttribute="trailing" id="ebw-Up-w2G"/>
                             <constraint firstItem="FTz-fM-gVe" firstAttribute="leading" secondItem="SOy-o7-bqX" secondAttribute="leading" id="fk3-mV-jpT"/>
+                            <constraint firstItem="qyg-Qh-yOR" firstAttribute="trailing" secondItem="O63-kj-gQM" secondAttribute="trailing" id="frA-2V-WWG"/>
+                            <constraint firstItem="MIm-Wm-xqI" firstAttribute="top" secondItem="FTz-fM-gVe" secondAttribute="bottom" constant="2" id="nqR-zO-UgF"/>
                             <constraint firstItem="Tb1-QC-Kvn" firstAttribute="top" secondItem="O63-kj-gQM" secondAttribute="bottom" constant="8" symbolic="YES" id="yjS-KQ-5dL"/>
                         </constraints>
                     </view>
@@ -508,9 +542,13 @@
                         <outlet property="customerAva" destination="iDb-WG-a51" id="taw-HH-177"/>
                         <outlet property="customerInfoView" destination="O63-kj-gQM" id="agS-Cf-7aK"/>
                         <outlet property="customerPhoneNumber" destination="oQQ-Ji-bwP" id="PJ3-au-HFs"/>
+                        <outlet property="deliveryPriceLabel" destination="gnN-dR-fif" id="HNL-6q-BxP"/>
                         <outlet property="map" destination="FTz-fM-gVe" id="xlg-db-WDG"/>
                         <outlet property="menuBarButton" destination="O8N-as-BZI" id="K1q-X4-LYJ"/>
                         <outlet property="nameLabel" destination="S2N-yI-ITZ" id="n1P-OG-Tnu"/>
+                        <outlet property="restaurantName" destination="E70-uS-LP4" id="yyE-0H-MhB"/>
+                        <outlet property="tableView" destination="MIm-Wm-xqI" id="5nG-Mq-YXH"/>
+                        <outlet property="totalPriceLabel" destination="nag-FT-hR6" id="WvU-ba-Hto"/>
                         <segue destination="oqN-3u-qWJ" kind="show" identifier="ReadyOrders" id="NWq-fD-5t5"/>
                     </connections>
                 </viewController>
@@ -545,7 +583,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mhz-M8-ibw">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mhz-M8-ibw" customClass="BarChartView" customModule="Charts">
                                 <rect key="frame" x="0.0" y="74" width="320" height="414"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
@@ -566,6 +604,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="menuBarButton" destination="z6h-gW-ZXs" id="MaI-Il-9gU"/>
+                        <outlet property="viewChart" destination="Mhz-M8-ibw" id="nxh-Mf-6ik"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mEv-hX-Djw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

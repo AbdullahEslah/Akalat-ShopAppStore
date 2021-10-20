@@ -7,9 +7,10 @@
 
 import Foundation
 
+//Arrays Shared Between Customer - Driver
 class ArraysModels {
     
-    //Shared Between Customer - Driver
+    //Customer
     static var regions            = [RestaurntsResult]()
     
     static var onBordingContents  = [OnBoarding]()
@@ -23,12 +24,10 @@ class ArraysModels {
     static var listAllMeals       = [MealsResult]()
 
     static var listOrders         = [OrderDetails]()
-    
-    static var listOrderStatus    = [Order]()
-    
+   
     
     //Driver
     static var driverReadyOrders  = [TheDriverOrderDetails]()
-    
+    static var driverLatestOrders = [LatestDriverOrderDetails]()
    
 }

@@ -25,7 +25,7 @@ class PerformOrderAlertVC: UIViewController {
                 
                 case "failed":
                     
-                    Helper().showAlert(title: "Error !", message: json?["message"] as! String, in: self)
+                    Helper().showAlert(title: "Error !", message: json?["message"] as? String ?? "Error Try Again, Later", in: self)
                     
                     self.dismiss(animated: true, completion: {
                         appDelegate.infoView(message: json?["message"] as! String, color: colorSmoothRed)

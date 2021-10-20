@@ -1,6 +1,7 @@
 ${PODS_ROOT}/Target Support Files/Pods-Akalat-Shop/Pods-Akalat-Shop-frameworks.sh
 ${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework
 ${BUILT_PRODUCTS_DIR}/AppAuth/AppAuth.framework
+${BUILT_PRODUCTS_DIR}/Charts/Charts.framework
 ${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework
 ${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework
 ${BUILT_PRODUCTS_DIR}/FBSDKShareKit/FBSDKShareKit.framework

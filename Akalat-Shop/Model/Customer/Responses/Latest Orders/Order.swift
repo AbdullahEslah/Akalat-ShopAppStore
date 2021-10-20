@@ -18,20 +18,22 @@ struct Order : Codable {
 	let restaurant    : Restaurant
 	let driver        : Driver?
 	let order_details : [OrderDetails]
-	let total         : Int?
+	let total         : Double?
 	let status        : String?
 	let address       : String
+    let phone_number  : String?
 
 	enum CodingKeys: String, CodingKey {
 
-		case id      = "id"
+		case id           = "id"
 		case customer
 		case restaurant
 		case driver
 		case order_details
-		case total   = "total"
-		case status  = "status"
-		case address = "address"
+		case total        = "total"
+		case status       = "status"
+		case address      = "address"
+        case phone_number = "phone_number"
 	}
 
 	

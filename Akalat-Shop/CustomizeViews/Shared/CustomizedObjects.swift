@@ -173,7 +173,7 @@ extension UIView {
 
         switch side {
         case .Top:
-            border.frame = CGRect(x: 20, y: 0, width: frame.size.width - 40, height: thickness)
+            border.frame = CGRect(x: 20, y: -8, width: frame.size.width - 40, height: thickness)
         case .Bottom:
             border.frame = CGRect(x: 0, y: frame.size.height - thickness, width: frame.size.width, height: thickness)
         case .Left:

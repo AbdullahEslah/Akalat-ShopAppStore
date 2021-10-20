@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LatestOrdersTableViewCell" rowHeight="60" id="KGk-i7-Jjw" customClass="LatestOrdersTableViewCell" customModule="Akalat_Shop" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="311" height="60"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="311" height="60"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="51" translatesAutoresizingMaskIntoConstraints="NO" id="Ulv-t2-5Ux">
+                        <rect key="frame" x="8" y="8" width="295" height="44"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MealName" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bfJ-Kv-4AX">
+                                <rect key="frame" x="0.0" y="0.0" width="80" height="44"/>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="12"/>
+                                <color key="textColor" name="SmoothRed"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10000" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CNN-E1-zEY">
+                                <rect key="frame" x="131" y="0.0" width="41.5" height="44"/>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="13"/>
+                                <color key="textColor" name="SmoothRed"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12000" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rMd-Lb-NsO">
+                                <rect key="frame" x="223.5" y="0.0" width="71.5" height="44"/>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="12"/>
+                                <color key="textColor" name="SmoothRed"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" name="WhiteColor"/>
+                        <constraints>
+                            <constraint firstItem="CNN-E1-zEY" firstAttribute="width" secondItem="Ulv-t2-5Ux" secondAttribute="width" multiplier="0.140678" id="8h0-hM-zVu"/>
+                            <constraint firstItem="bfJ-Kv-4AX" firstAttribute="width" secondItem="Ulv-t2-5Ux" secondAttribute="width" multiplier="0.271186" id="OEK-Za-SYh"/>
+                        </constraints>
+                    </stackView>
+                </subviews>
+                <color key="backgroundColor" name="WhiteColor"/>
+                <constraints>
+                    <constraint firstItem="Ulv-t2-5Ux" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="8K8-Be-AgN"/>
+                    <constraint firstAttribute="bottom" secondItem="Ulv-t2-5Ux" secondAttribute="bottom" constant="8" id="MYh-qF-hOS"/>
+                    <constraint firstAttribute="trailing" secondItem="Ulv-t2-5Ux" secondAttribute="trailing" constant="8" id="Pnt-7R-faK"/>
+                    <constraint firstItem="Ulv-t2-5Ux" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="gwD-eH-S9X"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <color key="backgroundColor" name="WhiteColor"/>
+            <connections>
+                <outlet property="mealName" destination="bfJ-Kv-4AX" id="DFt-01-7Qp"/>
+                <outlet property="mealPrice" destination="rMd-Lb-NsO" id="ivD-fa-Ugg"/>
+                <outlet property="mealQuantity" destination="CNN-E1-zEY" id="C90-kr-gYP"/>
+            </connections>
+            <point key="canvasLocation" x="83.333333333333343" y="95.089285714285708"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <namedColor name="SmoothRed">
+            <color red="0.76099997758865356" green="0.33700001239776611" blue="0.29800000786781311" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="WhiteColor">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

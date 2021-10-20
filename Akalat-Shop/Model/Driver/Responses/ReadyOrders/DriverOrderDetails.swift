@@ -16,7 +16,7 @@ struct DriverOrderDetails : Codable {
 	let id                : Int
     let meal              : DriverMealDetails
     let quantity          : Int
-    let sub_total         : Int
+    let sub_total         : Double
 
 	enum CodingKeys: String, CodingKey {
 

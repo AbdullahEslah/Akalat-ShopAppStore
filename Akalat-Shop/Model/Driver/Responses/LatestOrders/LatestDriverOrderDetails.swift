@@ -13,10 +13,11 @@ For support, please feel free to contact me at https://www.linkedin.com/in/syeda
 
 import Foundation
 struct LatestDriverOrderDetails : Codable {
+    
 	let id                : Int
     let meal              : DriverMealDetails
     let quantity          : Int
-    let sub_total         : Int
+    let sub_total         : Double
 
 	enum CodingKeys: String, CodingKey {
 

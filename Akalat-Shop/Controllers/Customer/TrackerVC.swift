@@ -16,6 +16,9 @@ class TrackerVC: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var map: MKMapView!
     @IBOutlet weak var deliveryStatusLabel: UILabel!
+    @IBOutlet weak var deliveryPriceLabel: UILabel!
+    @IBOutlet weak var totalLabel: UILabel!
+    
     
     //For Showing Customer Location
     var destination: MKPlacemark?
@@ -29,6 +32,8 @@ class TrackerVC: UIViewController {
     //For Getting Driver Location Every Second
     var timer   = Timer()
     
+    var latestOrders : Restaurant?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -37,12 +42,14 @@ class TrackerVC: UIViewController {
         tableView.register(UINib(nibName: "TrackerTableViewCell", bundle: nil), forCellReuseIdentifier: "TrackerTableViewCell")
         configureMenu()
         fetchLatestOrders()
+//        fetchDeliveryOrders()
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         orderLocationStatus()
+        fetchDeliveryOrders()
     }
     
     func configureMenu() {
@@ -54,12 +61,42 @@ class TrackerVC: UIViewController {
     }
     
     func fetchLatestOrders() {
+        NetworkManager.getOrderDetails { (orderDetails, error) in
+            if error == nil {
+                DispatchQueue.main.async {
+//                    orderDetails?.restaurant.delivery
+                    ArraysModels.listOrders.removeAll()
+                    ArraysModels.listOrders.append(contentsOf: orderDetails)
+                    self.tableView.reloadData()
+                }
+            }else {
+                DispatchQueue.main.async {
+                    self.presentGFAlertOnMainThread(title: "Error !", message: error!.rawValue, buttonTitle: "Ok")
+                }
+            }
+        }
+    }
+    
+    func fetchDeliveryOrders() {
         NetworkManager.getLatestOrders { (orderDetails, error) in
             if error == nil {
                 DispatchQueue.main.async {
-                  
-                    ArraysModels.listOrders.removeAll()
-                    ArraysModels.listOrders.append(contentsOf: orderDetails)
+                    
+                    guard let orders = orderDetails else {
+                        return
+                    }
+                    if orders.total == nil {
+                        self.deliveryPriceLabel.isHidden = true
+                        self.totalLabel.isHidden = true
+                    } else {
+                    self.deliveryPriceLabel.text = "Delivery Price: \(orders.restaurant.delivery ?? 0) LE"
+                    }
+                    
+                    let total: Double = orders.total ?? 0
+                    let delivery: Double = orders.restaurant.delivery ?? 0
+                    let all = total + delivery
+                    print(all)
+                    self.totalLabel.text = "Total: \(all) LE"
                     self.tableView.reloadData()
                 }
             }else {
@@ -168,18 +205,22 @@ class TrackerVC: UIViewController {
    
 }
 extension TrackerVC : UITableViewDelegate, UITableViewDataSource {
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return ArraysModels.listOrders.count
     }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "TrackerTableViewCell", for: indexPath) as? TrackerTableViewCell else {
             return UITableViewCell()
         }
         
-        let orders = ArraysModels.listOrders[indexPath.row]
+        let orders       = ArraysModels.listOrders[indexPath.row]
+        
         cell.mealCountLabel.text = "\(orders.quantity)"
         cell.mealNameLabel.text  = "\(orders.meal.name)"
         cell.mealPriceLabel.text = "\(Float(orders.sub_total))"

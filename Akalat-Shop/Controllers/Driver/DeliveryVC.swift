@@ -10,7 +10,7 @@ import Lottie
 import Kingfisher
 import MapKit
 
-class DeliveryVC: UIViewController,UIActionSheetDelegate {
+class DeliveryVC: UIViewController,UIActionSheetDelegate, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var menuBarButton: UIBarButtonItem!
     @IBOutlet weak var customerAva: UIImageView!
@@ -20,6 +20,10 @@ class DeliveryVC: UIViewController,UIActionSheetDelegate {
     @IBOutlet weak var completeOrderButton: RoundedButton!
     @IBOutlet weak var customerInfoView: UIView!
     @IBOutlet weak var map: MKMapView!
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var deliveryPriceLabel: UILabel!
+    @IBOutlet weak var totalPriceLabel: UILabel!
+    @IBOutlet weak var restaurantName: UILabel!
     
     let animationView  = AnimationView(animation: Animation.named("39587-delivery-man"))
     
@@ -36,6 +40,12 @@ class DeliveryVC: UIViewController,UIActionSheetDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.delegate   = self
+        tableView.dataSource = self
+        tableView.tableFooterView = UIView()
+        tableView.register(UINib(nibName: "LatestOrdersTableViewCell", bundle: nil), forCellReuseIdentifier: "LatestOrdersTableViewCell")
+        
         configureMenu()
         userLocation()
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateLocation), userInfo: nil, repeats: true)
@@ -54,6 +64,8 @@ class DeliveryVC: UIViewController,UIActionSheetDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         customerInfo()
+        showOrderData()
+        showDeliveryData()
     }
     
     override func viewDidLayoutSubviews() {
@@ -62,6 +74,8 @@ class DeliveryVC: UIViewController,UIActionSheetDelegate {
         customerAva.layer.borderWidth = 1.0
         customerAva.clipsToBounds = true
         customerAva.layer.cornerRadius = customerAva.frame.width / 2
+        
+        restaurantName.addBorder(toSide: UIView.ViewSide.Top, withColor: UIColor.lightGray, andThickness: 1)
     }
     
     func configureMenu() {
@@ -82,7 +96,6 @@ class DeliveryVC: UIViewController,UIActionSheetDelegate {
             locationManager.desiredAccuracy = kCLLocationAccuracyBest
             locationManager.requestAlwaysAuthorization()
             locationManager.startUpdatingLocation()
-            
             self.map.showsUserLocation = false
             
         }
@@ -129,10 +142,14 @@ class DeliveryVC: UIViewController,UIActionSheetDelegate {
                         DispatchQueue.main.async {
                             self.animationView.stop()
                             self.animationView.removeFromSuperview()
-                            self.map.isHidden = true
-                            self.customerInfoView.isHidden = true
-                            self.completeOrderButton.isHidden = true
+                            self.map.isHidden                  = true
+                            self.customerInfoView.isHidden     = true
+                            self.completeOrderButton.isHidden  = true
+                            self.tableView.isHidden            = true
                             self.customerPhoneNumber.isEnabled = false
+                            self.deliveryPriceLabel.isHidden   = true
+                            self.totalPriceLabel.isHidden      = true
+                            self.restaurantName.isHidden       = true
                             
                             let emptyState = UILabel(frame: self.view.frame.inset(by: .init(top: 60, left: 30, bottom: 100, right: 30)))
                             emptyState.text = "You Don't Have Any Orders To Be Delivered !"
@@ -149,11 +166,7 @@ class DeliveryVC: UIViewController,UIActionSheetDelegate {
             }
         }
     }
-    
-//    func updateLocationEveryOneSecond() {
-        
-//    }
-    
+ 
     @objc func updateLocation() {
         
         //To Prevent Running The Server Evry Second
@@ -167,6 +180,72 @@ class DeliveryVC: UIViewController,UIActionSheetDelegate {
         }
     }
     
+    func showOrderData() {
+        NetworkManager.DriverShowLatestOrders { (orderData, error) in
+            if error == nil {
+                DispatchQueue.main.async {
+                    self.animationView.stop()
+                    self.animationView.removeFromSuperview()
+                    ArraysModels.driverLatestOrders.removeAll()
+                    ArraysModels.driverLatestOrders.append(contentsOf: orderData)
+                    
+                    self.tableView.reloadData()
+                }
+            } else {
+                DispatchQueue.main.async {
+                    self.animationView.stop()
+                    self.animationView.removeFromSuperview()
+                }
+            }
+        }
+    }
+    
+    func showDeliveryData() {
+        NetworkManager.DriverShowDelivery { deliveryData, error in
+            
+            if error == nil {
+                DispatchQueue.main.async {
+                    self.animationView.stop()
+                    self.animationView.removeFromSuperview()
+                    
+                    if deliveryData?.order.total == nil {
+                        self.animationView.stop()
+                        self.animationView.removeFromSuperview()
+                        self.map.isHidden                  = true
+                        self.customerInfoView.isHidden     = true
+                        self.completeOrderButton.isHidden  = true
+                        self.tableView.isHidden            = true
+                        self.customerPhoneNumber.isEnabled = false
+                        self.deliveryPriceLabel.isHidden   = true
+                        self.totalPriceLabel.isHidden      = true
+                        self.restaurantName.isHidden       = true
+                        
+                        let emptyState = UILabel(frame: self.view.frame.inset(by: .init(top: 60, left: 30, bottom: 100, right: 30)))
+                        emptyState.text = "You Don't Have Any Orders To Be Delivered !"
+                        emptyState.font = .boldSystemFont(ofSize: 22)
+                        emptyState.textAlignment = .center
+                        emptyState.numberOfLines = 0
+                        emptyState.textColor = colorSmoothRed
+                        self.view.addSubview(emptyState)    
+                    } else {
+                        self.restaurantName.text     = deliveryData?.order.restaurant.name
+                        self.deliveryPriceLabel.text = "Delivery: \(deliveryData?.order.restaurant.delivery ?? 0) LE"
+                        let total         : Double   = deliveryData?.order.total ?? 0
+                        let deliveryPrice : Double   = deliveryData?.order.restaurant.delivery ?? 0
+                        let all = total + deliveryPrice
+                        self.totalPriceLabel.text    = "Total: \(all) LE"
+                    }
+                }
+            } else {
+                DispatchQueue.main.async {
+                    self.animationView.stop()
+                    self.animationView.removeFromSuperview()
+                }
+            }
+            
+        }
+    }
+        
     @IBAction func callCustomerButton(_ sender: Any) {
         
         let alert = UIAlertController(title: "Call Customer!", message: "Ask Customer For Address", preferredStyle: .alert) // 1
@@ -180,15 +259,14 @@ class DeliveryVC: UIViewController,UIActionSheetDelegate {
         } // 2
         
         
-        let secondAction = UIAlertAction(title: "Cancel", style: .default) { (alert: UIAlertAction!) -> Void in
-            self.navigationController?.popViewController(animated: true)
-        } // 3
+        let secondAction = UIAlertAction(title: "Cancel", style: .cancel)
         
         alert.addAction(firstAction) // 4
         alert.addAction(secondAction) // 5
         present(alert, animated: true, completion:nil) // 6
         
     }
+    
     @IBAction func completeOrder(_ sender: Any) {
         
         let alertView = UIAlertController(title: "Comlete Order!", message: "Are You Want To Complete Order Now ? ", preferredStyle: .alert)
@@ -210,14 +288,7 @@ class DeliveryVC: UIViewController,UIActionSheetDelegate {
                        
                         appDelegate.infoView(message: "Order Has Been Completed Successfully 👌🏻", color: colorLightGreen)
                     }
-                    
-//                } else {
-                    
-//                    DispatchQueue.main.async {
-//                        appDelegate.infoView(message: error!.localizedDescription, color: colorSmoothRed)
-//                        print(error)
-//                    }
-                
+
             }
         })
         alertView.addAction(cancelButton)
@@ -300,4 +371,33 @@ extension DeliveryVC: CLLocationManagerDelegate {
 
         self.map.setVisibleMapRect(insetRect, animated: true)
     }
+}
+
+extension DeliveryVC {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return ArraysModels.driverLatestOrders.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "LatestOrdersTableViewCell", for: indexPath) as? LatestOrdersTableViewCell else {
+            return UITableViewCell()
+        }
+        
+        let latestOrders = ArraysModels.driverLatestOrders[indexPath.row]
+        cell.configureCell(order: latestOrders)
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 60
+    }
+    
+    
+    
 }

@@ -19,8 +19,8 @@ struct TheDriverLatestOrderDetails : Codable {
     let restaurant           : LatestRestaurantDetails
 	let driver               : LatestDriverDetails?
 	let order_details        : [LatestDriverOrderDetails]
-	let total                : Int
-	let status               : String
+	let total                : Double?
+	let status               : String?
 	let address              : String
     let phone_number         : String
 

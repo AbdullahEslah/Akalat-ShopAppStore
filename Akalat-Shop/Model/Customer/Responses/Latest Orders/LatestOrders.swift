@@ -13,6 +13,7 @@ For support, please feel free to contact me at https://www.linkedin.com/in/syeda
 
 import Foundation
 struct LatestOrders : Codable {
+    
 	let order : Order
 
 	enum CodingKeys: String, CodingKey {

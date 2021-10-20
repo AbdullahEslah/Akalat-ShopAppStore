@@ -46,6 +46,10 @@
 		FA6B5663270FD01C002640A1 /* OrdersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA439C18270E64E800F2F83D /* OrdersTableViewCell.swift */; };
 		FAC551CC270D0E43009F83CB /* 23211-receive-order.json in Resources */ = {isa = PBXBuildFile; fileRef = FAC551CB270D0E43009F83CB /* 23211-receive-order.json */; };
 		FAC551D8270D0EE6009F83CB /* lf20_vhkdj1ra.json in Resources */ = {isa = PBXBuildFile; fileRef = FAC551D7270D0EE6009F83CB /* lf20_vhkdj1ra.json */; };
+		FAC6672E271FA3A900C2CDDF /* Charts.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC6672D271FA3A900C2CDDF /* Charts.swift */; };
+		FAC66732271FA3EF00C2CDDF /* RevenueData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC66731271FA3EF00C2CDDF /* RevenueData.swift */; };
+		FAD102E2271E158900B4F0A6 /* LatestOrdersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD102E0271E158900B4F0A6 /* LatestOrdersTableViewCell.swift */; };
+		FAD102E3271E158900B4F0A6 /* LatestOrdersTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAD102E1271E158900B4F0A6 /* LatestOrdersTableViewCell.xib */; };
 		FADB6B1E27152E8700349739 /* UpdateDriverLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADB6B1D27152E8700349739 /* UpdateDriverLocation.swift */; };
 		FADB6B2227152EE600349739 /* UpdateDriverLocationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADB6B2127152EE600349739 /* UpdateDriverLocationResponse.swift */; };
 		FAEFC57126F8883300095DB5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAEFC56F26F8883300095DB5 /* LaunchScreen.storyboard */; };
@@ -158,6 +162,10 @@
 		FA6B5652270FC973002640A1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FAC551CB270D0E43009F83CB /* 23211-receive-order.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "23211-receive-order.json"; sourceTree = "<group>"; };
 		FAC551D7270D0EE6009F83CB /* lf20_vhkdj1ra.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = lf20_vhkdj1ra.json; sourceTree = "<group>"; };
+		FAC6672D271FA3A900C2CDDF /* Charts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Charts.swift; sourceTree = "<group>"; };
+		FAC66731271FA3EF00C2CDDF /* RevenueData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevenueData.swift; sourceTree = "<group>"; };
+		FAD102E0271E158900B4F0A6 /* LatestOrdersTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatestOrdersTableViewCell.swift; sourceTree = "<group>"; };
+		FAD102E1271E158900B4F0A6 /* LatestOrdersTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LatestOrdersTableViewCell.xib; sourceTree = "<group>"; };
 		FADB6B1D27152E8700349739 /* UpdateDriverLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateDriverLocation.swift; sourceTree = "<group>"; };
 		FADB6B2127152EE600349739 /* UpdateDriverLocationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateDriverLocationResponse.swift; sourceTree = "<group>"; };
 		FAEFC56126F8882D00095DB5 /* Akalat-Shop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Akalat-Shop.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -361,11 +369,12 @@
 		FA439BA1270E633C00F2F83D /* Responses */ = {
 			isa = PBXGroup;
 			children = (
-				FA64BD64271A5F130062E0ED /* CompleteOrderResponse */,
-				FADB6B2027152EC700349739 /* UpdateDriverLocationResponse */,
 				FAEFC5C526F88BB100095DB5 /* ReadyOrders */,
 				FAEFC5CD26F88BB100095DB5 /* PickOrder */,
+				FADB6B2027152EC700349739 /* UpdateDriverLocationResponse */,
+				FA64BD64271A5F130062E0ED /* CompleteOrderResponse */,
 				FAEFC6DD26F8909B00095DB5 /* LatestOrders */,
+				FAC6672C271FA37200C2CDDF /* Charts */,
 			);
 			path = Responses;
 			sourceTree = "<group>";
@@ -383,6 +392,8 @@
 			children = (
 				FA439C18270E64E800F2F83D /* OrdersTableViewCell.swift */,
 				FA439C19270E64E900F2F83D /* OrdersTableViewCell.xib */,
+				FAD102E0271E158900B4F0A6 /* LatestOrdersTableViewCell.swift */,
+				FAD102E1271E158900B4F0A6 /* LatestOrdersTableViewCell.xib */,
 			);
 			path = Driver;
 			sourceTree = "<group>";
@@ -489,6 +500,15 @@
 				FA3CC4EA2716405500080A69 /* ShowDriverLocation */,
 			);
 			path = Responses;
+			sourceTree = "<group>";
+		};
+		FAC6672C271FA37200C2CDDF /* Charts */ = {
+			isa = PBXGroup;
+			children = (
+				FAC6672D271FA3A900C2CDDF /* Charts.swift */,
+				FAC66731271FA3EF00C2CDDF /* RevenueData.swift */,
+			);
+			path = Charts;
 			sourceTree = "<group>";
 		};
 		FADB6B2027152EC700349739 /* UpdateDriverLocationResponse */ = {
@@ -711,12 +731,12 @@
 			isa = PBXGroup;
 			children = (
 				FAEFC5DE26F88BB100095DB5 /* LatestOrders.swift */,
-				FAEFC5DF26F88BB100095DB5 /* MealDetails.swift */,
 				FAEFC5E026F88BB100095DB5 /* Order.swift */,
+				FAEFC5DF26F88BB100095DB5 /* MealDetails.swift */,
+				FAEFC5E426F88BB100095DB5 /* Restaurant.swift */,
 				FAEFC5E126F88BB100095DB5 /* Customer.swift */,
 				FAEFC5E226F88BB100095DB5 /* OrderDetails.swift */,
 				FAEFC5E326F88BB100095DB5 /* Driver.swift */,
-				FAEFC5E426F88BB100095DB5 /* Restaurant.swift */,
 			);
 			path = "Latest Orders";
 			sourceTree = "<group>";
@@ -780,10 +800,10 @@
 		FAEFC60326F88BD600095DB5 /* Customer */ = {
 			isa = PBXGroup;
 			children = (
-				FAEFC60426F88BD600095DB5 /* TrackerList */,
-				FAEFC60726F88BD600095DB5 /* CheckoutList */,
-				FAEFC60A26F88BD600095DB5 /* MealsList */,
 				FAEFC60D26F88BD600095DB5 /* RestaurantsList */,
+				FAEFC60A26F88BD600095DB5 /* MealsList */,
+				FAEFC60726F88BD600095DB5 /* CheckoutList */,
+				FAEFC60426F88BD600095DB5 /* TrackerList */,
 			);
 			path = Customer;
 			sourceTree = "<group>";
@@ -960,13 +980,13 @@
 		FAEFC6DD26F8909B00095DB5 /* LatestOrders */ = {
 			isa = PBXGroup;
 			children = (
-				FAEFC6DE26F8909B00095DB5 /* LatestDriverMealDetails.swift */,
-				FAEFC6DF26F8909B00095DB5 /* LatestRestaurantDetails.swift */,
-				FAEFC6E026F8909B00095DB5 /* LatestDriverDetails.swift */,
-				FAEFC6E126F8909B00095DB5 /* TheDriverLatestOrderDetails.swift */,
-				FAEFC6E226F8909B00095DB5 /* LatestCustomerDetails.swift */,
-				FAEFC6E326F8909B00095DB5 /* LatestDriverOrderDetails.swift */,
 				FAEFC6E426F8909B00095DB5 /* DriverLatestOrders.swift */,
+				FAEFC6E126F8909B00095DB5 /* TheDriverLatestOrderDetails.swift */,
+				FAEFC6DF26F8909B00095DB5 /* LatestRestaurantDetails.swift */,
+				FAEFC6E226F8909B00095DB5 /* LatestCustomerDetails.swift */,
+				FAEFC6E026F8909B00095DB5 /* LatestDriverDetails.swift */,
+				FAEFC6DE26F8909B00095DB5 /* LatestDriverMealDetails.swift */,
+				FAEFC6E326F8909B00095DB5 /* LatestDriverOrderDetails.swift */,
 			);
 			path = LatestOrders;
 			sourceTree = "<group>";
@@ -1059,6 +1079,7 @@
 				FAEFC63626F88C0100095DB5 /* RestaurantsTableViewCell.xib in Resources */,
 				FAEFC6D726F88F6000095DB5 /* RestaurantsHeaderCollectionReusableView.xib in Resources */,
 				FA6B5662270FD01C002640A1 /* OrdersTableViewCell.xib in Resources */,
+				FAD102E3271E158900B4F0A6 /* LatestOrdersTableViewCell.xib in Resources */,
 				FAEFC63726F88C0100095DB5 /* HomeSliderCollectionViewCell.xib in Resources */,
 				FAEFC62F26F88BEE00095DB5 /* CheckoutDetailsTableViewCell.xib in Resources */,
 				FAEFC71A26F8B76000095DB5 /* GoogleService-Info.plist in Resources */,
@@ -1129,6 +1150,7 @@
 				FAEFC67A26F88C5300095DB5 /* CheckoutVC.swift in Sources */,
 				FA6B55DE270FBEEB002640A1 /* DriverMenuVC.swift in Sources */,
 				FAEFC64526F88C1300095DB5 /* UIViewController+Ext.swift in Sources */,
+				FAD102E2271E158900B4F0A6 /* LatestOrdersTableViewCell.swift in Sources */,
 				FAEFC67F26F88C5300095DB5 /* FishVC.swift in Sources */,
 				FAEFC68526F88C5300095DB5 /* PizzaVC.swift in Sources */,
 				FAEFC68626F88C5300095DB5 /* MenuVC.swift in Sources */,
@@ -1137,6 +1159,7 @@
 				FA439B6D270E61C600F2F83D /* FBManager.swift in Sources */,
 				FAEFC64826F88C1300095DB5 /* GFAlertVC.swift in Sources */,
 				FAEFC68326F88C5300095DB5 /* GrillsVC.swift in Sources */,
+				FAC6672E271FA3A900C2CDDF /* Charts.swift in Sources */,
 				FA439B73270E61C800F2F83D /* PostRequestManager.swift in Sources */,
 				FAEFC67826F88C5300095DB5 /* AddressVC.swift in Sources */,
 				FA2A8923270E8A5A005DB8BA /* DriverReadyOrders.swift in Sources */,
@@ -1150,6 +1173,7 @@
 				FAEFC6A926F88E5300095DB5 /* Order.swift in Sources */,
 				FAEFC63526F88C0100095DB5 /* AnotherRestaurantsTableViewCell.swift in Sources */,
 				FAEFC6C226F88E8000095DB5 /* User.swift in Sources */,
+				FAC66732271FA3EF00C2CDDF /* RevenueData.swift in Sources */,
 				FAEFC68226F88C5300095DB5 /* RootMenuVC.swift in Sources */,
 				FAEFC68126F88C5300095DB5 /* DessertsVC.swift in Sources */,
 				FAEFC64226F88C1300095DB5 /* GFBodyLabel.swift in Sources */,

@@ -93,14 +93,14 @@ extension OrdersVC {
         
         //When I Tap The Cell I Take The Id Of It To The Order Func
         let driversOrder = ArraysModels.driverReadyOrders[indexPath.row]
-
+        
         guard let confirmOrderVC = UIStoryboard(name: "DriverMain", bundle: nil).instantiateViewController(withIdentifier: "PerformOrderAlertVC") as? PerformOrderAlertVC else {
             return
         }
         confirmOrderVC.orderId = driversOrder.id
-     
-            navigationController?.show(confirmOrderVC, sender: self)
-      
+        
+        navigationController?.show(confirmOrderVC, sender: self)
+        
     }
     
 }

@@ -44,12 +44,14 @@ class CheckoutVC: UIViewController {
         fetchTrayMeals()
         userLocation()
         addressDetails()
-        
+//        addressTextfield.keyboardType = UIKeyboardType.asciiCapableNumberPad
+//        addressTextfield.text!.convertedDigitsToLocale(Locale(identifier: "EN")) /* 12345 */
+        addressTextfield.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
+      
     }
     
     override func viewDidLayoutSubviews() {
@@ -60,15 +62,32 @@ class CheckoutVC: UIViewController {
         map.clipsToBounds = true
     }
     
+//    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+//        let rawString = string
+//         let range = rawString.rangeOfCharacter(from: .whitespaces)
+//        if ((textField.text?.count)! == 0 && range  != nil)
+//        || ((textField.text?.count)! > 0 && textField.text?.last  == " " && range != nil)  {
+//            return false
+//        }
+//    return true
+//    }
+    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        let rawString = string
-         let range = rawString.rangeOfCharacter(from: .whitespaces)
-        if ((textField.text?.count)! == 0 && range  != nil)
-        || ((textField.text?.count)! > 0 && textField.text?.last  == " " && range != nil)  {
-            return false
+            if textField.keyboardType == .numberPad && string != "" {
+                let numberStr: String = string
+                let formatter: NumberFormatter = NumberFormatter()
+                formatter.locale = Locale(identifier: "EN")
+                if let final = formatter.number(from: numberStr) {
+                    textField.text =  "\(textField.text ?? "")\(final)"
+                }
+                    return false
+            }
+            return true
         }
-    return true
-    }
+    
+    
+    
+    
     
     func fetchData() {
         if Constants.address != nil {
@@ -315,5 +334,31 @@ extension CheckoutVC : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 80
+    }
+}
+
+extension String {
+    private static let formatter = NumberFormatter()
+
+    func clippingCharacters(in characterSet: CharacterSet) -> String {
+        components(separatedBy: characterSet).joined()
+    }
+
+    func convertedDigitsToLocale(_ locale: Locale = .current) -> String {
+        let digits = Set(clippingCharacters(in: CharacterSet.decimalDigits.inverted))
+        guard !digits.isEmpty else { return self }
+
+        Self.formatter.locale = locale
+
+        let maps: [(original: String, converted: String)] = digits.map {
+            let original = String($0)
+            let digit = Self.formatter.number(from: original)!
+            let localized = Self.formatter.string(from: digit)!
+            return (original, localized)
+        }
+
+        return maps.reduce(self) { converted, map in
+            converted.replacingOccurrences(of: map.original, with: map.converted)
+        }
     }
 }

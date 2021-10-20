@@ -61,6 +61,7 @@ class NetworkManager {
         case driverLatestOrders
         case driverUpdateLocation
         case driverCompleteOrder
+        case driverRevenue
         
         var stringValue: String {
             
@@ -111,6 +112,9 @@ class NetworkManager {
                 
             case .driverCompleteOrder:
                 return EndPoints.base + "/api/driver/order/complete/"
+                
+            case .driverRevenue:
+                return EndPoints.base + "/api/driver/revenue?"
                 
             }
         }
@@ -439,7 +443,7 @@ class NetworkManager {
             return [
                 "meal_id": item.meal.id,
                 "quantity": item.qty,
-                "rest_id" : item.delivery.delivery
+                "rest_id" : 0
             ]
         }
         
@@ -485,7 +489,28 @@ class NetworkManager {
     
     
     //use generic request to get AppLists from ArrayList Model (GET)
-    class func getLatestOrders(completion: @escaping ([OrderDetails], GFError?) -> Void) {
+    class func getLatestOrders(completion: @escaping (Order?, GFError?) -> Void) {
+        
+        let endPoints = EndPoints.latestOrders.stringValue + "access_token=\(Auth.accessToken)"
+        
+        guard let newUrl = URL(string: endPoints) else {
+            return
+        }
+        //responseType -> the main model
+        taskForGETRequest(url:newUrl , responseType: LatestOrders.self) { (response, error) in
+            if let response = response  {
+                //result -> is the [Order_details]
+                completion(response.order,nil)
+            } else {
+                completion(nil,.UnAbleToComplete)
+                print(error)
+            }
+        }
+    }
+    
+    
+    //use generic request to get AppLists from ArrayList Model (GET)
+    class func getOrderDetails(completion: @escaping ([OrderDetails], GFError?) -> Void) {
         
         let endPoints = EndPoints.latestOrders.stringValue + "access_token=\(Auth.accessToken)"
         
@@ -590,6 +615,48 @@ class NetworkManager {
         }
     }
     
+    
+    class func DriverShowLatestOrders(completion: @escaping ([LatestDriverOrderDetails], GFError?) -> Void) {
+        
+        let endPoints = EndPoints.driverLatestOrders.stringValue + "access_token=\(Auth.accessToken)"
+        
+        guard let newUrl = URL(string: endPoints) else {
+            return
+        }
+        
+        taskForGETRequest(url:newUrl , responseType: DriverLatestOrders.self) { (response, error) in
+            if let response = response  {
+                //result -> is the [meals]
+                completion(response.order.order_details,nil)
+            } else {
+                completion([],.UnAbleToComplete)
+                print(error!.localizedDescription)
+            }
+        }
+    }
+    
+    
+    class func DriverShowDelivery(completion: @escaping (DriverLatestOrders?, GFError?) -> Void) {
+        
+        let endPoints = EndPoints.driverLatestOrders.stringValue + "access_token=\(Auth.accessToken)"
+        
+        guard let newUrl = URL(string: endPoints) else {
+            return
+        }
+        
+        taskForGETRequest(url:newUrl , responseType: DriverLatestOrders.self) { (response, error) in
+            if let response = response  {
+                //result -> is the [meals]
+                completion(response,nil)
+            } else {
+                completion(nil,.UnAbleToComplete)
+                print(error!.localizedDescription)
+            }
+        }
+    }
+    
+    
+    
     //Update Driver Location
     class func updateLocation(location:CLLocationCoordinate2D,completion: @escaping (Bool, GFError?) -> Void ) {
         
@@ -643,6 +710,27 @@ class NetworkManager {
         ]
         
         PostRequestManager.shared.requestServer(.post, path, params, URLEncoding(), completion)
+    }
+    
+    class func DriverRevenue(completion: @escaping (RevenueData?, GFError?) -> Void) {
+        
+        let endPoints = EndPoints.driverRevenue.stringValue + "access_token=\(Auth.accessToken)"
+        
+        guard let newUrl = URL(string: endPoints) else {
+            return
+        }
+        
+        taskForGETRequest(url:newUrl , responseType: Charts.self) { (response, error) in
+            if let response = response  {
+                //result -> is the [meals]
+                completion(response.revenue,nil)
+            } else {
+                completion(nil,.UnAbleToComplete)
+                print(error?.rawValue)
+            }
+        }
+        
+        
     }
     
 }
