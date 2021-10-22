@@ -275,9 +275,12 @@ class DeliveryVC: UIViewController,UIActionSheetDelegate, UITableViewDelegate, U
         
         let actionButton = UIAlertAction(title: "Ok 🎉", style: .default,handler: { (ok) in
             
-            NetworkManager.DriverCompleteTheOrder(orderId: self.orderId!) { (data) in
-//                if error == nil {
-                    
+            guard let id = self.orderId else {
+                return
+            }
+            
+            NetworkManager.DriverCompleteTheOrder(orderId: id) { (data) in
+
                     DispatchQueue.main.async {
                         print(data)
                         //Stop Updating Driver Location

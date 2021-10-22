@@ -16,6 +16,7 @@ class DriverMenuVC: UITableViewController {
     @IBOutlet weak var avaImage: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var appleIdNameLabel: UILabel!
+    @IBOutlet weak var changeLangLabel: UILabel!
     
     
     let hud = JGProgressHUD(style: .dark)
@@ -23,11 +24,18 @@ class DriverMenuVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //Usage Of Localized Data
+        let changeLangLbl = NSLocalizedString("changeLangKey", comment: "")
+        
+        self.changeLangLabel.text = changeLangLbl
+        self.changeLangLabel.textAlignment = .natural
+        
         view.backgroundColor = UIColor(named: "DarkColor")
         getUserData()
     }
     
     func getUserData() {
+        
         
         nameLabel.text = User.currentUser.name?.capitalized ?? ""
         
@@ -124,4 +132,49 @@ class DriverMenuVC: UITableViewController {
         }
         return true
     }
+    
+    @IBAction func changeLanguageButtonTapped(_ sender: Any) {
+        
+        
+        if AppLocalization.currentAppleLanguage() == "en" {
+            
+            AppLocalization.setAppleLAnguageTo(lang: "ar")
+            
+            let rootviewcontroller: UIWindow = ((UIApplication.shared.delegate?.window)!)!
+            let storyboard = UIStoryboard(name: "DriverMain", bundle: nil).instantiateViewController(identifier: "DriverSWRevealViewController")
+            rootviewcontroller.rootViewController = storyboard
+            let mainwindow = (UIApplication.shared.delegate?.window!)!
+           
+            UIView.transition(with: mainwindow, duration: 0.55001, options: .transitionFlipFromLeft, animations: { () -> Void in
+            }) { (finished) -> Void in
+                UIView.appearance().semanticContentAttribute = .forceRightToLeft
+                
+                // Refresh The View To Reload The View
+                let storyboard = UIStoryboard(name: "DriverMain", bundle: nil)
+                let orderVC = storyboard.instantiateViewController(identifier: "DriverSWRevealViewController")
+                appDelegate.window!.rootViewController = orderVC
+               
+            }
+
+        } else {
+            AppLocalization.setAppleLAnguageTo(lang: "en")
+            
+           let rootviewcontroller: UIWindow = ((UIApplication.shared.delegate?.window)!)!
+            let storyboard = UIStoryboard(name: "DriverMain", bundle: nil).instantiateViewController(identifier: "DriverSWRevealViewController")
+            rootviewcontroller.rootViewController = storyboard
+            let mainwindow = (UIApplication.shared.delegate?.window!)!
+           
+            UIView.transition(with: mainwindow, duration: 0.55001, options: .transitionFlipFromLeft, animations: { () -> Void in
+            }) { (finished) -> Void in
+                UIView.appearance().semanticContentAttribute = .forceLeftToRight
+                
+                // Refresh The View To Reload The View
+                let storyboard = UIStoryboard(name: "DriverMain", bundle: nil)
+                let orderVC = storyboard.instantiateViewController(identifier: "DriverSWRevealViewController")
+                appDelegate.window!.rootViewController = orderVC
+            }
+
+        }
+    }
+    
 }

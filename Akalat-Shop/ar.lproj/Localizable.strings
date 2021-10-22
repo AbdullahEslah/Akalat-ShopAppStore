@@ -1,0 +1,12 @@
+/* 
+  Localizable.strings
+  Akalat-Shop
+
+  Created by Macbook on 21/10/2021.
+  
+*/
+
+//We Use The Key As An Id To Get The Value Of It In The Right
+"Common Choices" = "اختيارات معروفة";
+
+"changeLangKey"  = "تغيير اللغة";

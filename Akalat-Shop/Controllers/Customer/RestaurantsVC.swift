@@ -12,7 +12,7 @@ import JGProgressHUD
 import Lottie
 
 
-class RestaurantsVC: UITableViewController, UISearchControllerDelegate {
+class RestaurantsVC: UITableViewController, UISearchControllerDelegate, SWRevealViewControllerDelegate {
 
    
     @IBOutlet var headerButtons: [UIButton]!
@@ -25,6 +25,8 @@ class RestaurantsVC: UITableViewController, UISearchControllerDelegate {
     @IBOutlet weak var mySecCollectionView: UICollectionView!
     
     @IBOutlet weak var menuBarButton: UIBarButtonItem!
+    
+    @IBOutlet weak var commonChoicesLabel: UILabel!
     
     let menuButton = UIButton(type: .custom)
     
@@ -39,15 +41,11 @@ class RestaurantsVC: UITableViewController, UISearchControllerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
+
         
         DispatchQueue.main.async { [weak self] in
             self?.startTimer()
         }
-        
-        configureSearchBar()
-//        addNavBarImage()
         
         headerScrollView.delegate = self
         
@@ -65,17 +63,9 @@ class RestaurantsVC: UITableViewController, UISearchControllerDelegate {
         mySecCollectionView.register(UINib(nibName: "RestaurantsHeaderCollectionReusableView", bundle: nil),forSupplementaryViewOfKind: "header",withReuseIdentifier:"RestaurantsHeaderCollectionReusableView")
         
         fetchRestaurants()
-//        fetchAllMeals()
        
-        DismissSearchBar()
-        
-//        mySecCollectionView.isPagingEnabled = true
         mySecCollectionView.collectionViewLayout = createcompositionalLayout()
-//        layout.numberOfVisibleItems = 3
         headerScrollView.isDirectionalLockEnabled = true
-
-        
-        
         animationView.frame = view.bounds
 
         // Add animationView as subview
@@ -85,6 +75,7 @@ class RestaurantsVC: UITableViewController, UISearchControllerDelegate {
         animationView.play()
         animationView.loopMode = .repeat(3.0)
         animationView.animationSpeed = 1
+        DismissSearchBar()
         
     }
     
@@ -113,7 +104,8 @@ class RestaurantsVC: UITableViewController, UISearchControllerDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        debugPrint("FirstViewController will appear")
+        configureSearchBar()
+       
         navigationItem.hidesSearchBarWhenScrolling = false
         self.tableView.reloadData()
         self.mySecCollectionView.reloadData()
@@ -194,6 +186,7 @@ class RestaurantsVC: UITableViewController, UISearchControllerDelegate {
         singleTapGestureRecognizer.cancelsTouchesInView = false
         self.view.addGestureRecognizer(singleTapGestureRecognizer)
     }
+    
     @objc func singleTap(sender: UITapGestureRecognizer) {
         self.searchBar.resignFirstResponder()
     }
@@ -201,7 +194,6 @@ class RestaurantsVC: UITableViewController, UISearchControllerDelegate {
     func fetchRestaurants(){
         
         NetworkManager.getRestaurantsList(restaurantAddress: Constants.region ?? "") { restaurants, error in
-            
             
             if error == nil {
                 
@@ -214,15 +206,14 @@ class RestaurantsVC: UITableViewController, UISearchControllerDelegate {
                 
                 self.filterdRestaurants = ArraysModels.restaurants
                 DispatchQueue.main.async {
-                self.mySecCollectionView.reloadData()
-                self.tableView.reloadData()
+                    self.mySecCollectionView.reloadData()
+                    self.tableView.reloadData()
                 }
             } else {
-                self.presentGFAlertOnMainThread(title: "Error!", message: error!.rawValue , buttonTitle: "Ok")
                 DispatchQueue.main.async {
-//                Helper().showAlert(title: "Error !", message: error!.rawValue, in: self)
-                self.animationView.stop()
-                self.animationView.removeFromSuperview()
+                    self.presentGFAlertOnMainThread(title: "Error!", message: error!.rawValue , buttonTitle: "Ok")
+                    self.animationView.stop()
+                    self.animationView.removeFromSuperview()
                 }
             }
             
@@ -237,7 +228,6 @@ class RestaurantsVC: UITableViewController, UISearchControllerDelegate {
         searchBar.placeholder = "Restaurants Search.. "
         searchBar.searchBarStyle = .minimal
         searchBar.tintColor = .white
-//        navigationItem.searchController = searchBar
         searchBar.delegate = self
         navigationItem.largeTitleDisplayMode = .always
         navigationItem.titleView = searchBar
@@ -250,9 +240,6 @@ class RestaurantsVC: UITableViewController, UISearchControllerDelegate {
         // insert searchBar into navigationBar
         self.navigationItem.titleView = searchBar
         
-        //            navigationItem.hidesSearchBarWhenScrolling = false
-//        searchBar.hidesNavigationBarDuringPresentation = true
-//        navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationBar.sizeToFit()
         
         self.navigationItem.rightBarButtonItem = nil
@@ -261,7 +248,25 @@ class RestaurantsVC: UITableViewController, UISearchControllerDelegate {
         menuButton.setImage(UIImage (named: "icon_menu_24dp"), for: .normal)
         
         menuButton.frame = CGRect(x: 0.0, y: 0.0, width: 35.0, height: 35.0)
-        menuButton.addTarget(self, action: #selector(configureMenu), for: .touchUpInside)
+        if AppLocalization.currentAppleLanguage() == "ar" {
+            if self.revealViewController() != nil {
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let sidemenuViewController = storyboard.instantiateViewController(withIdentifier: "MenuVC") as! MenuVC
+                revealViewController().rightViewController = sidemenuViewController
+                revealViewController().delegate = self
+                self.revealViewController().rightViewRevealWidth = self.view.frame.width * 0.8
+                menuButton.addTarget(self.revealViewController(),
+                                     action: #selector(SWRevealViewController.rightRevealToggle(_:)), for: .touchUpInside)
+            }
+        } else {
+            if self.revealViewController() != nil {
+                menuButton.addTarget(self.revealViewController(),
+                                     action: #selector(revealViewController().revealToggle(_:)),
+                                     for: .touchUpInside)
+                self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+            }
+        }
+        
         let barButtonItem = UIBarButtonItem(customView: menuButton)
         
         let button2 = UIButton(type: .custom)
@@ -274,18 +279,8 @@ class RestaurantsVC: UITableViewController, UISearchControllerDelegate {
         self.navigationItem.leftBarButtonItems = [barButtonItem, barButtonItem2]
         
 
-    }
-        
-    // MARK: - <Configure Menu>
-    @objc func configureMenu() {
-        if self.revealViewController() != nil {
-//        button.target = self.revealViewController()
-            self.revealViewController().revealToggle(self)
-        self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
-        }
-    }
     
-    
+    }
     
     // MARK: - <Logo App In The Center>
     func addNavBarImage(){

@@ -57,7 +57,7 @@ class StatisticsVC: UIViewController , ChartViewDelegate, IAxisValueFormatter{
         viewChart.doubleTapToZoomEnabled = false
 
         viewChart.leftAxis.axisMinimum = 0.0
-        viewChart.leftAxis.axisMaximum = 200.00
+        viewChart.leftAxis.axisMaximum = 5000.00
         viewChart.highlighter = nil
         viewChart.rightAxis.enabled = false
         viewChart.xAxis.drawGridLinesEnabled = false

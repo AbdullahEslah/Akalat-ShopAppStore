@@ -8,7 +8,7 @@
 import UIKit
 import JGProgressHUD
 
-class OrdersVC: UITableViewController {
+class OrdersVC: UITableViewController, SWRevealViewControllerDelegate {
 
     
     @IBOutlet weak var menuBarButton: UIBarButtonItem!
@@ -26,10 +26,22 @@ class OrdersVC: UITableViewController {
     }
 
     func configureMenu() {
-        if self.revealViewController() != nil {
-            menuBarButton.target = self.revealViewController()
-            menuBarButton.action = #selector(SWRevealViewController.revealToggle(_:))
-            self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+        if AppLocalization.currentAppleLanguage() == "ar" {
+            if self.revealViewController() != nil {
+                let storyboard = UIStoryboard(name: "DriverMain", bundle: nil)
+                let sidemenuViewController = storyboard.instantiateViewController(withIdentifier: "DriverMenuVC") as! DriverMenuVC
+                revealViewController().rightViewController = sidemenuViewController
+                revealViewController().delegate = self
+                self.revealViewController().rightViewRevealWidth = self.view.frame.width * 0.8
+                menuBarButton.target = self.revealViewController()
+                menuBarButton.action = #selector(SWRevealViewController.rightRevealToggle(_:))
+            }
+        } else {
+            if self.revealViewController() != nil {
+                menuBarButton.target = self.revealViewController()
+                menuBarButton.action = #selector(revealViewController().revealToggle(_:))
+                self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+            }
         }
     }
     

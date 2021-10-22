@@ -1,0 +1,60 @@
+
+/* Class = "UIButton"; normalTitle = " Sign In With Google"; ObjectID = "6UO-is-Iv5"; */
+"6UO-is-Iv5.normalTitle" = " تسجيل الدخول ب Google";
+
+/* Class = "UILabel"; text = "Order Feed"; ObjectID = "Aml-rN-iTs"; */
+"Aml-rN-iTs.text" = "اخر الطلبات";
+
+/* Class = "UINavigationItem"; title = "Akalat Driver"; ObjectID = "Cgk-GQ-3aK"; */
+"Cgk-GQ-3aK.title" = "Akalat Driver";
+
+/* Class = "UIButton"; normalTitle = "Cancel"; ObjectID = "DiW-J5-Wo0"; */
+"DiW-J5-Wo0.normalTitle" = "الغاء";
+
+/* Class = "UILabel"; text = "Are You Sure You Want To Deliver This Order !"; ObjectID = "Dkj-FG-6h3"; */
+"Dkj-FG-6h3.text" = "هل انت متاكد من توصيل ذلك الطلب !";
+
+/* Class = "UILabel"; text = "Restaurant Name"; ObjectID = "E70-uS-LP4"; */
+"E70-uS-LP4.text" = "اسم المطعم";
+
+/* Class = "UILabel"; text = "Abdallah Eslah"; ObjectID = "EaS-1U-TM2"; */
+"EaS-1U-TM2.text" = "Abdallah Eslah";
+
+/* Class = "UILabel"; text = "Abdallah Eslah"; ObjectID = "GfF-xU-1mK"; */
+"GfF-xU-1mK.text" = "Abdallah Eslah";
+
+/* Class = "UILabel"; text = "Delivery"; ObjectID = "KHd-WB-7Sj"; */
+"KHd-WB-7Sj.text" = "التوصيلات";
+
+/* Class = "UILabel"; text = "Customer Address"; ObjectID = "M53-8B-xdm"; */
+"M53-8B-xdm.text" = "عنوان الزبون";
+
+/* Class = "UILabel"; text = "Customer Name"; ObjectID = "S2N-yI-ITZ"; */
+"S2N-yI-ITZ.text" = "اسم الزبون";
+
+/* Class = "UIButton"; normalTitle = "Complete Order"; ObjectID = "Tb1-QC-Kvn"; */
+"Tb1-QC-Kvn.normalTitle" = "اكمل الطلب الان";
+
+/* Class = "UIButton"; normalTitle = "   Continue To Order "; ObjectID = "cOs-5S-Nox"; */
+"cOs-5S-Nox.normalTitle" = "   اكمل للطلب ";
+
+/* Class = "UILabel"; text = "Order Delivery "; ObjectID = "gnN-dR-fif"; */
+"gnN-dR-fif.text" = "ثمن التوصيلة ";
+
+/* Class = "UILabel"; text = "Order Total"; ObjectID = "nag-FT-hR6"; */
+"nag-FT-hR6.text" = "اجمالي الطلب";
+
+/* Class = "UIButton"; normalTitle = "Login With Facebook"; ObjectID = "ngp-zU-QHV"; */
+"ngp-zU-QHV.normalTitle" = "تسجيل دخول بال facebbok";
+
+/* Class = "UIButton"; normalTitle = "phoneNumber"; ObjectID = "oQQ-Ji-bwP"; */
+"oQQ-Ji-bwP.normalTitle" = "رقم التليفون";
+
+/* Class = "UILabel"; text = "Logout"; ObjectID = "oVe-XQ-LO9"; */
+"oVe-XQ-LO9.text" = "تسجيل الخروج";
+
+/* Class = "UIButton"; normalTitle = "Ok"; ObjectID = "r1q-7U-CUt"; */
+"r1q-7U-CUt.normalTitle" = "نعم";
+
+/* Class = "UILabel"; text = "Statistics"; ObjectID = "wnG-uf-MQh"; */
+"wnG-uf-MQh.text" = "الاحصائيات";
