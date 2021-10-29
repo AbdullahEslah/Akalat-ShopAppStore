@@ -7,6 +7,12 @@
 */
 
 //We Use The Key As An Id To Get The Value Of It In The Right
-"Common Choices" = "اختيارات معروفة";
+"Common Choices"            = "اختيارات معروفة";
 
-"changeLangKey"  = "تغيير اللغة";
+"changeLangKey"             = "تغيير اللغة";
+
+"browseByAllRestaurantskey" = "تصفح جميع المطاعم";
+
+"deliveryPriceKey"          = "سعر التوصيل";
+
+"totalKey"                  = "الاجمالي";

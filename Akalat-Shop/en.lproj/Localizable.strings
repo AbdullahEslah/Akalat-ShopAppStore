@@ -7,7 +7,12 @@
 */
 
 //We Use The Key As An Id To Get The Value Of It In The Right
-"Common Choices" = "Common Choices";
+"Common Choices"            = "Common Choices";
 
-"changeLangKey"  = "Change Language";
+"changeLangKey"             = "Change Language";
 
+"browseByAllRestaurantskey" = "Browse By All Restaurants";
+
+"deliveryPriceKey"          = "Delivery Price";
+
+"totalKey"                  = "Total";

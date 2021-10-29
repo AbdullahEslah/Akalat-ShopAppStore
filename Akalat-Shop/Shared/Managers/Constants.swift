@@ -22,6 +22,11 @@ class Constants {
     
     //Categories
     static var Sandwiches       = "Sandwiches"
+    static var Grills           = "Grills"
+    static var Pizza            = "Pizza"
+    static var FriedChicken     = "FriedChicken"
+    static var Desserts         = "Desserts"
+    static var Fish             = "Fish"
     
     //LOADING USING LOTTIE
     let animationView = AnimationView(animation: Animation.named("lf30_editor_reir1nit"))

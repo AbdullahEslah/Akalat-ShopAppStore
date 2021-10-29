@@ -20,7 +20,7 @@ class DriverMenuVC: UITableViewController {
     
     
     let hud = JGProgressHUD(style: .dark)
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         

@@ -10,7 +10,7 @@ import Lottie
 import Kingfisher
 import MapKit
 
-class DeliveryVC: UIViewController,UIActionSheetDelegate, UITableViewDelegate, UITableViewDataSource {
+class DeliveryVC: UIViewController,UIActionSheetDelegate, UITableViewDelegate, UITableViewDataSource, SWRevealViewControllerDelegate {
     
     @IBOutlet weak var menuBarButton: UIBarButtonItem!
     @IBOutlet weak var customerAva: UIImageView!
@@ -45,8 +45,6 @@ class DeliveryVC: UIViewController,UIActionSheetDelegate, UITableViewDelegate, U
         tableView.dataSource = self
         tableView.tableFooterView = UIView()
         tableView.register(UINib(nibName: "LatestOrdersTableViewCell", bundle: nil), forCellReuseIdentifier: "LatestOrdersTableViewCell")
-        
-        configureMenu()
         userLocation()
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateLocation), userInfo: nil, repeats: true)
         
@@ -63,6 +61,7 @@ class DeliveryVC: UIViewController,UIActionSheetDelegate, UITableViewDelegate, U
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        configureMenu()
         customerInfo()
         showOrderData()
         showDeliveryData()
@@ -79,10 +78,22 @@ class DeliveryVC: UIViewController,UIActionSheetDelegate, UITableViewDelegate, U
     }
     
     func configureMenu() {
-        if self.revealViewController() != nil {
-            menuBarButton.target = self.revealViewController()
-            menuBarButton.action = #selector(SWRevealViewController.revealToggle(_:))
-            self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+        if AppLocalization.currentAppleLanguage() == "ar" {
+            if self.revealViewController() != nil {
+                let storyboard = UIStoryboard(name: "DriverMain", bundle: nil)
+                let sidemenuViewController = storyboard.instantiateViewController(withIdentifier: "DriverMenuVC") as! DriverMenuVC
+                revealViewController().rightViewController = sidemenuViewController
+                revealViewController().delegate = self
+                self.revealViewController().rightViewRevealWidth = self.view.frame.width * 0.8
+                menuBarButton.target = self.revealViewController()
+                menuBarButton.action = #selector(SWRevealViewController.rightRevealToggle(_:))
+            }
+        } else {
+            if self.revealViewController() != nil {
+                menuBarButton.target = self.revealViewController()
+                menuBarButton.action = #selector(revealViewController().revealToggle(_:))
+                self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+            }
         }
     }
     

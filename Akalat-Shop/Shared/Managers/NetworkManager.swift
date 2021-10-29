@@ -48,12 +48,14 @@ class NetworkManager {
         
         //Customer App
         case restaurantsList
-        case restaurantsCategory
         case restaurantsMeals
         case allMeals
         case makeAnOrder
         case latestOrders
         case getDriverLocation
+        
+        //Customer Restaurants Categories
+        case restaurantsCategory
         
         //Driver App
         case driverReadyOrders

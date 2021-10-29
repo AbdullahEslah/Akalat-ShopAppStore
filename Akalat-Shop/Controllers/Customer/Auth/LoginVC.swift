@@ -227,7 +227,7 @@ class LoginVC: UIViewController, LoginButtonDelegate {
                 print("No connection.")
                 DispatchQueue.main.async {
                     self.internetConnectionLabel.text = "No Internet Connection"
-                    let image = UIImage(named: "NoInternetStatus")!
+                    
 
                     self.view.backgroundColor = UIColor(named: "NoInternetBackground")
                     self.appLogo.backgroundColor = .clear
@@ -235,6 +235,7 @@ class LoginVC: UIViewController, LoginButtonDelegate {
                     self.authHolderView.isHidden = true
                     self.deliverOrdersButton.isHidden = true
                     self.topLineOfAuthHolderView.isHidden = true
+                    let image = UIImage(named: "NoInternetStatus")!
                     self.appLogo.image = image
                     
                 }

@@ -12,9 +12,25 @@ class RestaurantsHeaderCollectionReusableView: UICollectionReusableView {
     
     @IBOutlet weak var headerLabel: UILabel!
     
+
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        headerLabel.textAlignment = .natural
+       
+        
     }
-    
+   
+}
+
+extension UILabel {
+    open override func awakeFromNib() {
+        super.awakeFromNib()
+        if AppLocalization.currentAppleLanguage() == "ar" {
+            if textAlignment == .natural {
+                self.textAlignment = .right
+            }
+        }
+    }
 }

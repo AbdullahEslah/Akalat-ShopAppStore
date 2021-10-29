@@ -155,6 +155,8 @@ class MenuVC: UITableViewController {
             UIView.transition(with: mainwindow, duration: 0.55001, options: .transitionFlipFromLeft, animations: { () -> Void in
             }) { (finished) -> Void in
                 UIView.appearance().semanticContentAttribute = .forceRightToLeft
+                UILabel.appearance().semanticContentAttribute = .forceRightToLeft
+                
                 // Refresh The View To Reload The View
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let tabBar = storyboard.instantiateViewController(identifier: "TabBarVC")
@@ -171,6 +173,7 @@ class MenuVC: UITableViewController {
             UIView.transition(with: mainwindow, duration: 0.55001, options: .transitionFlipFromLeft, animations: { () -> Void in
             }) { (finished) -> Void in
                 UIView.appearance().semanticContentAttribute = .forceLeftToRight
+                UILabel.appearance().semanticContentAttribute = .forceLeftToRight
                 // Refresh The View To Reload The View
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let tabBar = storyboard.instantiateViewController(identifier: "TabBarVC")

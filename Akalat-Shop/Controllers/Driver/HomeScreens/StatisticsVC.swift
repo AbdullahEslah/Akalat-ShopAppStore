@@ -8,7 +8,7 @@
 import UIKit
 import Charts
 
-class StatisticsVC: UIViewController , ChartViewDelegate, IAxisValueFormatter{
+class StatisticsVC: UIViewController , ChartViewDelegate, IAxisValueFormatter, SWRevealViewControllerDelegate{
 
 
     @IBOutlet weak var menuBarButton: UIBarButtonItem!
@@ -21,12 +21,12 @@ class StatisticsVC: UIViewController , ChartViewDelegate, IAxisValueFormatter{
         super.viewDidLoad()
         viewChart.delegate = self
         viewChart.xAxis.valueFormatter = self
-        configureMenu()
         initializeChart()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        configureMenu()
         loadDataToChart()
     }
     
@@ -36,10 +36,22 @@ class StatisticsVC: UIViewController , ChartViewDelegate, IAxisValueFormatter{
     }
     
     func configureMenu() {
-        if self.revealViewController() != nil {
-            menuBarButton.target = self.revealViewController()
-            menuBarButton.action = #selector(SWRevealViewController.revealToggle(_:))
-            self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+        if AppLocalization.currentAppleLanguage() == "ar" {
+            if self.revealViewController() != nil {
+                let storyboard = UIStoryboard(name: "DriverMain", bundle: nil)
+                let sidemenuViewController = storyboard.instantiateViewController(withIdentifier: "DriverMenuVC") as! DriverMenuVC
+                revealViewController().rightViewController = sidemenuViewController
+                revealViewController().delegate = self
+                self.revealViewController().rightViewRevealWidth = self.view.frame.width * 0.8
+                menuBarButton.target = self.revealViewController()
+                menuBarButton.action = #selector(SWRevealViewController.rightRevealToggle(_:))
+            }
+        } else {
+            if self.revealViewController() != nil {
+                menuBarButton.target = self.revealViewController()
+                menuBarButton.action = #selector(revealViewController().revealToggle(_:))
+                self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+            }
         }
     }
 

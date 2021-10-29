@@ -34,16 +34,16 @@ class RestaurantsTableViewCell: UITableViewCell {
     }
     
     func configureCell(restaurant: RestaurntsResult) {
+        restaurantName.numberOfLines = 0
+        restaurantName.text = restaurant.name
+        restaurantAddress.text = restaurant.address
         
-            restaurantName.text = restaurant.name
-            restaurantAddress.text = restaurant.address
-            
-            if let url = URL(string: restaurant.logo) {
-                let placeholder = UIImage(named: "contact-bg")
-                let options : KingfisherOptionsInfo = [KingfisherOptionsInfoItem.transition(.fade(0.1))]
-                restaurantImage.kf.indicatorType = .activity
-                restaurantImage.kf.setImage(with: url,placeholder: placeholder,options: options)
-            }
+        if let url = URL(string: restaurant.logo) {
+            let placeholder = UIImage(named: "contact-bg")
+            let options : KingfisherOptionsInfo = [KingfisherOptionsInfoItem.transition(.fade(0.1))]
+            restaurantImage.kf.indicatorType = .activity
+            restaurantImage.kf.setImage(with: url,placeholder: placeholder,options: options)
         }
+    }
     
 }

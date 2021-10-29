@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class TrackerVC: UIViewController {
+class TrackerVC: UIViewController, SWRevealViewControllerDelegate {
 
     
     @IBOutlet weak var menuBarButton: UIBarButtonItem!
@@ -40,7 +40,6 @@ class TrackerVC: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib(nibName: "TrackerTableViewCell", bundle: nil), forCellReuseIdentifier: "TrackerTableViewCell")
-        configureMenu()
         fetchLatestOrders()
 //        fetchDeliveryOrders()
         
@@ -48,15 +47,28 @@ class TrackerVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        configureMenu()
         orderLocationStatus()
         fetchDeliveryOrders()
     }
     
     func configureMenu() {
-        if self.revealViewController() != nil {
-            menuBarButton.target = self.revealViewController()
-            menuBarButton.action = #selector(SWRevealViewController.revealToggle(_:))
-            self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+        if AppLocalization.currentAppleLanguage() == "ar" {
+            if self.revealViewController() != nil {
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let sidemenuViewController = storyboard.instantiateViewController(withIdentifier: "MenuVC") as! MenuVC
+                revealViewController().rightViewController = sidemenuViewController
+                revealViewController().delegate = self
+                self.revealViewController().rightViewRevealWidth = self.view.frame.width * 0.8
+                menuBarButton.target = self.revealViewController()
+                menuBarButton.action = #selector(SWRevealViewController.rightRevealToggle(_:))
+            }
+        } else {
+            if self.revealViewController() != nil {
+                menuBarButton.target = self.revealViewController()
+                menuBarButton.action = #selector(revealViewController().revealToggle(_:))
+                self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+            }
         }
     }
     
@@ -89,14 +101,18 @@ class TrackerVC: UIViewController {
                         self.deliveryPriceLabel.isHidden = true
                         self.totalLabel.isHidden = true
                     } else {
-                    self.deliveryPriceLabel.text = "Delivery Price: \(orders.restaurant.delivery ?? 0) LE"
+                      //Usage Of Localized Words
+                        let orderDeliveryPrice = NSLocalizedString("deliveryPriceKey", comment: "")
+                    
+                    self.deliveryPriceLabel.text = "\(orderDeliveryPrice):   \(orders.restaurant.delivery ?? 0) LE"
                     }
                     
                     let total: Double = orders.total ?? 0
                     let delivery: Double = orders.restaurant.delivery ?? 0
                     let all = total + delivery
-                    print(all)
-                    self.totalLabel.text = "Total: \(all) LE"
+
+                    let orderTotal = NSLocalizedString("totalKey", comment: "")
+                    self.totalLabel.text = "\(orderTotal)      :   \(all) LE"
                     self.tableView.reloadData()
                 }
             }else {

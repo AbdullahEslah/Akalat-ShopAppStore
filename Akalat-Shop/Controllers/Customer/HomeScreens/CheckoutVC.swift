@@ -10,13 +10,13 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class CheckoutVC: UIViewController {
+class CheckoutVC: UIViewController, SWRevealViewControllerDelegate {
     
     //Views
     @IBOutlet weak var totalView: UIView!
     @IBOutlet weak var deliveryView: UIVisualEffectView!
-    @IBOutlet weak var addressView: UIView!
-    @IBOutlet weak var mapView: UIView!
+    @IBOutlet weak var addressView : UIView!
+    @IBOutlet weak var mapView     : UIView!
     
     //Objects
     @IBOutlet weak var tableView: UITableView!
@@ -39,7 +39,6 @@ class CheckoutVC: UIViewController {
         tableView.dataSource = self
         tableView.register(UINib(nibName: "CheckoutDetailsTableViewCell", bundle: nil), forCellReuseIdentifier: "CheckoutDetailsTableViewCell")
         tableView.tableFooterView = UIView()
-        configureMenu()
         basketHandling()
         fetchTrayMeals()
         userLocation()
@@ -51,7 +50,7 @@ class CheckoutVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-      
+        configureMenu()
     }
     
     override func viewDidLayoutSubviews() {
@@ -87,8 +86,6 @@ class CheckoutVC: UIViewController {
     
     
     
-    
-    
     func fetchData() {
         if Constants.address != nil {
             addressTextfield.text = Constants.address
@@ -103,10 +100,14 @@ class CheckoutVC: UIViewController {
         if Tray.currentTray.items.count == 0 {
             //Show A Message
             let emptyBasketLabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 40))
+            emptyBasketLabel.numberOfLines = 0
             emptyBasketLabel.center = self.view.center
             emptyBasketLabel.textAlignment = NSTextAlignment.center
-            emptyBasketLabel.text = "Your Basket Is Empty. Start Adding Your Meals 👋🏻"
-            
+            emptyBasketLabel.text = "Your Basket Is Empty.  Start Adding Your Meals 👋🏻"
+//            let image = UIImage(named: "EmptyBasket")!
+//            let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 40))
+//            imageView.image = image
+//            self.view.addSubview(imageView)
             self.view.addSubview(emptyBasketLabel)
         } else {
             self.tableView.isHidden        = false
@@ -135,10 +136,24 @@ class CheckoutVC: UIViewController {
     }
     
     func configureMenu() {
-        if self.revealViewController() != nil {
-            menuButton.target = self.revealViewController()
-            menuButton.action = #selector(SWRevealViewController.revealToggle(_:))
-            self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+        
+        
+        if AppLocalization.currentAppleLanguage() == "ar" {
+            if self.revealViewController() != nil {
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let sidemenuViewController = storyboard.instantiateViewController(withIdentifier: "MenuVC") as! MenuVC
+                revealViewController().rightViewController = sidemenuViewController
+                revealViewController().delegate = self
+                self.revealViewController().rightViewRevealWidth = self.view.frame.width * 0.8
+                menuButton.target = self.revealViewController()
+                menuButton.action = #selector(SWRevealViewController.rightRevealToggle(_:))
+            }
+        } else {
+            if self.revealViewController() != nil {
+                menuButton.target = self.revealViewController()
+                menuButton.action = #selector(revealViewController().revealToggle(_:))
+                self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+            }
         }
     }
     

@@ -10,6 +10,36 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Launch Screen DriverVC-->
+        <scene sceneID="FPe-52-jpT">
+            <objects>
+                <viewController storyboardIdentifier="LaunchScreenDriverVC" id="HGX-Vv-Z4O" customClass="LaunchScreenDriverVC" customModule="Akalat_Shop" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="yug-Ad-a2u">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LOGO" translatesAutoresizingMaskIntoConstraints="NO" id="ZV9-cM-rgs">
+                                <rect key="frame" x="8" y="117.5" width="304" height="450.5"/>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="1gM-kZ-loL"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="ZV9-cM-rgs" firstAttribute="height" secondItem="yug-Ad-a2u" secondAttribute="height" multiplier="0.79311" id="8Cu-40-x7m"/>
+                            <constraint firstItem="1gM-kZ-loL" firstAttribute="trailing" secondItem="ZV9-cM-rgs" secondAttribute="trailing" constant="8" id="a3V-Sn-6iT"/>
+                            <constraint firstItem="1gM-kZ-loL" firstAttribute="bottom" secondItem="ZV9-cM-rgs" secondAttribute="bottom" id="m6z-mC-XVQ"/>
+                            <constraint firstItem="ZV9-cM-rgs" firstAttribute="leading" secondItem="1gM-kZ-loL" secondAttribute="leading" constant="8" id="q87-2E-315"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="SKg-fD-uCX"/>
+                    <connections>
+                        <outlet property="animatedImage" destination="ZV9-cM-rgs" id="Rpd-jn-HLL"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vf4-YS-KFS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3204.375" y="-1286.6197183098591"/>
+        </scene>
         <!--Driver LoginVC-->
         <scene sceneID="Avy-93-8FQ">
             <objects>
@@ -133,7 +163,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4UG-qV-CbA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3498.75" y="-1287.6760563380283"/>
+            <point key="canvasLocation" x="4496.25" y="-1287.6760563380283"/>
         </scene>
         <!--Reveal View Controller-->
         <scene sceneID="Gz9-sY-f8t">
@@ -178,7 +208,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ldc-3E-dwm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5882" y="-863"/>
+            <point key="canvasLocation" x="6879.375" y="-863.02816901408448"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="VW9-Pw-8Bw">
@@ -199,7 +229,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pf2-wy-pxL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4699" y="-863"/>
+            <point key="canvasLocation" x="5696.25" y="-863.02816901408448"/>
         </scene>
         <!--Driver MenuVC-->
         <scene sceneID="X00-7w-Y1g">
@@ -642,7 +672,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mEv-hX-Djw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="10095" y="-863.02816901408448"/>
+            <point key="canvasLocation" x="11092.5" y="-863.02816901408448"/>
         </scene>
         <!--Perform Order AlertVC-->
         <scene sceneID="olw-jF-i7g">
@@ -716,7 +746,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LiL-6v-L9R" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="8100" y="-863.02816901408448"/>
+            <point key="canvasLocation" x="9097.5" y="-863.02816901408448"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="vxz-gd-CEK">
@@ -734,7 +764,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SX4-IF-k0G" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="9097.5" y="-863.02816901408448"/>
+            <point key="canvasLocation" x="10095" y="-863.02816901408448"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="CrC-h9-Dpy">
@@ -752,7 +782,24 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jiK-Eb-lr9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7102.5" y="-863.02816901408448"/>
+            <point key="canvasLocation" x="8100" y="-863.02816901408448"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="YVH-in-Fev">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="QmG-pa-723" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="PXP-cm-76B">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="HGX-Vv-Z4O" kind="relationship" relationship="rootViewController" id="pL0-94-hlR"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Z8f-3W-EKR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2206.875" y="-1286.6197183098591"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

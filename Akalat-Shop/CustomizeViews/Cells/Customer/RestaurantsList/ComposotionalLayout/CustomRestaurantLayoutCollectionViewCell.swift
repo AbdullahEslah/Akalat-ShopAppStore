@@ -20,7 +20,7 @@ class CustomRestaurantLayoutCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-
+        restaurantName.numberOfLines = 0
     }
 
     

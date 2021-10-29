@@ -14,9 +14,9 @@
             <rect key="frame" x="0.0" y="0.0" width="355" height="80"/>
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qe9-JL-PDk">
-                    <rect key="frame" x="5" y="29.5" width="345" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qe9-JL-PDk">
+                    <rect key="frame" x="5" y="29" width="345" height="22.5"/>
+                    <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -30,7 +30,7 @@
             <connections>
                 <outlet property="headerLabel" destination="Qe9-JL-PDk" id="NMa-RU-vX1"/>
             </connections>
-            <point key="canvasLocation" x="44.20289855072464" y="90.401785714285708"/>
+            <point key="canvasLocation" x="-149" y="28"/>
         </collectionReusableView>
     </objects>
 </document>
