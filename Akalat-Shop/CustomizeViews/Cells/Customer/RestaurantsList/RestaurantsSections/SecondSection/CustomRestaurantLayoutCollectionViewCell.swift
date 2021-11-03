@@ -16,11 +16,14 @@ class CustomRestaurantLayoutCollectionViewCell: UICollectionViewCell {
     
    
     
+   
+    
     // MARK: Lifecycle
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        restaurantName.numberOfLines = 0
+//        sectionName.text = "Best For Sandwiches"
+//        sectionName.textAlignment = .natural
     }
 
     

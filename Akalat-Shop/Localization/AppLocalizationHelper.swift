@@ -19,8 +19,8 @@ class AppLocalizationHelper: NSObject {
         
         MethodSwizzleGivenClassName(cls: Bundle.self, originalSelector: #selector(Bundle.localizedString(forKey:value:table:)), overrideSelector: #selector(Bundle.specialLocalizedStringForKey(_:value:table:)))
         MethodSwizzleGivenClassName(cls: UIApplication.self, originalSelector: #selector(getter: UIApplication.userInterfaceLayoutDirection), overrideSelector: #selector(getter: UIApplication.cstm_userInterfaceLayoutDirection))
-//        MethodSwizzleGivenClassName(cls: UITextField.self, originalSelector: #selector(UITextField.layoutSubviews), overrideSelector: #selector(UITextField.cstmlayoutSubviews))
-//        MethodSwizzleGivenClassName(cls: UILabel.self, originalSelector: #selector(UILabel.layoutSubviews), overrideSelector: #selector(UILabel.cstmlayoutSubviews))
+        MethodSwizzleGivenClassName(cls: UITextField.self, originalSelector: #selector(UITextField.layoutSubviews), overrideSelector: #selector(UITextField.cstmlayoutSubviews))
+        MethodSwizzleGivenClassName(cls: UILabel.self, originalSelector: #selector(UILabel.layoutSubviews), overrideSelector: #selector(UILabel.cstmlayoutSubviews))
 
 
     }
@@ -49,9 +49,13 @@ extension UILabel {
             if UIApplication.isRTL()  {
                 if self.textAlignment == .right {
                     return
+                } else if self.textAlignment == .center {
+                    return
                 }
             } else {
                 if self.textAlignment == .left {
+                    return
+                }  else if self.textAlignment == .center {
                     return
                 }
             }
@@ -65,6 +69,23 @@ extension UILabel {
         }
     }
 }
+
+extension UITextField {
+    @objc public func cstmlayoutSubviews() {
+        self.cstmlayoutSubviews()
+        if self.tag <= 0 {
+            if UIApplication.isRTL()  {
+                if self.textAlignment == .right { return }
+                self.textAlignment = .right
+            } else {
+                if self.textAlignment == .left { return }
+                self.textAlignment = .left
+            }
+        }
+    }
+}
+
+
 
 extension Bundle {
     @objc func specialLocalizedStringForKey(_ key: String, value: String?, table tableName: String?) -> String {

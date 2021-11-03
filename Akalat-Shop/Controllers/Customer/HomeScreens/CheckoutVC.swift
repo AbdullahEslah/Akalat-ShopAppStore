@@ -180,16 +180,27 @@ class CheckoutVC: UIViewController, SWRevealViewControllerDelegate {
                     print("Error", error)
                 }
                 
-                let placemark = placemark!  as [CLPlacemark]
+                guard let placemark = placemark   else {
+                    return
+                }
                 if placemark.count > 0 {
                     let placemark = placemark[0]
-                    print(placemark.locality!)
-                    print(placemark.thoroughfare!)
-                    print(placemark.administrativeArea!)
-                    print(placemark.country!)
                     
-                    addressVC.currentLocationTextField.text = "\(placemark.thoroughfare!) \(placemark.administrativeArea!) \(placemark.locality!)"
-                        print(addressVC.currentLocationTextField.text!)
+                    guard let thoroughfare = placemark.thoroughfare else {
+                        return
+                    }
+                    print(thoroughfare)
+                    guard let locality = placemark.locality else {
+                        return
+                    }
+                    print(locality)
+                    guard let adminstrativeArea = placemark.administrativeArea else {
+                        return
+                    }
+                    print(adminstrativeArea)
+                    addressVC.currentLocationTextField.text = "\(thoroughfare) \(adminstrativeArea) \(locality)"
+                    
+                        print(addressVC.currentLocationTextField.text)
                     
                 }
                

@@ -49,7 +49,16 @@ class MealListVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        if AppLocalization.currentAppleLanguage() == "en" {
+            collectionView.semanticContentAttribute = .forceLeftToRight
+        }else {
+            collectionView.semanticContentAttribute = .forceRightToLeft
+        }
+        
         collectionView.reloadData()
+        
+        
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)

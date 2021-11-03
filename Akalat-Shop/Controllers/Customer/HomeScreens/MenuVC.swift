@@ -27,13 +27,16 @@ class MenuVC: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+//        self.changeLangButton.isOn = UIView.appearance().semanticContentAttribute == .forceRightToLeft
         view.backgroundColor = UIColor(named: "DarkColor")
         getUserData()
         
     }
  
-    
+//    extension UIApplication {
+        
+//    }
+
     func getUserData() {
         nameLabel.text = User.currentUser.name?.capitalized ?? ""
 
@@ -142,45 +145,38 @@ class MenuVC: UITableViewController {
         return true
     }
     
+    
     @IBAction func changeLangButtonTapped(_ sender: Any) {
         
+        let rootviewcontroller: UIWindow = ((UIApplication.shared.delegate?.window)!)!
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        rootviewcontroller.rootViewController = storyboard.instantiateViewController(withIdentifier: "TabBarVC")
+        let mainwindow = (UIApplication.shared.delegate?.window!)!
+        
         if AppLocalization.currentAppleLanguage() == "en" {
-    
-            AppLocalization.setAppleLAnguageTo(lang: "ar")
-           
-            let rootviewcontroller: UIWindow = ((UIApplication.shared.delegate?.window)!)!
-            rootviewcontroller.rootViewController = self.storyboard?.instantiateViewController(withIdentifier: "TabBarVC")
-            let mainwindow = (UIApplication.shared.delegate?.window!)!
-            
             UIView.transition(with: mainwindow, duration: 0.55001, options: .transitionFlipFromLeft, animations: { () -> Void in
             }) { (finished) -> Void in
+                AppLocalization.setAppleLAnguageTo(lang: "ar")
                 UIView.appearance().semanticContentAttribute = .forceRightToLeft
-                UILabel.appearance().semanticContentAttribute = .forceRightToLeft
-                
                 // Refresh The View To Reload The View
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let tabBar = storyboard.instantiateViewController(identifier: "TabBarVC")
-                appDelegate.window!.rootViewController = tabBar
+                let TabBarVC = storyboard.instantiateViewController(identifier: "TabBarVC")
+                appDelegate.window!.rootViewController = TabBarVC
             }
-
-        } else {
-            AppLocalization.setAppleLAnguageTo(lang: "en")
-
-            let rootviewcontroller: UIWindow = ((UIApplication.shared.delegate?.window)!)!
-            rootviewcontroller.rootViewController = self.storyboard?.instantiateViewController(withIdentifier: "TabBarVC")
-            let mainwindow = (UIApplication.shared.delegate?.window!)!
             
+        } else {
             UIView.transition(with: mainwindow, duration: 0.55001, options: .transitionFlipFromLeft, animations: { () -> Void in
             }) { (finished) -> Void in
+                AppLocalization.setAppleLAnguageTo(lang: "en")
                 UIView.appearance().semanticContentAttribute = .forceLeftToRight
-                UILabel.appearance().semanticContentAttribute = .forceLeftToRight
                 // Refresh The View To Reload The View
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let tabBar = storyboard.instantiateViewController(identifier: "TabBarVC")
-                appDelegate.window!.rootViewController = tabBar
+                let TabBarVC = storyboard.instantiateViewController(identifier: "TabBarVC")
+                appDelegate.window!.rootViewController = TabBarVC
             }
-
         }
+
     }
     
 }
+

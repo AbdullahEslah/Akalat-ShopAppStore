@@ -41,8 +41,10 @@ class AddressVC: UIViewController {
     
     @IBAction func chooseCurrentLocationButtonTapped(_ sender: Any) {
         dismiss(animated:true) {
-            
-            self.AddressProtocol?.addressCity(name: "\(self.currentLocationTextField.text!)")
+            guard let address = self.currentLocationTextField.text else {
+                return
+            }
+            self.AddressProtocol?.addressCity(name: "\(address)")
             
         }
     }

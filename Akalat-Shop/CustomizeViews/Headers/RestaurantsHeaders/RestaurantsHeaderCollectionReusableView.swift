@@ -17,20 +17,20 @@ class RestaurantsHeaderCollectionReusableView: UICollectionReusableView {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        headerLabel.textAlignment = .natural
+//        headerLabel.textAlignment = .natural
        
         
     }
    
 }
 
-extension UILabel {
-    open override func awakeFromNib() {
-        super.awakeFromNib()
-        if AppLocalization.currentAppleLanguage() == "ar" {
-            if textAlignment == .natural {
-                self.textAlignment = .right
-            }
-        }
-    }
-}
+//extension UILabel {
+//    open override func awakeFromNib() {
+//        super.awakeFromNib()
+////        if AppLocalization.currentAppleLanguage() == "ar" {
+////            if textAlignment == .natural {
+////                self.textAlignment = .right
+////            }
+////        }
+//    }
+//}

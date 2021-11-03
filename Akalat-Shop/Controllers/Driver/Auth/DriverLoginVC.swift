@@ -49,10 +49,14 @@ class DriverLoginVC: UIViewController, LoginButtonDelegate {
     let animationView = AnimationView(animation: Animation.named("lf20_vhkdj1ra"))
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+         
+//        if MOLHLanguage.isRTLLanguage() {
+//        fbLoginButton.titleEdgeInsets = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 0)
+
+//            fbLoginButton.contentHorizontalAlignment = UIControl.ContentHorizontalAlignment.center
+//        }
         connection()
         defaultAuthHolderViewHeight = authHolderViewHeight.constant
-        
         
         fbLoginButton.delegate = self
         
@@ -72,7 +76,7 @@ class DriverLoginVC: UIViewController, LoginButtonDelegate {
             animationView.loopMode = .repeat(3.0)
             animationView.animationSpeed = 1
             
-            self.fbLoginButton.setTitle("Continue With Facebbok", for: .normal)
+            self.fbLoginButton.setTitle("     Continue With Facebbok", for: .normal)
             GraphRequest(graphPath: "me", parameters: ["fields": "name, email, picture.type(normal)"]).start(completionHandler: { (connection, result, error) in
                 
                 if error == nil {

@@ -84,11 +84,11 @@ class MealDetailsVC: UIViewController {
         image.center = CGPoint(x: self.view.frame.width / 2, y: self.view.frame.height - 100)
         self.view.addSubview(image)
         
-        if AppLocalization.currentAppleLanguage() == "en" {
+        if AppLocalization.currentAppleLanguage() == "ar" {
         UIView.animate(withDuration: 1.0,
                        delay: 0.0,
                        options: UIView.AnimationOptions.curveEaseOut,
-                       animations: { image.center = AnimationManager.screenRight
+                       animations: { image.center = AnimationManager.screenLeft
                         image.alpha = 0.0},
                        completion: { _ in
                         image.removeFromSuperview()
@@ -166,7 +166,7 @@ class MealDetailsVC: UIViewController {
             UIView.animate(withDuration: 1.0,
                            delay: 0.0,
                            options: UIView.AnimationOptions.curveEaseOut,
-                           animations: { image.center = AnimationManager.screenLeft
+                           animations: { image.center = AnimationManager.screenRight
                             image.alpha = 0.0},
                            completion: { _ in
                             image.removeFromSuperview()

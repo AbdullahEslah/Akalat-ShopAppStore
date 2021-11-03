@@ -1,21 +1,77 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13142" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12042"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="ThirdCell" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-            <autoresizingMask key="autoresizingMask"/>
-            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-            </view>
-            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ThirdCell" id="y8G-AA-N3I" userLabel="ThirdCell" customClass="ThirdCell" customModule="Akalat_Shop" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="324" height="201"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="bwF-ZO-Agv">
+                <rect key="frame" x="0.0" y="0.0" width="324" height="201"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CJw-5g-Uge" customClass="RoundedShadowView" customModule="Akalat_Shop" customModuleProvider="target">
+                        <rect key="frame" x="8" y="8" width="308" height="189"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="mealName" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fxl-At-BJx">
+                                <rect key="frame" x="8" y="163" width="292" height="22"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="12"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PDT-38-OdU" customClass="RoundedImageView" customModule="Akalat_Shop" customModuleProvider="target">
+                                <rect key="frame" x="8" y="26" width="292" height="137"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Section Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="duD-VO-xiE">
+                                <rect key="frame" x="0.0" y="0.0" width="208" height="19.5"/>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="15"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" name="WhiteColor"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="Fxl-At-BJx" secondAttribute="bottom" constant="4" id="6Zw-Os-Ub7"/>
+                            <constraint firstItem="duD-VO-xiE" firstAttribute="top" secondItem="CJw-5g-Uge" secondAttribute="top" id="9e7-64-5f4"/>
+                            <constraint firstAttribute="trailing" secondItem="PDT-38-OdU" secondAttribute="trailing" constant="8" id="HIY-vG-LH2"/>
+                            <constraint firstAttribute="bottom" secondItem="PDT-38-OdU" secondAttribute="bottom" constant="26" id="KZ2-9i-bU9"/>
+                            <constraint firstItem="Fxl-At-BJx" firstAttribute="leading" secondItem="PDT-38-OdU" secondAttribute="leading" id="NVz-AV-gGv"/>
+                            <constraint firstItem="duD-VO-xiE" firstAttribute="leading" secondItem="CJw-5g-Uge" secondAttribute="leading" id="Ou8-Bq-DmM"/>
+                            <constraint firstAttribute="trailing" secondItem="duD-VO-xiE" secondAttribute="trailing" constant="100" id="cpx-cU-eMs"/>
+                            <constraint firstItem="PDT-38-OdU" firstAttribute="top" secondItem="CJw-5g-Uge" secondAttribute="top" constant="26" id="jkG-JP-kbV"/>
+                            <constraint firstItem="Fxl-At-BJx" firstAttribute="top" secondItem="PDT-38-OdU" secondAttribute="bottom" id="pip-Jm-xIF"/>
+                            <constraint firstItem="PDT-38-OdU" firstAttribute="leading" secondItem="CJw-5g-Uge" secondAttribute="leading" constant="8" id="pme-ug-33n"/>
+                            <constraint firstItem="Fxl-At-BJx" firstAttribute="trailing" secondItem="PDT-38-OdU" secondAttribute="trailing" id="sqP-cp-QbT"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <color key="backgroundColor" name="WhiteColor"/>
+                <constraints>
+                    <constraint firstItem="CJw-5g-Uge" firstAttribute="top" secondItem="bwF-ZO-Agv" secondAttribute="top" constant="8" id="7FF-w4-VRK"/>
+                    <constraint firstItem="CJw-5g-Uge" firstAttribute="leading" secondItem="bwF-ZO-Agv" secondAttribute="leading" constant="8" id="EMk-kJ-FvY"/>
+                    <constraint firstAttribute="trailing" secondItem="CJw-5g-Uge" secondAttribute="trailing" constant="8" id="Kb4-5G-tXb"/>
+                    <constraint firstAttribute="bottom" secondItem="CJw-5g-Uge" secondAttribute="bottom" constant="4" id="XSD-G6-FV4"/>
+                </constraints>
+            </collectionViewCellContentView>
+            <color key="backgroundColor" name="WhiteColor"/>
+            <size key="customSize" width="324" height="201"/>
+            <connections>
+                <outlet property="restaurantImageView" destination="PDT-38-OdU" id="PzV-wv-qUe"/>
+                <outlet property="restaurantName" destination="Fxl-At-BJx" id="afW-Rg-lVc"/>
+                <outlet property="sectionName" destination="duD-VO-xiE" id="xN7-sM-oaH"/>
+            </connections>
+            <point key="canvasLocation" x="-486" y="-401"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <namedColor name="WhiteColor">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
 </document>

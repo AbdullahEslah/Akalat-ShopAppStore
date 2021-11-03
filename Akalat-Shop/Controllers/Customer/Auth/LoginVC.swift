@@ -15,6 +15,7 @@ import Kingfisher
 import Lottie
 import Network
 
+
 class LoginVC: UIViewController, LoginButtonDelegate {
     
     @IBOutlet weak var internetConnectionLabel: UILabel!
@@ -51,7 +52,7 @@ class LoginVC: UIViewController, LoginButtonDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
- 
+       
         connection()
         
         defaultAuthHolderViewHeight = authHolderViewHeight.constant
@@ -74,7 +75,7 @@ class LoginVC: UIViewController, LoginButtonDelegate {
             animationView.loopMode = .repeat(3.0)
             animationView.animationSpeed = 1
   
-            self.fbLoginButton.setTitle("Continue With Facebbok", for: .normal)
+            self.fbLoginButton.setTitle("    Continue With Facebbok", for: .normal)
             
 //            if UserDefaults.standard.value(forKey: "CheckDriverView") != nil {
             GraphRequest(graphPath: "me", parameters: ["fields": "name, email, picture.type(normal)"]).start(completionHandler: { (connection, result, error) in
@@ -484,7 +485,7 @@ class LoginVC: UIViewController, LoginButtonDelegate {
         NSLayoutConstraint.activate([
                                      button.leadingAnchor.constraint(equalTo: googleLoginButton.leadingAnchor,constant: 0),
                                      button.trailingAnchor.constraint(equalTo: googleLoginButton.trailingAnchor,constant: 0),
-            button.topAnchor.constraint(equalTo: fbLoginButton.topAnchor,constant: -46),
+            button.topAnchor.constraint(equalTo: fbLoginButton.topAnchor,constant: -58),
             button.heightAnchor.constraint(equalTo: googleLoginButton.heightAnchor)
         ])
         

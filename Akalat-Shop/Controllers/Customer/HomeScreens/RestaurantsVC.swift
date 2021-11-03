@@ -36,7 +36,7 @@ class RestaurantsVC: UIViewController, UISearchControllerDelegate, SWRevealViewC
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         
         DispatchQueue.main.async { [weak self] in
             self?.startTimer()
@@ -52,6 +52,8 @@ class RestaurantsVC: UIViewController, UISearchControllerDelegate, SWRevealViewC
         
         collectionView.register(UINib(nibName: "RestaurantsHeaderCollectionReusableView", bundle: nil),forSupplementaryViewOfKind: "header",withReuseIdentifier:"RestaurantsHeaderCollectionReusableView")
  
+        collectionView.collectionViewLayout = createcompositionalLayout()
+        
         fetchRestaurants()
         
         //Categories
@@ -62,7 +64,7 @@ class RestaurantsVC: UIViewController, UISearchControllerDelegate, SWRevealViewC
         fetchDessertsRestaurants()
         fetchFriedChickenRestaurants()
        
-        collectionView.collectionViewLayout = createcompositionalLayout()
+       
         animationView.frame = view.bounds
 
         // Add animationView as subview
@@ -74,7 +76,7 @@ class RestaurantsVC: UIViewController, UISearchControllerDelegate, SWRevealViewC
         animationView.animationSpeed = 1
         DismissSearchBar()
         fetchSandwichesRestaurants()
-        
+//        collectionView.semanticContentAttribute = .unspecified
     }
     
     func startTimer() {
@@ -104,13 +106,18 @@ class RestaurantsVC: UIViewController, UISearchControllerDelegate, SWRevealViewC
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        
-        
+
         collectionView.reloadData()
        
 
         configureSearchBar()
+        
+        if AppLocalization.currentAppleLanguage() == "en" {
+            
+            collectionView.semanticContentAttribute = .forceLeftToRight
+        }else {
+            collectionView.semanticContentAttribute = .forceRightToLeft
+        }
        
         navigationItem.hidesSearchBarWhenScrolling = false
         
@@ -156,6 +163,8 @@ class RestaurantsVC: UIViewController, UISearchControllerDelegate, SWRevealViewC
         
         menuButton.frame = CGRect(x: 0.0, y: 0.0, width: 35.0, height: 35.0)
         if AppLocalization.currentAppleLanguage() == "ar" {
+//            if MOLHLanguage.isRTLLanguage() {
+//                if L10n.shared.language == "ar" {
             if self.revealViewController() != nil {
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let sidemenuViewController = storyboard.instantiateViewController(withIdentifier: "MenuVC") as! MenuVC
@@ -214,11 +223,12 @@ class RestaurantsVC: UIViewController, UISearchControllerDelegate, SWRevealViewC
         switch index {
         
         case 0:
+            
             return  createFirstSection()
             
         case 1:
             return createOneSizeSection()
-            
+           
         case 2:
             return createOneSizeSection()
             
@@ -284,19 +294,46 @@ class RestaurantsVC: UIViewController, UISearchControllerDelegate, SWRevealViewC
         //header
         let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(30))
         
-        let headerTrailing = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: "header", alignment: .topTrailing)
         
         let headerLeading = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: "header", alignment: .topLeading)
         
-        if AppLocalization.currentAppleLanguage() == "en" {
             section.boundarySupplementaryItems = [headerLeading]
-        } else {
-            section.boundarySupplementaryItems = [headerTrailing]
-        }
+        
         
            return section
     }
     
+    func createLocalizedOneSizeSection() -> NSCollectionLayoutSection {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension:
+        .fractionalHeight(1))
+
+           let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        item.contentInsets.bottom = 15
+
+        item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 5, trailing: 5)
+        
+           let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.9), heightDimension:
+        .fractionalWidth(0.5))
+
+           let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+        group.contentInsets = .init(top: 0, leading: 0, bottom: 0, trailing: 2)
+
+           let section = NSCollectionLayoutSection(group: group)
+
+        section.orthogonalScrollingBehavior = .continuousGroupLeadingBoundary
+        
+        
+        //header
+        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(30))
+        
+        
+        let headerLeading = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: "header", alignment: .topTrailing)
+        
+            section.boundarySupplementaryItems = [headerLeading]
+        
+        
+           return section
+    }
     
     
     func createList() -> NSCollectionLayoutSection {
@@ -522,8 +559,7 @@ extension RestaurantsVC : UICollectionViewDelegate, UICollectionViewDataSource{
 
      func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-//        if section == 0 {
-//            return filterdRestaurants.count
+
          if section == 1 {
             return filterdRestaurants.count
         } else if section == 2 {
@@ -554,9 +590,9 @@ extension RestaurantsVC : UICollectionViewDelegate, UICollectionViewDataSource{
 //            header.headerLabel.textAlignment = .natural // or whatever
 //        }
         
-        view.headerLabel.lineBreakMode = .byTruncatingTail
-        view.headerLabel.textAlignment = .justified
-        view.headerLabel.numberOfLines = 0
+//        view.headerLabel.lineBreakMode = .byTruncatingTail
+//        view.headerLabel.textAlignment = .justified
+//        view.headerLabel.numberOfLines = 0
         let commonChoicesLabel = NSLocalizedString("browseByAllRestaurantskey", comment: "")
         view.headerLabel.text = indexPath.section == 1 ? commonChoicesLabel : "Common Choices"
         
@@ -577,6 +613,7 @@ extension RestaurantsVC : UICollectionViewDelegate, UICollectionViewDataSource{
             guard let CellNumZero = collectionView.dequeueReusableCell(withReuseIdentifier: "ScrollViewCollectionViewCell", for: indexPath) as? ScrollViewCollectionViewCell else {
                 return UICollectionViewCell()
             }
+            
             
             CellNumZero.sandwichesButton.addTarget(self, action: #selector(sandwicthVCAction), for: .touchUpInside)
             CellNumZero.pizzaButton.addTarget(self, action: #selector(pizzaVCAction), for: .touchUpInside)
@@ -780,14 +817,6 @@ extension RestaurantsVC : UICollectionViewDelegate, UICollectionViewDataSource{
         }
     }
     
-    func collectionView(_ collectionView: UICollectionView, willDisplayHeaderView view: UIView, forSection section: Int) {
-//        let header: UITableViewHeaderFooterView = view as! UITableViewHeaderFooterView
-//        header.textLabel?.font = UIFont(name: "YourFontname", size: 14.0)
-//        header.textLabel?.textAlignment = NSTextAlignment.right
-    }
-    
-    
-
     
      func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
@@ -910,6 +939,7 @@ extension RestaurantsVC : UISearchBarDelegate {
         collectionView.reloadData()
     }
 }
+
 extension UIButton{
 
     func setImageBackgroundColor(_ color: UIColor) {
@@ -930,3 +960,5 @@ extension UIButton{
     }
 
 }
+
+

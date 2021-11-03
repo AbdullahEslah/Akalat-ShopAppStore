@@ -136,45 +136,39 @@ class DriverMenuVC: UITableViewController {
     @IBAction func changeLanguageButtonTapped(_ sender: Any) {
         
         
+        let rootviewcontroller: UIWindow = ((UIApplication.shared.delegate?.window)!)!
+        let storyboard = UIStoryboard(name: "DriverMain", bundle: nil)
+        rootviewcontroller.rootViewController = storyboard.instantiateViewController(withIdentifier: "DriverSWRevealViewController")
+        let mainwindow = (UIApplication.shared.delegate?.window!)!
+        
+        
         if AppLocalization.currentAppleLanguage() == "en" {
-            
-            AppLocalization.setAppleLAnguageTo(lang: "ar")
-            
-            let rootviewcontroller: UIWindow = ((UIApplication.shared.delegate?.window)!)!
-            let storyboard = UIStoryboard(name: "DriverMain", bundle: nil).instantiateViewController(identifier: "DriverSWRevealViewController")
-            rootviewcontroller.rootViewController = storyboard
-            let mainwindow = (UIApplication.shared.delegate?.window!)!
-           
             UIView.transition(with: mainwindow, duration: 0.55001, options: .transitionFlipFromLeft, animations: { () -> Void in
             }) { (finished) -> Void in
+                AppLocalization.setAppleLAnguageTo(lang: "ar")
                 UIView.appearance().semanticContentAttribute = .forceRightToLeft
-                
                 // Refresh The View To Reload The View
                 let storyboard = UIStoryboard(name: "DriverMain", bundle: nil)
                 let orderVC = storyboard.instantiateViewController(identifier: "DriverSWRevealViewController")
                 appDelegate.window!.rootViewController = orderVC
-               
             }
-
-        } else {
-            AppLocalization.setAppleLAnguageTo(lang: "en")
             
-           let rootviewcontroller: UIWindow = ((UIApplication.shared.delegate?.window)!)!
-            let storyboard = UIStoryboard(name: "DriverMain", bundle: nil).instantiateViewController(identifier: "DriverSWRevealViewController")
-            rootviewcontroller.rootViewController = storyboard
-            let mainwindow = (UIApplication.shared.delegate?.window!)!
-           
+        } else {
             UIView.transition(with: mainwindow, duration: 0.55001, options: .transitionFlipFromLeft, animations: { () -> Void in
             }) { (finished) -> Void in
-                UIView.appearance().semanticContentAttribute = .forceLeftToRight
-                
+            AppLocalization.setAppleLAnguageTo(lang: "en")
+            UIView.appearance().semanticContentAttribute = .forceLeftToRight
                 // Refresh The View To Reload The View
                 let storyboard = UIStoryboard(name: "DriverMain", bundle: nil)
                 let orderVC = storyboard.instantiateViewController(identifier: "DriverSWRevealViewController")
                 appDelegate.window!.rootViewController = orderVC
             }
-
         }
+                
+        
+        
     }
+    
+    
     
 }

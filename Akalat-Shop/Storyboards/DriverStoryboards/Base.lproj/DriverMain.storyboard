@@ -72,7 +72,7 @@
                                             <action selector="googleSignInTapped:" destination="OfU-Im-OVa" eventType="touchUpInside" id="sVS-N9-to8"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ngp-zU-QHV" customClass="FBSDKLoginButton">
+                                    <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceLeftToRight" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ngp-zU-QHV" customClass="FBSDKLoginButton">
                                         <rect key="frame" x="8" y="51" width="272" height="40"/>
                                         <color key="backgroundColor" systemColor="linkColor"/>
                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="15"/>

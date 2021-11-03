@@ -13,12 +13,12 @@
         <!--RegionVC-->
         <scene sceneID="vig-n8-DuD">
             <objects>
-                <viewController storyboardIdentifier="RegionVC" id="gCI-Nj-OWx" customClass="RegionVC" customModule="AkalatShop_Driver" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RegionVC" id="gCI-Nj-OWx" customClass="RegionVC" customModule="Akalat_Shop" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="mVV-5l-wrl">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cIq-jw-8Eg" customClass="RoundedShadowView" customModule="AkalatShop_Driver" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cIq-jw-8Eg" customClass="RoundedShadowView" customModule="Akalat_Shop" customModuleProvider="target">
                                 <rect key="frame" x="44.5" y="168.5" width="231" height="231"/>
                                 <color key="backgroundColor" name="WhiteColor"/>
                                 <constraints>
@@ -31,14 +31,14 @@
                                 <color key="textColor" name="DarkColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Select Your Region" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pV2-ae-GsP" customClass="StopPasteAction" customModule="AkalatShop_Driver" customModuleProvider="target">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Select Your Region" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pV2-ae-GsP" customClass="StopPasteAction" customModule="Akalat_Shop" customModuleProvider="target">
                                 <rect key="frame" x="60.5" y="238.5" width="199" height="34"/>
                                 <color key="backgroundColor" systemColor="systemGray4Color"/>
                                 <color key="textColor" name="DarkColor"/>
                                 <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aVg-F2-rqe" customClass="RoundedButton" customModule="AkalatShop_Driver" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aVg-F2-rqe" customClass="RoundedButton" customModule="Akalat_Shop" customModuleProvider="target">
                                 <rect key="frame" x="60.5" y="345.5" width="199" height="38"/>
                                 <color key="backgroundColor" name="SmoothRed"/>
                                 <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="20"/>
