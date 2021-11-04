@@ -54,9 +54,10 @@
 		FA6B55DF270FBEEB002640A1 /* StatisticsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC65026F88C2D00095DB5 /* StatisticsVC.swift */; };
 		FA6B55E8270FBF2E002640A1 /* DriverMain.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA439B17270E5E5A00F2F83D /* DriverMain.storyboard */; };
 		FA6B564E270FC867002640A1 /* DriverLoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA439C68270E6BC500F2F83D /* DriverLoginVC.swift */; };
-		FA6B5653270FC977002640A1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA6B5652270FC973002640A1 /* Assets.xcassets */; };
 		FA6B5662270FD01C002640A1 /* OrdersTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA439C19270E64E900F2F83D /* OrdersTableViewCell.xib */; };
 		FA6B5663270FD01C002640A1 /* OrdersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA439C18270E64E800F2F83D /* OrdersTableViewCell.swift */; };
+		FA7B72082733BC5E00694F64 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7B72072733BC5E00694F64 /* AppDelegate.swift */; };
+		FA7B720B2733BC7200694F64 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA7B720A2733BC7100694F64 /* Assets.xcassets */; };
 		FAC551CC270D0E43009F83CB /* 23211-receive-order.json in Resources */ = {isa = PBXBuildFile; fileRef = FAC551CB270D0E43009F83CB /* 23211-receive-order.json */; };
 		FAC551D8270D0EE6009F83CB /* lf20_vhkdj1ra.json in Resources */ = {isa = PBXBuildFile; fileRef = FAC551D7270D0EE6009F83CB /* lf20_vhkdj1ra.json */; };
 		FAC6672E271FA3A900C2CDDF /* Charts.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC6672D271FA3A900C2CDDF /* Charts.swift */; };
@@ -77,7 +78,6 @@
 		FAE9EBE5272FA08A009FC8AB /* SeventhCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE9EBE3272FA08A009FC8AB /* SeventhCell.swift */; };
 		FAE9EBE6272FA08A009FC8AB /* SeventhCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAE9EBE4272FA08A009FC8AB /* SeventhCell.xib */; };
 		FAEFC57126F8883300095DB5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAEFC56F26F8883300095DB5 /* LaunchScreen.storyboard */; };
-		FAEFC59126F88B6C00095DB5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC58F26F88B6800095DB5 /* AppDelegate.swift */; };
 		FAEFC5EF26F88BB500095DB5 /* Tray.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC5AB26F88BB100095DB5 /* Tray.swift */; };
 		FAEFC5F126F88BBB00095DB5 /* PickOrderRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC5AE26F88BB100095DB5 /* PickOrderRequest.swift */; };
 		FAEFC5F326F88BC000095DB5 /* RefreshToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFC5B126F88BB100095DB5 /* RefreshToken.swift */; };
@@ -194,7 +194,8 @@
 		FA5B896D272BAE7400D5D067 /* AnimationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationManager.swift; sourceTree = "<group>"; };
 		FA64BD5F271A5E380062E0ED /* CompleteOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompleteOrder.swift; sourceTree = "<group>"; };
 		FA64BD65271A5F2A0062E0ED /* CompleteOrderResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompleteOrderResponse.swift; sourceTree = "<group>"; };
-		FA6B5652270FC973002640A1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		FA7B72072733BC5E00694F64 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		FA7B720A2733BC7100694F64 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FAC551CB270D0E43009F83CB /* 23211-receive-order.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "23211-receive-order.json"; sourceTree = "<group>"; };
 		FAC551D7270D0EE6009F83CB /* lf20_vhkdj1ra.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = lf20_vhkdj1ra.json; sourceTree = "<group>"; };
 		FAC6672D271FA3A900C2CDDF /* Charts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Charts.swift; sourceTree = "<group>"; };
@@ -217,7 +218,6 @@
 		FAEFC56126F8882D00095DB5 /* Akalat-Shop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Akalat-Shop.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAEFC57026F8883300095DB5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FAEFC57226F8883300095DB5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FAEFC58F26F88B6800095DB5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FAEFC5AB26F88BB100095DB5 /* Tray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tray.swift; sourceTree = "<group>"; };
 		FAEFC5AE26F88BB100095DB5 /* PickOrderRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickOrderRequest.swift; sourceTree = "<group>"; };
 		FAEFC5B126F88BB100095DB5 /* RefreshToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshToken.swift; sourceTree = "<group>"; };
@@ -615,6 +615,15 @@
 			path = Responses;
 			sourceTree = "<group>";
 		};
+		FA7B72052733BC4900694F64 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				FA7B72072733BC5E00694F64 /* AppDelegate.swift */,
+				FA7B720A2733BC7100694F64 /* Assets.xcassets */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
 		FAC6672C271FA37200C2CDDF /* Charts */ = {
 			isa = PBXGroup;
 			children = (
@@ -730,12 +739,12 @@
 		FAEFC56326F8882D00095DB5 /* Akalat-Shop */ = {
 			isa = PBXGroup;
 			children = (
+				FA7B72052733BC4900694F64 /* Support */,
 				FA5B4861273229900031C1F5 /* ArrowRight.png */,
 				FA5B695A2720C02A0028554D /* Localization */,
 				FAEFC70426F894C900095DB5 /* Akalat-Shop.entitlements */,
 				FAEFC6ED26F8916E00095DB5 /* Akalat-ShopRelease.entitlements */,
 				FA439B54270E618200F2F83D /* Managers */,
-				FAEFC58D26F88B6800095DB5 /* Support */,
 				FAEFC5A926F88BB100095DB5 /* Model */,
 				FAEFC5FB26F88BD600095DB5 /* CustomizeViews */,
 				FAEFC64B26F88C2D00095DB5 /* Controllers */,
@@ -747,16 +756,6 @@
 				FA5B699A272134DE0028554D /* Localizable.strings */,
 			);
 			path = "Akalat-Shop";
-			sourceTree = "<group>";
-		};
-		FAEFC58D26F88B6800095DB5 /* Support */ = {
-			isa = PBXGroup;
-			children = (
-				FAEFC58F26F88B6800095DB5 /* AppDelegate.swift */,
-				FA6B5652270FC973002640A1 /* Assets.xcassets */,
-			);
-			name = Support;
-			path = "../../../Downloads/AkalatShop-main-2/Akalat Shop/Support";
 			sourceTree = "<group>";
 		};
 		FAEFC5A926F88BB100095DB5 /* Model */ = {
@@ -1263,11 +1262,11 @@
 				FA5B4863273229E30031C1F5 /* ArrowRight.png in Resources */,
 				FA5B6998272134DE0028554D /* Localizable.strings in Resources */,
 				FAE9EBDA272FA037009FC8AB /* FifthCell.xib in Resources */,
+				FA7B720B2733BC7200694F64 /* Assets.xcassets in Resources */,
 				FAEFC62F26F88BEE00095DB5 /* CheckoutDetailsTableViewCell.xib in Resources */,
 				FAE9EBD4272F9FF0009FC8AB /* FourthCell.xib in Resources */,
 				FAEFC71A26F8B76000095DB5 /* GoogleService-Info.plist in Resources */,
 				FA5B69612720C19F0028554D /* Main.storyboard in Resources */,
-				FA6B5653270FC977002640A1 /* Assets.xcassets in Resources */,
 				FAE9EBCD272F9FAB009FC8AB /* ThirdCell.xib in Resources */,
 				FAEFC63226F88BF700095DB5 /* MealsCollectionViewCell.xib in Resources */,
 				FAC551D8270D0EE6009F83CB /* lf20_vhkdj1ra.json in Resources */,
@@ -1329,6 +1328,7 @@
 				FAEFC63926F88C0100095DB5 /* RestaurantsTableViewCell.swift in Sources */,
 				FA35891C2706B78900B317AC /* AppleIDLoginResponse.swift in Sources */,
 				FAEFC67626F88C4100095DB5 /* OnBoardingVC.swift in Sources */,
+				FA7B72082733BC5E00694F64 /* AppDelegate.swift in Sources */,
 				FA439B65270E61BF00F2F83D /* NetworkManager.swift in Sources */,
 				FA2A8922270E8A5A005DB8BA /* DriverOrderDetails.swift in Sources */,
 				FAEFC67A26F88C5300095DB5 /* CheckoutVC.swift in Sources */,
@@ -1374,7 +1374,6 @@
 				FA6B55DF270FBEEB002640A1 /* StatisticsVC.swift in Sources */,
 				FAEFC68026F88C5300095DB5 /* FriedChickenVC.swift in Sources */,
 				FA2A8920270E8A5A005DB8BA /* DriverMealDetails.swift in Sources */,
-				FAEFC59126F88B6C00095DB5 /* AppDelegate.swift in Sources */,
 				FAEFC5F926F88BCB00095DB5 /* LogoutRevokeToken.swift in Sources */,
 				FAEFC6B426F88E6600095DB5 /* Picture.swift in Sources */,
 				FAEFC6C426F88E8900095DB5 /* MakeOrderResponse.swift in Sources */,

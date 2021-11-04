@@ -1,15 +1,17 @@
 {
   "images" : [
     {
+      "filename" : "DESSERT X.jpg",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "cup-cake.png",
+      "filename" : "DESSERT 2X.jpg",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "DESSERT 3X.jpg",
       "idiom" : "universal",
       "scale" : "3x"
     }

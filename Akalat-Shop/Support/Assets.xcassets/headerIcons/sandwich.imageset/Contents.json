@@ -1,15 +1,17 @@
 {
   "images" : [
     {
+      "filename" : "sandwich X.jpg",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "sandwich.png",
+      "filename" : "sandwich 2X.jpg",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "sandwich 3X.jpg",
       "idiom" : "universal",
       "scale" : "3x"
     }

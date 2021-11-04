@@ -1,15 +1,17 @@
 {
   "images" : [
     {
+      "filename" : "fried checken X.jpg",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "fried-chicken.png",
+      "filename" : "fried checken 2X.jpg",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "fried checken 3X.jpg",
       "idiom" : "universal",
       "scale" : "3x"
     }

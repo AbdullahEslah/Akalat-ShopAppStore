@@ -42,7 +42,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CAAnimationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
  
-    
+        AppLocalizationHelper.DoTheMagic()
+        
         if Constants.region != nil {
             
 
@@ -63,14 +64,40 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CAAnimationDelegate {
         
         moveLeft()
         
-        UINavigationBar.appearance().barTintColor = UIColor(named: "MainColor")
-        UINavigationBar.appearance().tintColor = UIColor(named: "SmoothRed")
-        UINavigationBar.appearance().titleTextAttributes = [ NSAttributedString.Key.foregroundColor: UIColor(named: "MainColor")!]
- 
+        UINavigationBar.appearance().barTintColor = UIColor(named: "WhiteColor")
+        UINavigationBar.appearance().tintColor = UIColor(named: "MainColor")
+        UINavigationBar.appearance().titleTextAttributes = [ NSAttributedString.Key.foregroundColor: UIColor(named: "DarkColor")!]
+        
+        //FB Sign-in Handling State
          ApplicationDelegate.shared.application(
             application,
             didFinishLaunchingWithOptions: launchOptions
         )
+        
+        //Google Sign-in  State
+        GIDSignIn.sharedInstance.restorePreviousSignIn { user, error in
+            if error != nil || user == nil {
+              // Show the app's signed-out state.
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let launchScreen = storyboard.instantiateViewController(identifier: "LaunchScreenVC")
+                appDelegate.window!.rootViewController = launchScreen
+  
+            } else {
+              // Show the app's signed-in state.
+                if UserDefaults.standard.value(forKey: "CheckDriverView") == nil {
+                    
+                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                    let launchScreen = storyboard.instantiateViewController(identifier: "LaunchScreenVC")
+                    appDelegate.window!.rootViewController = launchScreen
+                    
+                }else {
+                    let storyboard = UIStoryboard(name: "DriverMain", bundle: nil)
+                    let driverLaunchScreen = storyboard.instantiateViewController(identifier: "LaunchScreenDriverVC")
+                    appDelegate.window!.rootViewController = driverLaunchScreen
+                }
+                
+            }
+          }
         return true
     }
     
@@ -80,6 +107,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CAAnimationDelegate {
     func application(_ app: UIApplication,
                      open url: URL,
                      options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        
+        var handled: Bool
+        handled = GIDSignIn.sharedInstance.handle(url)
+          if handled {
+            return true
+          }
  
          ApplicationDelegate.shared.application(
                 app,
@@ -87,6 +120,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CAAnimationDelegate {
             sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String,
                 annotation: options[UIApplication.OpenURLOptionsKey.annotation]
             )
+        return false
         }
 
         
