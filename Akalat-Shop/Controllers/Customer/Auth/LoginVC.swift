@@ -485,7 +485,7 @@ class LoginVC: UIViewController, LoginButtonDelegate {
         NSLayoutConstraint.activate([
                                      button.leadingAnchor.constraint(equalTo: googleLoginButton.leadingAnchor,constant: 0),
                                      button.trailingAnchor.constraint(equalTo: googleLoginButton.trailingAnchor,constant: 0),
-            button.topAnchor.constraint(equalTo: fbLoginButton.topAnchor,constant: -58),
+            button.topAnchor.constraint(equalTo: fbLoginButton.topAnchor,constant: -45),
             button.heightAnchor.constraint(equalTo: googleLoginButton.heightAnchor)
         ])
         

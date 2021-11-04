@@ -58,6 +58,7 @@
 		FA6B5663270FD01C002640A1 /* OrdersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA439C18270E64E800F2F83D /* OrdersTableViewCell.swift */; };
 		FA7B72082733BC5E00694F64 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7B72072733BC5E00694F64 /* AppDelegate.swift */; };
 		FA7B720B2733BC7200694F64 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA7B720A2733BC7100694F64 /* Assets.xcassets */; };
+		FA7B720F2733CC5200694F64 /* Iceland-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FA7B720E2733CC5200694F64 /* Iceland-Regular.ttf */; };
 		FAC551CC270D0E43009F83CB /* 23211-receive-order.json in Resources */ = {isa = PBXBuildFile; fileRef = FAC551CB270D0E43009F83CB /* 23211-receive-order.json */; };
 		FAC551D8270D0EE6009F83CB /* lf20_vhkdj1ra.json in Resources */ = {isa = PBXBuildFile; fileRef = FAC551D7270D0EE6009F83CB /* lf20_vhkdj1ra.json */; };
 		FAC6672E271FA3A900C2CDDF /* Charts.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC6672D271FA3A900C2CDDF /* Charts.swift */; };
@@ -196,6 +197,7 @@
 		FA64BD65271A5F2A0062E0ED /* CompleteOrderResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompleteOrderResponse.swift; sourceTree = "<group>"; };
 		FA7B72072733BC5E00694F64 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FA7B720A2733BC7100694F64 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		FA7B720E2733CC5200694F64 /* Iceland-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Iceland-Regular.ttf"; sourceTree = "<group>"; };
 		FAC551CB270D0E43009F83CB /* 23211-receive-order.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "23211-receive-order.json"; sourceTree = "<group>"; };
 		FAC551D7270D0EE6009F83CB /* lf20_vhkdj1ra.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = lf20_vhkdj1ra.json; sourceTree = "<group>"; };
 		FAC6672D271FA3A900C2CDDF /* Charts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Charts.swift; sourceTree = "<group>"; };
@@ -472,6 +474,7 @@
 				FA5B69A0272140670028554D /* AppLocalizationHelper.swift */,
 				FAE9EBBD272F5411009FC8AB /* MirroringLabel.swift */,
 				FA5B485B2732237F0031C1F5 /* MirroringViewController.swift */,
+				FA5B699A272134DE0028554D /* Localizable.strings */,
 			);
 			path = Localization;
 			sourceTree = "<group>";
@@ -624,6 +627,14 @@
 			path = Support;
 			sourceTree = "<group>";
 		};
+		FA7B720D2733CC4300694F64 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				FA7B720E2733CC5200694F64 /* Iceland-Regular.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		FAC6672C271FA37200C2CDDF /* Charts */ = {
 			isa = PBXGroup;
 			children = (
@@ -751,9 +762,9 @@
 				FAEFC69F26F88DAF00095DB5 /* Storyboards */,
 				FA6B55F9270FC2E6002640A1 /* LaunchScreen */,
 				FAEFC68A26F88CB200095DB5 /* MenuSetup */,
+				FA7B720D2733CC4300694F64 /* Fonts */,
 				FAEFC71926F8B75D00095DB5 /* GoogleService-Info.plist */,
 				FAEFC57226F8883300095DB5 /* Info.plist */,
-				FA5B699A272134DE0028554D /* Localizable.strings */,
 			);
 			path = "Akalat-Shop";
 			sourceTree = "<group>";
@@ -1263,6 +1274,7 @@
 				FA5B6998272134DE0028554D /* Localizable.strings in Resources */,
 				FAE9EBDA272FA037009FC8AB /* FifthCell.xib in Resources */,
 				FA7B720B2733BC7200694F64 /* Assets.xcassets in Resources */,
+				FA7B720F2733CC5200694F64 /* Iceland-Regular.ttf in Resources */,
 				FAEFC62F26F88BEE00095DB5 /* CheckoutDetailsTableViewCell.xib in Resources */,
 				FAE9EBD4272F9FF0009FC8AB /* FourthCell.xib in Resources */,
 				FAEFC71A26F8B76000095DB5 /* GoogleService-Info.plist in Resources */,

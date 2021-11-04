@@ -16,13 +16,12 @@ class RegionVC: UIViewController {
     //Configure PickerView
     var pickerView = UIPickerView()
     let hud = JGProgressHUD(style: .dark)
-    var regions    = ["Fayoum","October"]
+    var regions    = ["Fayoum"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         pickerViewConfig()
-//        fetchRestaurantsAdresses()
     }
 
     
@@ -66,7 +65,6 @@ class RegionVC: UIViewController {
             loginVC.modalPresentationStyle = .fullScreen
             self.present(loginVC, animated: true, completion: nil)
 
-//        navigationController?.show(loginVC, sender: self)
         }
         
     }

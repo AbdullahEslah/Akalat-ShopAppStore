@@ -29,7 +29,7 @@ class DriverMenuVC: UITableViewController {
         
         self.changeLangLabel.text = changeLangLbl
         self.changeLangLabel.textAlignment = .natural
-        
+        tableView.tableFooterView = UIView()
         view.backgroundColor = UIColor(named: "DarkColor")
         getUserData()
     }

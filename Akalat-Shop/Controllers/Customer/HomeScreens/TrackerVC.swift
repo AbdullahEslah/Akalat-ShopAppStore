@@ -10,7 +10,6 @@ import UIKit
 import MapKit
 
 class TrackerVC: UIViewController, SWRevealViewControllerDelegate {
-
     
     @IBOutlet weak var menuBarButton: UIBarButtonItem!
     @IBOutlet weak var tableView: UITableView!
@@ -351,7 +350,7 @@ extension TrackerVC: MKMapViewDelegate {
             switch name {
             case "DRIVER":
                 annotationView.canShowCallout = true
-                annotationView.image = UIImage(named: "pin_car")
+                annotationView.image = UIImage(named: "LogoWithoutName")
                 
                 
             case "YOU":
@@ -361,12 +360,12 @@ extension TrackerVC: MKMapViewDelegate {
                 
             case "RESTAURANT":
                 annotationView.canShowCallout = true
-                annotationView.image = UIImage(named: "restaurant")
+                annotationView.image = UIImage(named: "pin_restaurant")
                 
             
             default:
                 annotationView.canShowCallout = true
-                annotationView.image = UIImage(named: "pin_car")
+                annotationView.image = UIImage(named: "LogoWithoutName")
             }
         }
         return annotationView

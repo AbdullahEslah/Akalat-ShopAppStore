@@ -30,7 +30,7 @@
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="ToG-QM-SFh" secondAttribute="height" multiplier="1:1" id="dMn-Eq-h4i"/>
                                         </constraints>
-                                        <state key="normal" image="Sandwiches"/>
+                                        <state key="normal" image="sandwich"/>
                                     </button>
                                     <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cbp-i6-EPH">
                                         <rect key="frame" x="147" y="0.0" width="142" height="142"/>
@@ -38,7 +38,7 @@
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="cbp-i6-EPH" secondAttribute="height" multiplier="1:1" id="Iwy-Mr-wA3"/>
                                         </constraints>
-                                        <state key="normal" image="PIZZA"/>
+                                        <state key="normal" image="pizza"/>
                                     </button>
                                     <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kKC-TE-2zS">
                                         <rect key="frame" x="294" y="0.0" width="142" height="142"/>
@@ -46,7 +46,7 @@
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="kKC-TE-2zS" secondAttribute="height" multiplier="1:1" id="4FT-CP-T2K"/>
                                         </constraints>
-                                        <state key="normal" image="fried checken"/>
+                                        <state key="normal" image="fried-chicken"/>
                                     </button>
                                     <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FRS-qC-V39">
                                         <rect key="frame" x="441" y="0.0" width="142" height="142"/>
@@ -54,7 +54,7 @@
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="FRS-qC-V39" secondAttribute="height" multiplier="1:1" id="GsK-vl-7rS"/>
                                         </constraints>
-                                        <state key="normal" image="grills"/>
+                                        <state key="normal" image="grill"/>
                                     </button>
                                     <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ztf-i9-LcU">
                                         <rect key="frame" x="588" y="0.0" width="142" height="142"/>
@@ -70,7 +70,7 @@
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="ly1-id-9je" secondAttribute="height" multiplier="1:1" id="UR5-Si-1Zf"/>
                                         </constraints>
-                                        <state key="normal" image="DESSERT"/>
+                                        <state key="normal" image="desserts"/>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -117,12 +117,12 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="DESSERT" width="150" height="150"/>
-        <image name="PIZZA" width="150" height="150"/>
-        <image name="Sandwiches" width="150" height="150"/>
+        <image name="desserts" width="150" height="150"/>
         <image name="fish" width="150" height="150"/>
-        <image name="fried checken" width="150" height="150"/>
-        <image name="grills" width="150" height="150"/>
+        <image name="fried-chicken" width="150" height="150"/>
+        <image name="grill" width="150" height="150"/>
+        <image name="pizza" width="150" height="150"/>
+        <image name="sandwich" width="150" height="150"/>
         <namedColor name="DarkColor">
             <color red="0.2627450980392157" green="0.2627450980392157" blue="0.2627450980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

@@ -21,21 +21,21 @@
                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="51" translatesAutoresizingMaskIntoConstraints="NO" id="Ulv-t2-5Ux">
                         <rect key="frame" x="8" y="8" width="295" height="44"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MealName" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bfJ-Kv-4AX">
-                                <rect key="frame" x="0.0" y="0.0" width="80" height="44"/>
-                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="12"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MealName MealName s" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bfJ-Kv-4AX">
+                                <rect key="frame" x="0.0" y="0.0" width="86" height="44"/>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="14"/>
                                 <color key="textColor" name="SmoothRed"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10000" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CNN-E1-zEY">
-                                <rect key="frame" x="131" y="0.0" width="41.5" height="44"/>
+                                <rect key="frame" x="137" y="0.0" width="41.5" height="44"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="13"/>
                                 <color key="textColor" name="SmoothRed"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12000" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rMd-Lb-NsO">
-                                <rect key="frame" x="223.5" y="0.0" width="71.5" height="44"/>
-                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="12"/>
+                                <rect key="frame" x="229.5" y="0.0" width="65.5" height="44"/>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="15"/>
                                 <color key="textColor" name="SmoothRed"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -43,7 +43,7 @@
                         <color key="backgroundColor" name="WhiteColor"/>
                         <constraints>
                             <constraint firstItem="CNN-E1-zEY" firstAttribute="width" secondItem="Ulv-t2-5Ux" secondAttribute="width" multiplier="0.140678" id="8h0-hM-zVu"/>
-                            <constraint firstItem="bfJ-Kv-4AX" firstAttribute="width" secondItem="Ulv-t2-5Ux" secondAttribute="width" multiplier="0.271186" id="OEK-Za-SYh"/>
+                            <constraint firstItem="bfJ-Kv-4AX" firstAttribute="width" secondItem="Ulv-t2-5Ux" secondAttribute="width" multiplier="0.291186" id="OEK-Za-SYh"/>
                         </constraints>
                     </stackView>
                 </subviews>
@@ -62,7 +62,7 @@
                 <outlet property="mealPrice" destination="rMd-Lb-NsO" id="ivD-fa-Ugg"/>
                 <outlet property="mealQuantity" destination="CNN-E1-zEY" id="C90-kr-gYP"/>
             </connections>
-            <point key="canvasLocation" x="83.333333333333343" y="95.089285714285708"/>
+            <point key="canvasLocation" x="82" y="42"/>
         </tableViewCell>
     </objects>
     <resources>

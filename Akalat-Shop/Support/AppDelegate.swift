@@ -41,18 +41,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CAAnimationDelegate {
 
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
- 
-        AppLocalizationHelper.DoTheMagic()
         
         if Constants.region != nil {
-            
-
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let loginVC = storyboard.instantiateViewController(identifier: "LoginVC")
+            let loginVC = storyboard.instantiateViewController(identifier: "LaunchScreenVC")
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
             appDelegate.window!.rootViewController = loginVC
         }
-            
+        
+        AppLocalizationHelper.DoTheMagic()
         
         IQKeyboardManager.shared.enable = true
         
@@ -78,26 +75,36 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CAAnimationDelegate {
         GIDSignIn.sharedInstance.restorePreviousSignIn { user, error in
             if error != nil || user == nil {
               // Show the app's signed-out state.
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let launchScreen = storyboard.instantiateViewController(identifier: "LaunchScreenVC")
-                appDelegate.window!.rootViewController = launchScreen
-  
+                
+                if Constants.region != nil {
+                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                    let launchScreenVC = storyboard.instantiateViewController(identifier: "LaunchScreenVC")
+                    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                    appDelegate.window!.rootViewController = launchScreenVC
+                } else {
+                    let storyboard = UIStoryboard(name: "OnBoarding", bundle: nil)
+                    let onBoarding = storyboard.instantiateViewController(identifier: "OnBoardingVC")
+                    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                    appDelegate.window!.rootViewController = onBoarding
+                }
+               
             } else {
               // Show the app's signed-in state.
                 if UserDefaults.standard.value(forKey: "CheckDriverView") == nil {
                     
                     let storyboard = UIStoryboard(name: "Main", bundle: nil)
                     let launchScreen = storyboard.instantiateViewController(identifier: "LaunchScreenVC")
+                    let appDelegate = UIApplication.shared.delegate as! AppDelegate
                     appDelegate.window!.rootViewController = launchScreen
                     
                 }else {
                     let storyboard = UIStoryboard(name: "DriverMain", bundle: nil)
                     let driverLaunchScreen = storyboard.instantiateViewController(identifier: "LaunchScreenDriverVC")
+                    let appDelegate = UIApplication.shared.delegate as! AppDelegate
                     appDelegate.window!.rootViewController = driverLaunchScreen
                 }
-                
             }
-          }
+        }
         return true
     }
     

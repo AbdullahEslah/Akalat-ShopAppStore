@@ -27,16 +27,13 @@ class MenuVC: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        self.changeLangButton.isOn = UIView.appearance().semanticContentAttribute == .forceRightToLeft
+
         view.backgroundColor = UIColor(named: "DarkColor")
         getUserData()
+        tableView.tableFooterView = UIView()
         
     }
  
-//    extension UIApplication {
-        
-//    }
-
     func getUserData() {
         nameLabel.text = User.currentUser.name?.capitalized ?? ""
 

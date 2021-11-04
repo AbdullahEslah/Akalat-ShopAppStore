@@ -378,7 +378,7 @@ class RestaurantsVC: UIViewController, UISearchControllerDelegate, SWRevealViewC
     // Requests
     func fetchRestaurants() {
         
-        NetworkManager.getRestaurantsList(restaurantAddress: Constants.region ?? "") { restaurants, error in
+        NetworkManager.getRestaurantsList(restaurantAddress: "Fayoum") { restaurants, error in
             
             if error == nil {
                 DispatchQueue.main.async {
@@ -396,7 +396,6 @@ class RestaurantsVC: UIViewController, UISearchControllerDelegate, SWRevealViewC
                 }
             } else {
                 DispatchQueue.main.async {
-                    self.presentGFAlertOnMainThread(title: "Error!", message: error!.rawValue , buttonTitle: "Ok")
                     self.animationView.stop()
                     self.animationView.removeFromSuperview()
                 }

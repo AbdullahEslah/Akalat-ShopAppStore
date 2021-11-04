@@ -13,7 +13,7 @@
         <!--RegionVC-->
         <scene sceneID="vig-n8-DuD">
             <objects>
-                <viewController storyboardIdentifier="RegionVC" id="gCI-Nj-OWx" customClass="RegionVC" customModule="Akalat_Shop" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RegionVC" modalTransitionStyle="crossDissolve" modalPresentationStyle="fullScreen" id="gCI-Nj-OWx" customClass="RegionVC" customModule="Akalat_Shop" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="mVV-5l-wrl">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -51,7 +51,7 @@
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="OPk-5a-f65"/>
-                        <color key="backgroundColor" name="MainColor"/>
+                        <color key="backgroundColor" red="0.83872091890585543" green="0.83872091890585543" blue="0.83872091890585543" alpha="0.26458750339533321" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="aVg-F2-rqe" firstAttribute="bottom" secondItem="cIq-jw-8Eg" secondAttribute="bottom" constant="-16" id="1pf-RI-bdP"/>
                             <constraint firstItem="pV2-ae-GsP" firstAttribute="leading" secondItem="pqo-Yy-EG6" secondAttribute="leading" id="1zp-fc-aV7"/>
@@ -98,9 +98,6 @@
     <resources>
         <namedColor name="DarkColor">
             <color red="0.2627450980392157" green="0.2627450980392157" blue="0.2627450980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="MainColor">
-            <color red="0.63137254901960782" green="0.78431372549019607" blue="0.082352941176470587" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <namedColor name="SmoothRed">
             <color red="0.76099997758865356" green="0.33700001239776611" blue="0.29800000786781311" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>

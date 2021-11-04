@@ -18,9 +18,9 @@ class OnBoardingVC: UIViewController ,UIScrollViewDelegate{
     var scrollHeight: CGFloat! = 0.0
     
     //data for the slides
-    var titles = ["FAST DELIVERY","EXCITING OFFERS","SECURE PAYMENT"]
+    var titles = ["Browse All You Want", "Order Online", "Enjoy Your Time"]
     
-    var descs = ["Now You Can Order Arround Your Region","Browse All Your Region Restaurant","Enjoy Your New Food Experience"]
+    var descs = ["ENJOY YOUR FOOD WITH THE FIRST DELIVERING ORDERS APP IN YOUR CITY","ORDER WITH JUST ONE TAP", "EAT YOUR BEST FOOD WHENEVER YOU ARE"]
     
     var imgs = ["OnBoardingOne","OnBoardingTwo","OnBoardingThree"]
     
@@ -62,8 +62,8 @@ class OnBoardingVC: UIViewController ,UIScrollViewDelegate{
             
             let txt2 = UILabel.init(frame: CGRect(x:32,y:txt1.frame.maxY+10,width:scrollWidth-64,height:50))
             txt2.textAlignment = .center
-            txt2.numberOfLines = 3
-            txt2.font = UIFont.systemFont(ofSize: 18.0)
+            txt2.numberOfLines = 0
+            txt2.font = UIFont.systemFont(ofSize: 16.0)
             txt2.text = descs[index]
             
             slide.addSubview(imageView)
@@ -99,7 +99,6 @@ class OnBoardingVC: UIViewController ,UIScrollViewDelegate{
         let regionVC = storyboard.instantiateViewController(withIdentifier: "RegionVC") as! RegionVC
         regionVC.modalPresentationStyle = .fullScreen
         self.present(regionVC, animated: true, completion: nil)
-//        navigationController?.show(regionVC, sender: self)
         
     }
     
