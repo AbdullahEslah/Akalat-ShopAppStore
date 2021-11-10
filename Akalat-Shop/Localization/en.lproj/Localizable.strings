@@ -16,3 +16,8 @@
 "deliveryPriceKey"          = "Delivery Price";
 
 "totalKey"                  = "Total";
+
+//Driver
+"CompleteOrderButtonKey"    = "Complete Order";
+"CancelOrderButtonKey"      = "Cancel Order";
+

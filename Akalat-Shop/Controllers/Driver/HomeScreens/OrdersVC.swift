@@ -18,12 +18,19 @@ class OrdersVC: UITableViewController, SWRevealViewControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        configureMenu()
-        getDriverLatestOrders()
+        
         tableView.tableFooterView = UIView()
         tableView.register(UINib(nibName: "OrdersTableViewCell", bundle: nil), forCellReuseIdentifier: "OrdersTableViewCell")
         
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        configureMenu()
+        getDriverLatestOrders()
+        tableView.reloadData()
+    }
+    
+    
 
     func configureMenu() {
         if AppLocalization.currentAppleLanguage() == "ar" {
@@ -54,13 +61,13 @@ class OrdersVC: UITableViewController, SWRevealViewControllerDelegate {
                     
                     if orders.count == 0 {
                         let emptyState = UILabel(frame: self.view.frame.inset(by: .init(top: 60, left: 30, bottom: 100, right: 30)))
-                        emptyState.text = "Please Wait For Upcoming Orders 🥡. And Refresh Your Feed..!"
+                        emptyState.text = "Please Wait For Upcoming Orders 🥡. And Refresh Your Feed..☑️"
                         emptyState.font = .boldSystemFont(ofSize: 22)
                         emptyState.textAlignment = .center
                         emptyState.numberOfLines = 0
                         emptyState.textColor = colorSmoothRed
                         self.view.addSubview(emptyState)
-                    }
+                    } else {
                     
                     self.hud.dismiss()
                     
@@ -69,6 +76,7 @@ class OrdersVC: UITableViewController, SWRevealViewControllerDelegate {
                     ArraysModels.driverReadyOrders.append(contentsOf: orders)
                     
                     self.tableView.reloadData()
+                    }
                 }
             }else {
                 self.presentGFAlertOnMainThread(title: "Error !", message: error!.rawValue, buttonTitle: "Ok")

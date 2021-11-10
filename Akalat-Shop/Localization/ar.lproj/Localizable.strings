@@ -16,3 +16,8 @@
 "deliveryPriceKey"          = "سعر التوصيل";
 
 "totalKey"                  = "الاجمالي";
+
+
+//Driver
+"CompleteOrderButtonKey"    = "اكمل الطلب";
+"CancelOrderButtonKey"      = "الغاء الطلب";

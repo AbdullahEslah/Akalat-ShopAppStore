@@ -24,6 +24,7 @@ class DeliveryVC: UIViewController,UIActionSheetDelegate, UITableViewDelegate, U
     @IBOutlet weak var deliveryPriceLabel: UILabel!
     @IBOutlet weak var totalPriceLabel: UILabel!
     @IBOutlet weak var restaurantName: UILabel!
+    @IBOutlet weak var cancelOrderButton: RoundedButton!
     
     let animationView  = AnimationView(animation: Animation.named("39587-delivery-man"))
     
@@ -46,7 +47,6 @@ class DeliveryVC: UIViewController,UIActionSheetDelegate, UITableViewDelegate, U
         tableView.tableFooterView = UIView()
         tableView.register(UINib(nibName: "LatestOrdersTableViewCell", bundle: nil), forCellReuseIdentifier: "LatestOrdersTableViewCell")
         userLocation()
-        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateLocation), userInfo: nil, repeats: true)
         
         animationView.frame = view.bounds
 
@@ -57,6 +57,13 @@ class DeliveryVC: UIViewController,UIActionSheetDelegate, UITableViewDelegate, U
         animationView.play()
         animationView.loopMode = .repeat(3.0)
         animationView.animationSpeed = 1
+        
+        //Usage Of Localization
+        let cancelOrder = NSLocalizedString("CancelOrderButtonKey", comment: "")
+        self.cancelOrderButton.setTitle(cancelOrder, for: .normal)
+        
+        let completeOrder = NSLocalizedString("CompleteOrderButtonKey", comment: "")
+        self.completeOrderButton.setTitle(completeOrder, for: .normal)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -124,7 +131,7 @@ class DeliveryVC: UIViewController,UIActionSheetDelegate, UITableViewDelegate, U
                     if orderDetails?.status == "On the way" {
                         
                         //If Driver Picked Any Orders So Get His Location Every One Second To Prevent Load On Server
-//                        self.updateLocationEveryOneSecond()
+                        self.timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.updateLocation), userInfo: nil, repeats: true)
                         
                         self.orderId = orderDetails?.id
                         let from = orderDetails?.address
@@ -132,7 +139,7 @@ class DeliveryVC: UIViewController,UIActionSheetDelegate, UITableViewDelegate, U
                         
                         self.customerAddress.text = from
                         let customerName          = orderDetails?.customer.name
-                        self.nameLabel.text       = customerName
+                        self.nameLabel.text       = "\(customerName ?? "Pls, Call Customer First")"
                         let customerPhone         = orderDetails?.phone_number
                         self.customerPhoneNumber.setTitle(customerPhone, for: .normal)
                         
@@ -156,6 +163,7 @@ class DeliveryVC: UIViewController,UIActionSheetDelegate, UITableViewDelegate, U
                             self.map.isHidden                  = true
                             self.customerInfoView.isHidden     = true
                             self.completeOrderButton.isHidden  = true
+                            self.cancelOrderButton.isHidden    = true
                             self.tableView.isHidden            = true
                             self.customerPhoneNumber.isEnabled = false
                             self.deliveryPriceLabel.isHidden   = true
@@ -164,11 +172,14 @@ class DeliveryVC: UIViewController,UIActionSheetDelegate, UITableViewDelegate, U
                             
                             let emptyState = UILabel(frame: self.view.frame.inset(by: .init(top: 60, left: 30, bottom: 100, right: 30)))
                             emptyState.text = "You Don't Have Any Orders To Be Delivered !"
-                            emptyState.font = .boldSystemFont(ofSize: 22)
+                            emptyState.font = .boldSystemFont(ofSize: 16)
                             emptyState.textAlignment = .center
                             emptyState.numberOfLines = 0
                             emptyState.textColor = colorSmoothRed
                             self.view.addSubview(emptyState)
+                            //Stop Updating Driver Location
+                            self.locationManager.stopUpdatingLocation()
+                            self.timer.invalidate()
                         }
                     }
                 }
@@ -185,7 +196,7 @@ class DeliveryVC: UIViewController,UIActionSheetDelegate, UITableViewDelegate, U
             return
         }
         
-        NetworkManager.updateDriverLocation(location: self.lastLocation) { (data) in
+        NetworkManager.updateDriverLocation(location: location) { (data) in
             //To Check The Request Every One Second
             print(data)
         }
@@ -225,6 +236,7 @@ class DeliveryVC: UIViewController,UIActionSheetDelegate, UITableViewDelegate, U
                         self.map.isHidden                  = true
                         self.customerInfoView.isHidden     = true
                         self.completeOrderButton.isHidden  = true
+                        self.cancelOrderButton.isHidden    = true
                         self.tableView.isHidden            = true
                         self.customerPhoneNumber.isEnabled = false
                         self.deliveryPriceLabel.isHidden   = true
@@ -232,8 +244,8 @@ class DeliveryVC: UIViewController,UIActionSheetDelegate, UITableViewDelegate, U
                         self.restaurantName.isHidden       = true
                         
                         let emptyState = UILabel(frame: self.view.frame.inset(by: .init(top: 60, left: 30, bottom: 100, right: 30)))
-                        emptyState.text = "You Don't Have Any Orders To Be Delivered !"
-                        emptyState.font = .boldSystemFont(ofSize: 22)
+                        emptyState.text = "You Don't Have Any Orders To Be Delivered. Be Ready For Upcoming Orders"
+                        emptyState.font = .boldSystemFont(ofSize: 16)
                         emptyState.textAlignment = .center
                         emptyState.numberOfLines = 0
                         emptyState.textColor = colorSmoothRed
@@ -256,6 +268,8 @@ class DeliveryVC: UIViewController,UIActionSheetDelegate, UITableViewDelegate, U
             
         }
     }
+    
+    
         
     @IBAction func callCustomerButton(_ sender: Any) {
         
@@ -278,6 +292,8 @@ class DeliveryVC: UIViewController,UIActionSheetDelegate, UITableViewDelegate, U
         
     }
     
+    
+    
     @IBAction func completeOrder(_ sender: Any) {
         
         let alertView = UIAlertController(title: "Comlete Order!", message: "Are You Want To Complete Order Now ? ", preferredStyle: .alert)
@@ -299,8 +315,45 @@ class DeliveryVC: UIViewController,UIActionSheetDelegate, UITableViewDelegate, U
                         self.timer.invalidate()
                         
                         self.performSegue(withIdentifier: "ReadyOrders", sender: self)
-                       
+                        
+                        Helper().showAlert(title: "Completed Order", message: "This Order Has Been Completed Successfully 🎉✨", in: self)
                         appDelegate.infoView(message: "Order Has Been Completed Successfully 👌🏻", color: colorLightGreen)
+                    }
+
+            }
+        })
+        alertView.addAction(cancelButton)
+        alertView.addAction(actionButton)
+        self.present(alertView, animated: true, completion: nil)
+        
+    }
+    
+    @IBAction func cancelOrder(_ sender: Any) {
+        
+        
+        let alertView = UIAlertController(title: "Cancel Order!", message: "Cancel Order Means That You Will Lose Your Order ?", preferredStyle: .alert)
+        
+        let cancelButton = UIAlertAction(title: "No", style: .cancel)
+        
+        let actionButton = UIAlertAction(title: "Yes", style: .default,handler: { (ok) in
+            
+            guard let id = self.orderId else {
+                return
+            }
+            
+            NetworkManager.DriverCancelOrder(orderId: id) { (data) in
+
+                    DispatchQueue.main.async {
+                        print(data)
+                        //Stop Updating Driver Location
+                        self.locationManager.stopUpdatingLocation()
+                        self.timer.invalidate()
+                        
+                        self.performSegue(withIdentifier: "ReadyOrders", sender: self)
+                        
+                        Helper().showAlert(title: "Cancelled Order", message: "This Order Has Been Cancelled 👋🏻", in: self)
+                        appDelegate.infoView(message: "This Order Has Been Cancelled 👋🏻", color: colorLightGreen)
+                        
                     }
 
             }

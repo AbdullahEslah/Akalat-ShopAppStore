@@ -16,6 +16,7 @@ import Network
 
 class DriverLoginVC: UIViewController, LoginButtonDelegate {
     
+    @IBOutlet weak var appNameLabel: UILabel!
     @IBOutlet weak var appLogo: UIImageView!
     
     @IBOutlet weak var internetConnectionLabel: UILabel!

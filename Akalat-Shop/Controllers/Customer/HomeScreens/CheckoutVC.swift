@@ -101,6 +101,7 @@ class CheckoutVC: UIViewController, SWRevealViewControllerDelegate {
             //Show A Message
             let emptyBasketLabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 40))
             emptyBasketLabel.numberOfLines = 0
+            emptyBasketLabel.font = UIFont.systemFont(ofSize: 16.0)
             emptyBasketLabel.center = self.view.center
             emptyBasketLabel.textAlignment = NSTextAlignment.center
             emptyBasketLabel.text = "Your Basket Is Empty.  Start Adding Your Meals 👋🏻"

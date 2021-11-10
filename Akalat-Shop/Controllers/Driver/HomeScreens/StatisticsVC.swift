@@ -78,26 +78,34 @@ class StatisticsVC: UIViewController , ChartViewDelegate, IAxisValueFormatter, S
     func loadDataToChart() {
         NetworkManager.DriverRevenue { (data, error) in
             if error == nil {
+//                let allDays = DispatchQueue.global(qos: .userInitiated)
+//                allDays.async {
                 
-                //Save Values In Array
-                let day1 = data?.Mon
-                self.dayValues.append(day1!)
-                let day2 = data?.Tue
-                self.dayValues.append(day2!)
-                let day3 = data?.Wed
-                self.dayValues.append(day3!)
-                let day4 = data?.Thu
-                self.dayValues.append(day4!)
-                let day5 = data?.Fri
-                self.dayValues.append(day5!)
-                let day6 = data?.Sat
-                self.dayValues.append(day6!)
-                let day7 = data?.Sun
-                self.dayValues.append(day7!)
- 
-              
-                print(self.dayValues)
+                    //Save Values In Array
+                    if let day1 = data?.Mon {
+                        self.dayValues.append(day1)
+                    }
+                    if let day2 = data?.Tue {
+                    self.dayValues.append(day2)
+                    }
+                    if let day3 = data?.Wed {
+                    self.dayValues.append(day3)
+                    }
+                    if let day4 = data?.Thu {
+                    self.dayValues.append(day4)
+                    }
+                    if let day5 = data?.Fri {
+                    self.dayValues.append(day5)
+                    }
+                    if  let day6 = data?.Sat {
+                    self.dayValues.append(day6)
+                    }
+                    if let day7 = data?.Sun {
+                    self.dayValues.append(day7)
+                    }
+//                }
 
+//                    DispatchQueue.main.async {
                 var dataEntries: [BarChartDataEntry] = []
  
                 for i in 0..<self.weekdays.count {
@@ -112,8 +120,13 @@ class StatisticsVC: UIViewController , ChartViewDelegate, IAxisValueFormatter, S
                 let chartData = BarChartData(dataSet: chartDataSet)
                 self.viewChart.data = chartData
                 
+//                }
             } else {
+//                DispatchQueue.main.async {
+                    
+                
                 print(error!.rawValue)
+//                }
             }
         }
     }

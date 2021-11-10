@@ -40,7 +40,6 @@ class TrackerVC: UIViewController, SWRevealViewControllerDelegate {
         tableView.dataSource = self
         tableView.register(UINib(nibName: "TrackerTableViewCell", bundle: nil), forCellReuseIdentifier: "TrackerTableViewCell")
         fetchLatestOrders()
-//        fetchDeliveryOrders()
         
     }
     
@@ -144,10 +143,8 @@ class TrackerVC: UIViewController, SWRevealViewControllerDelegate {
                         })
                         
                         //see the driver location if the driver picked the order and not delivered yet
-                        if order?.status != "Deliverd" {
+                        if order?.status == "On the way" {
                             self.getDriverLocationEveryOneSecond()
-                        } else {
-                            self.autoZoomDriverLocation()
                         }
                     }
                 }
@@ -171,7 +168,7 @@ class TrackerVC: UIViewController, SWRevealViewControllerDelegate {
                     //To prevent run the server every second if we havn't any orders
                     if let location = latAndLong?.location  {
                         
-                        self.deliveryStatusLabel.text = "ON THE WAY"
+//                        self.deliveryStatusLabel.text = "ON THE WAY"
                         
                         //Getting Lat And Long From Response before and after the comma
                         let split   = location.components(separatedBy: ",")

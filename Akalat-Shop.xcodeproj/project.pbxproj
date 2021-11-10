@@ -65,6 +65,7 @@
 		FAC66732271FA3EF00C2CDDF /* RevenueData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC66731271FA3EF00C2CDDF /* RevenueData.swift */; };
 		FAD102E2271E158900B4F0A6 /* LatestOrdersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD102E0271E158900B4F0A6 /* LatestOrdersTableViewCell.swift */; };
 		FAD102E3271E158900B4F0A6 /* LatestOrdersTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAD102E1271E158900B4F0A6 /* LatestOrdersTableViewCell.xib */; };
+		FAD51994273B796F000E3995 /* lf30_editor_vxzq65ju.json in Resources */ = {isa = PBXBuildFile; fileRef = FAD51993273B796F000E3995 /* lf30_editor_vxzq65ju.json */; };
 		FADB6B1E27152E8700349739 /* UpdateDriverLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADB6B1D27152E8700349739 /* UpdateDriverLocation.swift */; };
 		FADB6B2227152EE600349739 /* UpdateDriverLocationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADB6B2127152EE600349739 /* UpdateDriverLocationResponse.swift */; };
 		FAE9EBBE272F5411009FC8AB /* MirroringLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE9EBBD272F5411009FC8AB /* MirroringLabel.swift */; };
@@ -204,6 +205,7 @@
 		FAC66731271FA3EF00C2CDDF /* RevenueData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevenueData.swift; sourceTree = "<group>"; };
 		FAD102E0271E158900B4F0A6 /* LatestOrdersTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatestOrdersTableViewCell.swift; sourceTree = "<group>"; };
 		FAD102E1271E158900B4F0A6 /* LatestOrdersTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LatestOrdersTableViewCell.xib; sourceTree = "<group>"; };
+		FAD51993273B796F000E3995 /* lf30_editor_vxzq65ju.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = lf30_editor_vxzq65ju.json; sourceTree = "<group>"; };
 		FADB6B1D27152E8700349739 /* UpdateDriverLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateDriverLocation.swift; sourceTree = "<group>"; };
 		FADB6B2127152EE600349739 /* UpdateDriverLocationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateDriverLocationResponse.swift; sourceTree = "<group>"; };
 		FAE9EBBD272F5411009FC8AB /* MirroringLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MirroringLabel.swift; sourceTree = "<group>"; };
@@ -568,6 +570,7 @@
 		FA6B5637270FC6DA002640A1 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				FAEFC5FC26F88BD600095DB5 /* Cells */,
 				FAEFC61A26F88BD600095DB5 /* CustomizedObjects.swift */,
 				FAEFC61F26F88BD600095DB5 /* GFButton.swift */,
 				FAEFC62026F88BD600095DB5 /* GFAlertVC.swift */,
@@ -750,11 +753,11 @@
 		FAEFC56326F8882D00095DB5 /* Akalat-Shop */ = {
 			isa = PBXGroup;
 			children = (
-				FA7B72052733BC4900694F64 /* Support */,
 				FA5B4861273229900031C1F5 /* ArrowRight.png */,
-				FA5B695A2720C02A0028554D /* Localization */,
 				FAEFC70426F894C900095DB5 /* Akalat-Shop.entitlements */,
 				FAEFC6ED26F8916E00095DB5 /* Akalat-ShopRelease.entitlements */,
+				FA7B72052733BC4900694F64 /* Support */,
+				FA5B695A2720C02A0028554D /* Localization */,
 				FA439B54270E618200F2F83D /* Managers */,
 				FAEFC5A926F88BB100095DB5 /* Model */,
 				FAEFC5FB26F88BD600095DB5 /* CustomizeViews */,
@@ -977,7 +980,6 @@
 			children = (
 				FA6B5637270FC6DA002640A1 /* Shared */,
 				FAEFC61726F88BD600095DB5 /* Headers */,
-				FAEFC5FC26F88BD600095DB5 /* Cells */,
 			);
 			path = CustomizeViews;
 			sourceTree = "<group>";
@@ -1069,6 +1071,7 @@
 		FAEFC61D26F88BD600095DB5 /* Animation */ = {
 			isa = PBXGroup;
 			children = (
+				FAD51993273B796F000E3995 /* lf30_editor_vxzq65ju.json */,
 				FAC551D7270D0EE6009F83CB /* lf20_vhkdj1ra.json */,
 				FAC551CB270D0E43009F83CB /* 23211-receive-order.json */,
 			);
@@ -1283,6 +1286,7 @@
 				FAEFC63226F88BF700095DB5 /* MealsCollectionViewCell.xib in Resources */,
 				FAC551D8270D0EE6009F83CB /* lf20_vhkdj1ra.json in Resources */,
 				FAEFC62C26F88BE900095DB5 /* TrackerTableViewCell.xib in Resources */,
+				FAD51994273B796F000E3995 /* lf30_editor_vxzq65ju.json in Resources */,
 				FAEFC72E26F8C09C00095DB5 /* OnBoarding.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -702,6 +702,18 @@ class NetworkManager {
         }
     }
     
+    class func DriverCancelOrder(orderId: Int, completion: @escaping ([String:Any]?)-> Void) {
+        let path   = "api/driver/order/cancel/"
+        let params : [String: Any] = [
+
+            "order_id"    : orderId,
+            "access_token": Auth.accessToken
+            
+        ]
+        
+        PostRequestManager.shared.requestServer(.post, path, params, URLEncoding(), completion)
+    }
+    
     class func DriverCompleteTheOrder(orderId: Int, completion: @escaping ([String:Any]?)-> Void) {
         let path   = "api/driver/order/complete/"
         let params : [String: Any] = [
