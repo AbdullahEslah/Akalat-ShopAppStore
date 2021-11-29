@@ -997,7 +997,7 @@
         <!--Navigation Controller-->
         <scene sceneID="7A0-ow-EMl">
             <objects>
-                <navigationController storyboardIdentifier="contentViewController" automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" id="hvK-99-gdx" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="MainVC" automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" id="hvK-99-gdx" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="XLR-k4-mL4">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="97.5"/>
@@ -1010,7 +1010,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="jjb-Cz-sfg" kind="relationship" relationship="rootViewController" id="k3M-Rq-pjq"/>
+                        <segue destination="XvS-C8-q0K" kind="relationship" relationship="rootViewController" id="VwB-H8-eMR"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Qg-fa-L5i" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1020,13 +1020,13 @@
         <!--Akalat-Shop-->
         <scene sceneID="OxM-v5-LNp">
             <objects>
-                <viewController storyboardIdentifier="RestaurantsVC" id="jjb-Cz-sfg" customClass="RestaurantsVC" customModule="Akalat_Shop" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="jjb-Cz-sfg" customClass="RestaurantsVC" customModule="Akalat_Shop" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hXP-cT-qod">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="uVP-BH-tJu">
-                                <rect key="frame" x="16" y="107.5" width="304" height="460.5"/>
+                                <rect key="frame" x="0.0" y="6" width="320" height="562"/>
                                 <color key="backgroundColor" name="WhiteColor"/>
                                 <collectionViewLayout key="collectionViewLayout" id="5pe-kW-2mC"/>
                                 <cells/>
@@ -1036,9 +1036,9 @@
                         <color key="backgroundColor" name="WhiteColor"/>
                         <constraints>
                             <constraint firstItem="uVP-BH-tJu" firstAttribute="trailing" secondItem="XKH-Jg-5fw" secondAttribute="trailing" id="7Rm-XD-S1M"/>
-                            <constraint firstItem="uVP-BH-tJu" firstAttribute="top" secondItem="XKH-Jg-5fw" secondAttribute="top" id="IzC-Jl-kRt"/>
+                            <constraint firstItem="uVP-BH-tJu" firstAttribute="top" secondItem="XKH-Jg-5fw" secondAttribute="top" constant="6" id="L9y-V6-EH5"/>
                             <constraint firstItem="uVP-BH-tJu" firstAttribute="bottom" secondItem="XKH-Jg-5fw" secondAttribute="bottom" id="Nua-5E-wXC"/>
-                            <constraint firstItem="uVP-BH-tJu" firstAttribute="leading" secondItem="XKH-Jg-5fw" secondAttribute="leading" constant="16" id="aPO-9a-K1b"/>
+                            <constraint firstItem="uVP-BH-tJu" firstAttribute="leading" secondItem="XKH-Jg-5fw" secondAttribute="leading" id="aPO-9a-K1b"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Akalat-Shop" id="Lb2-rQ-0Et">
@@ -1046,14 +1046,59 @@
                             <color key="tintColor" name="MainColor"/>
                         </barButtonItem>
                     </navigationItem>
-                    <connections>
-                        <outlet property="collectionView" destination="uVP-BH-tJu" id="VfF-Ug-AfR"/>
-                        <outlet property="menuBarButton" destination="H33-Y5-WTc" id="S1q-r0-ReA"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Ai-BM-XyP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="934" y="1684"/>
+            <point key="canvasLocation" x="933.75" y="1683.8028169014085"/>
+        </scene>
+        <!--Akalat-Shop-->
+        <scene sceneID="0ax-s6-MHO">
+            <objects>
+                <tableViewController storyboardIdentifier="RestaurantsVC" id="XvS-C8-q0K" customClass="RestaurantsVC" customModule="Akalat_Shop" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="L9b-i5-Mal">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" name="WhiteColor"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="ikf-23-f4B">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="512"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="6QE-Gr-luh">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="512"/>
+                                    <color key="backgroundColor" name="WhiteColor"/>
+                                    <collectionViewLayout key="collectionViewLayout" id="XBh-wB-eO1"/>
+                                    <cells/>
+                                </collectionView>
+                            </subviews>
+                            <color key="backgroundColor" name="WhiteColor"/>
+                            <constraints>
+                                <constraint firstItem="6QE-Gr-luh" firstAttribute="top" secondItem="ikf-23-f4B" secondAttribute="top" id="7xB-v7-tJc"/>
+                                <constraint firstItem="6QE-Gr-luh" firstAttribute="leading" secondItem="ikf-23-f4B" secondAttribute="leading" id="KZE-Cp-uEa"/>
+                                <constraint firstItem="6QE-Gr-luh" firstAttribute="leading" secondItem="ikf-23-f4B" secondAttribute="leading" id="bPA-c2-sT4"/>
+                                <constraint firstAttribute="trailing" secondItem="6QE-Gr-luh" secondAttribute="trailing" id="gpF-b0-jSR"/>
+                                <constraint firstAttribute="trailing" secondItem="6QE-Gr-luh" secondAttribute="trailing" id="q8n-uf-6Zu"/>
+                                <constraint firstAttribute="bottom" secondItem="6QE-Gr-luh" secondAttribute="bottom" id="xcV-ua-R5f"/>
+                                <constraint firstAttribute="bottom" secondItem="6QE-Gr-luh" secondAttribute="bottom" id="yz1-Yb-TvA"/>
+                            </constraints>
+                        </view>
+                        <connections>
+                            <outlet property="dataSource" destination="XvS-C8-q0K" id="JB4-0q-nT1"/>
+                            <outlet property="delegate" destination="XvS-C8-q0K" id="NLB-yv-RHm"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Akalat-Shop" id="YGr-V6-IEC">
+                        <barButtonItem key="leftBarButtonItem" image="line.horizontal.3" catalog="system" id="ndG-P4-j7c">
+                            <color key="tintColor" name="MainColor"/>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="collectionView" destination="6QE-Gr-luh" id="KdS-n8-cYo"/>
+                        <outlet property="menuBarButton" destination="ndG-P4-j7c" id="fpN-Sc-kZn"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Xas-W5-yXl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="933.75" y="2487.676056338028"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="tNt-7h-9Lg">

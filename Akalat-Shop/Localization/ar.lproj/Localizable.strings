@@ -7,7 +7,7 @@
 */
 
 //We Use The Key As An Id To Get The Value Of It In The Right
-"Common Choices"            = "اختيارات معروفة";
+
 
 "changeLangKey"             = "تغيير اللغة";
 
@@ -21,3 +21,6 @@
 //Driver
 "CompleteOrderButtonKey"    = "اكمل الطلب";
 "CancelOrderButtonKey"      = "الغاء الطلب";
+
+//Home CollectionView Headers
+"Categories"                = "الاقسام";

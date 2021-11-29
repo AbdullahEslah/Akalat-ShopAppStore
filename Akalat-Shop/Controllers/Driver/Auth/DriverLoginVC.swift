@@ -50,12 +50,7 @@ class DriverLoginVC: UIViewController, LoginButtonDelegate {
     let animationView = AnimationView(animation: Animation.named("lf20_vhkdj1ra"))
     override func viewDidLoad() {
         super.viewDidLoad()
-         
-//        if MOLHLanguage.isRTLLanguage() {
-//        fbLoginButton.titleEdgeInsets = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 0)
-
-//            fbLoginButton.contentHorizontalAlignment = UIControl.ContentHorizontalAlignment.center
-//        }
+  
         connection()
         defaultAuthHolderViewHeight = authHolderViewHeight.constant
         
@@ -67,20 +62,39 @@ class DriverLoginVC: UIViewController, LoginButtonDelegate {
         if let token = AccessToken.current,
            !token.isExpired {
             
-            animationView.frame = view.bounds
+            let screenSize: CGRect = UIScreen.main.bounds
+            let label = UILabel(frame: CGRect(x: 0, y: 0, width: screenSize.width, height: screenSize.height - 300))
+            label.text = "Akalat-Shop"
+            label.textColor = .black
+            label.textAlignment = .center
+            label.font = UIFont(name: "Iceland", size: 62)
+            self.view.addSubview(label)
             
+            appNameLabel.isHidden = true
+            internetConnectionLabel.isHidden = true
+            appLogo.isHidden = true
+            showAuthButton.isHidden = true
+            topLineOfAuthHolderView.isHidden = true
+            authHolderView.isHidden = true
+            self.googleLoginButton.isHidden = true
+            self.fbLoginButton.isHidden = true
+            
+            animationView.frame = view.bounds
             // Add animationView as subview
             view.addSubview(animationView)
-            
+
             // Play the animation
             animationView.play()
-            animationView.loopMode = .repeat(3.0)
+            animationView.loopMode = .loop
             animationView.animationSpeed = 1
             
-            self.fbLoginButton.setTitle("     Continue With Facebbok", for: .normal)
             GraphRequest(graphPath: "me", parameters: ["fields": "name, email, picture.type(normal)"]).start(completionHandler: { (connection, result, error) in
                 
                 if error == nil {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 6.0, execute:  {
+                        UIView.animate(withDuration: 3.0) {
+                            self.animationView.alpha = 0
+                        }completion: { (_) in
                     // converting data to JSON
                     guard let json = result as? [String:Any] else {
                         return
@@ -88,75 +102,124 @@ class DriverLoginVC: UIViewController, LoginButtonDelegate {
                     print(json)
                     //to save our user data in userModel
                     User.currentUser.setInfo(json: json)
-                    self.animationView.stop()
-                    self.animationView.removeFromSuperview()
+                            
+                            self.animationView.stop()
+                        }
+                    })
                     
                 } else {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 6.0, execute:  {
+                        UIView.animate(withDuration: 3.0) {
+                            self.animationView.alpha = 0
+                        }completion: { (_) in
                     self.animationView.stop()
-                    self.animationView.removeFromSuperview()
                     Helper().showAlert(title: "Error!", message: error!.localizedDescription, in: self)
+                        }
+                    })
                 }
             })
             //self.userType = self.userType.capitalized
             NetworkManager.fbLogin(userType: self.userType,completion:  { success, error in
                 
                 if error == nil {
-                    DispatchQueue.main.async {
-                        
-                        //                        if UserDefaults.standard.value(forKey: "CheckDriverView") != nil {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 6.0, execute:  {
+                        UIView.animate(withDuration: 3.0) {
+                            self.animationView.alpha = 0
+                        }completion: { (_) in
                         
                         self.userType = self.userType.capitalized
                         self.performSegue(withIdentifier: "\(self.userType)View", sender: self)
                         //                        }
-                        self.animationView.stop()
-                        self.animationView.removeFromSuperview()
-                    }
+                            self.animationView.stop()
+                                }
+                            })
                 } else {
-                    DispatchQueue.main.async {
-                        print(error?.localizedDescription)
-                        self.animationView.stop()
-                        self.animationView.removeFromSuperview()
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 6.0, execute:  {
+                        UIView.animate(withDuration: 3.0) {
+                            self.animationView.alpha = 0
+                        }completion: { (_) in
+                            self.animationView.stop()
                         Helper().showAlert(title: "Error !", message: error!.localizedDescription, in: self)
-                    }
+                        }
+                    })
                 }
             })
         }
         
         if GIDSignIn.sharedInstance.currentUser?.authentication.accessToken != nil {
             
+            let screenSize: CGRect = UIScreen.main.bounds
+            let label = UILabel(frame: CGRect(x: 0, y: 0, width: screenSize.width, height: screenSize.height - 300))
+            label.text = "Akalat-Shop"
+            label.textColor = .black
+            label.textAlignment = .center
+            label.font = UIFont(name: "Iceland", size: 62)
+            self.view.addSubview(label)
+            
+            appNameLabel.isHidden = true
+            internetConnectionLabel.isHidden = true
+            appLogo.isHidden = true
+            showAuthButton.isHidden = true
+            topLineOfAuthHolderView.isHidden = true
+            authHolderView.isHidden = true
+            self.googleLoginButton.isHidden = true
+            self.fbLoginButton.isHidden = true
+            
+            
+            animationView.frame = view.bounds
+            // Add animationView as subview
+            view.addSubview(animationView)
+
+            // Play the animation
+            animationView.play()
+            animationView.loopMode = .loop
+            animationView.animationSpeed = 1
+            
             GIDSignIn.sharedInstance.signIn(with: GoogleManager.signInConfig, presenting: self) { user, error in
+                DispatchQueue.main.asyncAfter(deadline: .now() + 6.0, execute:  {
+                    UIView.animate(withDuration: 6.0) {
+                        self.animationView.alpha = 0
+                    }completion: { (_) in
                 User.currentUser.name = user?.profile?.name
                 User.currentUser.email = user?.profile?.email
                 if user?.profile?.hasImage  == true{
                 User.currentUser.imageURL = user?.profile?.imageURL(withDimension: 100)
                 }
+                    }
+                })
             }
             
             NetworkManager.googleLogin(userType: self.userType,completion:  { success, error in
                 
                 
-                if error == nil {
-                    DispatchQueue.main.async {
-                        UserDefaults.standard.setValue("DriverView", forKey: "CheckDriverView")
-                        self.userType = self.userType.capitalized
-                        self.performSegue(withIdentifier: "\(self.userType)View", sender: self)
-                        self.animationView.stop()
-                        self.animationView.removeFromSuperview()
-                    }
-                    
+                    if error == nil {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 6.0, execute:  {
+                            UIView.animate(withDuration: 3.0) {
+                                self.animationView.alpha = 0
+                            }completion: { (_) in
+                                UserDefaults.standard.setValue("DriverView", forKey: "CheckDriverView")
+                                self.userType = self.userType.capitalized
+                                self.performSegue(withIdentifier: "\(self.userType)View", sender: self)
+                                self.animationView.stop()
+                                
+                            }
+                        })
                 } else {
-                    DispatchQueue.main.async {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 6.0, execute:  {
+                        UIView.animate(withDuration: 3.0) {
+                            self.animationView.alpha = 0
+                        }completion: { (_) in
                         Helper().showAlert(title: "Error!", message: error!.localizedDescription, in: self)
                         self.animationView.stop()
                         self.animationView.removeFromSuperview()
-                    }
+                        }
+                    })
                 }
             })
         }
         
         configureAuthViewAppearance()
         signInAppleButton()
-        
         //AppleAutoLogin
         checkAutoLogin()
     }
@@ -352,7 +415,7 @@ class DriverLoginVC: UIViewController, LoginButtonDelegate {
 
             // Play the animation
             self.animationView.play()
-            self.animationView.loopMode = .repeat(3.0)
+            self.animationView.loopMode = .loop
             self.animationView.animationSpeed = 1
             
             guard let user = user else {
@@ -377,23 +440,32 @@ class DriverLoginVC: UIViewController, LoginButtonDelegate {
             NetworkManager.googleLogin(userType: self.userType,completion:  { success, error in
 
                 if error == nil {
-                    DispatchQueue.main.async {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 6.0, execute:  {
+                        UIView.animate(withDuration: 3.0) {
+                            self.animationView.alpha = 0
+                        }completion: { (_) in
                     UserDefaults.standard.setValue("DriverView", forKey: "CheckDriverView")
                     self.userType = self.userType.capitalized
                     self.performSegue(withIdentifier: "\(self.userType)View", sender: self)
                     self.animationView.stop()
-                    self.animationView.removeFromSuperview()
                     }
+                        
+                    })
 
                 } else {
-                    DispatchQueue.main.async {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 6.0, execute:  {
+                        UIView.animate(withDuration: 3.0) {
+                            self.animationView.alpha = 0
+                        }completion: { (_) in
                     Helper().showAlert(title: "Error!", message: error!.rawValue, in: self)
                     self.animationView.stop()
-                    self.animationView.removeFromSuperview()
-                    }
+                            
+                        }
+                    })
                 }
             })
-          }
+            
+        }
     }
     
 
@@ -432,13 +504,16 @@ class DriverLoginVC: UIViewController, LoginButtonDelegate {
             
             // Play the animation
             self.animationView.play()
-            self.animationView.loopMode = .repeat(3.0)
+            self.animationView.loopMode = .loop
             self.animationView.animationSpeed = 1
             
             NetworkManager.fbLogin(userType: self.userType,completion:  { success, error in
                 
                 if error == nil {
-                    DispatchQueue.main.async {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 6.0, execute:  {
+                        UIView.animate(withDuration: 3.0) {
+                            self.animationView.alpha = 0
+                        }completion: { (_) in
                     UserDefaults.standard.setValue("DriverView", forKey: "CheckDriverView")
                     self.userType = self.userType.capitalized
                     self.performSegue(withIdentifier: "\(self.userType)View", sender: self)
@@ -447,15 +522,17 @@ class DriverLoginVC: UIViewController, LoginButtonDelegate {
                     self.animationView.removeFromSuperview()
                     self.fbLoginButton.setTitle("Continue With Facebbok", for: .normal)
                     }
-                    
+                    })
                 } else {
-                    DispatchQueue.main.async {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 6.0, execute:  {
+                        UIView.animate(withDuration: 3.0) {
+                            self.animationView.alpha = 0
+                        }completion: { (_) in
                         Helper().showAlert(title: "Error~", message: error!.rawValue, in: self)
                     self.animationView.stop()
-                    self.animationView.removeFromSuperview()
-                    print(error!.localizedDescription)
-                    }
                     
+                        }
+                    })
                 }
             })
         })
@@ -476,6 +553,16 @@ class DriverLoginVC: UIViewController, LoginButtonDelegate {
             button.topAnchor.constraint(equalTo: fbLoginButton.topAnchor,constant: -45),
             button.heightAnchor.constraint(equalTo: googleLoginButton.heightAnchor)
         ])
+        
+        if let token = AccessToken.current,
+           !token.isExpired {
+            button.isHidden = true
+        }
+        
+        if GIDSignIn.sharedInstance.currentUser?.authentication.accessToken != nil {
+        
+            button.isHidden = true
+        }
         
     }
     
@@ -540,20 +627,26 @@ extension DriverLoginVC: ASAuthorizationControllerDelegate {
             NetworkManager.appleIDLogin(userType: self.userType,completion:  { success, error in
 
                 if error == nil {
-                    DispatchQueue.main.async {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 6.0, execute:  {
+                        UIView.animate(withDuration: 3.0) {
+                            self.animationView.alpha = 0
+                        }completion: { (_) in
                     UserDefaults.standard.setValue("DriverView", forKey: "CheckDriverView")
                     self.userType = self.userType.capitalized
                     self.performSegue(withIdentifier: "\(self.userType)View", sender: self)
                     self.animationView.stop()
-                    self.animationView.removeFromSuperview()
+                    
                     }
-
+                    })
                 } else {
-                    DispatchQueue.main.async {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 6.0, execute:  {
+                        UIView.animate(withDuration: 3.0) {
+                            self.animationView.alpha = 0
+                        }completion: { (_) in
                     Helper().showAlert(title: "Error Occurred!", message: "Login Again", in: self)
                     self.animationView.stop()
-                    self.animationView.removeFromSuperview()
-                    }
+                        }
+                    })
                 }
             })
         }
@@ -591,6 +684,8 @@ extension DriverLoginVC: ASAuthorizationControllerDelegate {
                   controller.delegate = self
                   controller.presentationContextProvider = self
                   controller.performRequests()
+                
+               
                   return
     } else {
         UserDefaults.standard.removeObject(forKey: "CheckDriverView")
@@ -616,51 +711,103 @@ extension DriverLoginVC: ASAuthorizationControllerPresentationContextProviding {
 }
 
 extension DriverLoginVC {
-
-        func checkAutoLogin() {
+    
+    func checkAutoLogin() {
+        
+        DispatchQueue.main.async {
+            
+            
+            let screenSize: CGRect = UIScreen.main.bounds
+            let label = UILabel(frame: CGRect(x: 0, y: 0, width: screenSize.width, height: screenSize.height - 300))
+            label.text = "Akalat-Shop"
+            label.textColor = .black
+            label.textAlignment = .center
+            label.font = UIFont(name: "Iceland", size: 62)
+            self.view.addSubview(label)
+            
+            self.appNameLabel.isHidden = true
+            self.internetConnectionLabel.isHidden = true
+            self.appLogo.isHidden = true
+            self.showAuthButton.isHidden = true
+            self.topLineOfAuthHolderView.isHidden = true
+            self.authHolderView.isHidden = true
+            self.googleLoginButton.isHidden = true
+            self.fbLoginButton.isHidden = true
+            
+            
+            self.animationView.frame = self.view.bounds
+            // Add animationView as subview
+            self.view.addSubview(self.animationView)
+            
+            // Play the animation
+            self.animationView.play()
+            self.animationView.loopMode = .loop
+            self.animationView.animationSpeed = 1
             
             let userId = UserDefaults.standard.string(forKey: "appleUserId") ?? ""
             let appleIDProvider = ASAuthorizationAppleIDProvider()
             if Constants.appleUserId != nil {
                 appleIDProvider.getCredentialState(forUserID:userId) { (credentialState, error) in
-            switch credentialState {
-                case .authorized:
-                    print("Auto login successful")
+                    switch credentialState {
+                    case .authorized:
+                        print("Auto login successful")
                         //resume normal app flow
-                    NetworkManager.appleIDLogin(userType: self.userType,completion:  { success, error in
-                        
-                       
-
-                        if error == nil {
+                        NetworkManager.appleIDLogin(userType: self.userType,completion:  { success, error in
                             
-                            DispatchQueue.main.async {
-                        
-                            self.userType = self.userType.capitalized
-                            self.performSegue(withIdentifier: "\(self.userType)View", sender: self)
-            
-                            self.animationView.stop()
-                            self.animationView.removeFromSuperview()
                             
-                        }
-                        
-
-                        } else {
-                            DispatchQueue.main.async {
-                            Helper().showAlert(title: "Error Occurred!", message: "Please Login Again", in: self)
-                            self.animationView.stop()
-                            self.animationView.removeFromSuperview()
+                            
+                            if error == nil {
+                                
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 6.0, execute:  {
+                                    UIView.animate(withDuration: 3.0) {
+                                        self.animationView.alpha = 0
+                                    }completion: { (_) in
+                                        
+                                        self.userType = self.userType.capitalized
+                                        self.performSegue(withIdentifier: "\(self.userType)View", sender: self)
+                                        
+                                        self.animationView.stop()
+                                    }
+                                })
+                                
+                                
+                            } else {
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 6.0, execute:  {
+                                    UIView.animate(withDuration: 3.0) {
+                                        self.animationView.alpha = 0
+                                    }completion: { (_) in
+                                        Helper().showAlert(title: "Error Occurred!", message: "Please Login Again", in: self)
+                                        self.animationView.stop()
+                                        self.animationView.removeFromSuperview()
+                                    }
+                                })
                             }
+                        })
+                        
+                        
+                        break
+                    case .revoked, .notFound:
+                        print("Auto login not successful")
+                        //show login screen or you also invoke handleAuthorizationAppleIDAction
+                        DispatchQueue.main.async {
+                            
+                            self.animationView.stop()
+                            self.animationView.alpha = 0
+                            self.appNameLabel.isHidden = false
+                            self.internetConnectionLabel.isHidden = false
+                            self.appLogo.isHidden = false
+                            self.showAuthButton.isHidden = false
+                            self.topLineOfAuthHolderView.isHidden = false
+                            self.authHolderView.isHidden = false
+                            self.googleLoginButton.isHidden = false
+                            self.fbLoginButton.isHidden = false
+                            
+                            label.removeFromSuperview()
                         }
-                    })
-                
-                    
-                    break
-                case .revoked, .notFound:
-                    print("Auto login not successful")
-                    //show login screen or you also invoke handleAuthorizationAppleIDAction
-                    break
-                default:
-                    break
+                        break
+                    default:
+                        break
+                    }
                 }
             }
         }

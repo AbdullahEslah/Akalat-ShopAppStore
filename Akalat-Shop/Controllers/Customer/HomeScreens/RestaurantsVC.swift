@@ -12,13 +12,14 @@ import JGProgressHUD
 import Lottie
 
 
-class RestaurantsVC: UIViewController, UISearchControllerDelegate, SWRevealViewControllerDelegate {
+class RestaurantsVC: UITableViewController, UISearchControllerDelegate, SWRevealViewControllerDelegate {
 
   
     @IBOutlet weak var menuBarButton : UIBarButtonItem!
     
     @IBOutlet weak var collectionView: UICollectionView!
     
+//    @IBOutlet weak var sliderCollectionView: UICollectionView!
     
     static var sectionHeaderElementKind = "header"
     
@@ -28,32 +29,34 @@ class RestaurantsVC: UIViewController, UISearchControllerDelegate, SWRevealViewC
     // Declare the serachBar In Nav Bar
     let searchBar          = UISearchBar()
     
-    var filterdRestaurants = [RestaurntsResult]()
+    // Search Model
+    var filterdRestaurants : [RestaurntsResult]?
+    var filteredRestaurants : RestaurntsResult!
     
+    // Slide-Show Cell
     var timer: Timer?
     var currentCellIndex = 0
+    
     let animationView = AnimationView(animation: Animation.named("lf20_vhkdj1ra"))
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        DispatchQueue.main.async { [weak self] in
-            self?.startTimer()
-        }
-
-        collectionView.delegate = self
-        collectionView.dataSource = self
-        
+        //CollectionView Cells
+        collectionView.register(UINib(nibName: "SliderCell", bundle: nil), forCellWithReuseIdentifier: "SliderCell")
         
         collectionView.register(UINib(nibName: "ScrollViewCollectionViewCell", bundle: nil),forCellWithReuseIdentifier: "ScrollViewCollectionViewCell")
         
         collectionView.register(UINib(nibName: "CustomRestaurantLayoutCollectionViewCell", bundle: nil),forCellWithReuseIdentifier: "CustomRestaurantLayoutCollectionViewCell")
         
+        //CollectionView Headers
         collectionView.register(UINib(nibName: "RestaurantsHeaderCollectionReusableView", bundle: nil),forSupplementaryViewOfKind: "header",withReuseIdentifier:"RestaurantsHeaderCollectionReusableView")
- 
-        collectionView.collectionViewLayout = createcompositionalLayout()
         
+        collectionView.delegate         = self
+        collectionView.dataSource       = self
+
+        collectionView.collectionViewLayout = createcompositionalLayout()
+
         fetchRestaurants()
         
         //Categories
@@ -76,40 +79,12 @@ class RestaurantsVC: UIViewController, UISearchControllerDelegate, SWRevealViewC
         animationView.animationSpeed = 1
         DismissSearchBar()
         fetchSandwichesRestaurants()
-//        collectionView.semanticContentAttribute = .unspecified
-    }
-    
-    func startTimer() {
-        
-        timer = Timer.scheduledTimer(timeInterval: 1.5, target: self, selector: #selector(timerAction), userInfo: nil, repeats: true)
-    }
-    
-    @objc func timerAction() {
-        
-//        if currentCellIndex < filterdRestaurants.count {
-//
-////            collectionView.scrollToItem(at: IndexPath(item: currentCellIndex, section: 0), at: .centeredHorizontally, animated: true)
-//            currentCellIndex += 1
-//        }
-//        else {
-//
-//            collectionView.scrollToItem(at: IndexPath(item: currentCellIndex, section: 0), at: .centeredHorizontally, animated: true)
-//            currentCellIndex = 0
-//        }
-        
-    }
-   
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidAppear(animated)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
         collectionView.reloadData()
-       
-
         configureSearchBar()
         
         if AppLocalization.currentAppleLanguage() == "en" {
@@ -119,9 +94,7 @@ class RestaurantsVC: UIViewController, UISearchControllerDelegate, SWRevealViewC
             collectionView.semanticContentAttribute = .forceRightToLeft
         }
        
-        navigationItem.hidesSearchBarWhenScrolling = false
-        
-        
+        navigationItem.hidesSearchBarWhenScrolling = true
         
     }
     
@@ -136,6 +109,7 @@ class RestaurantsVC: UIViewController, UISearchControllerDelegate, SWRevealViewC
         
     }
     
+ 
     // MARK: - <SearchBar>
     fileprivate func configureSearchBar() {
        
@@ -162,9 +136,8 @@ class RestaurantsVC: UIViewController, UISearchControllerDelegate, SWRevealViewC
         menuButton.setImage(UIImage (named: "icon_menu_24dp"), for: .normal)
         
         menuButton.frame = CGRect(x: 0.0, y: 0.0, width: 35.0, height: 35.0)
+        
         if AppLocalization.currentAppleLanguage() == "ar" {
-//            if MOLHLanguage.isRTLLanguage() {
-//                if L10n.shared.language == "ar" {
             if self.revealViewController() != nil {
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let sidemenuViewController = storyboard.instantiateViewController(withIdentifier: "MenuVC") as! MenuVC
@@ -208,7 +181,6 @@ class RestaurantsVC: UIViewController, UISearchControllerDelegate, SWRevealViewC
         self.searchBar.resignFirstResponder()
     }
     
-    
     func createcompositionalLayout() -> UICollectionViewCompositionalLayout {
         
         let layout = UICollectionViewCompositionalLayout { [weak self](index, enviroment) -> NSCollectionLayoutSection? in
@@ -223,31 +195,53 @@ class RestaurantsVC: UIViewController, UISearchControllerDelegate, SWRevealViewC
         switch index {
         
         case 0:
-            
-            return  createFirstSection()
-            
+            return  slideShowSection()
+
         case 1:
-            return createOneSizeSection()
+            return createFirstSection()
            
         case 2:
-            return createOneSizeSection()
+            return createSecondSection()
             
         case 3:
-            return createOneSizeSection()
+            return createThird()
         
         case 4:
-            return createOneSizeSection()
+            return createFourthSection()
             
         case 5:
-            return createOneSizeSection()
+            return createFifthSection()
             
         case 6:
-            return createOneSizeSection()
+            return createSixthSection()
+            
+        case 7:
+            return createSeventhSection()
             
         default:
-            return createOneSizeSection()
+            return slideShowSection()
             
         }
+    }
+    
+    func slideShowSection() -> NSCollectionLayoutSection {
+        let inset: CGFloat = 2.5
+                
+        //Item
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+//        item.contentInsets.bottom = 15
+        item.contentInsets = NSDirectionalEdgeInsets(top: inset, leading: inset, bottom: 16, trailing: inset)
+        
+        //Group
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(0.5))
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+        
+        //section
+        let section = NSCollectionLayoutSection(group: group)
+        section.orthogonalScrollingBehavior = .groupPaging
+        
+        return section
     }
 
     func createFirstSection() -> NSCollectionLayoutSection {
@@ -257,6 +251,8 @@ class RestaurantsVC: UIViewController, UISearchControllerDelegate, SWRevealViewC
 
            // Create Item
            let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        
+        item.contentInsets = NSDirectionalEdgeInsets(top: 16, leading: 0, bottom: 5, trailing: 5)
 
            // Define Group Size
            let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(100.0))
@@ -264,9 +260,16 @@ class RestaurantsVC: UIViewController, UISearchControllerDelegate, SWRevealViewC
            // Create Group
            let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [ item ])
 
-           // Create Section
-           let section = NSCollectionLayoutSection(group: group)
-
+        //header
+        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(30))
+        
+        // Create Section
+        let section = NSCollectionLayoutSection(group: group)
+        
+        let headerLeading = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: "header", alignment: .topLeading)
+        section.boundarySupplementaryItems = [headerLeading]
+        
+        
         return section
     }
    
@@ -303,6 +306,198 @@ class RestaurantsVC: UIViewController, UISearchControllerDelegate, SWRevealViewC
            return section
     }
     
+    func createSecondSection() -> NSCollectionLayoutSection {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension:
+        .fractionalHeight(1))
+
+           let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        item.contentInsets.bottom = 15
+
+        item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 5, trailing: 5)
+        
+           let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.9), heightDimension:
+        .fractionalWidth(0.5))
+
+           let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+        group.contentInsets = .init(top: 0, leading: 0, bottom: 0, trailing: 2)
+
+           let section = NSCollectionLayoutSection(group: group)
+
+        section.orthogonalScrollingBehavior = .continuousGroupLeadingBoundary
+        
+        
+        //header
+        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(30))
+        
+        
+        let headerLeading = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: "header", alignment: .topLeading)
+        
+            section.boundarySupplementaryItems = [headerLeading]
+        
+        
+           return section
+    }
+    
+    func createThird() -> NSCollectionLayoutSection {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension:
+        .fractionalHeight(1))
+
+           let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        item.contentInsets.bottom = 15
+
+        item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 5, trailing: 5)
+        
+           let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.9), heightDimension:
+        .fractionalWidth(0.5))
+
+           let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+        group.contentInsets = .init(top: 0, leading: 0, bottom: 0, trailing: 2)
+
+           let section = NSCollectionLayoutSection(group: group)
+
+        section.orthogonalScrollingBehavior = .continuousGroupLeadingBoundary
+        
+        
+        //header
+        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(30))
+        
+        
+        let headerLeading = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: "header", alignment: .topLeading)
+        
+            section.boundarySupplementaryItems = [headerLeading]
+        
+        
+           return section
+    }
+    
+    func createFourthSection() -> NSCollectionLayoutSection {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension:
+        .fractionalHeight(1))
+
+           let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        item.contentInsets.bottom = 15
+
+        item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 5, trailing: 5)
+        
+           let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.9), heightDimension:
+        .fractionalWidth(0.5))
+
+           let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+        group.contentInsets = .init(top: 0, leading: 0, bottom: 0, trailing: 2)
+
+           let section = NSCollectionLayoutSection(group: group)
+
+        section.orthogonalScrollingBehavior = .continuousGroupLeadingBoundary
+        
+        
+        //header
+        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(30))
+        
+        
+        let headerLeading = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: "header", alignment: .topLeading)
+        
+            section.boundarySupplementaryItems = [headerLeading]
+        
+        
+           return section
+    }
+    
+    
+    func createFifthSection() -> NSCollectionLayoutSection {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension:
+        .fractionalHeight(1))
+
+           let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        item.contentInsets.bottom = 15
+
+        item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 5, trailing: 5)
+        
+           let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.9), heightDimension:
+        .fractionalWidth(0.5))
+
+           let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+        group.contentInsets = .init(top: 0, leading: 0, bottom: 0, trailing: 2)
+
+           let section = NSCollectionLayoutSection(group: group)
+
+        section.orthogonalScrollingBehavior = .continuousGroupLeadingBoundary
+        
+        
+        //header
+        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(30))
+        
+        
+        let headerLeading = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: "header", alignment: .topLeading)
+        
+            section.boundarySupplementaryItems = [headerLeading]
+        
+        
+           return section
+    }
+    
+    
+    func createSixthSection() -> NSCollectionLayoutSection {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension:
+        .fractionalHeight(1))
+
+           let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        item.contentInsets.bottom = 15
+
+        item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 5, trailing: 5)
+        
+           let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.9), heightDimension:
+        .fractionalWidth(0.5))
+
+           let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+        group.contentInsets = .init(top: 0, leading: 0, bottom: 0, trailing: 2)
+
+           let section = NSCollectionLayoutSection(group: group)
+
+        section.orthogonalScrollingBehavior = .continuousGroupLeadingBoundary
+        
+        
+        //header
+        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(30))
+        
+        
+        let headerLeading = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: "header", alignment: .topLeading)
+        
+            section.boundarySupplementaryItems = [headerLeading]
+        
+        
+           return section
+    }
+    func createSeventhSection() -> NSCollectionLayoutSection {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension:
+        .fractionalHeight(1))
+
+           let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        item.contentInsets.bottom = 15
+
+        item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 5, trailing: 5)
+        
+           let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.9), heightDimension:
+        .fractionalWidth(0.5))
+
+           let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+        group.contentInsets = .init(top: 0, leading: 0, bottom: 0, trailing: 2)
+
+           let section = NSCollectionLayoutSection(group: group)
+
+        section.orthogonalScrollingBehavior = .continuousGroupLeadingBoundary
+        
+        
+        //header
+        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(30))
+        
+        
+        let headerLeading = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: "header", alignment: .topLeading)
+        
+            section.boundarySupplementaryItems = [headerLeading]
+        
+        
+           return section
+    }
     func createLocalizedOneSizeSection() -> NSCollectionLayoutSection {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension:
         .fractionalHeight(1))
@@ -378,7 +573,7 @@ class RestaurantsVC: UIViewController, UISearchControllerDelegate, SWRevealViewC
     // Requests
     func fetchRestaurants() {
         
-        NetworkManager.getRestaurantsList(restaurantAddress: "Fayoum") { restaurants, error in
+        NetworkManager.getRestaurantsList(restaurantAddress: UserDefaults.standard.value( forKey: "region") as? String ?? "") { restaurants, error in
             
             if error == nil {
                 DispatchQueue.main.async {
@@ -386,13 +581,11 @@ class RestaurantsVC: UIViewController, UISearchControllerDelegate, SWRevealViewC
                     self.animationView.removeFromSuperview()
                     
                     ArraysModels.restaurants.removeAll()
-                    //            self.filterdRestaurants.removeAll()
                     ArraysModels.restaurants.append(contentsOf: restaurants)
                     
                     self.filterdRestaurants = ArraysModels.restaurants
                     
-                    //                DispatchQueue.main.async {
-                    self.collectionView.reloadData()
+//                    self.sliderCollectionView.reloadData()
                 }
             } else {
                 DispatchQueue.main.async {
@@ -550,228 +743,210 @@ class RestaurantsVC: UIViewController, UISearchControllerDelegate, SWRevealViewC
 
 }
     
-extension RestaurantsVC : UICollectionViewDelegate, UICollectionViewDataSource{
+extension RestaurantsVC : UICollectionViewDelegate, UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
+    
     
      func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 8
-    }
-
-     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
+//        if collectionView == self.collectionView {
+            return 8
+//        }else {
+//            return 1
+//        }
+     }
 
-         if section == 1 {
-            return filterdRestaurants.count
-        } else if section == 2 {
-            return ArraysModels.restCategories.count
-        } else if section == 3 {
-            return ArraysModels.restPizza.count
-        } else if section == 4 {
-            return ArraysModels.restFriedChicken.count
-        } else if section == 5 {
-            return ArraysModels.restGrills.count
-        } else if section == 6 {
-            return ArraysModels.restFish.count
-        } else  {
-            return ArraysModels.restDesserts.count
-        }
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
+//        if collectionView == self.collectionView {
+                
+            if section == 2 {
+                return  ArraysModels.restCategories.count
+            } else if section == 3 {
+                return ArraysModels.restPizza.count
+            } else if section == 4 {
+                return ArraysModels.restFriedChicken.count
+            } else if section == 5 {
+                return ArraysModels.restGrills.count
+            } else if section == 6 {
+                return ArraysModels.restFish.count
+            } else {
+                return ArraysModels.restDesserts.count
+            }
+//        } else {
+//            return filterdRestaurants.count
+//        }
     }
-    
-  
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         
         guard let view = self.collectionView.dequeueReusableSupplementaryView(ofKind: "header", withReuseIdentifier: "RestaurantsHeaderCollectionReusableView", for: indexPath) as? RestaurantsHeaderCollectionReusableView else {
             return UICollectionReusableView()
         }
-//        if let header = collectionView.supplementaryView(forElementKind: "header", at: IndexPath(item: 1, section: indexPath.section)) as? RestaurantsHeaderCollectionReusableView {
-//            // Do your stuff here
-//            header.headerLabel.textAlignment = .natural // or whatever
-//        }
-        
-//        view.headerLabel.lineBreakMode = .byTruncatingTail
-//        view.headerLabel.textAlignment = .justified
-//        view.headerLabel.numberOfLines = 0
-        let commonChoicesLabel = NSLocalizedString("browseByAllRestaurantskey", comment: "")
-        view.headerLabel.text = indexPath.section == 1 ? commonChoicesLabel : "Common Choices"
-        
-       
-        
+        let categoriesLabel = NSLocalizedString("Categories", comment: "")
+        view.headerLabel.text = indexPath.section == 1  ? categoriesLabel : ""
         return view
         
     }
    
-    
-    
    
      func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        switch indexPath.section {
-        
-        case 0:
-            guard let CellNumZero = collectionView.dequeueReusableCell(withReuseIdentifier: "ScrollViewCollectionViewCell", for: indexPath) as? ScrollViewCollectionViewCell else {
-                return UICollectionViewCell()
-            }
+ 
+            switch indexPath.section {
             
-            
-            CellNumZero.sandwichesButton.addTarget(self, action: #selector(sandwicthVCAction), for: .touchUpInside)
-            CellNumZero.pizzaButton.addTarget(self, action: #selector(pizzaVCAction), for: .touchUpInside)
-            CellNumZero.friedChickenButton.addTarget(self, action: #selector(friedChickenVCAction), for: .touchUpInside)
-            CellNumZero.grillsButton.addTarget(self, action: #selector(grillsVCAction), for: .touchUpInside)
-            CellNumZero.fishButton.addTarget(self, action: #selector(fishVCAction), for: .touchUpInside)
-            CellNumZero.dessertsButton.addTarget(self, action: #selector(dessertVCAction), for: .touchUpInside)
-            
-            return CellNumZero
-            
-        case 1:
-            
-            guard let firstCell = collectionView.dequeueReusableCell(withReuseIdentifier: "CustomRestaurantLayoutCollectionViewCell", for: indexPath) as? CustomRestaurantLayoutCollectionViewCell else {
-                return UICollectionViewCell()
-            }
-            
-            
-//            //Configure the cell...
-            let restaurantsData = filterdRestaurants[indexPath.row]
-            firstCell.restaurantName.text = restaurantsData.name
-
-
-            if let url = URL(string: restaurantsData.logo) {
-                let placeholder = UIImage(named: "LogoWithoutName")
-                let options : KingfisherOptionsInfo = [KingfisherOptionsInfoItem.transition(.fade(0.1))]
-                firstCell.restaurantImage.kf.indicatorType = .activity
-                firstCell.restaurantImage.kf.setImage(with: url,placeholder: placeholder,options: options)
-
-            }
-            return firstCell
-            
-            
-        
-        case 2:
-            guard let secCell = collectionView.dequeueReusableCell(withReuseIdentifier: "CustomRestaurantLayoutCollectionViewCell", for: indexPath) as? CustomRestaurantLayoutCollectionViewCell else {
-                return UICollectionViewCell()
-            }
-        
-            //Configure the cell...
-            let restaurantsData = ArraysModels.restCategories[indexPath.row]
-            secCell.restaurantName.text = restaurantsData.name
-            
-            
-            if let url = URL(string: restaurantsData.logo) {
-                let placeholder = UIImage(named: "LogoWithoutName")
-                let options : KingfisherOptionsInfo = [KingfisherOptionsInfoItem.transition(.fade(0.1))]
-                secCell.restaurantImage.kf.indicatorType = .activity
-                secCell.restaurantImage.kf.setImage(with: url,placeholder: placeholder,options: options)
+            case 0:
+  
+                guard let firstCell = collectionView.dequeueReusableCell(withReuseIdentifier: "SliderCell", for: indexPath) as? SliderCell else {
+                    return UICollectionViewCell()
+                }
+                firstCell.awakeFromNib()
                 
-            }
-            return secCell
-            
-        case 3:
-            
-            guard let thirdCell = collectionView.dequeueReusableCell(withReuseIdentifier: "CustomRestaurantLayoutCollectionViewCell", for: indexPath) as? CustomRestaurantLayoutCollectionViewCell else {
-                return UICollectionViewCell()
-            }
-        
-            //Configure the cell...
-            let restaurantsData = ArraysModels.restPizza[indexPath.row]
-            thirdCell.restaurantName.text = restaurantsData.name
-            
-            
-            if let url = URL(string: restaurantsData.logo) {
-                let placeholder = UIImage(named: "LogoWithoutName")
-                let options : KingfisherOptionsInfo = [KingfisherOptionsInfoItem.transition(.fade(0.1))]
-                thirdCell.restaurantImage.kf.indicatorType = .activity
-                thirdCell.restaurantImage.kf.setImage(with: url,placeholder: placeholder,options: options)
+                firstCell.cellDelegate = self
                 
-            }
-            return thirdCell
-            
-        case 4:
-            
-            guard let fourthCell = collectionView.dequeueReusableCell(withReuseIdentifier: "CustomRestaurantLayoutCollectionViewCell", for: indexPath) as? CustomRestaurantLayoutCollectionViewCell else {
-                return UICollectionViewCell()
-            }
-        
-            //Configure the cell...
-            let restaurantsData = ArraysModels.restFriedChicken[indexPath.row]
-            fourthCell.restaurantName.text = restaurantsData.name
-            
-            
-            if let url = URL(string: restaurantsData.logo) {
-                let placeholder = UIImage(named: "LogoWithoutName")
-                let options : KingfisherOptionsInfo = [KingfisherOptionsInfoItem.transition(.fade(0.1))]
-                fourthCell.restaurantImage.kf.indicatorType = .activity
-                fourthCell.restaurantImage.kf.setImage(with: url,placeholder: placeholder,options: options)
+                return firstCell
+ 
+            case 1:
+                guard let CellNumZero = collectionView.dequeueReusableCell(withReuseIdentifier: "ScrollViewCollectionViewCell", for: indexPath) as? ScrollViewCollectionViewCell else {
+                    return UICollectionViewCell()
+                }
                 
-            }
-            return fourthCell
-            
-        case 5:
-            
-            guard let fifthCell = collectionView.dequeueReusableCell(withReuseIdentifier: "CustomRestaurantLayoutCollectionViewCell", for: indexPath) as? CustomRestaurantLayoutCollectionViewCell else {
-                return UICollectionViewCell()
-            }
-        
-            //Configure the cell...
-            let restaurantsData = ArraysModels.restGrills[indexPath.row]
-            fifthCell.restaurantName.text = restaurantsData.name
-            
-            
-            if let url = URL(string: restaurantsData.logo) {
-                let placeholder = UIImage(named: "LogoWithoutName")
-                let options : KingfisherOptionsInfo = [KingfisherOptionsInfoItem.transition(.fade(0.1))]
-                fifthCell.restaurantImage.kf.indicatorType = .activity
-                fifthCell.restaurantImage.kf.setImage(with: url,placeholder: placeholder,options: options)
                 
-            }
-            return fifthCell
-            
-        case 6:
-            
-            guard let sixthCell = collectionView.dequeueReusableCell(withReuseIdentifier: "CustomRestaurantLayoutCollectionViewCell", for: indexPath) as? CustomRestaurantLayoutCollectionViewCell else {
-                return UICollectionViewCell()
-            }
-        
-            //Configure the cell...
-            let restaurantsData = ArraysModels.restFish[indexPath.row]
-            sixthCell.restaurantName.text = restaurantsData.name
-            
-            
-            if let url = URL(string: restaurantsData.logo) {
-                let placeholder = UIImage(named: "LogoWithoutName")
-                let options : KingfisherOptionsInfo = [KingfisherOptionsInfoItem.transition(.fade(0.1))]
-                sixthCell.restaurantImage.kf.indicatorType = .activity
-                sixthCell.restaurantImage.kf.setImage(with: url,placeholder: placeholder,options: options)
+                CellNumZero.sandwichesButton.addTarget(self, action: #selector(sandwicthVCAction), for: .touchUpInside)
+                CellNumZero.pizzaButton.addTarget(self, action: #selector(pizzaVCAction), for: .touchUpInside)
+                CellNumZero.friedChickenButton.addTarget(self, action: #selector(friedChickenVCAction), for: .touchUpInside)
+                CellNumZero.grillsButton.addTarget(self, action: #selector(grillsVCAction), for: .touchUpInside)
+                CellNumZero.fishButton.addTarget(self, action: #selector(fishVCAction), for: .touchUpInside)
+                CellNumZero.dessertsButton.addTarget(self, action: #selector(dessertVCAction), for: .touchUpInside)
                 
-            }
-            return sixthCell
-            
-        case 7:
-            
-            guard let seventhCell = collectionView.dequeueReusableCell(withReuseIdentifier: "CustomRestaurantLayoutCollectionViewCell", for: indexPath) as? CustomRestaurantLayoutCollectionViewCell else {
-                return UICollectionViewCell()
-            }
-        
-            //Configure the cell...
-            let restaurantsData = ArraysModels.restDesserts[indexPath.row]
-            seventhCell.restaurantName.text = restaurantsData.name
-            
-            
-            if let url = URL(string: restaurantsData.logo) {
-                let placeholder = UIImage(named: "LogoWithoutName")
-                let options : KingfisherOptionsInfo = [KingfisherOptionsInfoItem.transition(.fade(0.1))]
-                seventhCell.restaurantImage.kf.indicatorType = .activity
-                seventhCell.restaurantImage.kf.setImage(with: url,placeholder: placeholder,options: options)
+                return CellNumZero
                 
+                
+            case 2:
+                guard let secCell = collectionView.dequeueReusableCell(withReuseIdentifier: "CustomRestaurantLayoutCollectionViewCell", for: indexPath) as? CustomRestaurantLayoutCollectionViewCell else {
+                    return UICollectionViewCell()
+                }
+                
+                //Configure the cell...
+                let restaurantsData = ArraysModels.restCategories[indexPath.row]
+                secCell.restaurantName.text = restaurantsData.name
+                
+                
+                if let url = URL(string: restaurantsData.logo) {
+                    let placeholder = UIImage(named: "LogoWithoutName")
+                    let options : KingfisherOptionsInfo = [KingfisherOptionsInfoItem.transition(.fade(0.1))]
+                    secCell.restaurantImage.kf.indicatorType = .activity
+                    secCell.restaurantImage.kf.setImage(with: url,placeholder: placeholder,options: options)
+                    
+                }
+                return secCell
+                
+            case 3:
+                
+                guard let thirdCell = collectionView.dequeueReusableCell(withReuseIdentifier: "CustomRestaurantLayoutCollectionViewCell", for: indexPath) as? CustomRestaurantLayoutCollectionViewCell else {
+                    return UICollectionViewCell()
+                }
+                
+                //Configure the cell...
+                let restaurantsData = ArraysModels.restPizza[indexPath.row]
+                thirdCell.restaurantName.text = restaurantsData.name
+                
+                
+                if let url = URL(string: restaurantsData.logo) {
+                    let placeholder = UIImage(named: "LogoWithoutName")
+                    let options : KingfisherOptionsInfo = [KingfisherOptionsInfoItem.transition(.fade(0.1))]
+                    thirdCell.restaurantImage.kf.indicatorType = .activity
+                    thirdCell.restaurantImage.kf.setImage(with: url,placeholder: placeholder,options: options)
+                    
+                }
+                return thirdCell
+                
+            case 4:
+                
+                guard let fourthCell = collectionView.dequeueReusableCell(withReuseIdentifier: "CustomRestaurantLayoutCollectionViewCell", for: indexPath) as? CustomRestaurantLayoutCollectionViewCell else {
+                    return UICollectionViewCell()
+                }
+                
+                //Configure the cell...
+                let restaurantsData = ArraysModels.restFriedChicken[indexPath.row]
+                fourthCell.restaurantName.text = restaurantsData.name
+                
+                
+                if let url = URL(string: restaurantsData.logo) {
+                    let placeholder = UIImage(named: "LogoWithoutName")
+                    let options : KingfisherOptionsInfo = [KingfisherOptionsInfoItem.transition(.fade(0.1))]
+                    fourthCell.restaurantImage.kf.indicatorType = .activity
+                    fourthCell.restaurantImage.kf.setImage(with: url,placeholder: placeholder,options: options)
+                    
+                }
+                return fourthCell
+                
+            case 5:
+                
+                guard let fifthCell = collectionView.dequeueReusableCell(withReuseIdentifier: "CustomRestaurantLayoutCollectionViewCell", for: indexPath) as? CustomRestaurantLayoutCollectionViewCell else {
+                    return UICollectionViewCell()
+                }
+                
+                //Configure the cell...
+                let restaurantsData = ArraysModels.restGrills[indexPath.row]
+                fifthCell.restaurantName.text = restaurantsData.name
+                
+                
+                if let url = URL(string: restaurantsData.logo) {
+                    let placeholder = UIImage(named: "LogoWithoutName")
+                    let options : KingfisherOptionsInfo = [KingfisherOptionsInfoItem.transition(.fade(0.1))]
+                    fifthCell.restaurantImage.kf.indicatorType = .activity
+                    fifthCell.restaurantImage.kf.setImage(with: url,placeholder: placeholder,options: options)
+                    
+                }
+                return fifthCell
+                
+            case 6:
+                
+                guard let sixthCell = collectionView.dequeueReusableCell(withReuseIdentifier: "CustomRestaurantLayoutCollectionViewCell", for: indexPath) as? CustomRestaurantLayoutCollectionViewCell else {
+                    return UICollectionViewCell()
+                }
+                
+                //Configure the cell...
+                let restaurantsData = ArraysModels.restFish[indexPath.row]
+                sixthCell.restaurantName.text = restaurantsData.name
+                
+                
+                if let url = URL(string: restaurantsData.logo) {
+                    let placeholder = UIImage(named: "LogoWithoutName")
+                    let options : KingfisherOptionsInfo = [KingfisherOptionsInfoItem.transition(.fade(0.1))]
+                    sixthCell.restaurantImage.kf.indicatorType = .activity
+                    sixthCell.restaurantImage.kf.setImage(with: url,placeholder: placeholder,options: options)
+                    
+                }
+                return sixthCell
+                
+            case 7:
+                
+                guard let seventhCell = collectionView.dequeueReusableCell(withReuseIdentifier: "CustomRestaurantLayoutCollectionViewCell", for: indexPath) as? CustomRestaurantLayoutCollectionViewCell else {
+                    return UICollectionViewCell()
+                }
+                
+                //Configure the cell...
+                let restaurantsData = ArraysModels.restDesserts[indexPath.row]
+                seventhCell.restaurantName.text = restaurantsData.name
+                
+                
+                if let url = URL(string: restaurantsData.logo) {
+                    let placeholder = UIImage(named: "LogoWithoutName")
+                    let options : KingfisherOptionsInfo = [KingfisherOptionsInfoItem.transition(.fade(0.1))]
+                    seventhCell.restaurantImage.kf.indicatorType = .activity
+                    seventhCell.restaurantImage.kf.setImage(with: url,placeholder: placeholder,options: options)
+                    
+                }
+                return seventhCell
+                
+                
+            default:
+                print("error")
+            
+            return UICollectionViewCell()
             }
-            return seventhCell
-            
-            
-        default:
-            print("error")
-        }
-        return UICollectionViewCell()
-        
-    }
+ 
+}
     
     
     @objc func sandwicthVCAction() {
@@ -819,20 +994,22 @@ extension RestaurantsVC : UICollectionViewDelegate, UICollectionViewDataSource{
     
      func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
+        if collectionView == self.collectionView {
+            
+        
         switch indexPath.section {
         
-        case 1:
-            
-            //access Rest Id to show it's meals via api
-            let restaurantsData = filterdRestaurants[indexPath.row]
-            //go to MealsListVC
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let mealListVC = storyboard.instantiateViewController(withIdentifier: "MealListVC") as! MealListVC
-            
-            mealListVC.restaurantId   = restaurantsData.id
-            mealListVC.restaurantName = restaurantsData.name
-            mealListVC.restaurant     = restaurantsData
-            navigationController?.show(mealListVC, sender: self)
+//        case 0:
+//            let restaurantsData = filterdRestaurants[indexPath.row]
+//
+//            //go to MealsListVC
+//            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//            let mealListVC = storyboard.instantiateViewController(withIdentifier: "MealListVC") as! MealListVC
+//
+//            mealListVC.restaurantId   = restaurantsData.id
+//            mealListVC.restaurantName = restaurantsData.name
+//            mealListVC.restaurant     = restaurantsData
+//            navigationController?.show(mealListVC, sender: self)
         
         case 2:
             
@@ -915,8 +1092,34 @@ extension RestaurantsVC : UICollectionViewDelegate, UICollectionViewDataSource{
         default:
             print("error")
         }
+            
+        } else {
+
     }
+                    
+}
     
+      
+}
+
+extension RestaurantsVC: CollectionViewCellDelegate {
+    func collectionView(collectionViewCell: SliderCollectionView?, index: Int, didTappedInCollectionViewCell: SliderCell) {
+         let colorsRow = didTappedInCollectionViewCell.filteredRestaurants
+            self.filteredRestaurants = colorsRow[index]
+//            let restaurantsData = filteredRestaurants?[indexPath.row]
+
+            //go to MealsListVC
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let mealListVC = storyboard.instantiateViewController(identifier: "MealListVC") as! MealListVC
+
+            mealListVC.restaurantId   = colorsRow[index].id
+            mealListVC.restaurantName = colorsRow[index].name
+            mealListVC.restaurant     = colorsRow[index]
+            self.navigationController?.show(mealListVC, sender: self)
+           // performSegue(withIdentifier: "detailsviewcontrollerseg", sender: self)
+            // You can also do changes to the cell you tapped using the 'collectionviewcell'
+        
+    }
 }
    
 
@@ -925,7 +1128,7 @@ extension RestaurantsVC : UISearchBarDelegate {
         
         guard !searchText.isEmpty else {
             filterdRestaurants      = ArraysModels.restaurants
-            collectionView.reloadData()
+//            sliderCollectionView.reloadData()
             return
         }
         filterdRestaurants = ArraysModels.restaurants.filter({ restaurants -> Bool in
@@ -934,8 +1137,8 @@ extension RestaurantsVC : UISearchBarDelegate {
         })
         
         //Scroll To Restaurants Section To Make Search Result Visible To User
-        collectionView.scrollToItem(at: IndexPath(item: currentCellIndex, section: 1), at: .centeredVertically, animated: true)
-        collectionView.reloadData()
+//        sliderCollectionView.scrollToItem(at: IndexPath(item: currentCellIndex, section: 0), at: .centeredVertically, animated: true)
+//        sliderCollectionView.reloadData()
     }
 }
 
@@ -959,5 +1162,11 @@ extension UIButton{
     }
 
 }
+
+
+    
+    
+    
+    
 
 

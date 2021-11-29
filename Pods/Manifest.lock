@@ -5,6 +5,7 @@ PODS:
     - AppAuth/ExternalUserAgent (= 1.4.0)
   - AppAuth/Core (1.4.0)
   - AppAuth/ExternalUserAgent (1.4.0)
+  - AutoScrollCollectionView (1.0.1)
   - Charts (3.6.0):
     - Charts/Core (= 3.6.0)
   - Charts/Core (3.6.0)
@@ -38,6 +39,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (~> 4.8)
+  - AutoScrollCollectionView
   - Charts
   - FBSDKCoreKit (~> 9.0.1)
   - FBSDKLoginKit (~> 9.0.1)
@@ -53,6 +55,7 @@ SPEC REPOS:
   trunk:
     - Alamofire
     - AppAuth
+    - AutoScrollCollectionView
     - Charts
     - FBSDKCoreKit
     - FBSDKLoginKit
@@ -69,6 +72,7 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
   AppAuth: 31bcec809a638d7bd2f86ea8a52bd45f6e81e7c7
+  AutoScrollCollectionView: 4de7cf300f6dda25d7614b701d4e707f7236f9e2
   Charts: b1e3a1f5a1c9ba5394438ca3b91bd8c9076310af
   FBSDKCoreKit: fada1a6a0076724678993ff05a633848765ff18c
   FBSDKLoginKit: d5ffe6d808897019ccf16feb6f0a7ab260bc5cd6
@@ -82,6 +86,6 @@ SPEC CHECKSUMS:
   lottie-ios: c058aeafa76daa4cf64d773554bccc8385d0150e
   SwiftyGif: 5d4af95df24caf1c570dbbcb32a3b8a0763bc6d7
 
-PODFILE CHECKSUM: fa7e09d2bf9166c0b4dd9b9f4467c50b314deb41
+PODFILE CHECKSUM: ca85097cbe5cf3670b10ff9cc37a98222da02102
 
 COCOAPODS: 1.10.1

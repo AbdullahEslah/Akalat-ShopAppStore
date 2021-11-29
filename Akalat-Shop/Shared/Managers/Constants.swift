@@ -10,7 +10,7 @@ import Lottie
 
 class Constants {
     
-    static var region              = UserDefaults.standard.value(forKey: "region") as? String
+    static var region              = UserDefaults.standard.value(forKey: "region") as? String 
     static var address             = UserDefaults.standard.value(forKey: "address") as? String
     static var phone               = UserDefaults.standard.value(forKey: "phone") as? String
     static var appleUserId         = UserDefaults.standard.string(forKey: "appleUserId")

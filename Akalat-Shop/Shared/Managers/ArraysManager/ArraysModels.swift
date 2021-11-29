@@ -17,6 +17,8 @@ class ArraysModels {
 
     static var restaurants         = [RestaurntsResult]()
     
+    static var rest                : RestaurntsResult?
+    
     static var listMeals           = [MealsResult]()
     
     static var listAllMeals        = [MealsResult]()

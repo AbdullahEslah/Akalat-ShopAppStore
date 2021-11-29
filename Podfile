@@ -18,6 +18,8 @@ target 'Akalat-Shop' do
   pod 'GoogleSignIn'
   pod 'IQKeyboardManagerSwift', '6.3.0'
   pod 'Charts'
+  pod 'AutoScrollCollectionView'
+
 
 end
 

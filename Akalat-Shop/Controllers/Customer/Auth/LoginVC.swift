@@ -226,6 +226,7 @@ class LoginVC: UIViewController, LoginButtonDelegate {
         
         configureAuthViewAppearance()
         signInAppleButton()
+        //AppleAutoLogin
         checkAutoLogin()
     }
     
@@ -320,25 +321,25 @@ class LoginVC: UIViewController, LoginButtonDelegate {
     
     func configureAuthButton() {
         // Create a gradient layer
-                let gradient = CAGradientLayer()
-
-                // gradient colors in order which they will visually appear
-                gradient.colors = [UIColor.red.cgColor, UIColor.blue.cgColor]
-
-                // Gradient from left to right
-                gradient.startPoint = CGPoint(x: 0.0, y: 0.5)
-                gradient.endPoint = CGPoint(x: 1.0, y: 0.5)
-
-                // set the gradient layer to the same size as the view
-                gradient.frame = viewForMyButton.bounds
-
-                // add the gradient layer to the views layer for rendering
+        let gradient = CAGradientLayer()
+        
+        // gradient colors in order which they will visually appear
+        gradient.colors = [UIColor.red.cgColor, UIColor.blue.cgColor]
+        
+        // Gradient from left to right
+        gradient.startPoint = CGPoint(x: 0.0, y: 0.5)
+        gradient.endPoint = CGPoint(x: 1.0, y: 0.5)
+        
+        // set the gradient layer to the same size as the view
+        gradient.frame = viewForMyButton.bounds
+        
+        // add the gradient layer to the views layer for rendering
         viewForMyButton.layer.insertSublayer(gradient, at: 0)
-
-                // Tha magic! Set the button as the views mask
+        
+        // Tha magic! Set the button as the views mask
         viewForMyButton.mask = showAuthButton
-
- 
+        
+        
     }
     
     func configureAuthViewAppearance() {
@@ -530,12 +531,15 @@ class LoginVC: UIViewController, LoginButtonDelegate {
                         }
                     })
                 } else {
-                    DispatchQueue.main.async {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 6.0, execute:  {
+                        UIView.animate(withDuration: 3.0) {
+                            self.animationView.alpha = 0
+                        }completion: { (_) in
                         Helper().showAlert(title: "Error!", message: error!.rawValue, in: self)
                         self.animationView.stop()
-                        print(error!.localizedDescription)
-                    }
-                    
+                      
+                        }
+                    })
                 }
             })
         })
@@ -570,14 +574,7 @@ class LoginVC: UIViewController, LoginButtonDelegate {
     }
     
     @objc func handleAppleIdRequest() {
-        let screenSize: CGRect = UIScreen.main.bounds
-        self.animationView.frame = CGRect(x:0 ,y:120 ,width: screenSize.width ,height: screenSize.height - 80)
-        self.view.addSubview(self.animationView)
         
-        // Play the animation
-        self.animationView.play()
-        self.animationView.loopMode = .loop
-        self.animationView.animationSpeed = 1
         let provider = ASAuthorizationAppleIDProvider()
         let request = provider.createRequest()
         request.requestedScopes = [.fullName, .email]
@@ -713,8 +710,7 @@ extension LoginVC: ASAuthorizationControllerDelegate {
                     controller.delegate = self
                     controller.presentationContextProvider = self
                     controller.performRequests()
-                    animationView.alpha = 0
-                    animationView.stop()
+                   
                     return
                 } else {
                     Helper().showAlert(title: "Error !", message:  "Unknown error for appleID auth.", in: self)
@@ -744,19 +740,12 @@ extension LoginVC {
         let userId = UserDefaults.standard.string(forKey: "appleUserId") ?? ""
         let appleIDProvider = ASAuthorizationAppleIDProvider()
         if Constants.appleUserId != nil {
-            let screenSize: CGRect = UIScreen.main.bounds
-            // Add animationView as subview
-            animationView.frame = CGRect(x:0 ,y:120 ,width: screenSize.width ,height: screenSize.height - 80)
-            self.view.addSubview(self.animationView)
             
-            // Play the animation
-            self.animationView.play()
-            self.animationView.loopMode = .loop
-            self.animationView.animationSpeed = 1
             
             DispatchQueue.main.async {
                 
                 
+                let screenSize: CGRect = UIScreen.main.bounds
                 let label = UILabel(frame: CGRect(x: 0, y: 0, width: screenSize.width, height: screenSize.height - 300))
                 label.text = "Akalat-Shop"
                 label.textColor = .black
@@ -774,70 +763,77 @@ extension LoginVC {
                 self.fbLoginButton.isHidden = true
                 self.deliverOrdersButton.isHidden = true
                 
-            
-            
-            appleIDProvider.getCredentialState(forUserID:userId) { (credentialState, error) in
-                switch credentialState {
-                case .authorized:
-                    
-                    //resume normal app flow
-                    NetworkManager.appleIDLogin(userType: self.userType,completion:  { success, error in
+                self.animationView.frame = self.view.bounds
+                // Add animationView as subview
+                self.view.addSubview(self.animationView)
+                
+                // Play the animation
+                self.animationView.play()
+                self.animationView.loopMode = .loop
+                self.animationView.animationSpeed = 1
+                
+                appleIDProvider.getCredentialState(forUserID:userId) { (credentialState, error) in
+                    switch credentialState {
+                    case .authorized:
                         
-                        if error == nil {
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 6.0, execute:  {
-                                UIView.animate(withDuration: 3.0) {
-                                    self.animationView.alpha = 0
-                                }completion: { (_) in
-                                    
-                                    if UserDefaults.standard.value(forKey: "CheckDriverView") != nil {
-                                        let storyboard = UIStoryboard(name: "DriverMain", bundle: nil)
-                                        let ordersVC = storyboard.instantiateViewController(withIdentifier: "SWRevealViewController") as! SWRevealViewController
-                                        self.showDetailViewController(ordersVC, sender: self )
+                        //resume normal app flow
+                        NetworkManager.appleIDLogin(userType: self.userType,completion:  { success, error in
+                            
+                            if error == nil {
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 6.0, execute:  {
+                                    UIView.animate(withDuration: 3.0) {
+                                        self.animationView.alpha = 0
+                                    }completion: { (_) in
                                         
-                                    } else {
-                                        self.userType = self.userType.capitalized
-                                        self.performSegue(withIdentifier: "\(self.userType)View", sender: self)
+                                        if UserDefaults.standard.value(forKey: "CheckDriverView") != nil {
+                                            let storyboard = UIStoryboard(name: "DriverMain", bundle: nil)
+                                            let ordersVC = storyboard.instantiateViewController(withIdentifier: "SWRevealViewController") as! SWRevealViewController
+                                            self.showDetailViewController(ordersVC, sender: self )
+                                            
+                                        } else {
+                                            self.userType = self.userType.capitalized
+                                            self.performSegue(withIdentifier: "\(self.userType)View", sender: self)
+                                        }
+                                        self.animationView.stop()
                                     }
-                                    self.animationView.stop()
-                                }
-                            })
-                        } else {
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 6.0, execute:  {
-                                UIView.animate(withDuration: 3.0) {
-                                    self.animationView.alpha = 0
-                                }completion: { (_) in
-                                    Helper().showAlert(title: "Error Occurred!", message: "Please Login Again", in: self)
-                                    self.animationView.stop()
-                                }
-                            })
-                        }
-                    })
-                    
-                    
-                    break
-                case .revoked, .notFound:
-                    print("Auto login not successful")
-                    DispatchQueue.main.async {
+                                })
+                            } else {
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 6.0, execute:  {
+                                    UIView.animate(withDuration: 3.0) {
+                                        self.animationView.alpha = 0
+                                    }completion: { (_) in
+                                        Helper().showAlert(title: "Error Occurred!", message: "Please Login Again", in: self)
+                                        self.animationView.stop()
+                                    }
+                                })
+                            }
+                        })
                         
-                        self.animationView.stop()
-                        self.animationView.alpha = 0
-                        self.appNameLabel.isHidden = false
-                        self.internetConnectionLabel.isHidden = false
-                        self.appLogo.isHidden = false
-                        self.showAuthButton.isHidden = false
-                        self.topLineOfAuthHolderView.isHidden = false
-                        self.authHolderView.isHidden = false
-                        self.googleLoginButton.isHidden = false
-                        self.fbLoginButton.isHidden = false
-                        self.deliverOrdersButton.isHidden = false
-                        label.removeFromSuperview()
+                        
+                        break
+                    case .revoked, .notFound:
+                        print("Auto login not successful")
+                        DispatchQueue.main.async {
+                            
+                            self.animationView.stop()
+                            self.animationView.alpha = 0
+                            self.appNameLabel.isHidden = false
+                            self.internetConnectionLabel.isHidden = false
+                            self.appLogo.isHidden = false
+                            self.showAuthButton.isHidden = false
+                            self.topLineOfAuthHolderView.isHidden = false
+                            self.authHolderView.isHidden = false
+                            self.googleLoginButton.isHidden = false
+                            self.fbLoginButton.isHidden = false
+                            self.deliverOrdersButton.isHidden = false
+                            label.removeFromSuperview()
+                        }
+                        //show login screen or you also invoke handleAuthorizationAppleIDAction
+                        break
+                    default:
+                        break
                     }
-                    //show login screen or you also invoke handleAuthorizationAppleIDAction
-                    break
-                default:
-                    break
                 }
-            }
             }
         }
     }

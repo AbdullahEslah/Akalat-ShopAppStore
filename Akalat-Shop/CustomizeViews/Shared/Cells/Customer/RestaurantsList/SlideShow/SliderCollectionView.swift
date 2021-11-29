@@ -1,42 +1,34 @@
 //
-//  RestaurantsTableViewCell.swift
-//  EgyStore
+//  RestaurantsSlideShowCell.swift
+//  Akalat-Shop
 //
-//  Created by Macbook on 6/8/21.
-//  Copyright © 2021 Abdallah Eslah. All rights reserved.
+//  Created by Macbook on 16/11/2021.
 //
 
 import UIKit
 import Kingfisher
 
-
-class RestaurantsTableViewCell: UITableViewCell {
+class SliderCollectionView: UICollectionViewCell {
     
-   
-    
-    @IBOutlet weak var restaurantImage: UIImageView!
+    @IBOutlet weak var restaurantImage: RoundedImageView!
     
     @IBOutlet weak var restaurantName: UILabel!
-    @IBOutlet weak var restaurantAddress: UILabel!
     
-    private var task: URLSessionDataTask?
+    @IBOutlet var findoutLabel: UILabel!
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
 
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-       
-    }
-    
+   
     func configureCell(restaurant: RestaurntsResult) {
         restaurantName.numberOfLines = 0
         restaurantName.text = restaurant.name
-        restaurantAddress.text = restaurant.address
+        findoutLabel.font = UIFont(name: "Iceland", size: 30)
+        findoutLabel.text = "Tap To Find Out!"
         
         if let url = URL(string: restaurant.logo) {
             let placeholder = UIImage(named: "contact-bg")
@@ -46,4 +38,5 @@ class RestaurantsTableViewCell: UITableViewCell {
         }
     }
     
+  
 }

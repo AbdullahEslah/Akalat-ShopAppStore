@@ -17,6 +17,7 @@ class RegionVC: UIViewController {
     var pickerView = UIPickerView()
     let hud = JGProgressHUD(style: .dark)
     var regions    = ["Fayoum"]
+    var getRegion :String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,8 +57,8 @@ class RegionVC: UIViewController {
             Helper().showAlert(title: "Region", message: "Please Select Your Region", in: self)
         } else {
         
-        let region = regionTextField.text
-        UserDefaults.standard.setValue(region, forKey: "region") 
+//        let region = regionTextField.text
+        UserDefaults.standard.setValue(getRegion, forKey: "region")
         
         //go to MealsListVC
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -85,6 +86,7 @@ extension RegionVC: UIPickerViewDelegate,UIPickerViewDataSource {
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        getRegion = regions[row]
         regionTextField.text = regions[row]
         regionTextField.resignFirstResponder()
     }
