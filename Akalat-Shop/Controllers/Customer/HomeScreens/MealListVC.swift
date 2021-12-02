@@ -14,7 +14,8 @@ class MealListVC: UIViewController {
     
     
     
-   
+    @IBOutlet weak var restName: UILabel!
+    
     @IBOutlet weak var collectionView: UICollectionView!
     
     //Passed data
@@ -43,6 +44,10 @@ class MealListVC: UIViewController {
         collectionView.dataSource = self
         collectionView.register(UINib(nibName: "MealsCollectionViewCell", bundle: nil),forCellWithReuseIdentifier: "MealsCollectionViewCell")
         mealsList()
+        
+        let commonChoicesLabel = NSLocalizedString("Most Popular Of:", comment: "")
+       
+        self.restName.text = "\(commonChoicesLabel) \(restaurantName ?? "")"
         self.navigationItem.title = restaurantName
 
     }

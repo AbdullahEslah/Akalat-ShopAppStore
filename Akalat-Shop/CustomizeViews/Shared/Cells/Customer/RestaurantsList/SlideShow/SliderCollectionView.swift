@@ -12,9 +12,7 @@ class SliderCollectionView: UICollectionViewCell {
     
     @IBOutlet weak var restaurantImage: RoundedImageView!
     
-    @IBOutlet weak var restaurantName: UILabel!
-    
-    @IBOutlet var findoutLabel: UILabel!
+    @IBOutlet var restaurantName: UILabel!
     
     
     override func awakeFromNib() {
@@ -27,8 +25,8 @@ class SliderCollectionView: UICollectionViewCell {
     func configureCell(restaurant: RestaurntsResult) {
         restaurantName.numberOfLines = 0
         restaurantName.text = restaurant.name
-        findoutLabel.font = UIFont(name: "Iceland", size: 30)
-        findoutLabel.text = "Tap To Find Out!"
+        restaurantName.font = UIFont(name: "Iceland", size: 30)
+       
         
         if let url = URL(string: restaurant.logo) {
             let placeholder = UIImage(named: "contact-bg")

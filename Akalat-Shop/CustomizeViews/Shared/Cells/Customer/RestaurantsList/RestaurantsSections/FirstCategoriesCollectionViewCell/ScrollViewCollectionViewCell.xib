@@ -31,6 +31,9 @@
                                             <constraint firstAttribute="width" secondItem="ToG-QM-SFh" secondAttribute="height" multiplier="1:1" id="dMn-Eq-h4i"/>
                                         </constraints>
                                         <state key="normal" image="sandwich"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
                                     </button>
                                     <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cbp-i6-EPH">
                                         <rect key="frame" x="147" y="0.0" width="142" height="142"/>
@@ -39,6 +42,9 @@
                                             <constraint firstAttribute="width" secondItem="cbp-i6-EPH" secondAttribute="height" multiplier="1:1" id="Iwy-Mr-wA3"/>
                                         </constraints>
                                         <state key="normal" image="pizza"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
                                     </button>
                                     <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kKC-TE-2zS">
                                         <rect key="frame" x="294" y="0.0" width="142" height="142"/>
@@ -47,6 +53,9 @@
                                             <constraint firstAttribute="width" secondItem="kKC-TE-2zS" secondAttribute="height" multiplier="1:1" id="4FT-CP-T2K"/>
                                         </constraints>
                                         <state key="normal" image="fried-chicken"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
                                     </button>
                                     <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FRS-qC-V39">
                                         <rect key="frame" x="441" y="0.0" width="142" height="142"/>
@@ -55,6 +64,9 @@
                                             <constraint firstAttribute="width" secondItem="FRS-qC-V39" secondAttribute="height" multiplier="1:1" id="GsK-vl-7rS"/>
                                         </constraints>
                                         <state key="normal" image="grill"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
                                     </button>
                                     <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ztf-i9-LcU">
                                         <rect key="frame" x="588" y="0.0" width="142" height="142"/>
@@ -63,6 +75,9 @@
                                             <constraint firstAttribute="width" secondItem="Ztf-i9-LcU" secondAttribute="height" multiplier="1:1" id="VRa-ms-3P0"/>
                                         </constraints>
                                         <state key="normal" image="fish"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
                                     </button>
                                     <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ly1-id-9je">
                                         <rect key="frame" x="735" y="0.0" width="142" height="142"/>
@@ -71,6 +86,9 @@
                                             <constraint firstAttribute="width" secondItem="ly1-id-9je" secondAttribute="height" multiplier="1:1" id="UR5-Si-1Zf"/>
                                         </constraints>
                                         <state key="normal" image="desserts"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -94,6 +112,12 @@
                         </constraints>
                         <viewLayoutGuide key="contentLayoutGuide" id="K8n-LV-IfQ"/>
                         <viewLayoutGuide key="frameLayoutGuide" id="y4a-PJ-Nwa"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="skeletonCornerRadius">
+                                <real key="value" value="0.0"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                        </userDefinedRuntimeAttributes>
                     </scrollView>
                 </subviews>
             </view>
@@ -104,6 +128,9 @@
                 <constraint firstItem="5OF-v9-5z6" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="wdI-Uv-SnU"/>
             </constraints>
             <size key="customSize" width="587" height="142"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+            </userDefinedRuntimeAttributes>
             <connections>
                 <outlet property="dessertsButton" destination="ly1-id-9je" id="h5K-QT-BfD"/>
                 <outlet property="fishButton" destination="Ztf-i9-LcU" id="tTJ-DA-L43"/>

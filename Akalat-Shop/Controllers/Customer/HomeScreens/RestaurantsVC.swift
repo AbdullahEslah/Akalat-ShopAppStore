@@ -10,9 +10,10 @@ import UIKit
 import Kingfisher
 import JGProgressHUD
 import Lottie
+import SkeletonView
 
 
-class RestaurantsVC: UITableViewController, UISearchControllerDelegate, SWRevealViewControllerDelegate {
+class RestaurantsVC: UIViewController, UISearchControllerDelegate, SWRevealViewControllerDelegate {
 
   
     @IBOutlet weak var menuBarButton : UIBarButtonItem!
@@ -42,6 +43,19 @@ class RestaurantsVC: UITableViewController, UISearchControllerDelegate, SWReveal
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //Add Animation For CollectionView
+        self.collectionView.showAnimatedGradientSkeleton(usingGradient: .init(baseColor: .concrete), animation: .none, transition: .crossDissolve(0.25))
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: { [self] in
+            fetchRestaurants()
+            //Categories
+            fetchSandwichesRestaurants()
+            fetchFishRestaurants()
+            fetchPizzaRestaurants()
+            fetchGrillsRestaurants()
+            fetchDessertsRestaurants()
+            fetchFriedChickenRestaurants()
+        })
+        
         //CollectionView Cells
         collectionView.register(UINib(nibName: "SliderCell", bundle: nil), forCellWithReuseIdentifier: "SliderCell")
         
@@ -57,28 +71,7 @@ class RestaurantsVC: UITableViewController, UISearchControllerDelegate, SWReveal
 
         collectionView.collectionViewLayout = createcompositionalLayout()
 
-        fetchRestaurants()
-        
-        //Categories
-        fetchSandwichesRestaurants()
-        fetchFishRestaurants()
-        fetchPizzaRestaurants()
-        fetchGrillsRestaurants()
-        fetchDessertsRestaurants()
-        fetchFriedChickenRestaurants()
-       
-       
-        animationView.frame = view.bounds
-
-        // Add animationView as subview
-        view.addSubview(animationView)
-
-        // Play the animation
-        animationView.play()
-        animationView.loopMode = .repeat(3.0)
-        animationView.animationSpeed = 1
         DismissSearchBar()
-        fetchSandwichesRestaurants()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -224,6 +217,35 @@ class RestaurantsVC: UITableViewController, UISearchControllerDelegate, SWReveal
         }
     }
     
+    func createCustom() -> NSCollectionLayoutSection    {
+        
+        let fraction: CGFloat = 1.0 / 3.0
+            
+            // Item
+            let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
+            let item = NSCollectionLayoutItem(layoutSize: itemSize)
+            
+            // Group
+            let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(fraction), heightDimension: .fractionalWidth(fraction))
+            let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+            
+            // Section
+            let section = NSCollectionLayoutSection(group: group)
+            section.contentInsets = NSDirectionalEdgeInsets(top: 50, leading: 2.5, bottom: 0, trailing: 2.5)
+            section.orthogonalScrollingBehavior = .groupPaging
+        
+        section.visibleItemsInvalidationHandler = { (items, offset, environment) in
+            items.forEach { item in
+                let distanceFromCenter = abs((item.frame.midX - offset.x) - environment.container.contentSize.width / 2.0)
+                let minScale: CGFloat = 0.7
+                let maxScale: CGFloat = 1.1
+                let scale = max(maxScale - (distanceFromCenter / environment.container.contentSize.width), minScale)
+                item.transform = CGAffineTransform(scaleX: scale, y: scale)
+            }
+    }
+        return section
+}
+    
     func slideShowSection() -> NSCollectionLayoutSection {
         let inset: CGFloat = 2.5
                 
@@ -311,15 +333,17 @@ class RestaurantsVC: UITableViewController, UISearchControllerDelegate, SWReveal
         .fractionalHeight(1))
 
            let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        item.contentInsets.bottom = 15
+//        item.contentInsets.bottom = 15
 
-        item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 5, trailing: 5)
+        item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 5)
         
            let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.9), heightDimension:
         .fractionalWidth(0.5))
 
+        
            let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
-        group.contentInsets = .init(top: 0, leading: 0, bottom: 0, trailing: 2)
+//        group.interItemSpacing = .fixed(8)
+//        group.contentInsets = .init(top: 0, leading: 0, bottom: 0, trailing: 2)
 
            let section = NSCollectionLayoutSection(group: group)
 
@@ -337,6 +361,8 @@ class RestaurantsVC: UITableViewController, UISearchControllerDelegate, SWReveal
         
            return section
     }
+    
+
     
     func createThird() -> NSCollectionLayoutSection {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension:
@@ -577,20 +603,19 @@ class RestaurantsVC: UITableViewController, UISearchControllerDelegate, SWReveal
             
             if error == nil {
                 DispatchQueue.main.async {
-                    self.animationView.stop()
-                    self.animationView.removeFromSuperview()
+                    self.collectionView.stopSkeletonAnimation()
+                    self.view.hideSkeleton(reloadDataAfter: true, transition: .crossDissolve(0.25))
                     
                     ArraysModels.restaurants.removeAll()
                     ArraysModels.restaurants.append(contentsOf: restaurants)
                     
                     self.filterdRestaurants = ArraysModels.restaurants
                     
-//                    self.sliderCollectionView.reloadData()
                 }
             } else {
                 DispatchQueue.main.async {
-                    self.animationView.stop()
-                    self.animationView.removeFromSuperview()
+                    self.collectionView.stopSkeletonAnimation()
+                    self.view.hideSkeleton(reloadDataAfter: true, transition: .crossDissolve(0.25))
                 }
             }
             
@@ -610,14 +635,14 @@ class RestaurantsVC: UITableViewController, UISearchControllerDelegate, SWReveal
                 ArraysModels.restCategories.append(contentsOf: restaurants)
                     
                     self.collectionView.reloadData()
-                self.animationView.stop()
-                self.animationView.removeFromSuperview()
+                    self.collectionView.stopSkeletonAnimation()
+                    self.view.hideSkeleton(reloadDataAfter: true, transition: .crossDissolve(0.25))
             }
             }else {
                 DispatchQueue.main.async {
                     self.presentGFAlertOnMainThread(title: "Error !", message: error!.rawValue, buttonTitle: "Ok")
-                self.animationView.stop()
-                self.animationView.removeFromSuperview()
+                    self.collectionView.stopSkeletonAnimation()
+                    self.view.hideSkeleton(reloadDataAfter: true, transition: .crossDissolve(0.25))
                 }
             }
         }
@@ -634,14 +659,14 @@ class RestaurantsVC: UITableViewController, UISearchControllerDelegate, SWReveal
                     ArraysModels.restGrills.append(contentsOf: restaurants)
                     
                     self.collectionView.reloadData()
-                    self.animationView.stop()
-                    self.animationView.removeFromSuperview()
+                    self.collectionView.stopSkeletonAnimation()
+                    self.view.hideSkeleton(reloadDataAfter: true, transition: .crossDissolve(0.25))
                 }
             }else {
                 DispatchQueue.main.async {
                     self.presentGFAlertOnMainThread(title: "Error !", message: error!.rawValue, buttonTitle: "Ok")
-                    self.animationView.stop()
-                    self.animationView.removeFromSuperview()
+                    self.collectionView.stopSkeletonAnimation()
+                    self.view.hideSkeleton(reloadDataAfter: true, transition: .crossDissolve(0.25))
                 }
             }
         }
@@ -657,14 +682,14 @@ class RestaurantsVC: UITableViewController, UISearchControllerDelegate, SWReveal
                     
                     ArraysModels.restPizza.append(contentsOf: restaurants)
                     self.collectionView.reloadData()
-                    self.animationView.stop()
-                    self.animationView.removeFromSuperview()
+                    self.collectionView.stopSkeletonAnimation()
+                    self.view.hideSkeleton(reloadDataAfter: true, transition: .crossDissolve(0.25))
                 }
             }else {
                 DispatchQueue.main.async {
                     self.presentGFAlertOnMainThread(title: "Error !", message: error!.rawValue, buttonTitle: "Ok")
-                    self.animationView.stop()
-                    self.animationView.removeFromSuperview()
+                    self.collectionView.stopSkeletonAnimation()
+                    self.view.hideSkeleton(reloadDataAfter: true, transition: .crossDissolve(0.25))
                 }
             }
         }
@@ -681,14 +706,14 @@ class RestaurantsVC: UITableViewController, UISearchControllerDelegate, SWReveal
                     ArraysModels.restFriedChicken.append(contentsOf: restaurants)
                     
                     self.collectionView.reloadData()
-                    self.animationView.stop()
-                    self.animationView.removeFromSuperview()
+                    self.collectionView.stopSkeletonAnimation()
+                    self.view.hideSkeleton(reloadDataAfter: true, transition: .crossDissolve(0.25))
                 }
             }else {
                 DispatchQueue.main.async {
                     self.presentGFAlertOnMainThread(title: "Error !", message: error!.rawValue, buttonTitle: "Ok")
-                    self.animationView.stop()
-                    self.animationView.removeFromSuperview()
+                    self.collectionView.stopSkeletonAnimation()
+                    self.view.hideSkeleton(reloadDataAfter: true, transition: .crossDissolve(0.25))
                 }
             }
         }
@@ -704,14 +729,14 @@ class RestaurantsVC: UITableViewController, UISearchControllerDelegate, SWReveal
                     
                     ArraysModels.restFish.append(contentsOf: restaurants)
                     self.collectionView.reloadData()
-                    self.animationView.stop()
-                    self.animationView.removeFromSuperview()
+                    self.collectionView.stopSkeletonAnimation()
+                    self.view.hideSkeleton(reloadDataAfter: true, transition: .crossDissolve(0.25))
                 }
             }else {
                 DispatchQueue.main.async {
                     self.presentGFAlertOnMainThread(title: "Error !", message: error!.rawValue, buttonTitle: "Ok")
-                    self.animationView.stop()
-                    self.animationView.removeFromSuperview()
+                    self.collectionView.stopSkeletonAnimation()
+                    self.view.hideSkeleton(reloadDataAfter: true, transition: .crossDissolve(0.25))
                 }
             }
         }
@@ -727,14 +752,15 @@ class RestaurantsVC: UITableViewController, UISearchControllerDelegate, SWReveal
                     
                     ArraysModels.restDesserts.append(contentsOf: restaurants)
                     self.collectionView.reloadData()
-                    self.animationView.stop()
-                    self.animationView.removeFromSuperview()
+                    self.collectionView.stopSkeletonAnimation()
+                    self.view.hideSkeleton(reloadDataAfter: true, transition: .crossDissolve(0.25))
+
                 }
             }else {
                 DispatchQueue.main.async {
                     self.presentGFAlertOnMainThread(title: "Error !", message: error!.rawValue, buttonTitle: "Ok")
-                    self.animationView.stop()
-                    self.animationView.removeFromSuperview()
+                    self.collectionView.stopSkeletonAnimation()
+                    self.view.hideSkeleton(reloadDataAfter: true, transition: .crossDissolve(0.25))
                 }
             }
         }
@@ -743,10 +769,45 @@ class RestaurantsVC: UITableViewController, UISearchControllerDelegate, SWReveal
 
 }
     
-extension RestaurantsVC : UICollectionViewDelegate, UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
+extension RestaurantsVC : SkeletonCollectionViewDataSource ,UICollectionViewDelegateFlowLayout {
+   
     
+    func collectionSkeletonView(_ skeletonView: UICollectionView, cellIdentifierForItemAt indexPath: IndexPath) -> ReusableCellIdentifier {
+        
+        switch indexPath.section {
+        
+//        case 0:
+//        return "CustomRestaurantLayoutCollectionViewCell"
+            
+        case 1:
+            return "ScrollViewCollectionViewCell"
+            
+        case 2:
+            return "CustomRestaurantLayoutCollectionViewCell"
+            
+        case 3:
+            return "CustomRestaurantLayoutCollectionViewCell"
+            
+        case 4:
+            return "CustomRestaurantLayoutCollectionViewCell"
+            
+        case 5:
+            return "CustomRestaurantLayoutCollectionViewCell"
+            
+        case 6:
+            return "CustomRestaurantLayoutCollectionViewCell"
+            
+        case 7:
+            return "CustomRestaurantLayoutCollectionViewCell"
+            
+        default:
+            print("error")
+            return ReusableCellIdentifier()
+        }
+          
+    }
     
-     func numberOfSections(in collectionView: UICollectionView) -> Int {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
         
 //        if collectionView == self.collectionView {
             return 8
@@ -789,7 +850,7 @@ extension RestaurantsVC : UICollectionViewDelegate, UICollectionViewDataSource,U
     }
    
    
-     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
  
             switch indexPath.section {
             
@@ -1129,6 +1190,7 @@ extension RestaurantsVC : UISearchBarDelegate {
         guard !searchText.isEmpty else {
             filterdRestaurants      = ArraysModels.restaurants
 //            sliderCollectionView.reloadData()
+            collectionView.reloadData()
             return
         }
         filterdRestaurants = ArraysModels.restaurants.filter({ restaurants -> Bool in
@@ -1138,7 +1200,7 @@ extension RestaurantsVC : UISearchBarDelegate {
         
         //Scroll To Restaurants Section To Make Search Result Visible To User
 //        sliderCollectionView.scrollToItem(at: IndexPath(item: currentCellIndex, section: 0), at: .centeredVertically, animated: true)
-//        sliderCollectionView.reloadData()
+        collectionView.reloadData()
     }
 }
 

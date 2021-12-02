@@ -25,9 +25,15 @@
                                 <rect key="frame" x="8" y="163" width="292" height="22"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="12"/>
                                 <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                </userDefinedRuntimeAttributes>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Qcw-hP-sqM" customClass="RoundedImageView" customModule="Akalat_Shop" customModuleProvider="target">
                                 <rect key="frame" x="8" y="26" width="292" height="137"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                </userDefinedRuntimeAttributes>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" name="WhiteColor"/>
@@ -41,6 +47,9 @@
                             <constraint firstItem="EbL-VB-zGc" firstAttribute="top" secondItem="Qcw-hP-sqM" secondAttribute="bottom" id="j5l-8a-R5f"/>
                             <constraint firstAttribute="bottom" secondItem="EbL-VB-zGc" secondAttribute="bottom" constant="4" id="nSn-cl-5Ug"/>
                         </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                        </userDefinedRuntimeAttributes>
                     </view>
                 </subviews>
                 <color key="backgroundColor" name="WhiteColor"/>
@@ -53,6 +62,9 @@
             </collectionViewCellContentView>
             <color key="backgroundColor" name="WhiteColor"/>
             <size key="customSize" width="324" height="201"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+            </userDefinedRuntimeAttributes>
             <connections>
                 <outlet property="restaurantImage" destination="Qcw-hP-sqM" id="Plh-ZJ-c6s"/>
                 <outlet property="restaurantName" destination="EbL-VB-zGc" id="Zb6-DT-kfO"/>

@@ -9,6 +9,7 @@
 //We Use The Key As An Id To Get The Value Of It In The Right
 
 "changeLangKey"             = "Change Language";
+"Most Popular Of:"          = "Most Popular Of:";
 
 "browseByAllRestaurantskey" = "Browse By All Restaurants";
 

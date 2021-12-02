@@ -201,6 +201,7 @@
                     <navigationItem key="navigationItem" largeTitleDisplayMode="always" id="a2l-Ld-f3r"/>
                     <connections>
                         <outlet property="collectionView" destination="PmC-Nx-ENN" id="kxb-eb-1vA"/>
+                        <outlet property="restName" destination="Xiu-3U-AVs" id="qhc-FL-z5d"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NnC-uG-NOK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -362,7 +363,7 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="127" translatesAutoresizingMaskIntoConstraints="NO" id="qs0-RL-Naa">
-                                            <rect key="frame" x="7.5" y="1" width="305" height="29.5"/>
+                                            <rect key="frame" x="7.5" y="1.5" width="305" height="29.5"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Delivery" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hJv-Be-gVO">
                                                     <rect key="frame" x="0.0" y="0.0" width="89" height="29.5"/>
@@ -1010,7 +1011,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="XvS-C8-q0K" kind="relationship" relationship="rootViewController" id="VwB-H8-eMR"/>
+                        <segue destination="P7W-rI-cVL" kind="relationship" relationship="rootViewController" id="Wfi-oJ-JTV"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Qg-fa-L5i" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1052,9 +1053,50 @@
             <point key="canvasLocation" x="933.75" y="1683.8028169014085"/>
         </scene>
         <!--Akalat-Shop-->
+        <scene sceneID="Nxx-ID-Spa">
+            <objects>
+                <viewController storyboardIdentifier="RestaurantsVC" id="P7W-rI-cVL" customClass="RestaurantsVC" customModule="Akalat_Shop" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="E74-xL-tqG">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" keyboardDismissMode="onDrag" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="33i-70-YRE">
+                                <rect key="frame" x="0.0" y="107.5" width="320" height="460.5"/>
+                                <color key="backgroundColor" name="WhiteColor"/>
+                                <collectionViewLayout key="collectionViewLayout" id="d1v-gn-bXY"/>
+                                <cells/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </collectionView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="z2p-yn-Lzx"/>
+                        <color key="backgroundColor" name="WhiteColor"/>
+                        <constraints>
+                            <constraint firstItem="33i-70-YRE" firstAttribute="top" secondItem="z2p-yn-Lzx" secondAttribute="top" id="Izu-Yu-Pl9"/>
+                            <constraint firstItem="33i-70-YRE" firstAttribute="leading" secondItem="z2p-yn-Lzx" secondAttribute="leading" id="XCg-Kv-ktT"/>
+                            <constraint firstItem="z2p-yn-Lzx" firstAttribute="trailing" secondItem="33i-70-YRE" secondAttribute="trailing" id="Yll-pA-Bo1"/>
+                            <constraint firstItem="z2p-yn-Lzx" firstAttribute="bottom" secondItem="33i-70-YRE" secondAttribute="bottom" id="xjE-a0-Hc3"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Akalat-Shop" id="xSA-DB-1mv">
+                        <barButtonItem key="leftBarButtonItem" image="line.horizontal.3" catalog="system" id="l5u-1e-bl3">
+                            <color key="tintColor" name="MainColor"/>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="collectionView" destination="33i-70-YRE" id="ZdT-d2-qYm"/>
+                        <outlet property="menuBarButton" destination="l5u-1e-bl3" id="2qY-nP-YiE"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="y9a-kP-Ewc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-9" y="2529"/>
+        </scene>
+        <!--Akalat-Shop-->
         <scene sceneID="0ax-s6-MHO">
             <objects>
-                <tableViewController storyboardIdentifier="RestaurantsVC" id="XvS-C8-q0K" customClass="RestaurantsVC" customModule="Akalat_Shop" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="XvS-C8-q0K" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="L9b-i5-Mal">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1081,20 +1123,12 @@
                                 <constraint firstAttribute="bottom" secondItem="6QE-Gr-luh" secondAttribute="bottom" id="yz1-Yb-TvA"/>
                             </constraints>
                         </view>
-                        <connections>
-                            <outlet property="dataSource" destination="XvS-C8-q0K" id="JB4-0q-nT1"/>
-                            <outlet property="delegate" destination="XvS-C8-q0K" id="NLB-yv-RHm"/>
-                        </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Akalat-Shop" id="YGr-V6-IEC">
                         <barButtonItem key="leftBarButtonItem" image="line.horizontal.3" catalog="system" id="ndG-P4-j7c">
                             <color key="tintColor" name="MainColor"/>
                         </barButtonItem>
                     </navigationItem>
-                    <connections>
-                        <outlet property="collectionView" destination="6QE-Gr-luh" id="KdS-n8-cYo"/>
-                        <outlet property="menuBarButton" destination="ndG-P4-j7c" id="fpN-Sc-kZn"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xas-W5-yXl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

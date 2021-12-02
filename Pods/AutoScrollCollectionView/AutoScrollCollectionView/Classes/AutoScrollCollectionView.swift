@@ -13,7 +13,12 @@ public class AutoScrollCollectionView: UICollectionView {
     private var timer: Timer?
     
     private func commonInit() {
-        self.backgroundColor = UIColor.magenta
+        if #available(iOS 11.0, *) {
+            self.backgroundColor = UIColor(named:"WhiteColor")
+        } else {
+            // Fallback on earlier versions
+            
+        }
     }
     
     override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {

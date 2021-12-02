@@ -8,6 +8,7 @@
 import UIKit
 import Kingfisher
 import AutoScrollCollectionView
+import SkeletonView
 
 //To Pass Data From SliderCell -to-> SliderCollectionView
 protocol CollectionViewCellDelegate: class {
@@ -32,10 +33,12 @@ class SliderCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         self.collectionView.startAutoScrolling(withTimeInterval: TimeInterval(exactly: 8.0)!)
-        fetchRestaurants()
-
-        // Initialization code
-        collectionView.delegate = self
+        //Add Animation For CollectionView
+        self.collectionView.showAnimatedGradientSkeleton(usingGradient: .init(baseColor: .concrete), animation: .none, transition: .crossDissolve(0.25))
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: { [self] in
+            fetchRestaurants()
+        })
+        collectionView.delegate   = self
         collectionView.dataSource = self
         collectionView.register(UINib(nibName: "SliderCollectionView", bundle: nil), forCellWithReuseIdentifier: "SliderCollectionView")
 
@@ -94,13 +97,8 @@ class SliderCell: UICollectionViewCell {
         
     }
 
-//    func startTimer() {
-//
-//        timer = Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(timerAction), userInfo: nil, repeats: true)
-//    }
-    
+
     @objc func timerAction() {
-//        for image in filteredRestaurants {
             if currentCellIndex < (filteredRestaurants.count){
             
             currentCellIndex += 1
@@ -112,7 +110,6 @@ class SliderCell: UICollectionViewCell {
         }
         
 //        pageControl.currentPage = currentCellIndex
-//        }
     }
     
     // Requests
@@ -122,8 +119,9 @@ class SliderCell: UICollectionViewCell {
             
             if error == nil {
                 DispatchQueue.main.async {
-                    //                    self.anima    tionView.stop()
-                    //                    self.animationView.removeFromSuperview()
+                    self.collectionView.stopSkeletonAnimation()
+                    self.collectionView.stopSkeletonAnimation()
+                    self.contentView.hideSkeleton(reloadDataAfter: true, transition: .crossDissolve(0.25))
                     
                     ArraysModels.restaurants.removeAll()
                     ArraysModels.restaurants.append(contentsOf: restaurants)
@@ -133,19 +131,70 @@ class SliderCell: UICollectionViewCell {
                     self.collectionView.reloadData()
                 }
             } else {
-                //                DispatchQueue.main.async {
-                //                    self.animationView.stop()
-                //                    self.animationView.removeFromSuperview()
-                //                }
+                DispatchQueue.main.async {
+                    self.collectionView.stopSkeletonAnimation()
+                    self.contentView.hideSkeleton(reloadDataAfter: true, transition: .crossDissolve(0.25))
+                }
             }
             
         }
         
     }
+    
+    func createcompositionalLayout() -> UICollectionViewCompositionalLayout {
+        
+        let layout = UICollectionViewCompositionalLayout { [weak self](index, enviroment) -> NSCollectionLayoutSection? in
+            
+            return self?.createSectionFor(index: index, enviroment: enviroment)
+        }
+        return layout
+    }
+    
+    func createSectionFor(index:Int , enviroment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection {
+        
+        if index == 0 {
+            return createCustom()
+        }
+            return createCustom()
+            
+    }
+    
+    func createCustom() -> NSCollectionLayoutSection    {
+        
+        let fraction: CGFloat = 1.0 / 3.0
+            
+            // Item
+            let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
+            let item = NSCollectionLayoutItem(layoutSize: itemSize)
+            
+            // Group
+            let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(fraction), heightDimension: .fractionalWidth(fraction))
+            let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+            
+            // Section
+            let section = NSCollectionLayoutSection(group: group)
+            section.contentInsets = NSDirectionalEdgeInsets(top: 50, leading: 2.5, bottom: 0, trailing: 2.5)
+            section.orthogonalScrollingBehavior = .continuous
+        
+        section.visibleItemsInvalidationHandler = { (items, offset, environment) in
+            items.forEach { item in
+                let distanceFromCenter = abs((item.frame.midX - offset.x) - environment.container.contentSize.width / 2.0)
+                let minScale: CGFloat = 0.7
+                let maxScale: CGFloat = 1.1
+                let scale = max(maxScale - (distanceFromCenter / environment.container.contentSize.width), minScale)
+                item.transform = CGAffineTransform(scaleX: scale, y: scale)
+            }
+    }
+        return section
+}
    
 }
 
-extension SliderCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension SliderCell: SkeletonCollectionViewDataSource,UICollectionViewDelegateFlowLayout {
+    
+    func collectionSkeletonView(_ skeletonView: UICollectionView, cellIdentifierForItemAt indexPath: IndexPath) -> ReusableCellIdentifier {
+        return "SliderCollectionView"
+    }
  
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return filteredRestaurants.count
@@ -153,24 +202,12 @@ extension SliderCell: UICollectionViewDelegate, UICollectionViewDataSource, UICo
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if indexPath.section == 0 {
-        guard let firstCell = collectionView.dequeueReusableCell(withReuseIdentifier: "SliderCollectionView", for: indexPath) as? SliderCollectionView else {
-            return UICollectionViewCell()
-        }
-        
-        //Configure the cell...
-            let restaurantsData = filteredRestaurants[indexPath.row]
-            firstCell.restaurantName.text = restaurantsData.name
-        
-        
-            if let url = URL(string: restaurantsData.logo ) {
-            let placeholder = UIImage(named: "LogoWithoutName")
-            let options : KingfisherOptionsInfo = [KingfisherOptionsInfoItem.transition(.fade(0.1))]
-           
-            firstCell.restaurantImage.kf.setImage(with: url,placeholder: placeholder,options: options)
-            
-        }
-        
-        return firstCell
+            guard let firstCell = collectionView.dequeueReusableCell(withReuseIdentifier: "SliderCollectionView", for: indexPath) as? SliderCollectionView else {
+                return UICollectionViewCell()
+            }
+            //Configure the cell...
+            firstCell.configureCell(restaurant: filteredRestaurants[indexPath.row])
+            return firstCell
         }
         return UICollectionViewCell()
     }
@@ -179,7 +216,7 @@ extension SliderCell: UICollectionViewDelegate, UICollectionViewDataSource, UICo
         
         let cell = collectionView.cellForItem(at: indexPath) as? SliderCollectionView
         self.cellDelegate?.collectionView(collectionViewCell: cell, index: indexPath.item, didTappedInCollectionViewCell: self)
-
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

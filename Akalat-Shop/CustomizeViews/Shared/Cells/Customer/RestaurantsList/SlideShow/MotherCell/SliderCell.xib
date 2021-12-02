@@ -19,7 +19,7 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="dLa-Kh-wku" customClass="AutoScrollCollectionView" customModule="AutoScrollCollectionView">
-                        <rect key="frame" x="0.0" y="0.0" width="324" height="201"/>
+                        <rect key="frame" x="8" y="0.0" width="308" height="201"/>
                         <color key="backgroundColor" name="WhiteColor"/>
                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="MVc-Sm-ced">
                             <size key="itemSize" width="128" height="128"/>
@@ -27,18 +27,24 @@
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                        </userDefinedRuntimeAttributes>
                     </collectionView>
                 </subviews>
                 <color key="backgroundColor" name="WhiteColor"/>
                 <constraints>
-                    <constraint firstItem="dLa-Kh-wku" firstAttribute="leading" secondItem="5NL-sK-NaC" secondAttribute="leading" id="05I-LG-aIw"/>
+                    <constraint firstItem="dLa-Kh-wku" firstAttribute="leading" secondItem="5NL-sK-NaC" secondAttribute="leading" constant="8" id="05I-LG-aIw"/>
                     <constraint firstItem="dLa-Kh-wku" firstAttribute="top" secondItem="5NL-sK-NaC" secondAttribute="top" id="ISl-c0-69v"/>
-                    <constraint firstAttribute="trailing" secondItem="dLa-Kh-wku" secondAttribute="trailing" id="Jcy-7o-2se"/>
+                    <constraint firstAttribute="trailing" secondItem="dLa-Kh-wku" secondAttribute="trailing" constant="8" id="Jcy-7o-2se"/>
                     <constraint firstAttribute="bottom" secondItem="dLa-Kh-wku" secondAttribute="bottom" id="yVw-db-INO"/>
                 </constraints>
             </collectionViewCellContentView>
             <color key="backgroundColor" name="WhiteColor"/>
             <size key="customSize" width="324" height="201"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+            </userDefinedRuntimeAttributes>
             <connections>
                 <outlet property="collectionView" destination="dLa-Kh-wku" id="BfS-RJ-cs8"/>
             </connections>
