@@ -68,7 +68,7 @@ class LoginVC: UIViewController, LoginButtonDelegate {
            !token.isExpired {
             let screenSize: CGRect = UIScreen.main.bounds
             let label = UILabel(frame: CGRect(x: 0, y: 0, width: screenSize.width, height: screenSize.height - 300))
-            label.text = "Akalat-Shop"
+            label.text = "Loading .."
             label.textColor = .black
             label.textAlignment = .center
             label.font = UIFont(name: "Iceland", size: 62)
@@ -96,7 +96,7 @@ class LoginVC: UIViewController, LoginButtonDelegate {
             GraphRequest(graphPath: "me", parameters: ["fields": "name, email, picture.type(normal)"]).start(completionHandler: { (connection, result, error) in
                 
                 if error == nil {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 6.0, execute:  {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 3.0, execute:  {
                         UIView.animate(withDuration: 3.0) {
                             self.animationView.alpha = 0
                         }completion: { (_) in
@@ -125,7 +125,7 @@ class LoginVC: UIViewController, LoginButtonDelegate {
                 NetworkManager.fbLogin(userType: self.userType,completion:  { success, error in
 
                     if error == nil {
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 6.0, execute:  {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0, execute:  {
                             UIView.animate(withDuration: 3.0) {
                                 self.animationView.alpha = 0
                             }completion: { (_) in
@@ -142,7 +142,7 @@ class LoginVC: UIViewController, LoginButtonDelegate {
                             }
                         })
                     } else {
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 6.0, execute:  {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0, execute:  {
                             UIView.animate(withDuration: 3.0) {
                                 self.animationView.alpha = 0
                             }completion: { (_) in
@@ -158,7 +158,7 @@ class LoginVC: UIViewController, LoginButtonDelegate {
             
             let screenSize: CGRect = UIScreen.main.bounds
             let label = UILabel(frame: CGRect(x: 0, y: 0, width: screenSize.width, height: screenSize.height - 300))
-            label.text = "Akalat-Shop"
+            label.text = "Loading .."
             label.textColor = .black
             label.textAlignment = .center
             label.font = UIFont(name: "Iceland", size: 62)
@@ -184,8 +184,8 @@ class LoginVC: UIViewController, LoginButtonDelegate {
             animationView.animationSpeed = 1
             
             GIDSignIn.sharedInstance.signIn(with: GoogleManager.signInConfig, presenting: self) { user, error in
-                DispatchQueue.main.asyncAfter(deadline: .now() + 6.0, execute:  {
-                    UIView.animate(withDuration: 6.0) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3.0, execute:  {
+                    UIView.animate(withDuration: 3.0) {
                         self.animationView.alpha = 0
                     }completion: { (_) in
                         User.currentUser.name = user?.profile?.name
@@ -200,7 +200,7 @@ class LoginVC: UIViewController, LoginButtonDelegate {
             NetworkManager.googleLogin(userType: self.userType,completion:  { success, error in
                 
                 if error == nil {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 6.0, execute:  {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 3.0, execute:  {
                         UIView.animate(withDuration: 3.0) {
                             self.animationView.alpha = 0
                         }completion: { (_) in
@@ -747,7 +747,7 @@ extension LoginVC {
                 
                 let screenSize: CGRect = UIScreen.main.bounds
                 let label = UILabel(frame: CGRect(x: 0, y: 0, width: screenSize.width, height: screenSize.height - 300))
-                label.text = "Akalat-Shop"
+                label.text = "Loading .."
                 label.textColor = .black
                 label.textAlignment = .center
                 label.font = UIFont(name: "Iceland", size: 62)
@@ -780,7 +780,7 @@ extension LoginVC {
                         NetworkManager.appleIDLogin(userType: self.userType,completion:  { success, error in
                             
                             if error == nil {
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 6.0, execute:  {
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 3.0, execute:  {
                                     UIView.animate(withDuration: 3.0) {
                                         self.animationView.alpha = 0
                                     }completion: { (_) in
@@ -798,7 +798,7 @@ extension LoginVC {
                                     }
                                 })
                             } else {
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 6.0, execute:  {
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 3.0, execute:  {
                                     UIView.animate(withDuration: 3.0) {
                                         self.animationView.alpha = 0
                                     }completion: { (_) in

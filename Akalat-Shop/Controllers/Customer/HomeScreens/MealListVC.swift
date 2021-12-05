@@ -30,15 +30,18 @@ class MealListVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setGradientBackground()
-        animationView.frame = view.bounds
+        //animationView.frame = view.bounds
 
-        // Add animationView as subview
-        view.addSubview(animationView)
-
-        // Play the animation
-        animationView.play()
-        animationView.loopMode = .repeat(3.0)
-        animationView.animationSpeed = 1
+//        // Add animationView as subview
+//        view.addSubview(animationView)
+//
+//        // Play the animation
+//        animationView.play()
+//        animationView.loopMode = .repeat(3.0)
+//        animationView.animationSpeed = 1
+        
+        self.hud.textLabel.text = "Loading..."
+        self.hud.show(in: self.view)
         
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -82,16 +85,21 @@ class MealListVC: UIViewController {
             
             if error == nil {
                 DispatchQueue.main.async {
+                    
                     ArraysModels.listMeals.removeAll()
                     ArraysModels.listMeals.append(contentsOf: meals)
-                    self.animationView.stop()
-                    self.animationView.removeFromSuperview()
+//                    self.animationView.stop()
+//                    self.animationView.removeFromSuperview()
+                   
+                    self.hud.dismiss()
+                    
                     self.collectionView.reloadData()
                 }
             }else {
                 DispatchQueue.main.async {
-                    self.animationView.stop()
-                    self.animationView.removeFromSuperview()
+                    self.hud.dismiss()
+//                    self.animationView.stop()
+//                    self.animationView.removeFromSuperview()
                     self.presentGFAlertOnMainThread(title: "Error !", message: error!.rawValue, buttonTitle: "Ok")
                 }
             }

@@ -11,6 +11,7 @@
 
 "changeLangKey"             = "تغيير اللغة";
 "Most Popular Of:"          = "المعروف لدى:";
+"Restaurants Search..."     = "بحث عن مطاعم";
 
 "browseByAllRestaurantskey" = "تصفح جميع المطاعم";
 
@@ -25,3 +26,12 @@
 
 //Home CollectionView Headers
 "Categories"                = "الاقسام";
+"Common Restaurants"        = "المطاعم المعروفة";
+
+//Categories
+"Fast Food"                 = "الوجبات السريعة";
+"Browse Pizza Now"          = "تصفح البيتزا الآن";
+"Explore Fried Chicken"     = "استكشف البروست";
+"Common Grills"             = "المشويات الشائعة";
+"Sea Food"                  = "الماكولات البحرية";
+"Browse Desserts"           = "تصفح الحلو";

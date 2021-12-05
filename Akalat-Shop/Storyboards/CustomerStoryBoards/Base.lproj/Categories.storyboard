@@ -6,6 +6,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -16,10 +17,30 @@
                     <view key="view" contentMode="scaleToFill" id="rb8-2B-JXN">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="QKT-iq-kI9">
+                                <rect key="frame" x="0.0" y="91" width="320" height="477"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewLayout key="collectionViewLayout" id="BdJ-BL-jkJ"/>
+                                <cells/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </collectionView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="dt2-ju-hcT"/>
                         <color key="backgroundColor" name="WhiteColor"/>
+                        <constraints>
+                            <constraint firstItem="dt2-ju-hcT" firstAttribute="trailing" secondItem="QKT-iq-kI9" secondAttribute="trailing" id="D5l-9d-rC1"/>
+                            <constraint firstItem="QKT-iq-kI9" firstAttribute="top" secondItem="dt2-ju-hcT" secondAttribute="top" id="EOL-gY-Es6"/>
+                            <constraint firstItem="dt2-ju-hcT" firstAttribute="bottom" secondItem="QKT-iq-kI9" secondAttribute="bottom" id="ZYt-IL-1OU"/>
+                            <constraint firstItem="QKT-iq-kI9" firstAttribute="leading" secondItem="dt2-ju-hcT" secondAttribute="leading" id="mfU-ey-Tuc"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Grills Restaurants" id="0YT-R1-NOL"/>
+                    <connections>
+                        <outlet property="collectionView" destination="QKT-iq-kI9" id="fak-jo-RwS"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dGi-vY-fyI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -32,10 +53,30 @@
                     <view key="view" contentMode="scaleToFill" id="tvG-SF-Yt1">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="KXb-9H-TQc">
+                                <rect key="frame" x="0.0" y="91" width="320" height="477"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewLayout key="collectionViewLayout" id="nYx-PC-oZC"/>
+                                <cells/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </collectionView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="Da5-NC-sgL"/>
                         <color key="backgroundColor" name="WhiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Da5-NC-sgL" firstAttribute="trailing" secondItem="KXb-9H-TQc" secondAttribute="trailing" id="Q2A-GO-DsT"/>
+                            <constraint firstItem="Da5-NC-sgL" firstAttribute="bottom" secondItem="KXb-9H-TQc" secondAttribute="bottom" id="hjA-bU-OGQ"/>
+                            <constraint firstItem="KXb-9H-TQc" firstAttribute="top" secondItem="Da5-NC-sgL" secondAttribute="top" id="hoK-FO-IVy"/>
+                            <constraint firstItem="KXb-9H-TQc" firstAttribute="leading" secondItem="Da5-NC-sgL" secondAttribute="leading" id="jJ2-Sn-oQU"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Fish Restaurants" id="MsB-3h-2de"/>
+                    <connections>
+                        <outlet property="collectionView" destination="KXb-9H-TQc" id="psV-n6-i0g"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hqt-FC-C5z" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -48,10 +89,30 @@
                     <view key="view" contentMode="scaleToFill" id="Nh9-Bq-3HK">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="9aL-dt-UMF">
+                                <rect key="frame" x="0.0" y="91" width="320" height="477"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewLayout key="collectionViewLayout" id="EC7-WT-dfb"/>
+                                <cells/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </collectionView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="2Ox-Z0-hZc"/>
                         <color key="backgroundColor" name="WhiteColor"/>
+                        <constraints>
+                            <constraint firstItem="9aL-dt-UMF" firstAttribute="leading" secondItem="2Ox-Z0-hZc" secondAttribute="leading" id="KNS-Vj-LLf"/>
+                            <constraint firstItem="9aL-dt-UMF" firstAttribute="top" secondItem="2Ox-Z0-hZc" secondAttribute="top" id="jAy-kJ-J2D"/>
+                            <constraint firstItem="2Ox-Z0-hZc" firstAttribute="bottom" secondItem="9aL-dt-UMF" secondAttribute="bottom" id="tzF-Qg-TBY"/>
+                            <constraint firstItem="2Ox-Z0-hZc" firstAttribute="trailing" secondItem="9aL-dt-UMF" secondAttribute="trailing" id="wnn-y1-gWR"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Desserts Restaurants" id="6jG-3O-yzC"/>
+                    <connections>
+                        <outlet property="collectionView" destination="9aL-dt-UMF" id="Gkv-HK-BiJ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bTb-CZ-7nu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -64,16 +125,36 @@
                     <view key="view" contentMode="scaleToFill" id="Mkh-fm-5DM">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="uS0-N9-fzO">
+                                <rect key="frame" x="0.0" y="91" width="320" height="477"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewLayout key="collectionViewLayout" id="KDl-ug-B9C"/>
+                                <cells/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </collectionView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="8Pd-UX-W4N"/>
                         <color key="backgroundColor" name="WhiteColor"/>
+                        <constraints>
+                            <constraint firstItem="uS0-N9-fzO" firstAttribute="bottom" secondItem="8Pd-UX-W4N" secondAttribute="bottom" id="FsW-KL-286"/>
+                            <constraint firstItem="uS0-N9-fzO" firstAttribute="top" secondItem="8Pd-UX-W4N" secondAttribute="top" id="OIT-Ua-AEv"/>
+                            <constraint firstItem="uS0-N9-fzO" firstAttribute="leading" secondItem="8Pd-UX-W4N" secondAttribute="leading" id="pQW-Rm-PNu"/>
+                            <constraint firstItem="uS0-N9-fzO" firstAttribute="trailing" secondItem="8Pd-UX-W4N" secondAttribute="trailing" id="y9y-dW-hbz"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Pizza Restaurants" id="J23-uW-sGh"/>
+                    <connections>
+                        <outlet property="collectionView" destination="uS0-N9-fzO" id="QIf-hS-DJW"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LTR-Br-Jhx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="53" y="2504"/>
+            <point key="canvasLocation" x="52.5" y="2503.5211267605632"/>
         </scene>
-        <!--Restaurants-->
+        <!--Sandwiches-->
         <scene sceneID="xSP-uv-aCv">
             <objects>
                 <viewController storyboardIdentifier="SandwichesVC" id="SBC-yJ-QA3" customClass="SandwichesVC" customModule="Akalat_Shop" customModuleProvider="target" sceneMemberID="viewController">
@@ -86,6 +167,9 @@
                                 <color key="backgroundColor" name="WhiteColor"/>
                                 <collectionViewLayout key="collectionViewLayout" id="v6s-iL-tkz"/>
                                 <cells/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <outlet property="dataSource" destination="SBC-yJ-QA3" id="rLd-dq-HFC"/>
                                     <outlet property="delegate" destination="SBC-yJ-QA3" id="XXT-Kn-2Bk"/>
@@ -101,7 +185,7 @@
                             <constraint firstItem="Abs-Rr-qcd" firstAttribute="leading" secondItem="Mf4-5O-BN9" secondAttribute="leading" id="zP3-RU-KYe"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Restaurants" id="aC4-iq-xD4"/>
+                    <navigationItem key="navigationItem" title="Sandwiches" id="aC4-iq-xD4"/>
                     <connections>
                         <outlet property="collectionView" destination="Abs-Rr-qcd" id="EVr-lv-dag"/>
                     </connections>
@@ -110,17 +194,37 @@
             </objects>
             <point key="canvasLocation" x="-1556.25" y="2503.5211267605632"/>
         </scene>
-        <!-- Restaurants-->
+        <!--Fried Chicken-->
         <scene sceneID="ZIx-9j-lFo">
             <objects>
                 <viewController storyboardIdentifier="FriedChickenVC" id="MPh-Wi-SRN" customClass="FriedChickenVC" customModule="Akalat_Shop" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="TuJ-OU-6J7">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ziR-3e-rQw">
+                                <rect key="frame" x="0.0" y="91" width="320" height="477"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewLayout key="collectionViewLayout" id="BQ3-Gr-9IB"/>
+                                <cells/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </collectionView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="ySZ-iM-vBC"/>
                         <color key="backgroundColor" name="WhiteColor"/>
+                        <constraints>
+                            <constraint firstItem="ziR-3e-rQw" firstAttribute="leading" secondItem="ySZ-iM-vBC" secondAttribute="leading" id="70Q-Ck-VJZ"/>
+                            <constraint firstItem="ySZ-iM-vBC" firstAttribute="bottom" secondItem="ziR-3e-rQw" secondAttribute="bottom" id="A9h-TK-8oF"/>
+                            <constraint firstItem="ziR-3e-rQw" firstAttribute="top" secondItem="ySZ-iM-vBC" secondAttribute="top" id="i5J-Vf-vku"/>
+                            <constraint firstItem="ySZ-iM-vBC" firstAttribute="trailing" secondItem="ziR-3e-rQw" secondAttribute="trailing" id="tXp-nb-qKO"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title=" Restaurants" id="Ijl-Rf-p0W"/>
+                    <navigationItem key="navigationItem" title="Fried Chicken" id="Ijl-Rf-p0W"/>
+                    <connections>
+                        <outlet property="collectionView" destination="ziR-3e-rQw" id="UMi-Wy-Yp9"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="44I-w8-TKr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -136,7 +240,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="91"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="largeTitleTextAttributes">
-                            <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="18"/>
+                            <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="20"/>
                         </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -180,7 +284,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="91"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="largeTitleTextAttributes">
-                            <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="20"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="23"/>
                         </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -263,5 +367,8 @@
         <namedColor name="WhiteColor">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

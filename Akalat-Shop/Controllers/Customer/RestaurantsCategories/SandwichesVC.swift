@@ -7,39 +7,33 @@
 
 import UIKit
 import Kingfisher
-import JGProgressHUD
-import Lottie
+import SkeletonView
+
 
 class SandwichesVC: UIViewController {
     
-    let hud = JGProgressHUD(style: .dark)
-    let animationView = AnimationView(animation: Animation.named("lf20_vhkdj1ra"))
     let menuButton = UIButton(type: .custom)
     
     @IBOutlet weak var collectionView: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        animationView.frame = view.bounds
-
-        // Add animationView as subview
-        view.addSubview(animationView)
-
-        // Play the animation
-        animationView.play()
-        animationView.loopMode = .repeat(3.0)
-        animationView.animationSpeed = 1
-
+        //Add Animation For CollectionView
+        self.collectionView.showAnimatedGradientSkeleton(usingGradient: .init(baseColor: .concrete), animation: .none, transition: .crossDissolve(0.25))
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: { [self] in
+            fetchFirstRestaurants()
+        })
+        collectionView.delegate   = self
+        collectionView.dataSource = self
         collectionView.register(UINib(nibName: "CustomRestaurantLayoutCollectionViewCell", bundle: nil),forCellWithReuseIdentifier: "CustomRestaurantLayoutCollectionViewCell")
         collectionView.collectionViewLayout = createCompositionalLayout()
-        fetchFirstRestaurants()
+        
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.collectionView.reloadData()
+        collectionView.reloadData()
     }
     
     func fetchFirstRestaurants(){
@@ -48,19 +42,19 @@ class SandwichesVC: UIViewController {
             
             if error == nil {
                 DispatchQueue.main.async {
-                print(ArraysModels.restCategories)
-                ArraysModels.restCategories.removeAll()
+                    self.collectionView.stopSkeletonAnimation()
+                    self.view.hideSkeleton(reloadDataAfter: true, transition: .crossDissolve(0.25))
+                    
+                    ArraysModels.restCategories.removeAll()
+                    ArraysModels.restCategories.append(contentsOf: restaurants)
+                    self.collectionView.reloadData()
                 
-                ArraysModels.restCategories.append(contentsOf: restaurants)
-                self.collectionView.reloadData()
-                self.animationView.stop()
-                self.animationView.removeFromSuperview()
             }
             }else {
                 DispatchQueue.main.async {
+                    self.collectionView.stopSkeletonAnimation()
+                    self.view.hideSkeleton(reloadDataAfter: true, transition: .crossDissolve(0.25))
                     self.presentGFAlertOnMainThread(title: "Error !", message: error!.rawValue, buttonTitle: "Ok")
-                self.animationView.stop()
-                self.animationView.removeFromSuperview()
                 }
             }
         }
@@ -96,7 +90,12 @@ class SandwichesVC: UIViewController {
     
 }
 
-extension SandwichesVC: UICollectionViewDataSource, UICollectionViewDelegate {
+extension SandwichesVC: SkeletonCollectionViewDataSource,UICollectionViewDelegate {
+    
+    func collectionSkeletonView(_ skeletonView: UICollectionView, cellIdentifierForItemAt indexPath: IndexPath) -> ReusableCellIdentifier {
+        return "CustomRestaurantLayoutCollectionViewCell"
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
       
         return ArraysModels.restCategories.count
@@ -104,8 +103,6 @@ extension SandwichesVC: UICollectionViewDataSource, UICollectionViewDelegate {
 
     }
 
-    
-    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CustomRestaurantLayoutCollectionViewCell", for: indexPath) as? CustomRestaurantLayoutCollectionViewCell else {

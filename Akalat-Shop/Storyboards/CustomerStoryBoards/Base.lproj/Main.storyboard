@@ -211,7 +211,7 @@
         <!--Meal DetailsVC-->
         <scene sceneID="0sD-qZ-ehQ">
             <objects>
-                <viewController storyboardIdentifier="MealDetailsVC" id="3Xd-xe-Egp" customClass="MealDetailsVC" customModule="Akalat_Shop" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MealDetailsVC" modalPresentationStyle="fullScreen" id="3Xd-xe-Egp" customClass="MealDetailsVC" customModule="Akalat_Shop" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="CkN-0b-xWe">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -346,12 +346,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6vY-7L-1vR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3896" y="815"/>
+            <point key="canvasLocation" x="5889.375" y="814.43661971830988"/>
         </scene>
-        <!--CheckoutVC-->
+        <!--Item-->
         <scene sceneID="VCA-fF-eUS">
             <objects>
-                <viewController modalPresentationStyle="fullScreen" id="3d3-gs-Nub" customClass="CheckoutVC" customModule="Akalat_Shop" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CheckoutVC" modalPresentationStyle="fullScreen" id="3d3-gs-Nub" customClass="CheckoutVC" customModule="Akalat_Shop" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="QvU-I8-YBc">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -363,7 +363,7 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="127" translatesAutoresizingMaskIntoConstraints="NO" id="qs0-RL-Naa">
-                                            <rect key="frame" x="7.5" y="1.5" width="305" height="29.5"/>
+                                            <rect key="frame" x="7.5" y="1" width="305" height="29.5"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Delivery" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hJv-Be-gVO">
                                                     <rect key="frame" x="0.0" y="0.0" width="89" height="29.5"/>
@@ -594,6 +594,7 @@
                             <constraint firstItem="7fo-P3-aDO" firstAttribute="trailing" secondItem="Yi4-bk-i5m" secondAttribute="trailing" id="vSC-od-TCc"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="Ngu-ZJ-Mr6"/>
                     <navigationItem key="navigationItem" id="HML-nL-CVW">
                         <barButtonItem key="leftBarButtonItem" image="line.horizontal.3" catalog="system" id="dn8-yP-qG5">
                             <color key="tintColor" name="MainColor"/>
@@ -619,7 +620,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Ox-rw-htH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5019.375" y="814.43661971830988"/>
+            <point key="canvasLocation" x="7014.375" y="814.43661971830988"/>
         </scene>
         <!--Your Order Status-->
         <scene sceneID="keD-fO-FzE">
@@ -713,7 +714,41 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X4u-sM-PPA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="8505" y="821.83098591549299"/>
+            <point key="canvasLocation" x="10500" y="821.83098591549299"/>
+        </scene>
+        <!--Last Order-->
+        <scene sceneID="hiA-5x-cFE">
+            <objects>
+                <viewController storyboardIdentifier="LastOrderVC" id="NR3-Bh-sMo" customClass="LastOrderVC" customModule="Akalat_Shop" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="tFi-tM-37U">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="IE6-dO-Kbc">
+                                <rect key="frame" x="0.0" y="103.5" width="320" height="395.5"/>
+                                <color key="backgroundColor" name="WhiteColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Q2G-KU-v5J"/>
+                        <color key="backgroundColor" name="WhiteColor"/>
+                        <constraints>
+                            <constraint firstItem="IE6-dO-Kbc" firstAttribute="bottom" secondItem="Q2G-KU-v5J" secondAttribute="bottom" id="0vd-tQ-cLo"/>
+                            <constraint firstItem="IE6-dO-Kbc" firstAttribute="leading" secondItem="Q2G-KU-v5J" secondAttribute="leading" id="5ye-n2-HTB"/>
+                            <constraint firstItem="IE6-dO-Kbc" firstAttribute="top" secondItem="Q2G-KU-v5J" secondAttribute="top" id="lHC-N0-mCP"/>
+                            <constraint firstItem="IE6-dO-Kbc" firstAttribute="trailing" secondItem="Q2G-KU-v5J" secondAttribute="trailing" id="vT9-6j-nhc"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Last Order" id="tMo-x7-pF3"/>
+                    <connections>
+                        <outlet property="tableView" destination="IE6-dO-Kbc" id="U4R-IM-Hyz"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Pjo-mc-qhs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1818.75" y="858.80281690140851"/>
         </scene>
         <!--Restaurants-->
         <scene sceneID="5G3-Hy-byX">
@@ -726,6 +761,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Restaurants" image="Restaurant" id="NjF-0s-NVM">
+                        <inset key="imageInsets" minX="25" minY="-64" maxX="25" maxY="-64"/>
                         <inset key="largeContentSizeImageInsets" minX="-1" minY="-1" maxX="1" maxY="1"/>
                     </tabBarItem>
                     <connections>
@@ -735,7 +771,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZT8-mZ-Omx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="934" y="822"/>
+            <point key="canvasLocation" x="2816.25" y="821.83098591549299"/>
         </scene>
         <!--MenuVC-->
         <scene sceneID="Dwy-HU-6VL">
@@ -974,7 +1010,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hrD-We-HWw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1818.75" y="821.83098591549299"/>
+            <point key="canvasLocation" x="3813.75" y="821.83098591549299"/>
         </scene>
         <!--Tab BarVC-->
         <scene sceneID="E8M-fk-X4g">
@@ -989,6 +1025,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="BQ2-rq-oW6" kind="relationship" relationship="viewControllers" id="99c-9g-Y3g"/>
+                        <segue destination="c0O-MH-3lj" kind="relationship" relationship="viewControllers" id="Hpc-VJ-XA1"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NwB-2a-lEo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1017,40 +1054,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Qg-fa-L5i" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="53" y="1684"/>
-        </scene>
-        <!--Akalat-Shop-->
-        <scene sceneID="OxM-v5-LNp">
-            <objects>
-                <viewController id="jjb-Cz-sfg" customClass="RestaurantsVC" customModule="Akalat_Shop" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="hXP-cT-qod">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="uVP-BH-tJu">
-                                <rect key="frame" x="0.0" y="6" width="320" height="562"/>
-                                <color key="backgroundColor" name="WhiteColor"/>
-                                <collectionViewLayout key="collectionViewLayout" id="5pe-kW-2mC"/>
-                                <cells/>
-                            </collectionView>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="XKH-Jg-5fw"/>
-                        <color key="backgroundColor" name="WhiteColor"/>
-                        <constraints>
-                            <constraint firstItem="uVP-BH-tJu" firstAttribute="trailing" secondItem="XKH-Jg-5fw" secondAttribute="trailing" id="7Rm-XD-S1M"/>
-                            <constraint firstItem="uVP-BH-tJu" firstAttribute="top" secondItem="XKH-Jg-5fw" secondAttribute="top" constant="6" id="L9y-V6-EH5"/>
-                            <constraint firstItem="uVP-BH-tJu" firstAttribute="bottom" secondItem="XKH-Jg-5fw" secondAttribute="bottom" id="Nua-5E-wXC"/>
-                            <constraint firstItem="uVP-BH-tJu" firstAttribute="leading" secondItem="XKH-Jg-5fw" secondAttribute="leading" id="aPO-9a-K1b"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" title="Akalat-Shop" id="Lb2-rQ-0Et">
-                        <barButtonItem key="leftBarButtonItem" image="line.horizontal.3" catalog="system" id="H33-Y5-WTc">
-                            <color key="tintColor" name="MainColor"/>
-                        </barButtonItem>
-                    </navigationItem>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="3Ai-BM-XyP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="933.75" y="1683.8028169014085"/>
         </scene>
         <!--Akalat-Shop-->
         <scene sceneID="Nxx-ID-Spa">
@@ -1091,53 +1094,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y9a-kP-Ewc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-9" y="2529"/>
-        </scene>
-        <!--Akalat-Shop-->
-        <scene sceneID="0ax-s6-MHO">
-            <objects>
-                <tableViewController id="XvS-C8-q0K" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="L9b-i5-Mal">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" name="WhiteColor"/>
-                        <view key="tableHeaderView" contentMode="scaleToFill" id="ikf-23-f4B">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="512"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <subviews>
-                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="6QE-Gr-luh">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="512"/>
-                                    <color key="backgroundColor" name="WhiteColor"/>
-                                    <collectionViewLayout key="collectionViewLayout" id="XBh-wB-eO1"/>
-                                    <cells/>
-                                </collectionView>
-                            </subviews>
-                            <color key="backgroundColor" name="WhiteColor"/>
-                            <constraints>
-                                <constraint firstItem="6QE-Gr-luh" firstAttribute="top" secondItem="ikf-23-f4B" secondAttribute="top" id="7xB-v7-tJc"/>
-                                <constraint firstItem="6QE-Gr-luh" firstAttribute="leading" secondItem="ikf-23-f4B" secondAttribute="leading" id="KZE-Cp-uEa"/>
-                                <constraint firstItem="6QE-Gr-luh" firstAttribute="leading" secondItem="ikf-23-f4B" secondAttribute="leading" id="bPA-c2-sT4"/>
-                                <constraint firstAttribute="trailing" secondItem="6QE-Gr-luh" secondAttribute="trailing" id="gpF-b0-jSR"/>
-                                <constraint firstAttribute="trailing" secondItem="6QE-Gr-luh" secondAttribute="trailing" id="q8n-uf-6Zu"/>
-                                <constraint firstAttribute="bottom" secondItem="6QE-Gr-luh" secondAttribute="bottom" id="xcV-ua-R5f"/>
-                                <constraint firstAttribute="bottom" secondItem="6QE-Gr-luh" secondAttribute="bottom" id="yz1-Yb-TvA"/>
-                            </constraints>
-                        </view>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Akalat-Shop" id="YGr-V6-IEC">
-                        <barButtonItem key="leftBarButtonItem" image="line.horizontal.3" catalog="system" id="ndG-P4-j7c">
-                            <color key="tintColor" name="MainColor"/>
-                        </barButtonItem>
-                    </navigationItem>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Xas-W5-yXl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="933.75" y="2487.676056338028"/>
+            <point key="canvasLocation" x="934" y="1684"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="tNt-7h-9Lg">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Upf-Tg-IC4" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" id="Upf-Tg-IC4" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="qdQ-b3-JnU">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -1153,7 +1115,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UBf-e3-Okq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2816" y="814"/>
+            <point key="canvasLocation" x="4809.375" y="813.38028169014081"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="vZM-VZ-DSz">
@@ -1181,10 +1143,13 @@
             </objects>
             <point key="canvasLocation" x="1819" y="1684"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Basket-->
         <scene sceneID="QLz-fz-0ic">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" id="cpn-TT-HXO" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Basket" image="EmptyState" id="Y1R-Go-gY7">
+                        <inset key="imageInsets" minX="17" minY="-64" maxX="17" maxY="-64"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="iAi-RD-uK4"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="t3w-TS-xaF">
@@ -1347,7 +1312,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mrt-cN-9o3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7507.5" y="821.83098591549299"/>
+            <point key="canvasLocation" x="9502.5" y="821.83098591549299"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="YBH-4A-D4T">
@@ -1364,12 +1329,12 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uIe-Ie-gCB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6399.375" y="821.83098591549299"/>
+            <point key="canvasLocation" x="8394.375" y="821.83098591549299"/>
         </scene>
         <!--Launch ScreenVC-->
         <scene sceneID="2ba-zq-Q9p">
             <objects>
-                <viewController storyboardIdentifier="LaunchScreenVC" id="UkJ-eC-owz" customClass="LaunchScreenVC" customModule="Akalat_Shop" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LaunchScreenVC" modalPresentationStyle="fullScreen" id="UkJ-eC-owz" customClass="LaunchScreenVC" customModule="Akalat_Shop" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zIZ-8I-YsR">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1399,7 +1364,7 @@
         <!--Navigation Controller-->
         <scene sceneID="BVh-fb-mth">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="SIP-Aw-4Yl" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" navigationBarHidden="YES" id="SIP-Aw-4Yl" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="KJc-aG-qvd">
                         <autoresizingMask key="autoresizingMask"/>
@@ -1413,14 +1378,40 @@
             </objects>
             <point key="canvasLocation" x="-1084" y="57"/>
         </scene>
+        <!--Last Order-->
+        <scene sceneID="5xk-t3-1pL">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="c0O-MH-3lj" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Last Order" image="LastOrder" id="stL-EF-Cih">
+                        <inset key="imageInsets" minX="-6" minY="-64" maxX="3" maxY="-64"/>
+                    </tabBarItem>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="Wcg-Og-jPd">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="103"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <textAttributes key="largeTitleTextAttributes">
+                            <fontDescription key="fontDescription" name="Iceland-Regular" family="Iceland" pointSize="33"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="NR3-Bh-sMo" kind="relationship" relationship="rootViewController" id="wba-d5-5nS"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IJr-3O-KFc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="934" y="859"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="7Wg-vf-qBg"/>
-        <segue reference="bqp-z1-5fM"/>
+        <segue reference="ekB-at-ZJJ"/>
+        <segue reference="S7y-jE-8pQ"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="ArrowRight.png" width="16" height="16"/>
         <image name="Background" width="3000" height="1688"/>
+        <image name="EmptyState" width="64" height="64"/>
+        <image name="LastOrder" width="32" height="32"/>
         <image name="Logo" width="512" height="512"/>
         <image name="LogoWithName" width="1080" height="1920"/>
         <image name="Logout" width="16" height="16"/>

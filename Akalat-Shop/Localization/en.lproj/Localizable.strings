@@ -7,19 +7,23 @@
 */
 
 //We Use The Key As An Id To Get The Value Of It In The Right
-
 "changeLangKey"             = "Change Language";
 "Most Popular Of:"          = "Most Popular Of:";
-
-"browseByAllRestaurantskey" = "Browse By All Restaurants";
-
 "deliveryPriceKey"          = "Delivery Price";
-
 "totalKey"                  = "Total";
-
+"Restaurants Search..."     = "Restaurants Search...";
 //Driver
 "CompleteOrderButtonKey"    = "Complete Order";
 "CancelOrderButtonKey"      = "Cancel Order";
 
 //Home CollectionView Headers
 "Categories"                = "Categories";
+"Common Restaurants"        = "Common Restaurants";
+
+//Categories
+"Fast Food"                 = "Fast Food";
+"Browse Pizza Now"          = "Browse Pizza Now";
+"Explore Fried Chicken"     = "Explore Fried Chicken";
+"Common Grills"             = "Common Grills";
+"Sea Food"                  = "Sea Food";
+"Browse Desserts"           = "Browse Desserts";

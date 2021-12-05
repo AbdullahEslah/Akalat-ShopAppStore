@@ -62,6 +62,7 @@
 		FA7B72082733BC5E00694F64 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7B72072733BC5E00694F64 /* AppDelegate.swift */; };
 		FA7B720B2733BC7200694F64 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA7B720A2733BC7100694F64 /* Assets.xcassets */; };
 		FA7B720F2733CC5200694F64 /* Iceland-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FA7B720E2733CC5200694F64 /* Iceland-Regular.ttf */; };
+		FA808EAF275C708200F1425E /* LastOrderVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA808EAE275C708200F1425E /* LastOrderVC.swift */; };
 		FAC551CC270D0E43009F83CB /* 23211-receive-order.json in Resources */ = {isa = PBXBuildFile; fileRef = FAC551CB270D0E43009F83CB /* 23211-receive-order.json */; };
 		FAC551D8270D0EE6009F83CB /* lf20_vhkdj1ra.json in Resources */ = {isa = PBXBuildFile; fileRef = FAC551D7270D0EE6009F83CB /* lf20_vhkdj1ra.json */; };
 		FAC6672E271FA3A900C2CDDF /* Charts.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC6672D271FA3A900C2CDDF /* Charts.swift */; };
@@ -201,6 +202,7 @@
 		FA7B72072733BC5E00694F64 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FA7B720A2733BC7100694F64 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FA7B720E2733CC5200694F64 /* Iceland-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Iceland-Regular.ttf"; sourceTree = "<group>"; };
+		FA808EAE275C708200F1425E /* LastOrderVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastOrderVC.swift; sourceTree = "<group>"; };
 		FAC551CB270D0E43009F83CB /* 23211-receive-order.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "23211-receive-order.json"; sourceTree = "<group>"; };
 		FAC551D7270D0EE6009F83CB /* lf20_vhkdj1ra.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = lf20_vhkdj1ra.json; sourceTree = "<group>"; };
 		FAC6672D271FA3A900C2CDDF /* Charts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Charts.swift; sourceTree = "<group>"; };
@@ -512,6 +514,7 @@
 				FAEFC66326F88C2D00095DB5 /* MenuVC.swift */,
 				FAEFC65A26F88C2D00095DB5 /* TabBarVC.swift */,
 				FAEFC66B26F88C2E00095DB5 /* RestaurantsVC.swift */,
+				FA808EAE275C708200F1425E /* LastOrderVC.swift */,
 				FAEFC66126F88C2D00095DB5 /* MealListVC.swift */,
 				FAEFC65D26F88C2D00095DB5 /* MealDetailsVC.swift */,
 				FAEFC65E26F88C2D00095DB5 /* CheckoutVC.swift */,
@@ -1137,11 +1140,11 @@
 			isa = PBXGroup;
 			children = (
 				FAEFC66926F88C2D00095DB5 /* SandwichesVC.swift */,
-				FAEFC66526F88C2D00095DB5 /* GrillsVC.swift */,
-				FAEFC66626F88C2D00095DB5 /* FriedChickenVC.swift */,
-				FAEFC66726F88C2D00095DB5 /* DessertsVC.swift */,
-				FAEFC66826F88C2D00095DB5 /* FishVC.swift */,
 				FAEFC66A26F88C2D00095DB5 /* PizzaVC.swift */,
+				FAEFC66626F88C2D00095DB5 /* FriedChickenVC.swift */,
+				FAEFC66526F88C2D00095DB5 /* GrillsVC.swift */,
+				FAEFC66826F88C2D00095DB5 /* FishVC.swift */,
+				FAEFC66726F88C2D00095DB5 /* DessertsVC.swift */,
 			);
 			path = RestaurantsCategories;
 			sourceTree = "<group>";
@@ -1447,6 +1450,7 @@
 				FAEFC6C826F88E9200095DB5 /* RestaurantsList.swift in Sources */,
 				FAEFC64326F88C1300095DB5 /* Helper.swift in Sources */,
 				FAEFC6B126F88E6000095DB5 /* GoogleLoginConvertTokenResponse.swift in Sources */,
+				FA808EAF275C708200F1425E /* LastOrderVC.swift in Sources */,
 				FA6B55DA270FBEEB002640A1 /* PerformOrderAlertVC.swift in Sources */,
 				FA2A8926270E8A7F005DB8BA /* LatestDriverOrderDetails.swift in Sources */,
 				FA439B61270E61B100F2F83D /* ArraysModels.swift in Sources */,

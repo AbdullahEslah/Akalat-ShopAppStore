@@ -21,7 +21,6 @@ class SliderCell: UICollectionViewCell {
     
     @IBOutlet var collectionView: AutoScrollCollectionView!
 
-    @IBOutlet weak var pageControl: UIPageControl!
     var filteredRestaurants = [RestaurntsResult]()
     
     weak var cellDelegate: CollectionViewCellDelegate?
@@ -119,7 +118,6 @@ class SliderCell: UICollectionViewCell {
             
             if error == nil {
                 DispatchQueue.main.async {
-                    self.collectionView.stopSkeletonAnimation()
                     self.collectionView.stopSkeletonAnimation()
                     self.contentView.hideSkeleton(reloadDataAfter: true, transition: .crossDissolve(0.25))
                     
@@ -225,13 +223,5 @@ extension SliderCell: SkeletonCollectionViewDataSource,UICollectionViewDelegateF
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0
     }
-//    // Add spaces at the beginning and the end of the collection view
-//        func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-//            return UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
-//        }
-    
-//     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//        currentCellIndex = Int(scrollView.contentOffset.x / collectionView.frame.size.width)
-//    }
-    
+
 }
