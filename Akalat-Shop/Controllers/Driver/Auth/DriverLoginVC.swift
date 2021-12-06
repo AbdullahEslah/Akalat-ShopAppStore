@@ -91,7 +91,7 @@ class DriverLoginVC: UIViewController, LoginButtonDelegate {
             GraphRequest(graphPath: "me", parameters: ["fields": "name, email, picture.type(normal)"]).start(completionHandler: { (connection, result, error) in
                 
                 if error == nil {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 6.0, execute:  {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 3.0, execute:  {
                         UIView.animate(withDuration: 3.0) {
                             self.animationView.alpha = 0
                         }completion: { (_) in
@@ -108,7 +108,7 @@ class DriverLoginVC: UIViewController, LoginButtonDelegate {
                     })
                     
                 } else {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 6.0, execute:  {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 3.0, execute:  {
                         UIView.animate(withDuration: 3.0) {
                             self.animationView.alpha = 0
                         }completion: { (_) in
@@ -122,7 +122,7 @@ class DriverLoginVC: UIViewController, LoginButtonDelegate {
             NetworkManager.fbLogin(userType: self.userType,completion:  { success, error in
                 
                 if error == nil {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 6.0, execute:  {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 3.0, execute:  {
                         UIView.animate(withDuration: 3.0) {
                             self.animationView.alpha = 0
                         }completion: { (_) in
@@ -134,7 +134,7 @@ class DriverLoginVC: UIViewController, LoginButtonDelegate {
                                 }
                             })
                 } else {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 6.0, execute:  {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 3.0, execute:  {
                         UIView.animate(withDuration: 3.0) {
                             self.animationView.alpha = 0
                         }completion: { (_) in
@@ -176,8 +176,8 @@ class DriverLoginVC: UIViewController, LoginButtonDelegate {
             animationView.animationSpeed = 1
             
             GIDSignIn.sharedInstance.signIn(with: GoogleManager.signInConfig, presenting: self) { user, error in
-                DispatchQueue.main.asyncAfter(deadline: .now() + 6.0, execute:  {
-                    UIView.animate(withDuration: 6.0) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3.0, execute:  {
+                    UIView.animate(withDuration: 3.0) {
                         self.animationView.alpha = 0
                     }completion: { (_) in
                 User.currentUser.name = user?.profile?.name
@@ -193,7 +193,7 @@ class DriverLoginVC: UIViewController, LoginButtonDelegate {
                 
                 
                     if error == nil {
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 6.0, execute:  {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0, execute:  {
                             UIView.animate(withDuration: 3.0) {
                                 self.animationView.alpha = 0
                             }completion: { (_) in
@@ -205,7 +205,7 @@ class DriverLoginVC: UIViewController, LoginButtonDelegate {
                             }
                         })
                 } else {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 6.0, execute:  {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 3.0, execute:  {
                         UIView.animate(withDuration: 3.0) {
                             self.animationView.alpha = 0
                         }completion: { (_) in
@@ -440,7 +440,7 @@ class DriverLoginVC: UIViewController, LoginButtonDelegate {
             NetworkManager.googleLogin(userType: self.userType,completion:  { success, error in
 
                 if error == nil {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 6.0, execute:  {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 3.0, execute:  {
                         UIView.animate(withDuration: 3.0) {
                             self.animationView.alpha = 0
                         }completion: { (_) in
@@ -453,7 +453,7 @@ class DriverLoginVC: UIViewController, LoginButtonDelegate {
                     })
 
                 } else {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 6.0, execute:  {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 3.0, execute:  {
                         UIView.animate(withDuration: 3.0) {
                             self.animationView.alpha = 0
                         }completion: { (_) in
@@ -510,7 +510,7 @@ class DriverLoginVC: UIViewController, LoginButtonDelegate {
             NetworkManager.fbLogin(userType: self.userType,completion:  { success, error in
                 
                 if error == nil {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 6.0, execute:  {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 3.0, execute:  {
                         UIView.animate(withDuration: 3.0) {
                             self.animationView.alpha = 0
                         }completion: { (_) in
@@ -524,7 +524,7 @@ class DriverLoginVC: UIViewController, LoginButtonDelegate {
                     }
                     })
                 } else {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 6.0, execute:  {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 3.0, execute:  {
                         UIView.animate(withDuration: 3.0) {
                             self.animationView.alpha = 0
                         }completion: { (_) in
@@ -627,7 +627,7 @@ extension DriverLoginVC: ASAuthorizationControllerDelegate {
             NetworkManager.appleIDLogin(userType: self.userType,completion:  { success, error in
 
                 if error == nil {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 6.0, execute:  {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 3.0, execute:  {
                         UIView.animate(withDuration: 3.0) {
                             self.animationView.alpha = 0
                         }completion: { (_) in
@@ -639,7 +639,7 @@ extension DriverLoginVC: ASAuthorizationControllerDelegate {
                     }
                     })
                 } else {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 6.0, execute:  {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 3.0, execute:  {
                         UIView.animate(withDuration: 3.0) {
                             self.animationView.alpha = 0
                         }completion: { (_) in
@@ -714,8 +714,11 @@ extension DriverLoginVC {
     
     func checkAutoLogin() {
         
+        let userId = UserDefaults.standard.string(forKey: "appleUserId") ?? ""
+        let appleIDProvider = ASAuthorizationAppleIDProvider()
+        if Constants.appleUserId != nil {
+        
         DispatchQueue.main.async {
-            
             
             let screenSize: CGRect = UIScreen.main.bounds
             let label = UILabel(frame: CGRect(x: 0, y: 0, width: screenSize.width, height: screenSize.height - 300))
@@ -743,10 +746,7 @@ extension DriverLoginVC {
             self.animationView.play()
             self.animationView.loopMode = .loop
             self.animationView.animationSpeed = 1
-            
-            let userId = UserDefaults.standard.string(forKey: "appleUserId") ?? ""
-            let appleIDProvider = ASAuthorizationAppleIDProvider()
-            if Constants.appleUserId != nil {
+           
                 appleIDProvider.getCredentialState(forUserID:userId) { (credentialState, error) in
                     switch credentialState {
                     case .authorized:
@@ -754,11 +754,9 @@ extension DriverLoginVC {
                         //resume normal app flow
                         NetworkManager.appleIDLogin(userType: self.userType,completion:  { success, error in
                             
-                            
-                            
                             if error == nil {
                                 
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 6.0, execute:  {
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 3.0, execute:  {
                                     UIView.animate(withDuration: 3.0) {
                                         self.animationView.alpha = 0
                                     }completion: { (_) in
@@ -772,7 +770,7 @@ extension DriverLoginVC {
                                 
                                 
                             } else {
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 6.0, execute:  {
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 3.0, execute:  {
                                     UIView.animate(withDuration: 3.0) {
                                         self.animationView.alpha = 0
                                     }completion: { (_) in

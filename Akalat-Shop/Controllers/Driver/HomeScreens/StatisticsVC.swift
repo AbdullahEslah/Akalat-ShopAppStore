@@ -81,6 +81,7 @@ class StatisticsVC: UIViewController , ChartViewDelegate, IAxisValueFormatter, S
 //                let allDays = DispatchQueue.global(qos: .userInitiated)
 //                allDays.async {
                 
+                
                     //Save Values In Array
                     if let day1 = data?.Mon {
                         self.dayValues.append(day1)

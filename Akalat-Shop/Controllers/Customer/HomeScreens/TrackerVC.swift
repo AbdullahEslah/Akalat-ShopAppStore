@@ -132,7 +132,7 @@ class TrackerVC: UIViewController, SWRevealViewControllerDelegate {
                         self.deliveryStatusLabel.text = order?.status?.uppercased()
                         self.tableView.reloadData()
                         
-                        let fromRestaurantAddress = order?.restaurant.address.uppercased()
+                        let fromRestaurantAddress = order?.restaurant.address_details?.uppercased()
                         let toCustomerAddress     = order?.address
                         self.getLocationAddress(fromRestaurantAddress ?? "", "RESTAURANT", { restaurantAddress in
                             self.source = restaurantAddress

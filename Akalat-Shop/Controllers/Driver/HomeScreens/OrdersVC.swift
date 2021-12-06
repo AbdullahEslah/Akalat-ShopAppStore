@@ -17,8 +17,7 @@ class OrdersVC: UITableViewController, SWRevealViewControllerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
+        getDriverLatestOrders()
         tableView.tableFooterView = UIView()
         tableView.register(UINib(nibName: "OrdersTableViewCell", bundle: nil), forCellReuseIdentifier: "OrdersTableViewCell")
         
@@ -26,7 +25,6 @@ class OrdersVC: UITableViewController, SWRevealViewControllerDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         configureMenu()
-        getDriverLatestOrders()
         tableView.reloadData()
     }
     
@@ -58,7 +56,9 @@ class OrdersVC: UITableViewController, SWRevealViewControllerDelegate {
             
             if error == nil {
                 DispatchQueue.main.async {
-                    
+                    self.hud.dismiss()
+                    ArraysModels.driverReadyOrders.removeAll()
+                    ArraysModels.driverReadyOrders.append(contentsOf: orders)
                     if orders.count == 0 {
                         let emptyState = UILabel(frame: self.view.frame.inset(by: .init(top: 60, left: 30, bottom: 100, right: 30)))
                         emptyState.text = "Please Wait For Upcoming Orders 🥡. And Refresh Your Feed..☑️"
@@ -67,16 +67,8 @@ class OrdersVC: UITableViewController, SWRevealViewControllerDelegate {
                         emptyState.numberOfLines = 0
                         emptyState.textColor = colorSmoothRed
                         self.view.addSubview(emptyState)
-                    } else {
-                    
-                    self.hud.dismiss()
-                    
-                    ArraysModels.driverReadyOrders.removeAll()
-                    
-                    ArraysModels.driverReadyOrders.append(contentsOf: orders)
-                    
+                    } 
                     self.tableView.reloadData()
-                    }
                 }
             }else {
                 self.presentGFAlertOnMainThread(title: "Error !", message: error!.rawValue, buttonTitle: "Ok")

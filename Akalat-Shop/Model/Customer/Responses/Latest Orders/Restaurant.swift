@@ -13,19 +13,22 @@ For support, please feel free to contact me at https://www.linkedin.com/in/syeda
 
 import Foundation
 struct Restaurant : Codable {
-	let id      : Int?
-	let name    : String
-	let phone   : String?
-	let address : String
-    let delivery: Double?
+    
+	let id             : Int?
+	let name           : String
+	let phone          : String?
+	let address        : String
+    let address_details: String?
+    let delivery       : Double?
 
 	enum CodingKeys: String, CodingKey {
 
-		case id       = "id"
-		case name     = "name"
-		case phone    = "phone"
-		case address  = "address"
-        case delivery = "delivery"
+		case id              = "id"
+		case name            = "name"
+		case phone           = "phone"
+		case address         = "address"
+        case address_details = "address_details"
+        case delivery        = "delivery"
 	}
 
 	

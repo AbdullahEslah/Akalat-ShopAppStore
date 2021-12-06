@@ -134,8 +134,8 @@ class DeliveryVC: UIViewController,UIActionSheetDelegate, UITableViewDelegate, U
                         self.timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.updateLocation), userInfo: nil, repeats: true)
                         
                         self.orderId = orderDetails?.id
-                        let from = orderDetails?.address
-                        let to = orderDetails?.restaurant.address
+                        let from     = orderDetails?.address
+                        let to       = orderDetails?.restaurant.address_details
                         
                         self.customerAddress.text = from
                         let customerName          = orderDetails?.customer.name

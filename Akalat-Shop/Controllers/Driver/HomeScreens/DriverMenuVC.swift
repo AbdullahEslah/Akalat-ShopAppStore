@@ -138,7 +138,7 @@ class DriverMenuVC: UITableViewController {
         
         let rootviewcontroller: UIWindow = ((UIApplication.shared.delegate?.window)!)!
         let storyboard = UIStoryboard(name: "DriverMain", bundle: nil)
-        rootviewcontroller.rootViewController = storyboard.instantiateViewController(withIdentifier: "DriverSWRevealViewController")
+        rootviewcontroller.rootViewController = storyboard.instantiateViewController(withIdentifier: "SWRevealViewController")
         let mainwindow = (UIApplication.shared.delegate?.window!)!
         
         
@@ -149,7 +149,7 @@ class DriverMenuVC: UITableViewController {
                 UIView.appearance().semanticContentAttribute = .forceRightToLeft
                 // Refresh The View To Reload The View
                 let storyboard = UIStoryboard(name: "DriverMain", bundle: nil)
-                let orderVC = storyboard.instantiateViewController(identifier: "DriverSWRevealViewController")
+                let orderVC = storyboard.instantiateViewController(identifier: "SWRevealViewController")
                 appDelegate.window!.rootViewController = orderVC
             }
             
@@ -160,7 +160,7 @@ class DriverMenuVC: UITableViewController {
             UIView.appearance().semanticContentAttribute = .forceLeftToRight
                 // Refresh The View To Reload The View
                 let storyboard = UIStoryboard(name: "DriverMain", bundle: nil)
-                let orderVC = storyboard.instantiateViewController(identifier: "DriverSWRevealViewController")
+                let orderVC = storyboard.instantiateViewController(identifier: "SWRevealViewController")
                 appDelegate.window!.rootViewController = orderVC
             }
         }

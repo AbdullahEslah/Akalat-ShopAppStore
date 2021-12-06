@@ -17,13 +17,15 @@ struct RestaurantDetails : Codable {
 	let name             : String
 	let phone            : String
 	let address          : String
+    let address_details  : String?
 
 	enum CodingKeys: String, CodingKey {
 
-		case id      = "id"
-		case name    = "name"
-		case phone   = "phone"
-		case address = "address"
-	}
+		case id              = "id"
+		case name            = "name"
+		case phone           = "phone"
+		case address         = "address"
+        case address_details = "address_details"
+ 	}
 
 }
