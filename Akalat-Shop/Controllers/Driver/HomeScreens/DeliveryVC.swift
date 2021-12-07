@@ -198,7 +198,7 @@ class DeliveryVC: UIViewController,UIActionSheetDelegate, UITableViewDelegate, U
         
         NetworkManager.updateDriverLocation(location: location) { (data) in
             //To Check The Request Every One Second
-            print(data)
+//            print(data)
         }
     }
     
@@ -309,7 +309,6 @@ class DeliveryVC: UIViewController,UIActionSheetDelegate, UITableViewDelegate, U
             NetworkManager.DriverCompleteTheOrder(orderId: id) { (data) in
 
                     DispatchQueue.main.async {
-                        print(data)
                         //Stop Updating Driver Location
                         self.locationManager.stopUpdatingLocation()
                         self.timer.invalidate()
@@ -344,7 +343,6 @@ class DeliveryVC: UIViewController,UIActionSheetDelegate, UITableViewDelegate, U
             NetworkManager.DriverCancelOrder(orderId: id) { (data) in
 
                     DispatchQueue.main.async {
-                        print(data)
                         //Stop Updating Driver Location
                         self.locationManager.stopUpdatingLocation()
                         self.timer.invalidate()
@@ -386,7 +384,7 @@ extension DeliveryVC: MKMapViewDelegate {
         
         geocoder.geocodeAddressString(address) { (placemark, error) in
             if error != nil {
-                print("Error", error)
+                
             }
             if let placemark = placemark?.first {
                 

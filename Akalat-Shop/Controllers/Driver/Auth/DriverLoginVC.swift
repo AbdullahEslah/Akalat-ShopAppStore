@@ -33,6 +33,15 @@ class DriverLoginVC: UIViewController, LoginButtonDelegate {
    
     @IBOutlet weak var authHolderViewHeight: NSLayoutConstraint!
     
+    @IBOutlet weak var termsOfUseStackView: UIStackView!
+    @IBOutlet weak var privacyPolicyStackView: UIStackView!
+    
+    //For Translating Them
+    @IBOutlet weak var termPhraseLeftLabel: UILabel!
+    @IBOutlet weak var termPhraseRightLabel: UILabel!
+    
+    @IBOutlet weak var privacyPhraseLeft: UILabel!
+    @IBOutlet weak var privacyPhraseRight: UILabel!
     
     
     var userID :String?
@@ -51,6 +60,20 @@ class DriverLoginVC: UIViewController, LoginButtonDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
   
+        let localizedLeftPhrase  = NSLocalizedString("By Clicking One Of The Top Buttons You Accept", comment: "")
+        termPhraseLeftLabel.text = localizedLeftPhrase
+        
+        let localizedRightPhrase  = NSLocalizedString("Of Our App", comment: "")
+        termPhraseRightLabel.text = localizedRightPhrase
+        
+        let privacyLocalizedLeftPhrase  = NSLocalizedString("And To The", comment: "")
+        privacyPhraseLeft.text = privacyLocalizedLeftPhrase
+        
+        let privacyLocalizedRightPhrase = NSLocalizedString("Please Read Them Before Using The App", comment: "")
+        privacyPhraseRight.text = privacyLocalizedRightPhrase
+        
+        
+        
         connection()
         defaultAuthHolderViewHeight = authHolderViewHeight.constant
         
@@ -78,6 +101,8 @@ class DriverLoginVC: UIViewController, LoginButtonDelegate {
             authHolderView.isHidden = true
             self.googleLoginButton.isHidden = true
             self.fbLoginButton.isHidden = true
+            self.termsOfUseStackView.isHidden = true
+            self.privacyPolicyStackView.isHidden = true
             
             animationView.frame = view.bounds
             // Add animationView as subview
@@ -164,6 +189,8 @@ class DriverLoginVC: UIViewController, LoginButtonDelegate {
             authHolderView.isHidden = true
             self.googleLoginButton.isHidden = true
             self.fbLoginButton.isHidden = true
+            self.termsOfUseStackView.isHidden = true
+            self.privacyPolicyStackView.isHidden = true
             
             
             animationView.frame = view.bounds
@@ -580,6 +607,21 @@ class DriverLoginVC: UIViewController, LoginButtonDelegate {
         dismiss(animated: true)
     }
     
+    @IBAction func termsOfUserDidTapped(_ sender: Any) {
+        
+        guard let settingsUrl = URL(string:"https://sites.google.com/view/akalatshoptermsof-use/home") else {
+            return
+        }
+        UIApplication.shared.open(settingsUrl, options: [:], completionHandler: nil)
+    }
+    
+    @IBAction func privacyPolicyDidTapped(_ sender: Any) {
+        guard let settingsUrl = URL(string:"https://sites.google.com/view/akalatshopprivacypolicy/home") else {
+            return
+        }
+        UIApplication.shared.open(settingsUrl, options: [:], completionHandler: nil)
+    }
+    
 }
 
 //@available(iOS 13.0, *)
@@ -736,6 +778,8 @@ extension DriverLoginVC {
             self.authHolderView.isHidden = true
             self.googleLoginButton.isHidden = true
             self.fbLoginButton.isHidden = true
+            self.termsOfUseStackView.isHidden = true
+            self.privacyPolicyStackView.isHidden = true
             
             
             self.animationView.frame = self.view.bounds
@@ -799,6 +843,8 @@ extension DriverLoginVC {
                             self.authHolderView.isHidden = false
                             self.googleLoginButton.isHidden = false
                             self.fbLoginButton.isHidden = false
+                            self.termsOfUseStackView.isHidden = false
+                            self.privacyPolicyStackView.isHidden = false
                             
                             label.removeFromSuperview()
                         }

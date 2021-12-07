@@ -8,7 +8,21 @@
 
 //We Use The Key As An Id To Get The Value Of It In The Right
 "changeLangKey"             = "Change Language";
+
+"Privacy Policy"            = "Privacy Policy";
+
+"Term Of Use"               = "Term Of Use";
+
+"By Clicking One Of The Top Buttons You Accept"             = "By Clicking One Of The Top Buttons You Accept";
+
+"Of Our App"                = "Of Our App";
+
+"And To The"                = "And To The";
+
+"Please Read Them Before Using The App"                    = "Please Read Them Before Using The App";
+
 "Most Popular Of:"          = "Most Popular Of:";
+
 "deliveryPriceKey"          = "Delivery Price";
 "totalKey"                  = "Total";
 "Restaurants Search..."     = "Restaurants Search...";

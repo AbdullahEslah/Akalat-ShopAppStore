@@ -7,9 +7,20 @@
 */
 
 //We Use The Key As An Id To Get The Value Of It In The Right
-
-
 "changeLangKey"             = "تغيير اللغة";
+
+"Privacy Policy"            = "سياسة الخصوصية";
+
+"Term Of Use"               = "الأحكام والشروط";
+
+"By Clicking One Of The Top Buttons You Accept"             = "بالضغط على اي زر بالاعلى. انت توافق على";
+
+"Of Our App"                = "للتطبيق";
+
+"And To The"                = "وتوافق على";
+
+"Please Read Them Before Using The App"                    = "من فضلك اقرا كل منهم قبل استخدام التطبيق";
+
 "Most Popular Of:"          = "المعروف لدى:";
 "Restaurants Search..."     = "بحث عن مطاعم";
 

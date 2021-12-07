@@ -178,7 +178,6 @@ class CheckoutVC: UIViewController, SWRevealViewControllerDelegate {
             }
             geocoder.geocodeAddressString("\(location)") { (placemark, error) in
                 if error != nil {
-                    print("Error", error)
                 }
                 
                 guard let placemark = placemark   else {
@@ -201,7 +200,7 @@ class CheckoutVC: UIViewController, SWRevealViewControllerDelegate {
                     print(adminstrativeArea)
                     addressVC.currentLocationTextField.text = "\(thoroughfare) \(adminstrativeArea) \(locality)"
                     
-                        print(addressVC.currentLocationTextField.text)
+//                        print(addressVC.currentLocationTextField.text)
                     
                 }
                
@@ -235,7 +234,7 @@ class CheckoutVC: UIViewController, SWRevealViewControllerDelegate {
         
         geocoder.geocodeAddressString(address!) { (placemark, error) in
             if error != nil {
-                print("Error", error)
+                
             }
   
             

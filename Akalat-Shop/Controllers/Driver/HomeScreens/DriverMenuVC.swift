@@ -17,7 +17,8 @@ class DriverMenuVC: UITableViewController {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var appleIdNameLabel: UILabel!
     @IBOutlet weak var changeLangLabel: UILabel!
-    
+    @IBOutlet weak var privacyPolicyButtonLabel: UIButton!
+    @IBOutlet weak var termsButtonLabel: UIButton!
     
     let hud = JGProgressHUD(style: .dark)
         
@@ -26,9 +27,15 @@ class DriverMenuVC: UITableViewController {
         
         //Usage Of Localized Data
         let changeLangLbl = NSLocalizedString("changeLangKey", comment: "")
-        
         self.changeLangLabel.text = changeLangLbl
         self.changeLangLabel.textAlignment = .natural
+        
+        let localizedPrivacy = NSLocalizedString("Privacy Policy", comment: "")
+        self.privacyPolicyButtonLabel.setTitle(localizedPrivacy, for: .normal)
+        
+        let localizedTerm = NSLocalizedString("Term Of Use", comment: "")
+        self.privacyPolicyButtonLabel.setTitle(localizedTerm, for: .normal)
+        
         tableView.tableFooterView = UIView()
         view.backgroundColor = UIColor(named: "DarkColor")
         getUserData()
@@ -101,19 +108,8 @@ class DriverMenuVC: UITableViewController {
                     
                     
                     UserDefaults.standard.removeObject(forKey: "appleUserId")
-                    print(UserDefaults.standard.value(forKey: "appleUserId"))
                     
                     UserDefaults.standard.removeObject(forKey: "appleIdentityToken")
-                    print(UserDefaults.standard.value(forKey: "appleIdentityToken"))
-                    
-                    UserDefaults.standard.removeObject(forKey: "appleIdFirstName")
-                    print(UserDefaults.standard.value(forKey: "appleIdFirstName"))
-                    
-                    UserDefaults.standard.removeObject(forKey: "appleIdLastName")
-                    print( UserDefaults.standard.value(forKey: "appleIdLastName"))
-                    
-                    UserDefaults.standard.removeObject(forKey: "appleIdEmail")
-                    print(UserDefaults.standard.value(forKey: "appleIdEmail"))
                     
                     UserDefaults.standard.removeObject(forKey: "CheckDriverView")
                     
@@ -126,7 +122,6 @@ class DriverMenuVC: UITableViewController {
                     
                 }
                 self.hud.dismiss()
-                print(error)
             })
             return false
         }
@@ -167,6 +162,21 @@ class DriverMenuVC: UITableViewController {
                 
         
         
+    }
+    
+    @IBAction func termsOfUserDidTapped(_ sender: Any) {
+        
+        guard let settingsUrl = URL(string:"https://sites.google.com/view/akalatshoptermsof-use/home") else {
+            return
+        }
+        UIApplication.shared.open(settingsUrl, options: [:], completionHandler: nil)
+    }
+    
+    @IBAction func privacyPolicyDidTapped(_ sender: Any) {
+        guard let settingsUrl = URL(string:"https://sites.google.com/view/akalatshopprivacypolicy/home") else {
+            return
+        }
+        UIApplication.shared.open(settingsUrl, options: [:], completionHandler: nil)
     }
     
     

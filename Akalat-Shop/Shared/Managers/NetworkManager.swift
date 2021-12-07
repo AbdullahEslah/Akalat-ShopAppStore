@@ -413,7 +413,6 @@ class NetworkManager {
                 completion(response.meals,nil)
             } else {
                 completion([],.UnAbleToComplete)
-                print(error)
             }
         }
     }
@@ -430,7 +429,6 @@ class NetworkManager {
                 completion(response.meals,nil)
             } else {
                 completion([],.UnAbleToComplete)
-                print(error)
             }
         }
         
@@ -505,7 +503,6 @@ class NetworkManager {
                 completion(response.order,nil)
             } else {
                 completion(nil,.UnAbleToComplete)
-                print(error)
             }
         }
     }
@@ -526,7 +523,6 @@ class NetworkManager {
                 completion(response.order.order_details,nil)
             } else {
                 completion([],.UnAbleToComplete)
-                print(error)
             }
         }
     }
@@ -547,7 +543,6 @@ class NetworkManager {
                 completion(response.order,nil)
             } else {
                 completion(nil,.UnAbleToComplete)
-                print(error?.localizedDescription)
             }
         }
     }
@@ -584,7 +579,6 @@ class NetworkManager {
                 completion(response.orders,nil)
             } else {
                 completion([],.UnAbleToComplete)
-                print(error)
             }
         }
     }
@@ -696,8 +690,6 @@ class NetworkManager {
                 print(response)
             } else {
                 completion(false, error)
-                print(error)
-//                print(error!.localizedDescription)
             }
         }
     }
@@ -740,7 +732,6 @@ class NetworkManager {
                 completion(response.revenue,nil)
             } else {
                 completion(nil,.UnAbleToComplete)
-                print(error?.rawValue)
             }
         }
         

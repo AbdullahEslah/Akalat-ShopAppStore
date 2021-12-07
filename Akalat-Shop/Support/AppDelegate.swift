@@ -151,10 +151,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CAAnimationDelegate {
             infoView.backgroundColor = color
             self.window!.addSubview(infoView)
             
-            
+            let window = UIApplication.shared.windows.filter {$0.isKeyWindow}.first
+            let height = window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0
             // infoView - label to show info text
             let infoLabel_Width = infoView.bounds.width
-            let infoLabel_Height = infoView.bounds.height + UIApplication.shared.statusBarFrame.height / 2
+            let infoLabel_Height = infoView.bounds.height + height / 2
             
             let infoLabel = UILabel()
             infoLabel.frame.size.width = infoLabel_Width

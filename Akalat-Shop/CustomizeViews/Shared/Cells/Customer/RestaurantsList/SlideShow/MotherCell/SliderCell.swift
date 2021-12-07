@@ -70,7 +70,7 @@ class SliderCell: UICollectionViewCell {
         if nextItem == filteredRestaurants.count{
             nextItem = 0
         }
-        var nextIndexPath = IndexPath(item: nextItem, section: nextSection)
+        let nextIndexPath = IndexPath(item: nextItem, section: nextSection)
         if nextItem == 0 {
             self.collectionView.scrollToItem(at: nextIndexPath, at: UICollectionView.ScrollPosition.left, animated: false)
         }
@@ -90,8 +90,8 @@ class SliderCell: UICollectionViewCell {
         var visibleRect = CGRect()
         visibleRect.origin = collectionView.contentOffset
         visibleRect.size = collectionView.bounds.size
-        let visiblePoint = CGPoint(x: visibleRect.midX, y: visibleRect.midY)
-        let visibleIndexPath: IndexPath? = collectionView.indexPathForItem(at: visiblePoint)
+//        let visiblePoint = CGPoint(x: visibleRect.midX, y: visibleRect.midY)
+//        let visibleIndexPath: IndexPath? = collectionView.indexPathForItem(at: visiblePoint)
 //        pageControlView.currentPage = (visibleIndexPath?.row)!
         
     }
