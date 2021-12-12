@@ -7,32 +7,37 @@
 */
 
 //We Use The Key As An Id To Get The Value Of It In The Right
-"changeLangKey"             = "Change Language";
 
-"Privacy Policy"            = "Privacy Policy";
+//For Login Scenes
+"Policy Of Our Community"   = "Policy Of Our Community";
+"Terms Of Use"              = "Terms Of Use";
 
-"Term Of Use"               = "Term Of Use";
-
-"By Clicking One Of The Top Buttons You Accept"             = "By Clicking One Of The Top Buttons You Accept";
+"By Clicking One Of The Top Buttons You Accept"  = "By Clicking One Of The Top Buttons You Accept";
 
 "Of Our App"                = "Of Our App";
 
 "And To The"                = "And To The";
 
-"Please Read Them Before Using The App"                    = "Please Read Them Before Using The App";
+"Please Read Them Before Using The App"           = "Please Read Them Before Using The App";
 
-"Most Popular Of:"          = "Most Popular Of:";
+//For Menu
+"changeLangKey"             = "Change Language";
+"Privacy Policy"            = "Privacy Policy";
+"Term Of Use"               = "Term Of Use";
 
-"deliveryPriceKey"          = "Delivery Price";
-"totalKey"                  = "Total";
+//For RestaurantsVC
 "Restaurants Search..."     = "Restaurants Search...";
-//Driver
-"CompleteOrderButtonKey"    = "Complete Order";
-"CancelOrderButtonKey"      = "Cancel Order";
 
 //Home CollectionView Headers
 "Categories"                = "Categories";
 "Common Restaurants"        = "Common Restaurants";
+
+//For MealListsVC CollectionView nameLabel
+"Most Popular Of:"          = "Most Popular Of:";
+
+//For CheckoutVC
+"deliveryPriceKey"          = "Delivery Price";
+"totalKey"                  = "Total";
 
 //Categories
 "Fast Food"                 = "Fast Food";
@@ -41,3 +46,8 @@
 "Common Grills"             = "Common Grills";
 "Sea Food"                  = "Sea Food";
 "Browse Desserts"           = "Browse Desserts";
+
+
+/*************** Driver-> DeliveryVC ******************/
+"CompleteOrderButtonKey"    = "Complete Order";
+"CancelOrderButtonKey"      = "Cancel Order";

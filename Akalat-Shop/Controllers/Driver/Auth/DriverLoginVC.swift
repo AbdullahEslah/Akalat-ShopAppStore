@@ -19,6 +19,8 @@ class DriverLoginVC: UIViewController, LoginButtonDelegate {
     @IBOutlet weak var appNameLabel: UILabel!
     @IBOutlet weak var appLogo: UIImageView!
     
+    @IBOutlet weak var backButton: UIButton!
+    
     @IBOutlet weak var internetConnectionLabel: UILabel!
     
     @IBOutlet weak var viewForMyButton: UIView!
@@ -33,6 +35,8 @@ class DriverLoginVC: UIViewController, LoginButtonDelegate {
    
     @IBOutlet weak var authHolderViewHeight: NSLayoutConstraint!
     
+    @IBOutlet weak var privacyPolicyButton: UIButton!
+    @IBOutlet weak var termsOfUseButton: UIButton!
     @IBOutlet weak var termsOfUseStackView: UIStackView!
     @IBOutlet weak var privacyPolicyStackView: UIStackView!
     
@@ -59,6 +63,12 @@ class DriverLoginVC: UIViewController, LoginButtonDelegate {
     let animationView = AnimationView(animation: Animation.named("lf20_vhkdj1ra"))
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let localizedTermsOfUseButton = NSLocalizedString("Terms Of Use", comment: "")
+        termsOfUseButton.setTitle(localizedTermsOfUseButton, for: .normal)
+
+        let localizedPolicyOfOurCommunityButton = NSLocalizedString("Policy Of Our Community", comment: "")
+        privacyPolicyButton.setTitle(localizedPolicyOfOurCommunityButton, for: .normal)
   
         let localizedLeftPhrase  = NSLocalizedString("By Clicking One Of The Top Buttons You Accept", comment: "")
         termPhraseLeftLabel.text = localizedLeftPhrase
@@ -71,8 +81,6 @@ class DriverLoginVC: UIViewController, LoginButtonDelegate {
         
         let privacyLocalizedRightPhrase = NSLocalizedString("Please Read Them Before Using The App", comment: "")
         privacyPhraseRight.text = privacyLocalizedRightPhrase
-        
-        
         
         connection()
         defaultAuthHolderViewHeight = authHolderViewHeight.constant
@@ -324,9 +332,13 @@ class DriverLoginVC: UIViewController, LoginButtonDelegate {
                     self.showAuthButton.isHidden = true
                     self.authHolderView.isHidden = true
                     self.topLineOfAuthHolderView.isHidden = true
+                    self.privacyPolicyStackView.isHidden = true
+                    self.termsOfUseStackView.isHidden = true
+                    self.backButton.isHidden = true
                     self.appLogo.image = image
                     
                 }
+                
                 
             }
             
@@ -432,25 +444,21 @@ class DriverLoginVC: UIViewController, LoginButtonDelegate {
     
     
     @IBAction func googleSignInTapped(_ sender: Any) {
+        
+        self.hud.textLabel.text = "Loading..."
+        self.hud.show(in: self.view)
+        
         GIDSignIn.sharedInstance.signIn(with: GoogleManager.signInConfig, presenting: self) { user, error in
             
-            guard error == nil else { return }
-            self.animationView.frame = self.view.bounds
-
-            // Add animationView as subview
-            self.view.addSubview(self.animationView)
-
-            // Play the animation
-            self.animationView.play()
-            self.animationView.loopMode = .loop
-            self.animationView.animationSpeed = 1
+            guard error == nil else {
+                self.hud.dismiss()
+                return
+            }
+           
             
             guard let user = user else {
-                
-                print("user cancelled the request")
                 UserDefaults.standard.removeObject(forKey: "CheckDriverView")
-                self.animationView.stop()
-                self.animationView.removeFromSuperview()
+                self.hud.dismiss()
                 return
             }
             // If sign in succeeded, display the app's main content View.
@@ -465,28 +473,25 @@ class DriverLoginVC: UIViewController, LoginButtonDelegate {
             }
 
             NetworkManager.googleLogin(userType: self.userType,completion:  { success, error in
-
+    
                 if error == nil {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 3.0, execute:  {
                         UIView.animate(withDuration: 3.0) {
-                            self.animationView.alpha = 0
                         }completion: { (_) in
-                    UserDefaults.standard.setValue("DriverView", forKey: "CheckDriverView")
-                    self.userType = self.userType.capitalized
-                    self.performSegue(withIdentifier: "\(self.userType)View", sender: self)
-                    self.animationView.stop()
-                    }
+                            UserDefaults.standard.setValue("DriverView", forKey: "CheckDriverView")
+                            self.userType = self.userType.capitalized
+                            self.performSegue(withIdentifier: "\(self.userType)View", sender: self)
+                            self.hud.dismiss()
+                        }
                         
                     })
-
+                    
                 } else {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 3.0, execute:  {
                         UIView.animate(withDuration: 3.0) {
-                            self.animationView.alpha = 0
                         }completion: { (_) in
-                    Helper().showAlert(title: "Error!", message: error!.rawValue, in: self)
-                    self.animationView.stop()
-                            
+                            Helper().showAlert(title: "Error!", message: error!.rawValue, in: self)
+                            self.hud.dismiss()
                         }
                     })
                 }
@@ -502,62 +507,51 @@ class DriverLoginVC: UIViewController, LoginButtonDelegate {
         error potentialError: Error?
     ) {
         
+        self.hud.textLabel.text = "Loading..."
+        self.hud.show(in: self.view)
+        
         if let error = potentialError {
             UserDefaults.standard.removeObject(forKey: "CheckDriverView")
             // Handle Error
-            hud.dismiss()
+            self.hud.dismiss()
             print(error)
         }
         
         guard let result = potentialResult else {
             // Handle missing result
+            self.hud.dismiss()
             return
         }
 
         guard !result.isCancelled else {
             // Handle cancellation
             UserDefaults.standard.removeObject(forKey: "CheckDriverView")
-            print("cancel")
-            hud.dismiss()
+            self.hud.dismiss()
             return
         }
         
         // Handle successful login
         FBManager.getFBUserData(completion: {
-            self.animationView.frame = self.view.bounds
-            
-            // Add animationView as subview
-            self.view.addSubview(self.animationView)
-            
-            // Play the animation
-            self.animationView.play()
-            self.animationView.loopMode = .loop
-            self.animationView.animationSpeed = 1
             
             NetworkManager.fbLogin(userType: self.userType,completion:  { success, error in
                 
                 if error == nil {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 3.0, execute:  {
                         UIView.animate(withDuration: 3.0) {
-                            self.animationView.alpha = 0
                         }completion: { (_) in
-                    UserDefaults.standard.setValue("DriverView", forKey: "CheckDriverView")
-                    self.userType = self.userType.capitalized
-                    self.performSegue(withIdentifier: "\(self.userType)View", sender: self)
-                    
-                    self.animationView.stop()
-                    self.animationView.removeFromSuperview()
-                    self.fbLoginButton.setTitle("Continue With Facebbok", for: .normal)
-                    }
+                            self.hud.dismiss()
+                            UserDefaults.standard.setValue("DriverView", forKey: "CheckDriverView")
+                            self.userType = self.userType.capitalized
+                            self.performSegue(withIdentifier: "\(self.userType)View", sender: self)
+                            self.fbLoginButton.setTitle("Continue With Facebbok", for: .normal)
+                        }
                     })
                 } else {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 3.0, execute:  {
                         UIView.animate(withDuration: 3.0) {
-                            self.animationView.alpha = 0
                         }completion: { (_) in
                         Helper().showAlert(title: "Error~", message: error!.rawValue, in: self)
-                    self.animationView.stop()
-                    
+                            self.hud.dismiss()
                         }
                     })
                 }
@@ -628,8 +622,13 @@ class DriverLoginVC: UIViewController, LoginButtonDelegate {
 extension DriverLoginVC: ASAuthorizationControllerDelegate {
     
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+        
         switch authorization.credential {
+        
         case let appleIDCredential as ASAuthorizationAppleIDCredential:
+            
+            self.hud.textLabel.text = "Loading..."
+            self.hud.show(in: self.view)
             
             let email = appleIDCredential.email
             UserDefaults.standard.setValue(email, forKey: "appleIdEmail")
@@ -652,7 +651,6 @@ extension DriverLoginVC: ASAuthorizationControllerDelegate {
                     let identityTokenString = String(data: identityToken, encoding: .utf8)!
                     
                     UserDefaults.standard.setValue(identityTokenString, forKey: "appleIdentityToken")
-//                    print(identityTokenString)
                 }
                 
                 if let firstName = fullName?.givenName {
@@ -671,22 +669,20 @@ extension DriverLoginVC: ASAuthorizationControllerDelegate {
                 if error == nil {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 3.0, execute:  {
                         UIView.animate(withDuration: 3.0) {
-                            self.animationView.alpha = 0
                         }completion: { (_) in
                     UserDefaults.standard.setValue("DriverView", forKey: "CheckDriverView")
                     self.userType = self.userType.capitalized
                     self.performSegue(withIdentifier: "\(self.userType)View", sender: self)
-                    self.animationView.stop()
+                    self.hud.dismiss()
                     
                     }
                     })
                 } else {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 3.0, execute:  {
                         UIView.animate(withDuration: 3.0) {
-                            self.animationView.alpha = 0
                         }completion: { (_) in
                     Helper().showAlert(title: "Error Occurred!", message: "Login Again", in: self)
-                    self.animationView.stop()
+                            self.hud.dismiss()
                         }
                     })
                 }
@@ -706,14 +702,18 @@ extension DriverLoginVC: ASAuthorizationControllerDelegate {
             case .canceled:
                 appDelegate.infoView(message: "You Cancelled The Login Process", color: colorSmoothRed)
                 UserDefaults.standard.removeObject(forKey: "CheckDriverView")
+                self.hud.dismiss()
 
             return
             case .failed:
                 Helper().showAlert(title: "Error !", message: "Authorization failed.", in: self)
+                self.hud.dismiss()
             case .invalidResponse:
                 print("invaliedResponse")
+                self.hud.dismiss()
             case .notHandled:
                 print("notHandled")
+                self.hud.dismiss()
 
             case .unknown:
                if controller.authorizationRequests.contains(where: { $0 is ASAuthorizationPasswordRequest }) {
@@ -726,17 +726,17 @@ extension DriverLoginVC: ASAuthorizationControllerDelegate {
                   controller.delegate = self
                   controller.presentationContextProvider = self
                   controller.performRequests()
-                
-               
                   return
     } else {
+        self.hud.dismiss()
         UserDefaults.standard.removeObject(forKey: "CheckDriverView")
         //Helper().showAlert(title: "Error !", message:  "Unknown error for appleID auth.", in: self)
- 
         print("Unknown error for appleID auth.")
+        
     }
        default:
         //Helper().showAlert(title: "Error !", message:  "Unsupported error code.", in: self)
+        self.hud.dismiss()
             print("Unsupported error code.")
       }
      }
@@ -818,9 +818,12 @@ extension DriverLoginVC {
                                     UIView.animate(withDuration: 3.0) {
                                         self.animationView.alpha = 0
                                     }completion: { (_) in
-                                        Helper().showAlert(title: "Error Occurred!", message: "Please Login Again", in: self)
+//                                        Helper().showAlert(title: "Error Occurred!", message: "Please Login Again", in: self)
+                                        UserDefaults.standard.removeObject(forKey: "appleUserId")
+                                        let storyboard = UIStoryboard(name: "DriverMain", bundle: nil)
+                                        let loginVC = storyboard.instantiateViewController(identifier: "DriverLoginVC")
+                                        appDelegate.window!.rootViewController = loginVC
                                         self.animationView.stop()
-                                        self.animationView.removeFromSuperview()
                                     }
                                 })
                             }

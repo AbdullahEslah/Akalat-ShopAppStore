@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="OfU-Im-OVa">
     <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -135,7 +134,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="kAe-8W-mXO">
-                                <rect key="frame" x="5" y="544" width="312" height="24"/>
+                                <rect key="frame" x="3" y="544" width="314.5" height="24"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="And To The" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Blu-QH-nRS">
                                         <rect key="frame" x="0.0" y="0.0" width="40" height="24"/>
@@ -144,7 +143,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IOb-pc-gbS">
-                                        <rect key="frame" x="41" y="0.0" width="126" height="24"/>
+                                        <rect key="frame" x="41" y="0.0" width="136" height="24"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                         <state key="normal" title="Policy Of Our Community."/>
                                         <connections>
@@ -152,15 +151,18 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please Read Them Before Using The App" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Mo-kE-6Zk">
-                                        <rect key="frame" x="168" y="0.0" width="144" height="24"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="7"/>
+                                        <rect key="frame" x="178" y="0.0" width="136.5" height="24"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="6"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstItem="IOb-pc-gbS" firstAttribute="width" secondItem="3Mo-kE-6Zk" secondAttribute="width" id="bHW-RC-zGo"/>
+                                </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="FOh-U0-NTW">
-                                <rect key="frame" x="5" y="520" width="312" height="24"/>
+                                <rect key="frame" x="3" y="520" width="314.5" height="24"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" semanticContentAttribute="forceLeftToRight" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="By Clicking One Top Buttons You Accept " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yfd-qF-amT">
                                         <rect key="frame" x="0.0" y="0.0" width="180.5" height="24"/>
@@ -169,7 +171,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gBK-Pv-QfG">
-                                        <rect key="frame" x="181.5" y="0.0" width="75" height="24"/>
+                                        <rect key="frame" x="181.5" y="0.0" width="66" height="24"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                         <state key="normal" title="Terms Of Use"/>
                                         <connections>
@@ -177,12 +179,15 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" semanticContentAttribute="forceLeftToRight" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Of Our App" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZEh-Z9-7tk">
-                                        <rect key="frame" x="257.5" y="0.0" width="54.5" height="24"/>
+                                        <rect key="frame" x="248.5" y="0.0" width="66" height="24"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstItem="gBK-Pv-QfG" firstAttribute="width" secondItem="ZEh-Z9-7tk" secondAttribute="width" id="gIR-Rt-PUB"/>
+                                </constraints>
                             </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="adq-Lq-Yfb"/>
@@ -196,17 +201,16 @@
                             <constraint firstItem="eOy-fb-TZY" firstAttribute="top" secondItem="YG8-Px-Shj" secondAttribute="bottom" constant="4" id="E8M-cW-bpa"/>
                             <constraint firstItem="FOh-U0-NTW" firstAttribute="top" secondItem="cOs-5S-Nox" secondAttribute="bottom" constant="18" id="ERG-H5-tdM"/>
                             <constraint firstItem="CYv-d2-gGb" firstAttribute="height" secondItem="R1C-m3-wn2" secondAttribute="height" multiplier="0.0892857" id="EmZ-Ad-IWc"/>
-                            <constraint firstItem="kAe-8W-mXO" firstAttribute="leading" secondItem="adq-Lq-Yfb" secondAttribute="leading" constant="5" id="F6G-NZ-dke"/>
                             <constraint firstItem="eOy-fb-TZY" firstAttribute="centerX" secondItem="adq-Lq-Yfb" secondAttribute="centerX" id="IxC-Yy-9vy"/>
                             <constraint firstItem="R1C-m3-wn2" firstAttribute="leading" secondItem="adq-Lq-Yfb" secondAttribute="leading" id="Jin-Nh-rNA"/>
                             <constraint firstItem="YG8-Px-Shj" firstAttribute="trailing" secondItem="eOy-fb-TZY" secondAttribute="trailing" constant="-110" id="KfH-Pg-iQH"/>
                             <constraint firstItem="CYv-d2-gGb" firstAttribute="leading" secondItem="R1C-m3-wn2" secondAttribute="leading" constant="26" id="Qe9-Yf-pqd"/>
                             <constraint firstItem="R1C-m3-wn2" firstAttribute="top" secondItem="adq-Lq-Yfb" secondAttribute="top" id="QpY-1C-RBF"/>
+                            <constraint firstItem="kAe-8W-mXO" firstAttribute="centerX" secondItem="adq-Lq-Yfb" secondAttribute="centerX" id="R5D-OV-4sv"/>
                             <constraint firstItem="iea-pJ-7Kc" firstAttribute="height" secondItem="R1C-m3-wn2" secondAttribute="height" multiplier="0.0699405" id="ToW-ee-IW1"/>
                             <constraint firstItem="eOy-fb-TZY" firstAttribute="leading" secondItem="adq-Lq-Yfb" secondAttribute="leading" constant="16" id="Wgv-VR-BS3"/>
                             <constraint firstItem="M55-sN-W6U" firstAttribute="trailing" secondItem="R1C-m3-wn2" secondAttribute="trailing" id="YLe-B6-MaW"/>
                             <constraint firstItem="YG8-Px-Shj" firstAttribute="leading" secondItem="eOy-fb-TZY" secondAttribute="leading" constant="110" id="eRX-4M-BY7"/>
-                            <constraint firstItem="adq-Lq-Yfb" firstAttribute="trailing" secondItem="kAe-8W-mXO" secondAttribute="trailing" constant="3" id="en3-Yg-fni"/>
                             <constraint firstItem="iea-pJ-7Kc" firstAttribute="trailing" secondItem="R1C-m3-wn2" secondAttribute="trailing" id="gHl-ni-jFX"/>
                             <constraint firstItem="iea-pJ-7Kc" firstAttribute="top" secondItem="R1C-m3-wn2" secondAttribute="top" id="h5a-Ws-1w6"/>
                             <constraint firstItem="R1C-m3-wn2" firstAttribute="height" secondItem="irm-sC-X9a" secondAttribute="height" multiplier="0.391915" id="lDN-v5-6NK"/>
@@ -224,15 +228,18 @@
                         <outlet property="appNameLabel" destination="M55-sN-W6U" id="Eq6-kI-iYF"/>
                         <outlet property="authHolderView" destination="eOy-fb-TZY" id="uCl-cw-5Zs"/>
                         <outlet property="authHolderViewHeight" destination="giR-GN-3cQ" id="Mkg-3U-SWi"/>
+                        <outlet property="backButton" destination="CYv-d2-gGb" id="kR8-Mu-j6Q"/>
                         <outlet property="fbLoginButton" destination="ngp-zU-QHV" id="1Qe-8R-62m"/>
                         <outlet property="googleLoginButton" destination="6UO-is-Iv5" id="WLs-pz-GxW"/>
                         <outlet property="internetConnectionLabel" destination="iea-pJ-7Kc" id="VMN-Ne-2Qb"/>
                         <outlet property="privacyPhraseLeft" destination="Blu-QH-nRS" id="sEJ-as-VRB"/>
                         <outlet property="privacyPhraseRight" destination="3Mo-kE-6Zk" id="Nql-QW-KL4"/>
+                        <outlet property="privacyPolicyButton" destination="IOb-pc-gbS" id="SbK-O8-4rs"/>
                         <outlet property="privacyPolicyStackView" destination="kAe-8W-mXO" id="fMS-s7-DAC"/>
                         <outlet property="showAuthButton" destination="cOs-5S-Nox" id="sO5-9G-75r"/>
                         <outlet property="termPhraseLeftLabel" destination="Yfd-qF-amT" id="nkm-Lm-9Lc"/>
                         <outlet property="termPhraseRightLabel" destination="ZEh-Z9-7tk" id="7fN-xk-xB9"/>
+                        <outlet property="termsOfUseButton" destination="gBK-Pv-QfG" id="MbD-ZK-pIt"/>
                         <outlet property="termsOfUseStackView" destination="FOh-U0-NTW" id="X5B-MY-oLY"/>
                         <outlet property="topLineOfAuthHolderView" destination="YG8-Px-Shj" id="dBg-2P-8Fc"/>
                         <segue destination="YCX-mX-CSx" kind="showDetail" identifier="DriverView" id="xVT-HD-fGQ"/>

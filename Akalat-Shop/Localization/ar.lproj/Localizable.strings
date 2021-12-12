@@ -7,11 +7,12 @@
 */
 
 //We Use The Key As An Id To Get The Value Of It In The Right
-"changeLangKey"             = "تغيير اللغة";
 
-"Privacy Policy"            = "سياسة الخصوصية";
 
-"Term Of Use"               = "الأحكام والشروط";
+
+//For Login Scenes
+"Policy Of Our Community"   = "سياسة الخصوصية للتطبيق";
+"Terms Of Use"              = "الاحكام والشروط";
 
 "By Clicking One Of The Top Buttons You Accept"             = "بالضغط على اي زر بالاعلى. انت توافق على";
 
@@ -21,23 +22,26 @@
 
 "Please Read Them Before Using The App"                    = "من فضلك اقرا كل منهم قبل استخدام التطبيق";
 
-"Most Popular Of:"          = "المعروف لدى:";
+//For Menu
+"changeLangKey"             = "تغيير اللغة";
+"Privacy Policy"            = "سياسة الخصوصية";
+"Term Of Use"               = "الأحكام والشروط";
+
+
+//RestaurantsVC
 "Restaurants Search..."     = "بحث عن مطاعم";
 
-"browseByAllRestaurantskey" = "تصفح جميع المطاعم";
-
-"deliveryPriceKey"          = "سعر التوصيل";
-
-"totalKey"                  = "الاجمالي";
-
-
-//Driver
-"CompleteOrderButtonKey"    = "اكمل الطلب";
-"CancelOrderButtonKey"      = "الغاء الطلب";
-
-//Home CollectionView Headers
+//RestaurantsVC CollectionView Headers
 "Categories"                = "الاقسام";
 "Common Restaurants"        = "المطاعم المعروفة";
+"browseByAllRestaurantskey" = "تصفح جميع المطاعم";
+
+//For MealListsVC
+"Most Popular Of:"          = "المعروف لدى:";
+
+//For ChekoutVC
+"deliveryPriceKey"          = "سعر التوصيل";
+"totalKey"                  = "الاجمالي";
 
 //Categories
 "Fast Food"                 = "الوجبات السريعة";
@@ -46,3 +50,7 @@
 "Common Grills"             = "المشويات الشائعة";
 "Sea Food"                  = "الماكولات البحرية";
 "Browse Desserts"           = "تصفح الحلو";
+
+/********** Driver ***********/
+"CompleteOrderButtonKey"    = "اكمل الطلب";
+"CancelOrderButtonKey"      = "الغاء الطلب";

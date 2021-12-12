@@ -34,7 +34,7 @@ class DriverMenuVC: UITableViewController {
         self.privacyPolicyButtonLabel.setTitle(localizedPrivacy, for: .normal)
         
         let localizedTerm = NSLocalizedString("Term Of Use", comment: "")
-        self.privacyPolicyButtonLabel.setTitle(localizedTerm, for: .normal)
+        self.termsButtonLabel.setTitle(localizedTerm, for: .normal)
         
         tableView.tableFooterView = UIView()
         view.backgroundColor = UIColor(named: "DarkColor")

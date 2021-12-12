@@ -35,6 +35,7 @@ class MenuVC: UITableViewController {
         
         let localizedTerm = NSLocalizedString("Term Of Use", comment: "")
         self.termsButtonLabel.setTitle(localizedTerm, for: .normal)
+        
         view.backgroundColor = UIColor(named: "DarkColor")
         getUserData()
         tableView.tableFooterView = UIView()

@@ -277,15 +277,15 @@ class RestaurantsVC: UIViewController, UISearchControllerDelegate, SWRevealViewC
     func createFirstSection() -> NSCollectionLayoutSection {
         
         // Define Item Size
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(100.0))
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(150.0))
 
            // Create Item
            let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
-        item.contentInsets = NSDirectionalEdgeInsets(top: 16, leading: 0, bottom: 5, trailing: 5)
+        item.contentInsets = NSDirectionalEdgeInsets(top: 16, leading: 8, bottom: 5, trailing: 5)
 
            // Define Group Size
-           let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(100.0))
+           let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(150.0))
 
            // Create Group
            let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [ item ])
@@ -1279,7 +1279,6 @@ extension RestaurantsVC : SkeletonCollectionViewDataSource ,UICollectionViewDele
     }
                     
 }
-    
       
 }
 

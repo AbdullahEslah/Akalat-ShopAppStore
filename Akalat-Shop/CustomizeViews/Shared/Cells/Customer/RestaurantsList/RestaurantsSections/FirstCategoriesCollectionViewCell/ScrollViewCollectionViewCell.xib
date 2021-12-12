@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -12,101 +11,73 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ScrollViewCollectionViewCell" id="gTV-IL-0wX" customClass="ScrollViewCollectionViewCell" customModule="Akalat_Shop" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="587" height="142"/>
+            <rect key="frame" x="0.0" y="0.0" width="587" height="140"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="587" height="142"/>
+                <rect key="frame" x="0.0" y="0.0" width="587" height="140"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5OF-v9-5z6">
-                        <rect key="frame" x="0.0" y="0.0" width="587" height="142"/>
+                        <rect key="frame" x="0.0" y="0.0" width="587" height="140"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="EBU-m8-hZ6">
-                                <rect key="frame" x="0.0" y="0.0" width="877" height="142"/>
+                                <rect key="frame" x="0.0" y="0.0" width="925" height="150"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ToG-QM-SFh">
-                                        <rect key="frame" x="0.0" y="0.0" width="142" height="142"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
                                         <color key="backgroundColor" name="DarkColor"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="ToG-QM-SFh" secondAttribute="height" multiplier="1:1" id="dMn-Eq-h4i"/>
-                                        </constraints>
                                         <state key="normal" image="sandwich"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                         </userDefinedRuntimeAttributes>
                                     </button>
                                     <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cbp-i6-EPH">
-                                        <rect key="frame" x="147" y="0.0" width="142" height="142"/>
+                                        <rect key="frame" x="155" y="0.0" width="150" height="150"/>
                                         <color key="backgroundColor" name="DarkColor"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="cbp-i6-EPH" secondAttribute="height" multiplier="1:1" id="Iwy-Mr-wA3"/>
-                                        </constraints>
                                         <state key="normal" image="pizza"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                         </userDefinedRuntimeAttributes>
                                     </button>
                                     <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kKC-TE-2zS">
-                                        <rect key="frame" x="294" y="0.0" width="142" height="142"/>
+                                        <rect key="frame" x="310" y="0.0" width="150" height="150"/>
                                         <color key="backgroundColor" name="DarkColor"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="kKC-TE-2zS" secondAttribute="height" multiplier="1:1" id="4FT-CP-T2K"/>
-                                        </constraints>
                                         <state key="normal" image="fried-chicken"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                         </userDefinedRuntimeAttributes>
                                     </button>
                                     <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FRS-qC-V39">
-                                        <rect key="frame" x="441" y="0.0" width="142" height="142"/>
+                                        <rect key="frame" x="465" y="0.0" width="150" height="150"/>
                                         <color key="backgroundColor" name="DarkColor"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="FRS-qC-V39" secondAttribute="height" multiplier="1:1" id="GsK-vl-7rS"/>
-                                        </constraints>
                                         <state key="normal" image="grill"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                         </userDefinedRuntimeAttributes>
                                     </button>
                                     <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ztf-i9-LcU">
-                                        <rect key="frame" x="588" y="0.0" width="142" height="142"/>
+                                        <rect key="frame" x="620" y="0.0" width="150" height="150"/>
                                         <color key="backgroundColor" name="DarkColor"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="Ztf-i9-LcU" secondAttribute="height" multiplier="1:1" id="VRa-ms-3P0"/>
-                                        </constraints>
                                         <state key="normal" image="fish"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                         </userDefinedRuntimeAttributes>
                                     </button>
                                     <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ly1-id-9je">
-                                        <rect key="frame" x="735" y="0.0" width="142" height="142"/>
+                                        <rect key="frame" x="775" y="0.0" width="150" height="150"/>
                                         <color key="backgroundColor" name="DarkColor"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="ly1-id-9je" secondAttribute="height" multiplier="1:1" id="UR5-Si-1Zf"/>
-                                        </constraints>
                                         <state key="normal" image="desserts"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                         </userDefinedRuntimeAttributes>
                                     </button>
                                 </subviews>
-                                <constraints>
-                                    <constraint firstItem="cbp-i6-EPH" firstAttribute="height" secondItem="ToG-QM-SFh" secondAttribute="height" id="5XF-bB-5aG"/>
-                                    <constraint firstItem="ly1-id-9je" firstAttribute="height" secondItem="ToG-QM-SFh" secondAttribute="height" id="6FM-fl-Sq8"/>
-                                    <constraint firstItem="Ztf-i9-LcU" firstAttribute="height" secondItem="ToG-QM-SFh" secondAttribute="height" id="Kkk-80-wCL"/>
-                                    <constraint firstItem="ToG-QM-SFh" firstAttribute="height" secondItem="EBU-m8-hZ6" secondAttribute="height" id="RVv-Q8-uo8"/>
-                                    <constraint firstItem="kKC-TE-2zS" firstAttribute="height" secondItem="ToG-QM-SFh" secondAttribute="height" id="hSG-DZ-cYW"/>
-                                    <constraint firstItem="FRS-qC-V39" firstAttribute="height" secondItem="ToG-QM-SFh" secondAttribute="height" id="n9m-9Q-ovm"/>
-                                </constraints>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="EBU-m8-hZ6" firstAttribute="width" secondItem="5OF-v9-5z6" secondAttribute="width" multiplier="1.49375" id="6bg-2T-mlc"/>
                             <constraint firstAttribute="bottom" secondItem="EBU-m8-hZ6" secondAttribute="bottom" id="J6G-Ln-IQl"/>
                             <constraint firstItem="EBU-m8-hZ6" firstAttribute="top" secondItem="5OF-v9-5z6" secondAttribute="top" id="JgF-y3-ksC"/>
-                            <constraint firstItem="EBU-m8-hZ6" firstAttribute="height" secondItem="5OF-v9-5z6" secondAttribute="height" id="QJK-pk-CQh"/>
                             <constraint firstAttribute="trailing" secondItem="EBU-m8-hZ6" secondAttribute="trailing" id="afR-YV-cRM"/>
                             <constraint firstItem="EBU-m8-hZ6" firstAttribute="leading" secondItem="5OF-v9-5z6" secondAttribute="leading" id="d8g-qO-mO3"/>
                         </constraints>
@@ -124,6 +95,7 @@
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
                 <constraint firstItem="5OF-v9-5z6" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="0Ra-yk-bFn"/>
+                <constraint firstAttribute="bottom" secondItem="5OF-v9-5z6" secondAttribute="bottom" id="5hb-5u-Mj0"/>
                 <constraint firstAttribute="trailing" secondItem="5OF-v9-5z6" secondAttribute="trailing" id="pi1-aw-qQD"/>
                 <constraint firstItem="5OF-v9-5z6" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="wdI-Uv-SnU"/>
             </constraints>

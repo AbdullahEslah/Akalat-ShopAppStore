@@ -40,6 +40,10 @@ class LoginVC: UIViewController, LoginButtonDelegate {
     @IBOutlet weak var termsOfUseStackView: UIStackView!
     @IBOutlet weak var privacyPolicyStackView: UIStackView!
     
+    //For Localization
+    @IBOutlet weak var termsOfUseButton: UIButton!
+    @IBOutlet weak var privacyPolicyButton: UIButton!
+    
     //For Translating Them
     @IBOutlet weak var termPhraseLeftLabel: UILabel!
     @IBOutlet weak var termPhraseRightLabel: UILabel!
@@ -64,6 +68,12 @@ class LoginVC: UIViewController, LoginButtonDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let localizedTermsOfUseButton = NSLocalizedString("Terms Of Use", comment: "")
+        termsOfUseButton.setTitle(localizedTermsOfUseButton, for: .normal)
+        
+        let localizedPolicyOfOurCommunityButton = NSLocalizedString("Policy Of Our Community", comment: "")
+        privacyPolicyButton.setTitle(localizedPolicyOfOurCommunityButton, for: .normal)
         
         let localizedLeftPhrase  = NSLocalizedString("By Clicking One Of The Top Buttons You Accept", comment: "")
         termPhraseLeftLabel.text = localizedLeftPhrase
@@ -328,6 +338,8 @@ class LoginVC: UIViewController, LoginButtonDelegate {
                     self.authHolderView.isHidden = true
                     self.deliverOrdersButton.isHidden = true
                     self.topLineOfAuthHolderView.isHidden = true
+                    self.privacyPolicyStackView.isHidden = true
+                    self.termsOfUseStackView.isHidden = true
                     let image = UIImage(named: "NoInternetStatus")!
                     self.appLogo.image = image
                     
@@ -440,23 +452,19 @@ class LoginVC: UIViewController, LoginButtonDelegate {
         
         GIDSignIn.sharedInstance.signIn(with: GoogleManager.signInConfig, presenting: self) { user, error in
             
-            guard error == nil else { return }
-            self.animationView.frame = self.view.bounds
-
-            // Add animationView as subview
-            self.view.addSubview(self.animationView)
-
-            // Play the animation
-            self.animationView.play()
-            self.animationView.loopMode = .loop
-            self.animationView.animationSpeed = 1
+            guard error == nil else {
+                self.hud.dismiss()
+                return
+            }
+            
+            self.hud.textLabel.text = "Loading..."
+            self.hud.show(in: self.view)
             
             guard let user = user else {
                 
                 print("user cancelled the request")
                 UserDefaults.standard.removeObject(forKey: "CheckDriverView")
-                self.animationView.stop()
-                self.animationView.removeFromSuperview()
+                self.hud.dismiss()
                 return
             }
             // If sign in succeeded, display the app's main content View.
@@ -473,23 +481,23 @@ class LoginVC: UIViewController, LoginButtonDelegate {
             NetworkManager.googleLogin(userType: self.userType,completion:  { success, error in
 
                 if error == nil {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 6.0, execute:  {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 3.0, execute:  {
                         UIView.animate(withDuration: 3.0) {
-                            self.animationView.alpha = 0
+//                            self.hud.dismiss()
                         }completion: { (_) in
                             
                             self.userType = self.userType.capitalized
                             self.performSegue(withIdentifier: "\(self.userType)View", sender: self)
-                            self.animationView.stop()
+                            self.hud.dismiss()
                         }
                     })
                 } else {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 6.0, execute:  {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 3.0, execute:  {
                         UIView.animate(withDuration: 3.0) {
-                            self.animationView.alpha = 0
+                            self.hud.dismiss()
                         }completion: { (_) in
                         Helper().showAlert(title: "Error!", message: error!.rawValue, in: self)
-                        self.animationView.stop()
+                            self.hud.dismiss()
                         }
                     })
                 }
@@ -504,6 +512,9 @@ class LoginVC: UIViewController, LoginButtonDelegate {
         didCompleteWith potentialResult: LoginManagerLoginResult?,
         error potentialError: Error?
     ) {
+        
+        self.hud.textLabel.text = "Loading..."
+        self.hud.show(in: self.view)
         
         if let error = potentialError {
             // Handle Error
@@ -528,21 +539,12 @@ class LoginVC: UIViewController, LoginButtonDelegate {
         FBManager.getFBUserData(completion: {
             self.animationView.frame = self.view.bounds
             
-            // Add animationView as subview
-            self.view.addSubview(self.animationView)
-            
-            // Play the animation
-            self.animationView.play()
-            self.animationView.loopMode = .loop
-            self.animationView.animationSpeed = 1
-            
-            
             NetworkManager.fbLogin(userType: self.userType,completion:  { success, error in
                 
                 if error == nil {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 6.0, execute:  {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 3.0, execute:  {
                         UIView.animate(withDuration: 3.0) {
-                            self.animationView.alpha = 0
+//                            self.animationView.alpha = 0
                         }completion: { (_) in
                             if UserDefaults.standard.value(forKey: "CheckDriverView") != nil {
                                 let storyboard = UIStoryboard(name: "DriverMain", bundle: nil)
@@ -553,16 +555,16 @@ class LoginVC: UIViewController, LoginButtonDelegate {
                                 self.userType = self.userType.capitalized
                                 self.performSegue(withIdentifier: "\(self.userType)View", sender: self)
                             }
-                            self.animationView.stop()
+                            self.hud.dismiss()
                         }
                     })
                 } else {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 6.0, execute:  {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 3.0, execute:  {
                         UIView.animate(withDuration: 3.0) {
-                            self.animationView.alpha = 0
+//                            self.animationView.alpha = 0
                         }completion: { (_) in
                         Helper().showAlert(title: "Error!", message: error!.rawValue, in: self)
-                        self.animationView.stop()
+                            self.hud.dismiss()
                       
                         }
                     })
@@ -576,6 +578,7 @@ class LoginVC: UIViewController, LoginButtonDelegate {
     }
     
     func signInAppleButton() {
+                
         let button = ASAuthorizationAppleIDButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(handleAppleIdRequest), for: .touchUpInside)
@@ -640,12 +643,13 @@ class LoginVC: UIViewController, LoginButtonDelegate {
 extension LoginVC: ASAuthorizationControllerDelegate {
     
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
-        switch authorization.credential {
         
+        switch authorization.credential {
         
         case let appleIDCredential as ASAuthorizationAppleIDCredential:
             
-           
+            self.hud.textLabel.text = "Loading..."
+            self.hud.show(in: self.view)
             
             let email = appleIDCredential.email
             UserDefaults.standard.setValue(email, forKey: "appleIdEmail")
@@ -688,7 +692,7 @@ extension LoginVC: ASAuthorizationControllerDelegate {
                     if error == nil {
                         DispatchQueue.main.asyncAfter(deadline: .now() + 6.0, execute:  {
                             UIView.animate(withDuration: 3.0) {
-                                self.animationView.alpha = 0
+//                                self.animationView.alpha = 0
                             }completion: { (_) in
                                 if UserDefaults.standard.value(forKey: "CheckDriverView") != nil {
                                     let storyboard = UIStoryboard(name: "DriverMain", bundle: nil)
@@ -699,17 +703,17 @@ extension LoginVC: ASAuthorizationControllerDelegate {
                                     self.userType = self.userType.capitalized
                                     self.performSegue(withIdentifier: "\(self.userType)View", sender: self)
                                 }
-                                self.animationView.stop()
+                                self.hud.dismiss()
                             }
                         })
                         
                     } else {
                         DispatchQueue.main.asyncAfter(deadline: .now() + 6.0, execute:  {
                             UIView.animate(withDuration: 3.0) {
-                                self.animationView.alpha = 0
+//                                self.animationView.alpha = 0
                             }completion: { (_) in
                                 Helper().showAlert(title: "Error Occurred!", message: "Login Again", in: self)
-                                self.animationView.stop()
+                                self.self.hud.dismiss()
                             }
                         })
                     }
@@ -728,17 +732,17 @@ extension LoginVC: ASAuthorizationControllerDelegate {
             switch err.code {
             case .canceled:
                 appDelegate.infoView(message: "You Cancelled The Login Process", color: colorSmoothRed)
-              
+                self.hud.dismiss()
                 return
             case .failed:
                 Helper().showAlert(title: "Error !", message: "Authorization failed.", in: self)
-                
+                self.hud.dismiss()
             case .invalidResponse:
                 print("invaliedResponse")
-               
+                self.hud.dismiss()
             case .notHandled:
                 print("notHandled")
-               
+                self.hud.dismiss()
                 
             case .unknown:
                
@@ -755,12 +759,14 @@ extension LoginVC: ASAuthorizationControllerDelegate {
                    
                     return
                 } else {
-                    Helper().showAlert(title: "Error !", message:  "Unknown error for appleID auth.", in: self)
+                    self.hud.dismiss()
+                    //Helper().showAlert(title: "Error !", message:  "Unknown error for appleID auth.", in: self)
+                    print("Unknown error for appleID auth.")
                     
                 }
             default:
                 //Helper().showAlert(title: "Error !", message:  "Unsupported error code.", in: self)
-                
+                self.hud.dismiss()
                 print("Unsupported error code.")
             }
         }
@@ -782,7 +788,6 @@ extension LoginVC {
         let userId = UserDefaults.standard.string(forKey: "appleUserId") ?? ""
         let appleIDProvider = ASAuthorizationAppleIDProvider()
         if Constants.appleUserId != nil {
-            
             
             DispatchQueue.main.async {
                 
@@ -846,7 +851,12 @@ extension LoginVC {
                                     UIView.animate(withDuration: 3.0) {
                                         self.animationView.alpha = 0
                                     }completion: { (_) in
-                                        Helper().showAlert(title: "Error Occurred!", message: "Please Login Again", in: self)
+                                        
+//                                        Helper().showAlert(title: "Error Occurred!", message: "Please Login Again", in: self)
+                                        UserDefaults.standard.removeObject(forKey: "appleUserId")
+                                        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                                        let loginVC = storyboard.instantiateViewController(identifier: "LoginVC")
+                                        appDelegate.window!.rootViewController = loginVC
                                         self.animationView.stop()
                                     }
                                 })

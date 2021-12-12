@@ -9,8 +9,6 @@ import UIKit
 import FBSDKCoreKit
 import FBSDKLoginKit
 import GoogleSignIn
-import Lottie
-
 import IQKeyboardManagerSwift
 
 
@@ -33,8 +31,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CAAnimationDelegate {
     var infoViewIsShowing = false
 
     var window: UIWindow?
-    
-    let animationView = AnimationView(animation: Animation.named("lf30_editor_reir1nit"))
     
     //image to be animated for firstScreen
     let backgroundImg = UIImageView()
@@ -141,7 +137,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CAAnimationDelegate {
             
             // cast as infoView is currently showing
             infoViewIsShowing = true
-            
             
             // infoView - red background
             let infoView_Height = self.window!.bounds.height / 14.2

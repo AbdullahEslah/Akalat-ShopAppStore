@@ -35,21 +35,22 @@ class LastOrderVC: UIViewController {
         NetworkManager.getOrderDetails { (orderDetails, error) in
             if error == nil {
                 DispatchQueue.main.async {
-                    self.tableView.stopSkeletonAnimation()
-                    self.view.hideSkeleton(reloadDataAfter: true, transition: .crossDissolve(0.25))
-                    //                    orderDetails?.restaurant.delivery
-                    if orderDetails.isEmpty == true {
+                    
+                    if orderDetails.count == 0 {
                         let emptyBasketLabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 40))
                         emptyBasketLabel.numberOfLines = 0
                         emptyBasketLabel.font = UIFont.systemFont(ofSize: 16.0)
                         emptyBasketLabel.center = self.view.center
                         emptyBasketLabel.textAlignment = NSTextAlignment.center
                         emptyBasketLabel.text = "You havn't Ordered Yet. Order Yours Now 👋🏻"
-                    } else {
-                        ArraysModels.listOrders.removeAll()
-                        ArraysModels.listOrders.append(contentsOf: orderDetails)
-                        self.tableView.reloadData()
                     }
+                    
+                    ArraysModels.listOrders.removeAll()
+                    ArraysModels.listOrders.append(contentsOf: orderDetails)
+                    
+                    self.tableView.stopSkeletonAnimation()
+                    self.view.hideSkeleton(reloadDataAfter: true, transition: .crossDissolve(0.25))
+                    self.tableView.reloadData()
                 }
             }else {
                 DispatchQueue.main.async {

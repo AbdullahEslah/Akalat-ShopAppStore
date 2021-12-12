@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="bmx-PY-cfV">
     <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -27,14 +26,14 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="194"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gbz-qH-P6L" customClass="RoundedShadowView" customModule="Akalat_Shop" customModuleProvider="target">
-                                <rect key="frame" x="126" y="299" width="68" height="2"/>
+                                <rect key="frame" x="126" y="293" width="68" height="2"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="2" id="OoE-41-MSb"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="keM-Tc-V1e">
-                                <rect key="frame" x="16" y="305" width="288" height="142"/>
+                                <rect key="frame" x="16" y="299" width="288" height="142"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8bM-F1-bK5" customClass="FBSDKLoginButton">
                                         <rect key="frame" x="8" y="51" width="272" height="40"/>
@@ -70,7 +69,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Edu-9z-XzK" customClass="RoundedButton" customModule="Akalat_Shop" customModuleProvider="target">
-                                <rect key="frame" x="41" y="455" width="238" height="26"/>
+                                <rect key="frame" x="41" y="449" width="238" height="26"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="22"/>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -82,7 +81,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xuU-ht-fcS">
-                                <rect key="frame" x="103" y="485" width="114" height="35"/>
+                                <rect key="frame" x="103" y="479" width="114" height="35"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
                                 <state key="normal" title="Deliver Orders"/>
                                 <connections>
@@ -102,7 +101,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="A8N-v6-zcE">
-                                <rect key="frame" x="5" y="544" width="312" height="24"/>
+                                <rect key="frame" x="8.5" y="544" width="303.5" height="24"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="And To The" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mVh-wk-Kc8">
                                         <rect key="frame" x="0.0" y="0.0" width="40" height="24"/>
@@ -111,45 +110,51 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cdC-Va-kYW">
-                                        <rect key="frame" x="41" y="0.0" width="126" height="24"/>
+                                        <rect key="frame" x="41" y="0.0" width="130.5" height="24"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                        <state key="normal" title="Policy Of Our Community."/>
+                                        <state key="normal" title="Policy Of Our Community"/>
                                         <connections>
                                             <action selector="privacyPolicyDidTapped:" destination="bmx-PY-cfV" eventType="touchUpInside" id="7cU-e5-ECg"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please Read Them Before Using The App" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F3X-U9-Hu7">
-                                        <rect key="frame" x="168" y="0.0" width="144" height="24"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="7"/>
+                                        <rect key="frame" x="172.5" y="0.0" width="131" height="24"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="6"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstItem="cdC-Va-kYW" firstAttribute="width" secondItem="F3X-U9-Hu7" secondAttribute="width" id="cQ1-Wn-yJA"/>
+                                </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="hqB-4p-Qr3">
-                                <rect key="frame" x="5" y="520" width="312" height="24"/>
+                                <rect key="frame" x="8.5" y="522" width="303.5" height="22"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="By Clicking One Of Top Buttons You Accept " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d7V-SG-o0X">
-                                        <rect key="frame" x="0.0" y="0.0" width="193.5" height="24"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="193.5" height="22"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="9"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XH6-EB-gB4">
-                                        <rect key="frame" x="194.5" y="0.0" width="66.5" height="24"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                        <rect key="frame" x="194.5" y="0.0" width="54" height="22"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="8"/>
                                         <state key="normal" title="Terms Of Use"/>
                                         <connections>
                                             <action selector="termsOfUserDidTapped:" destination="bmx-PY-cfV" eventType="touchUpInside" id="ksI-aC-dS9"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Of Our App" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gz1-u1-H2W">
-                                        <rect key="frame" x="262" y="0.0" width="50" height="24"/>
+                                        <rect key="frame" x="249.5" y="0.0" width="54" height="22"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="9"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstItem="Gz1-u1-H2W" firstAttribute="width" secondItem="XH6-EB-gB4" secondAttribute="width" id="FMu-kY-2W5"/>
+                                </constraints>
                             </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="I9g-ts-umG"/>
@@ -170,17 +175,16 @@
                             <constraint firstItem="keM-Tc-V1e" firstAttribute="leading" secondItem="I9g-ts-umG" secondAttribute="leading" constant="16" id="XPx-wM-tRi"/>
                             <constraint firstItem="keM-Tc-V1e" firstAttribute="top" secondItem="Gbz-qH-P6L" secondAttribute="bottom" constant="4" id="bAt-Hb-12k"/>
                             <constraint firstItem="kUS-ar-Rdo" firstAttribute="top" secondItem="I9g-ts-umG" secondAttribute="top" id="bU2-SP-fLx"/>
-                            <constraint firstItem="hqB-4p-Qr3" firstAttribute="top" secondItem="xuU-ht-fcS" secondAttribute="bottom" id="bln-tz-tEl"/>
+                            <constraint firstItem="hqB-4p-Qr3" firstAttribute="top" secondItem="xuU-ht-fcS" secondAttribute="bottom" constant="8" id="bln-tz-tEl"/>
                             <constraint firstItem="cVC-Nd-brf" firstAttribute="height" secondItem="kUS-ar-Rdo" secondAttribute="height" multiplier="0.0936255" id="ccq-ug-5Tt"/>
-                            <constraint firstItem="I9g-ts-umG" firstAttribute="trailing" secondItem="A8N-v6-zcE" secondAttribute="trailing" constant="3" id="hcc-Vk-mgr"/>
                             <constraint firstItem="yNe-dm-mz4" firstAttribute="leading" secondItem="kUS-ar-Rdo" secondAttribute="leading" id="iUI-wS-zRd"/>
                             <constraint firstItem="Gbz-qH-P6L" firstAttribute="trailing" secondItem="keM-Tc-V1e" secondAttribute="trailing" constant="-110" id="lAf-bQ-FI3"/>
                             <constraint firstItem="Gbz-qH-P6L" firstAttribute="leading" secondItem="keM-Tc-V1e" secondAttribute="leading" constant="110" id="llo-5b-kHh"/>
                             <constraint firstItem="cVC-Nd-brf" firstAttribute="top" secondItem="kUS-ar-Rdo" secondAttribute="top" id="mEF-BH-OkS"/>
                             <constraint firstItem="I9g-ts-umG" firstAttribute="trailing" secondItem="keM-Tc-V1e" secondAttribute="trailing" constant="16" id="mco-Bv-T0G"/>
-                            <constraint firstItem="A8N-v6-zcE" firstAttribute="leading" secondItem="I9g-ts-umG" secondAttribute="leading" constant="5" id="pJU-Na-ygf"/>
                             <constraint firstItem="I9g-ts-umG" firstAttribute="bottom" secondItem="A8N-v6-zcE" secondAttribute="bottom" id="pR0-yB-0Of"/>
                             <constraint firstItem="yNe-dm-mz4" firstAttribute="bottom" secondItem="kUS-ar-Rdo" secondAttribute="bottom" constant="30" id="rZG-3i-Gvu"/>
+                            <constraint firstItem="A8N-v6-zcE" firstAttribute="centerX" secondItem="I9g-ts-umG" secondAttribute="centerX" id="u0t-4g-ZG1"/>
                             <constraint firstItem="xuU-ht-fcS" firstAttribute="centerX" secondItem="I9g-ts-umG" secondAttribute="centerX" id="yuQ-Ie-98T"/>
                         </constraints>
                     </view>
@@ -196,10 +200,12 @@
                         <outlet property="internetConnectionLabel" destination="cVC-Nd-brf" id="Tlv-n3-Pso"/>
                         <outlet property="privacyPhraseLeft" destination="mVh-wk-Kc8" id="Qil-VT-JHn"/>
                         <outlet property="privacyPhraseRight" destination="F3X-U9-Hu7" id="ceY-Hx-ZcJ"/>
+                        <outlet property="privacyPolicyButton" destination="cdC-Va-kYW" id="6eg-EQ-I0d"/>
                         <outlet property="privacyPolicyStackView" destination="A8N-v6-zcE" id="hfY-eY-BgI"/>
                         <outlet property="showAuthButton" destination="Edu-9z-XzK" id="akn-Xr-jaN"/>
                         <outlet property="termPhraseLeftLabel" destination="d7V-SG-o0X" id="shB-AT-kbX"/>
                         <outlet property="termPhraseRightLabel" destination="Gz1-u1-H2W" id="aNX-Z5-8pI"/>
+                        <outlet property="termsOfUseButton" destination="XH6-EB-gB4" id="hig-bg-DUA"/>
                         <outlet property="termsOfUseStackView" destination="hqB-4p-Qr3" id="8ow-03-YoR"/>
                         <outlet property="topLineOfAuthHolderView" destination="Gbz-qH-P6L" id="418-qC-POX"/>
                         <segue destination="ZQu-5M-lPk" kind="showDetail" identifier="CustomerView" id="ZAq-a7-81Z"/>
