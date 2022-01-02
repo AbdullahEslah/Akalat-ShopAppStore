@@ -1,0 +1,53 @@
+/* 
+  Localizable.strings
+  Akalat-Shop
+
+  Created by Macbook on 21/10/2021.
+  
+*/
+
+//We Use The Key As An Id To Get The Value Of It In The Right
+
+//For Login Scenes
+"Policy Of Our Community"   = "Policy Of Our Community";
+"Terms Of Use"              = "Terms Of Use";
+
+"By Clicking One Of The Top Buttons You Accept"  = "By Clicking One Of The Top Buttons You Accept";
+
+"Of Our App"                = "Of Our App";
+
+"And To The"                = "And To The";
+
+"Please Read Them Before Using The App"           = "Please Read Them Before Using The App";
+
+//For Menu
+"changeLangKey"             = "Change Language";
+"Privacy Policy"            = "Privacy Policy";
+"Term Of Use"               = "Term Of Use";
+
+//For RestaurantsVC
+"Restaurants Search..."     = "Restaurants Search...";
+
+//Home CollectionView Headers
+"Categories"                = "Categories";
+"Common Restaurants"        = "Common Restaurants";
+
+//For MealListsVC CollectionView nameLabel
+"Most Popular Of:"          = "Most Popular Of:";
+
+//For CheckoutVC
+"deliveryPriceKey"          = "Delivery Price";
+"totalKey"                  = "Total";
+
+//Categories
+"Fast Food"                 = "Fast Food";
+"Browse Pizza Now"          = "Browse Pizza Now";
+"Explore Fried Chicken"     = "Explore Fried Chicken";
+"Common Grills"             = "Common Grills";
+"Sea Food"                  = "Sea Food";
+"Browse Desserts"           = "Browse Desserts";
+
+
+/*************** Driver-> DeliveryVC ******************/
+"CompleteOrderButtonKey"    = "Complete Order";
+"CancelOrderButtonKey"      = "Cancel Order";

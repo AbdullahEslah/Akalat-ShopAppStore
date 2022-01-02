@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CustomRestaurantLayoutCollectionViewCell" id="DSc-5O-vk3" customClass="CustomRestaurantLayoutCollectionViewCell" customModule="Akalat_Shop" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="324" height="201"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="5a7-om-olq">
+                <rect key="frame" x="0.0" y="0.0" width="324" height="201"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uxL-1E-XzO" customClass="RoundedShadowView" customModule="Akalat_Shop" customModuleProvider="target">
+                        <rect key="frame" x="8" y="8" width="308" height="189"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="mealName" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EbL-VB-zGc">
+                                <rect key="frame" x="8" y="163" width="292" height="22"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="12"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Qcw-hP-sqM" customClass="RoundedImageView" customModule="Akalat_Shop" customModuleProvider="target">
+                                <rect key="frame" x="8" y="26" width="292" height="137"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" name="WhiteColor"/>
+                        <constraints>
+                            <constraint firstItem="EbL-VB-zGc" firstAttribute="trailing" secondItem="Qcw-hP-sqM" secondAttribute="trailing" id="3vU-2a-6Os"/>
+                            <constraint firstAttribute="trailing" secondItem="Qcw-hP-sqM" secondAttribute="trailing" constant="8" id="HUC-Gi-Qtl"/>
+                            <constraint firstItem="Qcw-hP-sqM" firstAttribute="top" secondItem="uxL-1E-XzO" secondAttribute="top" constant="26" id="Ikr-aq-iQn"/>
+                            <constraint firstItem="EbL-VB-zGc" firstAttribute="leading" secondItem="Qcw-hP-sqM" secondAttribute="leading" id="J6Q-cw-6yv"/>
+                            <constraint firstAttribute="bottom" secondItem="Qcw-hP-sqM" secondAttribute="bottom" constant="26" id="SQ1-uQ-gBy"/>
+                            <constraint firstItem="Qcw-hP-sqM" firstAttribute="leading" secondItem="uxL-1E-XzO" secondAttribute="leading" constant="8" id="fxD-Gb-Lom"/>
+                            <constraint firstItem="EbL-VB-zGc" firstAttribute="top" secondItem="Qcw-hP-sqM" secondAttribute="bottom" id="j5l-8a-R5f"/>
+                            <constraint firstAttribute="bottom" secondItem="EbL-VB-zGc" secondAttribute="bottom" constant="4" id="nSn-cl-5Ug"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                </subviews>
+                <color key="backgroundColor" name="WhiteColor"/>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="uxL-1E-XzO" secondAttribute="bottom" constant="4" id="BxZ-0F-sKA"/>
+                    <constraint firstItem="uxL-1E-XzO" firstAttribute="top" secondItem="5a7-om-olq" secondAttribute="top" constant="8" id="ES2-kQ-gQo"/>
+                    <constraint firstAttribute="trailing" secondItem="uxL-1E-XzO" secondAttribute="trailing" constant="8" id="VKL-ze-TKg"/>
+                    <constraint firstItem="uxL-1E-XzO" firstAttribute="leading" secondItem="5a7-om-olq" secondAttribute="leading" constant="8" id="qVR-3N-9O0"/>
+                </constraints>
+            </collectionViewCellContentView>
+            <color key="backgroundColor" name="WhiteColor"/>
+            <size key="customSize" width="324" height="201"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+            </userDefinedRuntimeAttributes>
+            <connections>
+                <outlet property="restaurantImage" destination="Qcw-hP-sqM" id="Plh-ZJ-c6s"/>
+                <outlet property="restaurantName" destination="EbL-VB-zGc" id="Zb6-DT-kfO"/>
+            </connections>
+            <point key="canvasLocation" x="-449.27536231884062" y="-235.37946428571428"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <namedColor name="WhiteColor">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

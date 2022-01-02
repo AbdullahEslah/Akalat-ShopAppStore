@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Iceland-Regular.ttf">
+            <string>Iceland-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SliderCollectionView" id="MTM-hY-0Ag" customClass="SliderCollectionView" customModule="Akalat_Shop" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="324" height="201"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="5NL-sK-NaC">
+                <rect key="frame" x="0.0" y="0.0" width="324" height="201"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="sEM-N5-RVf" customClass="RoundedImageView" customModule="Akalat_Shop" customModuleProvider="target">
+                        <rect key="frame" x="8" y="16" width="308" height="169"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                        </userDefinedRuntimeAttributes>
+                    </imageView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="whK-gp-lA1" customClass="RoundedShadowView" customModule="Akalat_Shop" customModuleProvider="target">
+                        <rect key="frame" x="8" y="16" width="308" height="169"/>
+                        <color key="backgroundColor" red="0.25098039215686274" green="0.25098039215686274" blue="0.25098039215686274" alpha="0.44" colorSpace="custom" customColorSpace="displayP3"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Restaurant Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mrE-bV-wqb">
+                        <rect key="frame" x="45" y="133" width="234" height="36"/>
+                        <color key="backgroundColor" red="0.25098039215686274" green="0.25098039215686274" blue="0.25098039215686274" alpha="0.084185350430722256" colorSpace="custom" customColorSpace="displayP3"/>
+                        <fontDescription key="fontDescription" name="Iceland-Regular" family="Iceland" pointSize="30"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                        <color key="shadowColor" red="0.81142348472518155" green="0.81142348472518155" blue="0.81142348472518155" alpha="0.6996917724609375" colorSpace="custom" customColorSpace="displayP3"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                        </userDefinedRuntimeAttributes>
+                    </label>
+                </subviews>
+                <color key="backgroundColor" name="WhiteColor"/>
+                <constraints>
+                    <constraint firstItem="sEM-N5-RVf" firstAttribute="leading" secondItem="5NL-sK-NaC" secondAttribute="leading" constant="8" id="GAL-Kh-xBA"/>
+                    <constraint firstItem="mrE-bV-wqb" firstAttribute="bottom" secondItem="sEM-N5-RVf" secondAttribute="bottom" constant="-16" id="N71-BQ-0a1"/>
+                    <constraint firstAttribute="bottom" secondItem="sEM-N5-RVf" secondAttribute="bottom" constant="16" id="RCC-ou-2aT"/>
+                    <constraint firstItem="whK-gp-lA1" firstAttribute="bottom" secondItem="sEM-N5-RVf" secondAttribute="bottom" id="ZEr-kp-ssX"/>
+                    <constraint firstItem="whK-gp-lA1" firstAttribute="top" secondItem="sEM-N5-RVf" secondAttribute="top" id="dYQ-PQ-ci8"/>
+                    <constraint firstItem="sEM-N5-RVf" firstAttribute="top" secondItem="5NL-sK-NaC" secondAttribute="top" constant="16" id="kfK-pE-vDK"/>
+                    <constraint firstItem="whK-gp-lA1" firstAttribute="leading" secondItem="sEM-N5-RVf" secondAttribute="leading" id="rcx-OH-fle"/>
+                    <constraint firstItem="whK-gp-lA1" firstAttribute="trailing" secondItem="sEM-N5-RVf" secondAttribute="trailing" id="wL3-Jm-3fF"/>
+                    <constraint firstItem="mrE-bV-wqb" firstAttribute="centerX" secondItem="whK-gp-lA1" secondAttribute="centerX" id="y0S-Ev-9PU"/>
+                    <constraint firstAttribute="trailing" secondItem="sEM-N5-RVf" secondAttribute="trailing" constant="8" id="zWw-sV-wBc"/>
+                </constraints>
+            </collectionViewCellContentView>
+            <color key="backgroundColor" name="WhiteColor"/>
+            <size key="customSize" width="324" height="201"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+            </userDefinedRuntimeAttributes>
+            <connections>
+                <outlet property="restaurantImage" destination="sEM-N5-RVf" id="ZjA-oF-095"/>
+                <outlet property="restaurantName" destination="mrE-bV-wqb" id="s2L-DX-gQY"/>
+            </connections>
+            <point key="canvasLocation" x="-486.95652173913049" y="-401.45089285714283"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="Background" width="3000" height="1688"/>
+        <namedColor name="WhiteColor">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

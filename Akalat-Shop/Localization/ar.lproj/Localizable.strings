@@ -1,0 +1,56 @@
+/* 
+  Localizable.strings
+  Akalat-Shop
+
+  Created by Macbook on 21/10/2021.
+  
+*/
+
+//We Use The Key As An Id To Get The Value Of It In The Right
+
+
+
+//For Login Scenes
+"Policy Of Our Community"   = "سياسة الخصوصية للتطبيق";
+"Terms Of Use"              = "الاحكام والشروط";
+
+"By Clicking One Of The Top Buttons You Accept"             = "بالضغط على اي زر بالاعلى. انت توافق على";
+
+"Of Our App"                = "للتطبيق";
+
+"And To The"                = "وتوافق على";
+
+"Please Read Them Before Using The App"                    = "من فضلك اقرا كل منهم قبل استخدام التطبيق";
+
+//For Menu
+"changeLangKey"             = "تغيير اللغة";
+"Privacy Policy"            = "سياسة الخصوصية";
+"Term Of Use"               = "الأحكام والشروط";
+
+
+//RestaurantsVC
+"Restaurants Search..."     = "بحث عن مطاعم";
+
+//RestaurantsVC CollectionView Headers
+"Categories"                = "الاقسام";
+"Common Restaurants"        = "المطاعم المعروفة";
+"browseByAllRestaurantskey" = "تصفح جميع المطاعم";
+
+//For MealListsVC
+"Most Popular Of:"          = "المعروف لدى:";
+
+//For ChekoutVC
+"deliveryPriceKey"          = "سعر التوصيل";
+"totalKey"                  = "الاجمالي";
+
+//Categories
+"Fast Food"                 = "الوجبات السريعة";
+"Browse Pizza Now"          = "تصفح البيتزا الآن";
+"Explore Fried Chicken"     = "استكشف البروست";
+"Common Grills"             = "المشويات الشائعة";
+"Sea Food"                  = "الماكولات البحرية";
+"Browse Desserts"           = "تصفح الحلو";
+
+/********** Driver ***********/
+"CompleteOrderButtonKey"    = "اكمل الطلب";
+"CancelOrderButtonKey"      = "الغاء الطلب";
