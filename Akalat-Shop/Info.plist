@@ -4,8 +4,11 @@
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
+<<<<<<< HEAD
 	<key>CFBundleDisplayName</key>
 	<string>Akalat-Shop</string>
+=======
+>>>>>>> 8c67f71eb814d2079ee60232badaef74c4c83c67
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -17,7 +20,11 @@
 	<key>CFBundlePackageType</key>
 	<string>$(PRODUCT_BUNDLE_PACKAGE_TYPE)</string>
 	<key>CFBundleShortVersionString</key>
+<<<<<<< HEAD
 	<string>$(MARKETING_VERSION)</string>
+=======
+	<string>1.0</string>
+>>>>>>> 8c67f71eb814d2079ee60232badaef74c4c83c67
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -42,7 +49,11 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
+<<<<<<< HEAD
 	<string>$(CURRENT_PROJECT_VERSION)</string>
+=======
+	<string>1</string>
+>>>>>>> 8c67f71eb814d2079ee60232badaef74c4c83c67
 	<key>FacebookAppID</key>
 	<string>1034025207069875</string>
 	<key>FacebookDisplayName</key>
@@ -75,6 +86,7 @@
 		<true/>
 	</dict>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+<<<<<<< HEAD
 	<string>Turning On Location Services With This App, Allows You To Track Your Latest Orders On Map</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Turning On Location Services With This App, Allows You To Track Your Latest Orders On Map</string>
@@ -82,6 +94,11 @@
 	<array>
 		<string>Iceland-Regular.ttf</string>
 	</array>
+=======
+	<string>This App Needs Your Location To Access Your Location</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>This App Needs Your Location To Access Your Location</string>
+>>>>>>> 8c67f71eb814d2079ee60232badaef74c4c83c67
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>
@@ -103,5 +120,12 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+<<<<<<< HEAD
+=======
+	<key>UIAppFonts</key>
+	<array>
+		<string>Iceland-Regular.ttf</string>
+	</array>
+>>>>>>> 8c67f71eb814d2079ee60232badaef74c4c83c67
 </dict>
 </plist>

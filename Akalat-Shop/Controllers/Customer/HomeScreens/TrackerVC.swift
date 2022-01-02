@@ -266,7 +266,11 @@ extension TrackerVC: MKMapViewDelegate {
         
         geocoder.geocodeAddressString(address) { (placemark, error) in
             if error != nil {
+<<<<<<< HEAD
                 print("Error", error)
+=======
+//                print("Error", error)
+>>>>>>> 8c67f71eb814d2079ee60232badaef74c4c83c67
             }
             if let placemark = placemark?.first {
                 let coordinates: CLLocationCoordinate2D = placemark.location!.coordinate
@@ -293,8 +297,12 @@ extension TrackerVC: MKMapViewDelegate {
         directions.calculate { (response, error) in
             
             if error != nil {
+<<<<<<< HEAD
                 print("Error:",error)
                 
+=======
+//                print("Error: ", error)
+>>>>>>> 8c67f71eb814d2079ee60232badaef74c4c83c67
             } else {
                 // Show route
                 self.showRoute(response: response!)

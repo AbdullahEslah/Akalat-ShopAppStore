@@ -111,7 +111,10 @@ class DriverLoginVC: UIViewController, LoginButtonDelegate {
             self.fbLoginButton.isHidden = true
             self.termsOfUseStackView.isHidden = true
             self.privacyPolicyStackView.isHidden = true
+<<<<<<< HEAD
             self.backButton.isHidden = true
+=======
+>>>>>>> 8c67f71eb814d2079ee60232badaef74c4c83c67
             
             animationView.frame = view.bounds
             // Add animationView as subview
@@ -200,7 +203,10 @@ class DriverLoginVC: UIViewController, LoginButtonDelegate {
             self.fbLoginButton.isHidden = true
             self.termsOfUseStackView.isHidden = true
             self.privacyPolicyStackView.isHidden = true
+<<<<<<< HEAD
             self.backButton.isHidden = true
+=======
+>>>>>>> 8c67f71eb814d2079ee60232badaef74c4c83c67
             
             
             animationView.frame = view.bounds
@@ -782,7 +788,10 @@ extension DriverLoginVC {
             self.fbLoginButton.isHidden = true
             self.termsOfUseStackView.isHidden = true
             self.privacyPolicyStackView.isHidden = true
+<<<<<<< HEAD
             self.backButton.isHidden = true
+=======
+>>>>>>> 8c67f71eb814d2079ee60232badaef74c4c83c67
             
             
             self.animationView.frame = self.view.bounds

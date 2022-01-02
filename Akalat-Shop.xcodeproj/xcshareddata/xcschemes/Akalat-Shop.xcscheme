@@ -14,7 +14,11 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
+<<<<<<< HEAD
                BlueprintIdentifier = "FA2600AB276AEB25009D560F"
+=======
+               BlueprintIdentifier = "FAEFC56026F8882D00095DB5"
+>>>>>>> 8c67f71eb814d2079ee60232badaef74c4c83c67
                BuildableName = "Akalat-Shop.app"
                BlueprintName = "Akalat-Shop"
                ReferencedContainer = "container:Akalat-Shop.xcodeproj">
@@ -44,7 +48,11 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
+<<<<<<< HEAD
             BlueprintIdentifier = "FA2600AB276AEB25009D560F"
+=======
+            BlueprintIdentifier = "FAEFC56026F8882D00095DB5"
+>>>>>>> 8c67f71eb814d2079ee60232badaef74c4c83c67
             BuildableName = "Akalat-Shop.app"
             BlueprintName = "Akalat-Shop"
             ReferencedContainer = "container:Akalat-Shop.xcodeproj">
@@ -61,7 +69,11 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
+<<<<<<< HEAD
             BlueprintIdentifier = "FA2600AB276AEB25009D560F"
+=======
+            BlueprintIdentifier = "FAEFC56026F8882D00095DB5"
+>>>>>>> 8c67f71eb814d2079ee60232badaef74c4c83c67
             BuildableName = "Akalat-Shop.app"
             BlueprintName = "Akalat-Shop"
             ReferencedContainer = "container:Akalat-Shop.xcodeproj">

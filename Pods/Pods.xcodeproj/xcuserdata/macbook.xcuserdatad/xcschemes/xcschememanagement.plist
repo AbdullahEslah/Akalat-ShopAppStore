@@ -84,6 +84,14 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+<<<<<<< HEAD
+=======
+		<key>SwiftyGif.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+>>>>>>> 8c67f71eb814d2079ee60232badaef74c4c83c67
 		<key>lottie-ios.xcscheme</key>
 		<dict>
 			<key>isShown</key>

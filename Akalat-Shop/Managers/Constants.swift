@@ -10,6 +10,7 @@ import Lottie
 
 class Constants {
     
+<<<<<<< HEAD
     static var region              = UserDefaults.standard.value(forKey: "region") as? String 
     static var address             = UserDefaults.standard.value(forKey: "address") as? String
     static var phone               = UserDefaults.standard.value(forKey: "phone") as? String
@@ -27,6 +28,14 @@ class Constants {
     static var FriedChicken     = "FriedChicken"
     static var Desserts         = "Desserts"
     static var Fish             = "Fish"
+=======
+    static var region  = UserDefaults.standard.value(forKey: "region") as? String
+    static var address = UserDefaults.standard.value(forKey: "address") as? String
+    static var phone   = UserDefaults.standard.value(forKey: "phone") as? String
+    
+    //Categories
+    static var Sandwiches = "Sandwiches"
+>>>>>>> 8c67f71eb814d2079ee60232badaef74c4c83c67
     
     //LOADING USING LOTTIE
     let animationView = AnimationView(animation: Animation.named("lf30_editor_reir1nit"))

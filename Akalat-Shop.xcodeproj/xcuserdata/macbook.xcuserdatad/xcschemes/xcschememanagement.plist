@@ -7,12 +7,30 @@
 		<key>Akalat-Shop.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
+<<<<<<< HEAD
 			<integer>0</integer>
+=======
+			<integer>26</integer>
+		</dict>
+		<key>AkalatShop-Driver.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>27</integer>
+>>>>>>> 8c67f71eb814d2079ee60232badaef74c4c83c67
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+<<<<<<< HEAD
 		<key>FA2600AB276AEB25009D560F</key>
+=======
+		<key>FA439B0E270E5E5A00F2F83D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FAEFC56026F8882D00095DB5</key>
+>>>>>>> 8c67f71eb814d2079ee60232badaef74c4c83c67
 		<dict>
 			<key>primary</key>
 			<true/>

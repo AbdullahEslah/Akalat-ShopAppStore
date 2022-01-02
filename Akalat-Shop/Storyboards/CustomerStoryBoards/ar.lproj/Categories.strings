@@ -5,8 +5,13 @@
 /* Class = "UINavigationItem"; title = "Desserts Restaurants"; ObjectID = "6jG-3O-yzC"; */
 "6jG-3O-yzC.title" = "Desserts Restaurants";
 
+<<<<<<< HEAD
 /* Class = "UINavigationItem"; title = "Fried Chicken"; ObjectID = "Ijl-Rf-p0W"; */
 "Ijl-Rf-p0W.title" = "Fried Chicken";
+=======
+/* Class = "UINavigationItem"; title = " Restaurants"; ObjectID = "Ijl-Rf-p0W"; */
+"Ijl-Rf-p0W.title" = " Restaurants";
+>>>>>>> 8c67f71eb814d2079ee60232badaef74c4c83c67
 
 /* Class = "UINavigationItem"; title = "Pizza Restaurants"; ObjectID = "J23-uW-sGh"; */
 "J23-uW-sGh.title" = "Pizza Restaurants";
@@ -14,5 +19,10 @@
 /* Class = "UINavigationItem"; title = "Fish Restaurants"; ObjectID = "MsB-3h-2de"; */
 "MsB-3h-2de.title" = "Fish Restaurants";
 
+<<<<<<< HEAD
 /* Class = "UINavigationItem"; title = "Sandwiches"; ObjectID = "aC4-iq-xD4"; */
 "aC4-iq-xD4.title" = "Sandwiches";
+=======
+/* Class = "UINavigationItem"; title = "Restaurants"; ObjectID = "aC4-iq-xD4"; */
+"aC4-iq-xD4.title" = "Restaurants";
+>>>>>>> 8c67f71eb814d2079ee60232badaef74c4c83c67

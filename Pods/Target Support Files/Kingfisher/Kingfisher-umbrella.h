@@ -10,7 +10,10 @@
 #endif
 #endif
 
+<<<<<<< HEAD
 #import "Kingfisher.h"
+=======
+>>>>>>> 8c67f71eb814d2079ee60232badaef74c4c83c67
 
 FOUNDATION_EXPORT double KingfisherVersionNumber;
 FOUNDATION_EXPORT const unsigned char KingfisherVersionString[];

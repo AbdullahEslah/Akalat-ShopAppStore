@@ -203,6 +203,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CAAnimationDelegate {
     }
     
     
+<<<<<<< HEAD
+=======
+    
+    
+    
+    
+>>>>>>> 8c67f71eb814d2079ee60232badaef74c4c83c67
     //functions to animte backrounds towards to directions
     func moveLeft(){
         UIView.animate(withDuration: 45, animations: {

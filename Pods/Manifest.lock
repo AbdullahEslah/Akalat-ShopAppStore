@@ -33,9 +33,16 @@ PODS:
   - GTMSessionFetcher/Core (1.7.0)
   - IQKeyboardManagerSwift (6.3.0)
   - JGProgressHUD (2.2)
+<<<<<<< HEAD
   - Kingfisher (4.10.1)
   - lottie-ios (3.2.3)
   - SkeletonView (1.26.0)
+=======
+  - Kingfisher (7.1.1)
+  - lottie-ios (3.2.3)
+  - SkeletonView (1.26.0)
+  - SwiftyGif (5.4.1)
+>>>>>>> 8c67f71eb814d2079ee60232badaef74c4c83c67
 
 DEPENDENCIES:
   - Alamofire (~> 4.8)
@@ -50,6 +57,10 @@ DEPENDENCIES:
   - Kingfisher
   - lottie-ios
   - SkeletonView
+<<<<<<< HEAD
+=======
+  - SwiftyGif
+>>>>>>> 8c67f71eb814d2079ee60232badaef74c4c83c67
 
 SPEC REPOS:
   trunk:
@@ -68,6 +79,10 @@ SPEC REPOS:
     - Kingfisher
     - lottie-ios
     - SkeletonView
+<<<<<<< HEAD
+=======
+    - SwiftyGif
+>>>>>>> 8c67f71eb814d2079ee60232badaef74c4c83c67
 
 SPEC CHECKSUMS:
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
@@ -82,10 +97,19 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: 43748f93435c2aa068b1cbe39655aaf600652e91
   IQKeyboardManagerSwift: a8228c257614af98743b4cd8584637025f36358f
   JGProgressHUD: d83d7a981b85d11205e19ff8ad5bb9c40571c847
+<<<<<<< HEAD
   Kingfisher: c148cd7b47ebde9989f6bc7c27dcaa79d81279a0
   lottie-ios: c058aeafa76daa4cf64d773554bccc8385d0150e
   SkeletonView: 6b62a8ddbc64abb113ea3243e4a9979e5750f147
 
 PODFILE CHECKSUM: eab46e85d7912f9bc72e66bcaa82a477266ceef3
+=======
+  Kingfisher: f738f9c4a3415823b8e2985d10aa2d6a9f37bc4d
+  lottie-ios: c058aeafa76daa4cf64d773554bccc8385d0150e
+  SkeletonView: 6b62a8ddbc64abb113ea3243e4a9979e5750f147
+  SwiftyGif: 6895c887f5551618a3c5dd3ecb512419105bacca
+
+PODFILE CHECKSUM: 47b51629cd7d6fcd30c2214c764f319a62b539c4
+>>>>>>> 8c67f71eb814d2079ee60232badaef74c4c83c67
 
 COCOAPODS: 1.10.1
